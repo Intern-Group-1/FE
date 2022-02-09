@@ -18,7 +18,7 @@ img{
     
 }
 .home :hover, .specialist:hover, .doctor:hover, .about:hover{
-    opacity: 0.5;
+    opacity: 1;
 }
 .btn-login{
     width: 145px;
@@ -30,8 +30,12 @@ img{
 AiOutlineDown{
     font-size: 22px;
 }
+
 #nav i{
     font-size: 17px;
+}
+#nav .icon:hover{
+    transform: rotate(90deg);
 }
 #nav ul{
     padding-top: 155px;

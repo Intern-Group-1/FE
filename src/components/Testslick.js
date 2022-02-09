@@ -1,47 +1,86 @@
 import React, { Component } from "react";
 import Slider from "react-slick";
+import "../style/Testslick.css"
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
+import tin1 from '../assets/image/tin1.jpg'
+import tin2 from '../assets/image/tin2.jpg'
 
-export default class MultipleItems extends Component {
+export default class SimpleSlider extends Component {
   render() {
-    const settings = {
-      dots: true,
+    let settings = {
+      dots: false,
       infinite: true,
       speed: 500,
-      slidesToShow: 3,
-      slidesToScroll: 3
+      slidesToShow: 2,
+      slidesToScroll: 1
     };
     return (
-      <div>
-        <h2> Multiple items </h2>
+      <div className="section-specialty">
+        <div className="specialty-content">
         <Slider {...settings}>
-          <div>
-            <h3>1</h3>
-          </div>
-          <div>
-            <h3>2</h3>
-          </div>
-          <div>
-            <h3>3</h3>
-          </div>
-          <div>
-            <h3>4</h3>
-          </div>
-          <div>
-            <h3>5</h3>
-          </div>
-          <div>
-            <h3>6</h3>
-          </div>
-          <div>
-            <h3>7</h3>
-          </div>
-          <div>
-            <h3>8</h3>
-          </div>
-          <div>
-            <h3>9</h3>
-          </div>
+        <div className='img-customize'>
+        <div className='img'>
+          <img src={tin1} alt="" />
+        </div>
+        <div className='title-item'>
+                    <a >Thay thủy tinh thể bao nhiêu tiền? 
+                        5 Địa chỉ thay Thủy tinh thể uy tín tại Hà Nội</a>
+                    </div>
+        </div>
+
+        <div className='img-customize'>
+            <div className='img'>
+                        <img src={tin2} alt="" />
+                    </div>
+                    <div className='title-item'>
+                    <a >Khám và nạo VA cho trẻ: Có nguy hiểm không? 
+                    Review 5 địa chỉ tốt</a>
+                    </div>                  
+        </div>
+        <div className='img-customize'>
+            <div className='img'>
+                        <img src={tin2} alt="" />
+                    </div>
+                    <div className='title-item'>
+                    <a >Khám và nạo VA cho trẻ: Có nguy hiểm không? 
+                    Review 5 địa chỉ tốt</a>
+                    </div>
+                    
+        </div>
+        <div className='img-customize'>
+            <div className='img'>
+                        <img src={tin2} alt="" />
+                    </div>
+                    <div className='title-item'>
+                    <a >Khám và nạo VA cho trẻ: Có nguy hiểm không? 
+                    Review 5 địa chỉ tốt</a>
+                    </div>
+                    
+        </div>
+        <div className='img-customize'>
+            <div className='img'>
+                        <img src={tin2} alt="" />
+                    </div>
+                    <div className='title-item'>
+                    <a >Khám và nạo VA cho trẻ: Có nguy hiểm không? 
+                    Review 5 địa chỉ tốt</a>
+                    </div>
+                    
+        </div>
+
+        <div className='img-customize'>
+            <div className='img'>
+                        <img src={tin2} alt="" />
+                    </div>
+                    <div className='title-item'>
+                    <a >Khám và nạo VA cho trẻ: Có nguy hiểm không? 
+                    Review 5 địa chỉ tốt</a>
+                    </div>
+                    
+        </div>
         </Slider>
+      </div>
       </div>
     );
   }

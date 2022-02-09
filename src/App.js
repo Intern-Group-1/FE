@@ -1,6 +1,3 @@
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Home from "./components/Homepage";
@@ -8,7 +5,7 @@ import Login from "./components/Login";
 import Signup from "./components/Signup";
 import React from "react";
 import { Routes ,Route } from "react-router-dom";
-import MultipleItems from "./components/Testslick"
+import PreviousNextMethods from "./components/Testslick"
 
 function App() {
   return (
@@ -19,8 +16,8 @@ function App() {
         <Route path="/login" element={ <Login /> } />
         <Route path="/signup" element={ <Signup /> } />
     </Routes>
+    <PreviousNextMethods />
     <Footer />
-    <MultipleItems />
     </>
   )
 }
