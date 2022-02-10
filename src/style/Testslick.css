@@ -1,8 +1,7 @@
 .section-specialty{
     height: 350px;
     background-color: #f5f5f5f5;
-    /* border: 1px red solid; */
-    
+     border: 1px #f5f5f5f5 solid;    
 }
 .banner-content{
     margin: 0 300px;
@@ -10,14 +9,14 @@
 }
 .img-customize{
     height: 300px;
-    
+    margin-left: 80px;
 }
 .slick-prev:before{
     font-family: FontAwesome !important;
     color: black !important;
 }
 .slick-prev{
-    left: -60px !important;
+    left: -50px !important;
     top: 90px !important;
     z-index: 2;
     width: 48px !important;
@@ -30,7 +29,7 @@
 }
 .slick-next{
     background-color: blue !important;
-    right: -60px !important;
+    right: -50px !important;
     top: 90px !important;
     width: 48px !important;
     height: 44px !important;

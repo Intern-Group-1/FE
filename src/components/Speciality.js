@@ -49,42 +49,44 @@ export default class Speciality extends Component {
       slidesToScroll: 1
     };
     return (
-       
+      // Neurology</a>
+      // <a href="#">Orthopedic</a>
+      // <a href="#">Dentist
       <div className="section-specialty">
         <div className="specialty-content">
         <Slider {...settings}>
-        <div className='img-customize'>
+        <div className='img-customize-speciality'>
         <div className='img'>
           <img src={spy} alt="" className='css-img' />
         </div>
         <div className='title-item'>
-                    <a >Huyết</a>
+                    <a >Neurology</a>
                     </div>
         </div>
 
-        <div className='img-customize'>
+        <div className='img-customize-speciality'>
             <div className='img'>
                         <img src={spy} alt="" className='css-img'/>
                     </div>
                     <div className='title-item'>
-                    <a >Xương</a>
+                    <a >Orthopedic</a>
                     </div>                  
         </div>
-        <div className='img-customize'>
+        <div className='img-customize-speciality'>
             <div className='img'>
                         <img src={spy} alt="" className='css-img' />
                     </div>
                     <div className='title-item'>
-                    <a >Răng</a>
+                    <a >Dentist</a>
                     </div>
                     
         </div>
-        <Link to='#' className='img-customize'>
+        <Link to='#' className='img-customize-speciality'>
             <div className='img'>
                         <img src={spy} alt="" className='css-img' />
                     </div>
                     <div className='title-item'>
-                    <a >Tim</a>
+                    <a >Dentist</a>
                     </div>
                     
         </Link>

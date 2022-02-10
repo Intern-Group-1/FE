@@ -39,7 +39,7 @@ function App() {
         <Route path="/doctor" element={<ProductAddToCart />} />
         <Route exact path="/signup" element={<Signup />} /> */}
   {/* <Item/> */}
-     {/* <ProductAddToCart/> */}
+     <ProductAddToCart/>
 <PreviousNextMethods />
       <Footer />
     </ChakraProvider>
