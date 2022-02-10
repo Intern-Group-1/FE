@@ -1,0 +1,51 @@
+.custom-file-input {
+   color: rgb(255, 255, 255);
+    margin-left: 100px;
+  }
+  .custom-file-input::-webkit-file-upload-button {
+    visibility: hidden;
+  }
+  .custom-file-input::before {
+    
+    content: 'Upload avatar';
+    color: rgb(7, 105, 253);
+    display: inline-block;
+    background: -webkit-linear-gradient(top, #0ab8fd, #0bf5e9);
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 3px;
+    padding: 5px 8px;
+    outline: none;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    cursor: pointer;
+   
+    font-weight: 700;
+    font-size: 10pt;
+  }
+  .custom-file-input:hover::before {
+    border-color: rgb(0, 110, 255);
+    
+  }
+  .custom-file-input:active {
+    outline: 0;
+  }
+  .custom-file-input:active::before {
+    background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9); 
+  }
+  
+  body {
+    padding: 20px;
+  }
+  .box{
+    margin-left: 300px;
+    
+  }
+  .text-inf{
+      
+      font-size: larger;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      font-weight: 500;
+     margin-left: 1px;
+     border: 2px #a2dcf3 solid;
+     
+  }

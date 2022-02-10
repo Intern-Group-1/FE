@@ -1,5 +1,6 @@
 import '../style/Banner.css'
 import bg from '../assets/image/background.jpg'
+import { Link } from 'react-router-dom';
 
 
 function Banner(){
@@ -14,7 +15,9 @@ function Banner(){
                 when accusing and praising pain, I will open up the whole matter, 
                 and will explain the very things that I have discovered from him. 
                 through the creator of truth.</p>
+                <Link to='/doctor'> 
                 <button className='btn-banner'> <p>Make an appointment</p> </button>
+                </Link>
             </div>
         </div>
     )

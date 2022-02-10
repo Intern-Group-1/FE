@@ -17,13 +17,13 @@ export default class SimpleSlider extends Component {
     };
     return (
       <div className="section-specialty">
-        <div className="specialty-content">
+        <div className="banner-content">
         <Slider {...settings}>
         <div className='img-customize'>
         <div className='img'>
           <img src={tin1} alt="" />
         </div>
-        <div className='title-item'>
+        <div className='title-item-banner'>
                     <a >Thay thủy tinh thể bao nhiêu tiền? 
                         5 Địa chỉ thay Thủy tinh thể uy tín tại Hà Nội</a>
                     </div>
@@ -33,7 +33,7 @@ export default class SimpleSlider extends Component {
             <div className='img'>
                         <img src={tin2} alt="" />
                     </div>
-                    <div className='title-item'>
+                    <div className='title-item-banner'>
                     <a >Khám và nạo VA cho trẻ: Có nguy hiểm không? 
                     Review 5 địa chỉ tốt</a>
                     </div>                  
@@ -42,7 +42,7 @@ export default class SimpleSlider extends Component {
             <div className='img'>
                         <img src={tin2} alt="" />
                     </div>
-                    <div className='title-item'>
+                    <div className='title-item-banner'>
                     <a >Khám và nạo VA cho trẻ: Có nguy hiểm không? 
                     Review 5 địa chỉ tốt</a>
                     </div>
@@ -52,7 +52,7 @@ export default class SimpleSlider extends Component {
             <div className='img'>
                         <img src={tin2} alt="" />
                     </div>
-                    <div className='title-item'>
+                    <div className='title-item-banner'>
                     <a >Khám và nạo VA cho trẻ: Có nguy hiểm không? 
                     Review 5 địa chỉ tốt</a>
                     </div>
@@ -62,7 +62,7 @@ export default class SimpleSlider extends Component {
             <div className='img'>
                         <img src={tin2} alt="" />
                     </div>
-                    <div className='title-item'>
+                    <div className='title-item-banner'>
                     <a >Khám và nạo VA cho trẻ: Có nguy hiểm không? 
                     Review 5 địa chỉ tốt</a>
                     </div>
@@ -73,7 +73,7 @@ export default class SimpleSlider extends Component {
             <div className='img'>
                         <img src={tin2} alt="" />
                     </div>
-                    <div className='title-item'>
+                    <div className='title-item-banner'>
                     <a >Khám và nạo VA cho trẻ: Có nguy hiểm không? 
                     Review 5 địa chỉ tốt</a>
                     </div>

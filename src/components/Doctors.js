@@ -1,10 +1,12 @@
 import doctor from '../assets/image/Doctor.jpg'
 import '../style/Doctors.css'
 import {MdArrowBackIos, MdOutlineNavigateNext} from 'react-icons/md'
+import ProductAddToCart from './ProductAddToCart'
 
 function Doctor (){
     return (
         <div id="doctor">
+            {/* <ProductAddToCart/> */}
             <div className="container-doctor">
                 <p className="title-doctor"> Doctors </p>
                 <div className="container-item">
