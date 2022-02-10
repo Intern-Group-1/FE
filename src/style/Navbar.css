@@ -2,6 +2,9 @@ body{
     margin: 0;
     padding: 0;
 }
+svg{
+    display: inline-block !important;
+}
 #nav {
     display: grid;
     grid-template-columns: 504px 200px 200px 200px 200px 200px;
@@ -26,6 +29,9 @@ img{
     background-color: #fff;
     border-radius: 10px;
     border: #80CCFF 2.5px solid;
+}
+.btn-login:hover{
+    box-shadow: 2px 2px #5792b9;
 }
 AiOutlineDown{
     font-size: 22px;

@@ -32,6 +32,10 @@
     margin-left: 180px;
     margin-top: 40px;
 }
+#banner .banner-content .btn-banner:hover{
+    border: 3px solid #124969;
+    background-color: #4da1d1;
+}
 #banner .banner-content .btn-banner p{
     font-weight: bold;
     font-size: 17px;
