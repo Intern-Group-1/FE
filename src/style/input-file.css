@@ -11,7 +11,7 @@
     color: rgb(7, 105, 253);
     display: inline-block;
     background: -webkit-linear-gradient(top, #0ab8fd, #0bf5e9);
-    border: 1px solid #999;
+    border: 1px solid rgb(255, 255, 255);
     border-radius: 3px;
     padding: 5px 8px;
     outline: none;

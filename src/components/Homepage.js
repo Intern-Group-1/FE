@@ -10,7 +10,7 @@ function Home(){
         <>  
             <Banner />
             <Speciality />
-             <MultipleItems/> 
+             {/* <MultipleItems/>  */}
             <Handbook />
             <Doctor />
            

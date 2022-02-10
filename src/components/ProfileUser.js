@@ -17,7 +17,7 @@ import {
   } from '@chakra-ui/react';
   import avt from '../assets/image/Doctor.jpg'
 function ProfileUser() {
-    const user={
+    const user={       
         name:'dung',
         address :' hue',
         phone :'035555',
@@ -31,7 +31,7 @@ function ProfileUser() {
          alignContent='center' >
         <Box  >
             <Image src={avt} w='250' h='250' boxShadow='2xl' m='10' borderRadius='50%' border='1px' borderColor='blue.300'></Image>
-            <input  type='file' className='custom-file-input' /> 
+            <input  type='file'  className='custom-file-input' /> 
         </Box>
        <Box d='flex' justifyContent='center' alignItems='flex-start' w='50%' h='400' flexDirection='column'  flexGrow='2'>
         {/* <Box  > 
@@ -41,7 +41,7 @@ function ProfileUser() {
         <Box maxH='300' className='box'>
         <Text maxH='100' >
             Full Name
-            <Input type='text'  placeholder={user.name} className='text-inf'></Input>
+            <Input type='text'  value={user.name} className='text-inf'></Input>
         </Text>
         <Text  maxH='100'>
            Address
@@ -56,8 +56,11 @@ function ProfileUser() {
             <Input type='text' placeholder={user.gender} className='text-inf'></Input>
         </Text>
         </Box>
+        <Button ml='300px'>Done</Button>
         </Box>
+       
         </Box>
+        
     </Flex>
 
 

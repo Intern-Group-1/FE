@@ -6,7 +6,7 @@ import ProductAddToCart from './ProductAddToCart'
 function Doctor (){
     return (
         <div id="doctor">
-            <ProductAddToCart/>
+            {/* <ProductAddToCart/> */}
             <div className="container-doctor">
                 <p className="title-doctor"> Doctors </p>
                 <div className="container-item">

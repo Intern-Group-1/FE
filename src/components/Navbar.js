@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import hoamai from '../assets/image/hoamai.png'
 import hoamai2 from '../assets/image/hoamai2.png'
 import '../style/Dropdown.css'
+import 'animate.css'
 
 import { Icon,Button,Flex,Box,Text,Image } from '@chakra-ui/react';
 
@@ -19,8 +20,8 @@ function Navbar() {
           {/* <Image src={hoamai} maxHeight='500' mr='230'  maxWidth='150' />
            */}
           </Box >
-         <Box width='190' height='100' d='flex' justifyContent='center' >
-          <Image src={logo} mr='200' pt='10'  ></Image>
+         <Box width='200' height='100' d='flex' justifyContent='center' >
+          <Image src={logo}   ></Image>
 
          </Box>
           
@@ -30,9 +31,9 @@ function Navbar() {
           
         </Link>
         <Link to='/home' className="home">Home</Link>
-        <div className="specialist dropdown ">Specialist
-         <i><AiOutlineDown /></i> 
-        <div class="dropdown-content">
+        <div className="specialist dropdown animate__animated animate__rotateIn ">Specialist
+        
+        <div className="dropdown-content">
           <a href="#">Neurology</a>
           <a href="#">Orthopedic</a>
           <a href="#">Dentist</a>
@@ -40,23 +41,24 @@ function Navbar() {
       </div>
 
         </div> 
-        <div className="doctor dropdown">Doctor <i><AiOutlineDown /></i>
-        <div class="dropdown-content">
+        <div className="doctor dropdown">Doctor 
+        <div className="dropdown-content">
           <a href="#">Neurology</a>
           <a href="#">Orthopedic</a>
           <a href="#">Dentist</a>
       
       </div>
         </div>
-        <div className="about">About <i><AiOutlineDown /></i>
+        <div className="about">About 
         
         </div>
 
         <Box  d='flex' justifyContent='center'>
          
          <Box width='190' height='100' d='flex' mt='10'>
-         <Link to='/login'><button className="btn-login"  >LOGIN/SIGNUP</button></Link>
+         {/* <Link to='/login'><button className="btn-login"  >LOGIN/SIGNUP</button></Link> */}
           <Link to='/pro5'><button className="btn-login"  >ProFile</button></Link> 
+           <Link to='/login'><button className="btn-login"  >LOGIN/SIGNUP</button></Link>
 
          </Box>
          <Box>

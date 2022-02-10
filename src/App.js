@@ -5,10 +5,11 @@ import Login from "./components/Login";
 import Signup from "./components/Signup";
 
 import React from "react";
-import { Routes ,Route } from "react-router-dom";
+import {Routes ,Route } from "react-router-dom";
 
 import {ChakraProvider} from '@chakra-ui/react'
 import ProfileUser from "./components/ProfileUser";
+import ProductAddToCart from "./components/ProductAddToCart";
 
 
 
@@ -21,8 +22,8 @@ function App() {
     <Routes>
         <Route path="/pro5" element={<ProfileUser/>} />
         <Route path="/home" element= { <Home /> } />
-        <Route path="/login" element={ <Login/> } >     
-        </Route>
+        <Route path="/login" element={ <Login/> } />     
+        <Route path="/doctor" element={<ProductAddToCart/>}/>
         <Route exact path="/signup" element={ <Signup/> } />   
        
     </Routes> 
