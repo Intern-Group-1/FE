@@ -18,25 +18,30 @@ import {
   Text,
   Button
 } from '@chakra-ui/react';
-
+import LazyLoad from 'react-lazyload'
 
 
 function ProductAddToCart() {
+
   const [Api, setApi] = useState([]);
-  ApiCaller('products?limit=1', 'GET', null).then(res => {
-    console.log(res);
-    setApi(res.data)
+  ApiCaller('products?limit=10', 'GET', null)
+  .then ( async res => {
+    //console.log(res);
+    await setApi(res.data)
   })
 
-  
+
   return (
-    <Flex p={40} w="100" d='flex' alignItems="center" justifyContent="space-around" flexWrap='wrap' >
+
+    <Flex p={40} w="100" d='flex' alignItems="center" justifyContent="space-around" flexWrap='wrap' 
+    >
+
       {Api.map(api => (
+       
+
         <Flex d='flex' p={2} key={api.id}>
 
           <Box
-
-
             // bg={useColorModeValue('white', 'gray.800')}
             bg='blue.600'
             maxW="300"
@@ -61,7 +66,6 @@ function ProductAddToCart() {
               src={api.image}
               alt={`Picture of ${api.title}`}
               roundedTop="lg"
-
             />
 
             <Box p="6" h='100' w='100'>
@@ -118,9 +122,18 @@ function ProductAddToCart() {
               </Flex>
             </Box>
           </Box>
-        </Flex>))}
+
+        </Flex>
+
+      )
+      )}
+      {/* <Loading/> */}
+
+
     </Flex>
   );
 }
 
+
 export default ProductAddToCart;
+
