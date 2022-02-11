@@ -1,8 +1,21 @@
 body{
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    /* width: 100%;
+    height: 100%; */
+
+}
+.icon{
+    color: rgb(23, 108, 255);
+    transition: 1s;
+}
+.icon :hover{
+    transform:rotate(180deg);
+   
+   
+}
+svg{
+    display: inline-block !important;
 }
 #nav {
     display: grid;
@@ -11,6 +24,12 @@ body{
     /* background-color: aqua; */
     align-items: center;
     box-shadow: 0px 4px rgba(0, 0, 0, 0.25);
+    margin-left: 10px;
+}
+.btn-login:hover{
+    box-shadow: 2px 2px #5792b9;
+    width: 115px;
+    height: 45px;
 }
 img{
     padding-left: 1px;
@@ -25,8 +44,12 @@ img{
   
 }
 .home :hover, .specialist:hover, .doctor:hover, .about:hover{
+
+    opacity: 1;
+
    font-size: 28px;
    color: rgb(71, 71, 177);
+
 }
 .btn-login{
     width: 110px;
@@ -34,14 +57,23 @@ img{
     background-color: #fff;
     border-radius: 10px;
     border: #80CCFF 2.5px solid;
+    transition: 0.2s;
 }
 AiOutlineDown{
     font-size: 22px;
 }
+
 #nav i{
     font-size: 17px;
+}
+#nav .icon:hover{
+    transform: rotate(90deg);
 }
 #nav ul{
     padding-top: 155px;
     z-index: 2;
+}
+.test-nav:hover{
+    font-size: 30px;
+    color: red;
 }

@@ -16,13 +16,14 @@ import {
   AlertIcon,
   AlertTitle,
   AlertDescription,
- 
+  Link
   
 } from '@chakra-ui/react';
-import {Link} from 'react-router-dom';
+import {} from 'react-router-dom';
 import Footer from './Footer';
 import Navbar from './Navbar';
 import Signup from './Signup';
+import bglg from '../assets/image/bg-login.jpg'
 
 
 
@@ -50,21 +51,25 @@ export default function SimpleCard() {
       minH={'120vh'}
       align={'center'}
       justify={'center'}
-      bg={useColorModeValue('gray.50', 'gray.800')}>
+      backgroundImage={bglg} backgroundRepeat='no-repeat' backgroundSize='cover'>
       <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6} ml='200' mb='20'>
         <Stack align={'center'}>
           <Heading fontSize={'4xl'} color='blue.400'>Welcome to Doctor Care</Heading>
           <Text fontSize={'lg'} color={'gray.600'}>
            
-            to enjoy all of our cool <Link to='/signup' color={'blue.400'}>signup</Link> ✌️
+            to enjoy all of our cool
+             <Link  href='/signup' color={'blue.400'}>signup</Link>
+             
+              ✌️
          
           </Text>
         </Stack>
 
         <Box
           rounded={'lg'}
-          bg={useColorModeValue('white', 'gray.700')}
+          bg={bglg}
           boxShadow={'lg'}
+          
           p={8}>
           <Stack spacing={4}>
 

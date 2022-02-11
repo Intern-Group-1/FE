@@ -1,75 +1,104 @@
+import { ReactNode } from 'react';
+import {
+  Box,
+  Flex,
+  Avatar,
+  HStack,
+  Link,
+  IconButton,
+  Button,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  MenuDivider,
+  useDisclosure,
+  useColorModeValue,
+  Stack,
+} from '@chakra-ui/react';
+import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 import '../style/Navbar.css'
-import {AiOutlineDown} from "react-icons/ai"
-import logo from '../assets/image/logo.png'
-import { Link } from 'react-router-dom';
-import hoamai from '../assets/image/hoamai.png'
-import hoamai2 from '../assets/image/hoamai2.png'
-import '../style/Dropdown.css'
 
-import { Icon,Button,Flex,Box,Text,Image } from '@chakra-ui/react';
+const Links = ['Dashboard', 'Projects', 'Team'];
 
-function Navbar() {
-    return (
-        <div id="nav">
-           
-        <Link   to='/home' className="logo">
-        <Box  d='flex' justifyContent='center'>
-          <Box>
-          
-          {/* <Image src={hoamai} maxHeight='500' mr='230'  maxWidth='150' />
-           */}
-          </Box >
-         <Box width='190' height='100' d='flex' justifyContent='center' >
-          <Image src={logo} mr='200' pt='10'  ></Image>
+const NavLink = ({ children }
+  // { children: ReactNode }
+  ) => (
+  <Link
+    px={2}
+    py={1}
+    rounded={'md'}
+    _hover={{
+      textDecoration: 'none',
+      bg: useColorModeValue('gray.200', 'gray.700'),
+    }}
+    href={'#'}>
+    {children}
+  </Link>
+);
 
-         </Box>
-          
-         
+export default function Simple() {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  return (
+    <>
+      <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
+        <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
+          <IconButton
+            size={'md'}
+            icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
+            aria-label={'Open Menu'}
+            display={{ md: 'none' }}
+            onClick={isOpen ? onClose : onOpen}
+          />
+          <HStack spacing={8} alignItems={'center'}>
+            <Box className='test-nav'>Logo</Box>
+            <HStack
+              as={'nav'}
+              spacing={4}
+              display={{ base: 'none', md: 'flex' }}>
+              {Links.map((link) => (
+                <NavLink key={link}>{link}</NavLink>
+              ))}
+            </HStack>
+          </HStack>
+          <Flex alignItems={'center'}>
+            <Menu>
+              <MenuButton
+                as={Button}
+                rounded={'full'}
+                variant={'link'}
+                cursor={'pointer'}
+                minW={0}>
+                <Avatar
+                  size={'sm'}
+                  src={
+                    'https://images.unsplash.com/photo-1493666438817-866a91353ca9?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=b616b2c5b373a80ffc9636ba24f7a4a9'
+                  }
+                />
+              </MenuButton>
+              <MenuList>
+                <MenuItem>Link 1</MenuItem>
+                <MenuItem>Link 2</MenuItem>
+                <MenuDivider />
+                <MenuItem>Link 3</MenuItem>
+              </MenuList>
+            </Menu>
+          </Flex>
+        </Flex>
+
+        {isOpen ? (
+          <Box pb={4} display={{ md: 'none' }}>
+            <Stack as={'nav'} spacing={4}>
+              {Links.map((link) => (
+                <NavLink key={link}>{link}</NavLink>
+              ))}
+            </Stack>
           </Box>
-        
-          
-        </Link>
-        <Link to='/home' className="home">Home</Link>
-        <div className="specialist dropdown ">Specialist
-         <i><AiOutlineDown /></i> 
-        <div class="dropdown-content">
-          <a href="#">Neurology</a>
-          <a href="#">Orthopedic</a>
-          <a href="#">Dentist</a>
+        ) : null}
+      </Box>
+
       
-      </div>
-
-        </div> 
-        <div className="doctor dropdown">Doctor <i><AiOutlineDown /></i>
-        <div class="dropdown-content">
-          <a href="#">Neurology</a>
-          <a href="#">Orthopedic</a>
-          <a href="#">Dentist</a>
-      
-      </div>
-        </div>
-        <div className="about">About <i><AiOutlineDown /></i>
-        
-        </div>
-
-        <Box  d='flex' justifyContent='center'>
-         
-         <Box width='190' height='100' d='flex' mt='10'>
-         <Link to='/login'><button className="btn-login"  >LOGIN/SIGNUP</button></Link>
-          <Link to='/pro5'><button className="btn-login"  >ProFile</button></Link> 
-
-         </Box>
-         <Box>
-          
-          {/* <Image src={hoamai2} maxHeight='500'   maxWidth='150' mr='90'/> */}
-          
-          </Box >
-         
-          </Box>
-       
-        
-      </div>
-    )
+    </>
+  );
 }
-
-export default Navbar;

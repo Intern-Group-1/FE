@@ -10,8 +10,8 @@ function Home(){
         <>  
             <Banner />
             <Speciality />
-             <MultipleItems/> 
-            <Handbook />
+             {/* <MultipleItems/>  */}
+            {/* <Handbook /> */}
             <Doctor />
            
         </>

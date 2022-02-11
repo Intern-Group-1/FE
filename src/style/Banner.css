@@ -6,10 +6,14 @@
     height: 400px;
     margin-left: 50px;
     border-radius:15px;
-    box-shadow: 4px 4px #6c8383;
+    box-shadow: 1px 4px 12px #161d1f;
     background-color: #ffff ;
     position: absolute;
     top: 85px;
+}
+#banner .banner-content .btn-banner:hover{
+    border: 3px solid #fcfeff;
+    background-color: #87d2fd;
 }
 #banner .banner-content .title-banner{
     font-size: 30px;
@@ -23,14 +27,21 @@
     margin-left: 60px;
     padding-top: 30px;
 }
-#banner .banner-content .btn-banner{
+.banner-content .btn-banner{
     background-color: #5FC3FD;
     width: 300px;
     height: 60px;
     border-radius: 15px;
-    box-shadow: 1px 2px #6c8383;
+    box-shadow: 2px 1px 1px #6c8383;
     margin-left: 180px;
     margin-top: 40px;
+    transition: 00.01s;
+}
+.btn-banner:hover{
+    width: 305px;
+    height: 62px;
+    border-radius: 15px;
+    box-shadow: 2px 1px 5px #066d6d;
 }
 #banner .banner-content .btn-banner p{
     font-weight: bold;
@@ -40,5 +51,6 @@
 #banner img{
     opacity: 0.7;
     width: 100%;
-    margin-left: -15px;
+    margin-left: -1px;
+    margin-top: 1px;
 }
