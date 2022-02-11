@@ -1,6 +1,7 @@
 import '../style/Footer.css'
 import logo from '../assets/image/logo.png'
 import {GrLocation} from 'react-icons/gr'
+import {Box} from '@chakra-ui/react'
 import {AiFillGoogleSquare, AiOutlinePhone , AiOutlineCheck, AiFillFacebook, AiFillInstagram, AiFillTwitterSquare} from 'react-icons/ai'
 
 function Footer(){
@@ -15,7 +16,7 @@ function Footer(){
                     DoctorCare Technology Joint Stock Company
                 </div>
                 <div className='address'>
-                <GrLocation /> 30 Le Loi street, Hue city
+                <GrLocation ></GrLocation> 30 Le Loi street, Hue city
                 </div>
                 <div className='phone'>
                 <AiOutlinePhone />   0758422032
@@ -36,12 +37,12 @@ function Footer(){
             <div className='social'>
                 <p>Social</p>
                 <hr/>
-                <div className='icon-social'>
+                <Box className='icon-social' d='flex' >
                 <AiFillFacebook />
                 <AiFillInstagram />
                 <AiFillTwitterSquare />
                 <AiFillGoogleSquare />
-                </div>
+                </Box>
                 
             </div>
            </div>
