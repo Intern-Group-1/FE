@@ -7,6 +7,8 @@ import ProfileUser from "./components/ProfileUser"
 import {ChakraProvider} from '@chakra-ui/react'
 import React from "react";
 import { Routes ,Route } from "react-router-dom";
+import ContactFormWithSocialButtons from"./components/Contact";
+
 // import PreviousNextMethods from "./components/Testslick"
 
 function App() {
@@ -18,6 +20,7 @@ function App() {
         <Route path="/user" element= {<ProfileUser />} />
         <Route path="/login" element={ <Login /> } />
         <Route path="/signup" element={ <Signup /> } />
+        <Route path="/contact" element={ <ContactFormWithSocialButtons /> } />
     </Routes>
     <Footer />
     </ChakraProvider>
