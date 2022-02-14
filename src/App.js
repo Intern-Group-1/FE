@@ -13,11 +13,13 @@ import Item from './components/Speciality'
 import { ChakraProvider } from '@chakra-ui/react'
 import ProfileUser from "./components/ProfileUser";
 import ProductAddToCart from "./components/ProductAddToCart";
+import LazyLoad from "react-lazyload";
 
 
 
 
 function App() {
+  
   return (
     <ChakraProvider>
 
@@ -29,17 +31,20 @@ function App() {
 
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-	<Route path="/test" element={<Home />} />	        
-        </Routes>
+
+      
+        <Route path="/doctor" element={ <ProductAddToCart />}/>
+
+       </Routes>
       
         {/* <Footer /> */}
 
 
         {/* <Route path="/login" element={<Login />} />
-        <Route path="/doctor" element={<ProductAddToCart />} />
+        } />
         <Route exact path="/signup" element={<Signup />} /> */}
   {/* <Item/> */}
-     <ProductAddToCart/>
+     {/* <ProductAddToCart/> */}
 <PreviousNextMethods />
       <Footer />
     </ChakraProvider>

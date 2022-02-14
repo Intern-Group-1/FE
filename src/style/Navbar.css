@@ -5,6 +5,15 @@ body{
     height: 100%; */
 
 }
+.icon{
+    color: rgb(23, 108, 255);
+    transition: 1s;
+}
+.icon :hover{
+    transform:rotate(180deg);
+   
+   
+}
 svg{
     display: inline-block !important;
 }
@@ -63,4 +72,8 @@ AiOutlineDown{
 #nav ul{
     padding-top: 155px;
     z-index: 2;
+}
+.test-nav:hover{
+    font-size: 30px;
+    color: red;
 }
