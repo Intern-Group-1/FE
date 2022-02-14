@@ -78,6 +78,8 @@ import {
               </FormControl>
               <Stack spacing={10} pt={2}>
                 <Button
+                  as={'a'}
+                  href={'/signin'}
                   loadingText="Submitting"
                   size="lg"
                   bg={'blue.400'}
@@ -89,8 +91,8 @@ import {
                 </Button>
               </Stack>
               <Stack pt={6}>
-                <Text align={'center'}>
-                  Already a user? <Link to="/login" color={'blue.400'} ><Button>Login</Button></Link>
+              <Text align={'center'}>
+                  Already a user? <Link href="/signin" color={'blue.400'} ><a>Login</a></Link>
                 </Text>
               </Stack>
             </Stack>

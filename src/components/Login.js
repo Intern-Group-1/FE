@@ -69,6 +69,8 @@ const handleLogin = () => {
               </Button>
               <Link to='/signup'>
               <Button
+                as={'a'}
+                href={'signup'}
                 bg={'blue.400'}
                 color={'white'}
                 _hover={{

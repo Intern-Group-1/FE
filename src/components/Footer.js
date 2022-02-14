@@ -2,7 +2,6 @@ import {
     Box,
     chakra,
     Container,
-    Link,
     SimpleGrid,
     Stack,
     Text,
@@ -11,6 +10,8 @@ import {
     IconButton,
     useColorModeValue,
     Image,
+    Link,
+    Button,
   } from '@chakra-ui/react';
   import { ReactNode } from 'react';
   import { FaInstagram, FaYoutube, FaFacebook } from 'react-icons/fa';
@@ -132,7 +133,10 @@ import {
                     bg: 'whiteAlpha.300',
                   }}
                 />
-                <Link to='/contact'>
+                <Button 
+                href={'/contact'}
+                as={'a'}
+                w='0'>
                 <IconButton
                   bg={useColorModeValue('blue.500', 'blue.500')}
                   color={useColorModeValue('white', 'gray.800')}
@@ -142,7 +146,7 @@ import {
                   aria-label="Subscribe"
                   icon={<BiMailSend />}
                 />
-                </Link>
+                </Button>
               </Stack>
             </Stack>
           </SimpleGrid>

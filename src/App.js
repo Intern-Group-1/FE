@@ -3,7 +3,7 @@ import Footer from "./components/Footer";
 import Home from "./components/Homepage";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
-import Doctor from "./components/doctor";
+import Alldoctor from "./components/Alldoctor";
 import ProfileUser from "./components/ProfileUser"
 import {ChakraProvider} from '@chakra-ui/react'
 import React from "react";
@@ -22,7 +22,7 @@ function App() {
         <Route path="/signin" element={ <Login /> } />
         <Route path="/signup" element={ <Signup /> } />
         <Route path="/contact" element={ <ContactFormWithSocialButtons /> } />
-        <Route path="/doctor" element={<Doctor />}/>
+        <Route path="/doctor" element={<Alldoctor />}/>
     </Routes>
     <Footer />
     </ChakraProvider>
