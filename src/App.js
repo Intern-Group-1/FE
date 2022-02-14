@@ -24,6 +24,7 @@ function App() {
  
   return (
     <ChakraProvider>
+
        <Navbar />
         <Routes>
       
@@ -38,6 +39,7 @@ function App() {
         </Routes>
          
   
+
       
         <PreviousNextMethods />
         <Footer />
