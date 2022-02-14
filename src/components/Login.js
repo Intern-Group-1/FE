@@ -23,7 +23,7 @@ import {} from 'react-router-dom';
 import Footer from './Footer';
 import Navbar from './Navbar';
 import Signup from './Signup';
-import bglg from '../assets/image/bg-login.jpg'
+
 
 
 
@@ -51,14 +51,15 @@ export default function SimpleCard() {
       minH={'120vh'}
       align={'center'}
       justify={'center'}
-      backgroundImage={bglg} backgroundRepeat='no-repeat' backgroundSize='cover'>
+      // backgroundImage={bglg} 
+      backgroundRepeat='no-repeat' backgroundSize='cover'>
       <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6} ml='200' mb='20'>
         <Stack align={'center'}>
           <Heading fontSize={'4xl'} color='blue.400'>Welcome to Doctor Care</Heading>
           <Text fontSize={'lg'} color={'gray.600'}>
            
-            to enjoy all of our cool
-             <Link  href='/signup' color={'blue.400'}>signup</Link>
+            to enjoy all of our cool 
+             <Link  href='/signup' color={'blue.400'}>Sign Up</Link>
              
               ✌️
          
@@ -67,7 +68,7 @@ export default function SimpleCard() {
 
         <Box
           rounded={'lg'}
-          bg={bglg}
+          // bg={bglg}
           boxShadow={'lg'}
           
           p={8}>
@@ -90,6 +91,7 @@ export default function SimpleCard() {
                 <Link color={'blue.400'}>Forgot password?</Link>
               </Stack>
               <Button
+              href={'/signin'}
                 bg={'blue.400'}
                 color={'white'}
                 _hover={{

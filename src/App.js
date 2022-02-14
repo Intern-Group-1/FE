@@ -14,39 +14,48 @@ import { ChakraProvider } from '@chakra-ui/react'
 import ProfileUser from "./components/ProfileUser";
 import ProductAddToCart from "./components/ProductAddToCart";
 import LazyLoad from "react-lazyload";
-
+import ContactFormWithSocialButtons from "./components/Contact";
+import Alldoctor from "./components/Alldoctor";
 
 
 
 function App() {
   
+ 
   return (
     <ChakraProvider>
-
-      <Navbar />
-
-      <Routes>
-        <Route path="/pro5" element={<ProfileUser />} />
-        <Route path="/home" element={<Home />} />
-
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
+       <Navbar />
+        <Routes>
       
-        <Route path="/doctor" element={ <ProductAddToCart />}/>
-
-      
+          <Route path="/signin" element={<Login />} />
+        
+          <Route path="/contact" element={<ContactFormWithSocialButtons/>}/>
+          <Route path="/pro5" element={<ProfileUser />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/doctor" element={<Alldoctor />} />
+         
         </Routes>
+         
+  
       
-        {/* <Footer /> */}
+        <PreviousNextMethods />
+        <Footer />
+    
+     
+        {/* <Route component={DefaultContainer} /> */}
+    
+
+      {/* <Footer /> */}
 
 
-        {/* <Route path="/login" element={<Login />} />
+      {/* <Route path="/login" element={<Login />} />
         } />
         <Route exact path="/signup" element={<Signup />} /> */}
-  {/* <Item/> */}
-     {/* <ProductAddToCart/> */}
-<PreviousNextMethods />
-      <Footer />
+      {/* <Item/> */}
+      {/* <ProductAddToCart/> */}
+      
+
     </ChakraProvider>
 
   )
