@@ -31,11 +31,11 @@ function App() {
 
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+
       
         <Route path="/doctor" element={ <ProductAddToCart />}/>
 
-      
-        </Routes>
+       </Routes>
       
         {/* <Footer /> */}
 
