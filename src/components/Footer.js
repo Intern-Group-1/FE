@@ -2,7 +2,7 @@ import {
     Box,
     chakra,
     Container,
-    Link,
+  
     SimpleGrid,
     Stack,
     Text,
@@ -11,11 +11,14 @@ import {
     IconButton,
     useColorModeValue,
     Image,
+    Link,
+    Button
   } from '@chakra-ui/react';
   import { ReactNode } from 'react';
   import { FaInstagram, FaYoutube, FaFacebook } from 'react-icons/fa';
   import { BiMailSend } from 'react-icons/bi';
   import logo from '../assets/image/logo-doctor-care.png'
+// import { Link } from 'react-router-dom';
   
   const Logo = (props) => {
     return (
@@ -128,8 +131,13 @@ import {
                     bg: 'whiteAlpha.300',
                   }}
                 />
-                <Link to='/contact'>
+                <Button 
+                as={'a'}  
+                href={'/contact'} 
+                 maxW='10px'
+                >
                 <IconButton
+                    href={'/contact'}
                   bg={useColorModeValue('blue.500', 'blue.500')}
                   color={useColorModeValue('white', 'gray.800')}
                   _hover={{
@@ -138,7 +146,7 @@ import {
                   aria-label="Subscribe"
                   icon={<BiMailSend />}
                 />
-                </Link>
+                </Button>
               </Stack>
             </Stack>
           </SimpleGrid>
