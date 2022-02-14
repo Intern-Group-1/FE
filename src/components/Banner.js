@@ -1,26 +1,64 @@
-import '../style/Banner.css'
-import bg from '../assets/image/background.jpg'
-import { Link } from 'react-router-dom';
 
+import {
+    Button,
+    Flex,
+    Heading,
+    Image,
+    Stack,
+    Text,
+    useBreakpointValue,
+  } from '@chakra-ui/react';
+  import bg from '../assets/image/banner.jpg'
 
-function Banner(){
-    return(
-        <div id="banner">
-            <div className='background'>
-            <img src={bg} alt="" />
-            </div>
-            <div className="banner-content">
-                <p className='title-banner'>Great Smile For Healthy Lifestyle!</p>
-                <p className='content-banner'>But so that you can understand that every mistake is born a joy 
-                when accusing and praising pain, I will open up the whole matter, 
-                and will explain the very things that I have discovered from him. 
-                through the creator of truth.</p>
-                <Link to='/doctor'> 
-                <button className='btn-banner'> <p>Make an appointment</p> </button>
-                </Link>
-            </div>
-        </div>
-    )
-}
-
-export default Banner;
+  export default function SplitScreen() {
+    return (
+      <Stack minH={'100vh'} direction={{ base: 'column', md: 'row' }}>
+        <Flex p={8} flex={1} align={'center'} justify={'center'}>
+          <Stack spacing={6} w={'full'} maxW={'lg'}>
+            <Heading fontSize={{ base: '3xl', md: '4xl', lg: '5xl' }}>
+              <Text
+                as={'span'}
+                position={'relative'}
+                _after={{
+                  content: "''",
+                  width: 'full',
+                  height: useBreakpointValue({ base: '20%', md: '30%' }),
+                  position: 'absolute',
+                  bottom: 1,
+                  left: 0,
+                  bg: 'blue.400',
+                  zIndex: -1,
+                }}>
+                Great Smile
+              </Text>
+              <br />{' '}
+              <Text color={'blue.400'} as={'span'}>
+              For Healthy Lifestyle!
+              </Text>{' '}
+            </Heading>
+            <Text fontSize={{ base: 'md', lg: 'lg' }} color={'gray.500'}>
+            Maybe we are not hesin enough to love the enemy but at least because of your health and happiness for forgiven and ignore them.
+            </Text>
+            <Stack direction={{ base: 'column', md: 'row' }} spacing={4}>
+              <Button
+                rounded={'full'}
+                bg={'blue.400'}
+                color={'white'}
+                _hover={{
+                  bg: 'blue.500',
+                }}>
+                Make an appointment
+              </Button>
+            </Stack>
+          </Stack>
+        </Flex>
+        <Flex flex={1}>
+          <Image
+            alt={'Login Image'}
+            objectFit={'cover'}
+            src={bg}
+          />
+        </Flex>
+      </Stack>
+    );
+  }

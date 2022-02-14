@@ -17,7 +17,9 @@ import {
   import { BiMailSend } from 'react-icons/bi';
   import logo from '../assets/image/logo-doctor-care.png'
   
-  const Logo = (props) => {
+
+  const Logo = (props: any) => {
+
     return (
         <Image
             alt={'Login Image'}
@@ -42,6 +44,12 @@ import {
     children,
     label,
     href,
+
+  }: {
+    children: ReactNode;
+    label: string;
+    href: string;
+
   }) => {
     return (
       <chakra.button
@@ -65,7 +73,9 @@ import {
     );
   };
   
-  const ListHeader = ({ children }) => {
+
+  const ListHeader = ({ children }: { children: ReactNode }) => {
+
     return (
       <Text fontWeight={'500'} fontSize={'lg'} mb={2}>
         {children}
