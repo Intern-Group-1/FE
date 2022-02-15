@@ -78,6 +78,8 @@ import {
               </FormControl>
               <Stack spacing={10} pt={2}>
                 <Button
+                  as={'a'}
+                  href={'/signin'}
                   loadingText="Submitting"
                   size="lg"
                   bg={'blue.400'}

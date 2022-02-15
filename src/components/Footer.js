@@ -2,7 +2,6 @@ import {
     Box,
     chakra,
     Container,
-  
     SimpleGrid,
     Stack,
     Text,
@@ -12,7 +11,7 @@ import {
     useColorModeValue,
     Image,
     Link,
-    Button
+    Button,
   } from '@chakra-ui/react';
   import { ReactNode } from 'react';
   import { FaInstagram, FaYoutube, FaFacebook } from 'react-icons/fa';
@@ -68,6 +67,7 @@ import {
     );
   };
   
+
   const ListHeader = ({ children }) => {
     return (
       <Text fontWeight={'500'} fontSize={'lg'} mb={2}>
@@ -132,6 +132,7 @@ import {
                   }}
                 />
                 <Button 
+
                 as={'a'}  
                 href={'/contact'} 
                  maxW='10px'

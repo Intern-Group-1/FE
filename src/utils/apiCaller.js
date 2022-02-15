@@ -1,8 +1,8 @@
 import axios from "axios";
 import * as Config from '../constant/Config'
-import React from 'react'
 
- function   ApiCaller(endpoint, method) {
+
+function   ApiCaller(endpoint, method) {
   return axios({
         method:method,
         url:`${Config.API_URL}/${endpoint}`,
@@ -17,4 +17,3 @@ import React from 'react'
 };
 
 export default ApiCaller;
-

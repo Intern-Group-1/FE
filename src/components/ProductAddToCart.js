@@ -18,9 +18,6 @@ import {
   Text,
   Button
 } from '@chakra-ui/react';
-import LazyLoad from 'react-lazyload'
-
-
 function ProductAddToCart() {
 
   const [Api, setApi] = useState([]);

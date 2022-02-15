@@ -20,9 +20,9 @@ import {
   import React from 'react';
   import {BsPerson, BsFacebook, BsMessenger, BsPhone } from 'react-icons/bs';
   import { MdEmail, MdOutlineEmail } from 'react-icons/md';
+
   import Navbar from "./Navbar";
-import Footer from './Footer'
-  
+  import Footer from './Footer' 
   const confetti = {
     light: {
       primary: '4299E1', // blue.400

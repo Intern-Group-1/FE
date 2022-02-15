@@ -8,7 +8,6 @@ import {
     useBreakpointValue,
   } from '@chakra-ui/react';
   import bg from '../assets/image/background.jpg'
-
   export default function SplitScreen() {
     return (
       <Stack minH={'100vh'} direction={{ base: 'column', md: 'row' }}>
@@ -40,6 +39,7 @@ import {
             </Text>
             <Stack direction={{ base: 'column', md: 'row' }} spacing={4}>
               <Button
+
               as={'a'}
               href='/doctor'
                 rounded={'full'}
@@ -55,6 +55,7 @@ import {
         </Flex>
         <Flex flex={1}>
           <Image
+
             
             opacity='0.6'
             alt={'Login Image'}
