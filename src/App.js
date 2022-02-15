@@ -8,7 +8,7 @@ import React from "react";
 
 import { Routes, Route } from "react-router-dom";
 import PreviousNextMethods from "./components/Testslick"
-import Item from './components/Speciality'
+
 
 import { ChakraProvider } from '@chakra-ui/react'
 import ProfileUser from "./components/ProfileUser";
@@ -16,48 +16,35 @@ import ProductAddToCart from "./components/ProductAddToCart";
 import LazyLoad from "react-lazyload";
 import ContactFormWithSocialButtons from "./components/Contact";
 import Alldoctor from "./components/Alldoctor";
+import SliderDoctor from "./components/SliderDoctor";
+import Datepicker from "./components/Datepicker";
 
 
 
 function App() {
-  
- 
+
+
   return (
     <ChakraProvider>
 
-       <Navbar />
-        <Routes>
-      
-          <Route path="/signin" element={<Login />} />
-        
-          <Route path="/contact" element={<ContactFormWithSocialButtons/>}/>
-          <Route path="/pro5" element={<ProfileUser />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/doctor" element={<Alldoctor />} />
-         
-        </Routes>
-         
-  
-
-      
-        <PreviousNextMethods />
-        <Footer />
     
      
-        {/* <Route component={DefaultContainer} /> */}
-    
+      <Routes>
+        <Route path="/" element={ <Home />}/>
+        <Route path="/signin" element={<Login />} />
 
-      {/* <Footer /> */}
-
-
-      {/* <Route path="/login" element={<Login />} />
-        } />
-        <Route exact path="/signup" element={<Signup />} /> */}
-      {/* <Item/> */}
-      {/* <ProductAddToCart/> */}
-      
-
+        <Route path="/contact" element={<ContactFormWithSocialButtons />} />
+        <Route path="/pro5" element={<ProfileUser />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/doctor" element={<Alldoctor />} />
+      </Routes>
+      {/* <PreviousNextMethods /> */}
+     
+      {/* <Datepicker/>
+      <PreviousNextMethods />
+      <SliderDoctor/> */}
+      //<SliderDoctor/>
     </ChakraProvider>
 
   )
