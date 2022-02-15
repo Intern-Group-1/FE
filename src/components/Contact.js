@@ -20,6 +20,8 @@ import {
   import React from 'react';
   import {BsPerson, BsFacebook, BsMessenger, BsPhone } from 'react-icons/bs';
   import { MdEmail, MdOutlineEmail } from 'react-icons/md';
+  import Navbar from "./Navbar";
+import Footer from './Footer'
   
   const confetti = {
     light: {
@@ -40,6 +42,8 @@ import {
     const { hasCopied, onCopy } = useClipboard('example@example.com');
   
     return (
+      <>
+      <Navbar/>
       <Flex
         bg={useColorModeValue('gray.100', 'gray.900')}
         align="center"
@@ -190,5 +194,7 @@ import {
           </Box>
         </Box>
       </Flex>
+      <Footer/>
+      </>
     );
   }
