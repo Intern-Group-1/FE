@@ -5,15 +5,13 @@ import {
     Center,
     Text,
     Stack,
-    Button,
-    Link,
-    Badge,
-    useColorModeValue,
+    Button
   } from '@chakra-ui/react';
-  import { PhoneIcon, EmailIcon, RepeatClockIcon } from '@chakra-ui/icons'
   import React,{useEffect,useState} from 'react';
-  import ApiCaller from '../utils/apiCaller';
-  
+import ApiCaller from '../utils/apiCaller';
+import { PhoneIcon, EmailIcon, RepeatClockIcon,InfoIcon } from '@chakra-ui/icons' 
+import Navbar from "./Navbar";
+import Footer from './Footer' 
   export default function Alldoctor() {
     const [Api, setApi] = useState([]);
 
@@ -28,8 +26,10 @@ import {
 
 
     return (
+      <>
+      <Navbar/>
       <Center py={6}>
-           {Api.map(api => (
+           {Api.map(api => (  
         <Box ml='20px'
           maxW={'320px'}
           w={'full'}
@@ -70,7 +70,7 @@ import {
             textAlign={'left'}
             color={ 'black'}
             px={3}>
-           <RepeatClockIcon/>:  {api.age}
+           <InfoIcon/>  {api.age}
            
            
           </Text>
@@ -79,13 +79,14 @@ import {
             color={'black'}
             px={3}>
             
-         <PhoneIcon/>:  {api.phone_number}
+         <PhoneIcon/>  {api.phone_number}
           </Text>
           <Text
             textAlign={'left'}
             color={'black'}
             px={3}>
-         <EmailIcon/>:   {api.account.email}
+
+         <EmailIcon/>   {api.account.email}
           </Text>
   
   
@@ -113,5 +114,8 @@ import {
         </Box> 
            ))}
       </Center>
+      <Footer/>
+
+      </>
     );
   }

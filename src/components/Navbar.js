@@ -15,6 +15,12 @@ import {
   useColorModeValue,
   // useBreakpointValue,
   useDisclosure,
+  Menu,
+  MenuButton,
+  Avatar,
+  MenuList,
+  MenuItem,
+  MenuDivider
 } from '@chakra-ui/react';
 import {
   HamburgerIcon,
@@ -26,7 +32,12 @@ import logo from '../assets/image/logo-doctor-care.png'
 
 export default function Navbar() {
   const { isOpen, onToggle } = useDisclosure();
-
+  const HandleLogout=()=>{
+    delete localStorage.token;
+    window.location.href = 'http://localhost:3000/home';
+  }
+  console.log(localStorage.token)
+  const loggedInUser = localStorage.getItem('token');
   return (
     <Box>
       <Flex
@@ -76,27 +87,63 @@ export default function Navbar() {
           justify={'flex-end'}
           direction={'row'}
           spacing={6}>
-          <Button
-            as={'a'}
-            fontSize={'sm'}
-            fontWeight={400}
-            variant={'link'}
-            href={'/signin'}>
-            Sign In
-          </Button>
-          <Button
-            as={'a'}
+              {loggedInUser ? 
+              <>
+                   <Button
+                        as={'a'}
+                        fontSize={'sm'}
+                        fontWeight={400}
+                        variant={'link'}
+                        href={'/pro5'}>
+                         ProFile
+                      </Button> 
+              
+                <Button
+             as={'a'}
             display={{ base: 'none', md: 'inline-flex' }}
             fontSize={'sm'}
             fontWeight={600}
             color={'white'}
             bg={'blue.500'}
-            href={'signup'}
+            onClick={HandleLogout}
             _hover={{
               bg: 'blue.300',
             }}>
-            Sign Up
+            Log Out
           </Button>
+              </>
+
+              
+                            :  
+                         <>
+
+                          <Button
+                        as={'a'}
+                        fontSize={'sm'}
+                        fontWeight={400}
+                        variant={'link'}
+                        href={'/signin'}>
+                        Sign In
+                      </Button> 
+                      <Button
+                      as={'a'}
+                      display={{ base: 'none', md: 'inline-flex' }}
+                      fontSize={'sm'}
+                      fontWeight={600}
+                      color={'white'}
+                      bg={'blue.500'}
+                      href={'/signup'}
+                      _hover={{
+                        bg: 'blue.300',
+                      }}>
+                      Sign Up
+                    </Button>
+                         </>
+              }
+             
+          
+              // ab
+        
         </Stack>
       </Flex>
 
@@ -184,6 +231,7 @@ const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
           <Icon color={'pink.400'} w={5} h={5} as={ChevronRightIcon} />
         </Flex>
       </Stack>
+     
     </Link>
   );
 };
@@ -246,8 +294,10 @@ const MobileNavItem = ({ label, children, href }: NavItem) => {
               </Link>
             ))}
         </Stack>
+       
       </Collapse>
     </Stack>
+    
   );
 };
 
@@ -261,7 +311,7 @@ interface NavItem {
 const NAV_ITEMS: Array<NavItem> = [
   {
     label: 'Home',
-    href: '#',
+    href: '/home',
   },
   {
     label: 'Speciality',

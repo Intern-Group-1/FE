@@ -6,49 +6,106 @@ import {
   Input,
   Checkbox,
   Stack,
-  Link,
   Button,
   Heading,
   Text,
   useColorModeValue,
-} from '@chakra-ui/react';
+  Image,
+  ChakraProvider,
+  Alert,
+  AlertIcon,
+  AlertTitle,
+  AlertDescription,
+  Link
 
+} from '@chakra-ui/react';
+import { } from 'react-router-dom';
+import Footer from './Footer';
+import Navbar from './Navbar';
+import Signup from './Signup';
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { handleLoginAPI } from '../services/User'
 export default function SimpleCard() {
-  var account = {
-    name: 'Nam',
-    pass: '123'
-}
-const handleLogin = () => {
-  return(
-    console.log('123')
-  )
-}
-  return (
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+  const [messagea, setMessage] = useState('')
+  const [eye, setEye] = useState(false)
+  const navigate = useNavigate()
+  const handleUserNameInput = e => {
+    setUsername(e.target.value);
+  }
+  const handlePasswordInput = e => {
+    setPassword(e.target.value);
+  }
+  const handleLogin = async () => {
+    try {
+      const data = await handleLoginAPI(username, password)
+      console.log(data);
+      if (data) {
+        localStorage.setItem('token', data.data.data.tokens[0].token)
+        localStorage.setItem('user', data.data.data._id)
+
+      }
+      var loggedInUser = localStorage.getItem('token');
+      console.log(loggedInUser)
+
+      if (loggedInUser !== null) {
+        navigate('/home')
+      }
+
+    } catch (error) {
+
+      if (error) {
+        if (error.response) {
+          if (error.response.data) {
+            setMessage(error.response.data.message)
+          }
+        }
+      }
+    }
+  }
+  const handleShowHidePassword = () => {
+    setEye(!eye)
+  }
+  return (<div >
+    <div />
     <Flex
-      minH={'100vh'}
+
+      minH={'120vh'}
       align={'center'}
       justify={'center'}
-      bg={useColorModeValue('gray.50', 'gray.800')}>
-      <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
+      // backgroundImage={bglg} 
+      backgroundRepeat='no-repeat' backgroundSize='cover'>
+      <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6} ml='200' mb='20'>
         <Stack align={'center'}>
-          <Heading fontSize={'4xl'}>Sign in to your account</Heading>
+          <Heading fontSize={'4xl'} color='blue.400'>Welcome to Doctor Care</Heading>
           <Text fontSize={'lg'} color={'gray.600'}>
-            to enjoy all of our cool <Link color={'blue.400'}>features</Link> ✌️
+
+            to enjoy all of our cool
+            <Link href='/signup' color={'blue.400'}>Sign Up</Link>
+
+            ✌️
+
           </Text>
         </Stack>
+
         <Box
           rounded={'lg'}
-          bg={useColorModeValue('white', 'gray.700')}
+          // bg={bglg}
           boxShadow={'lg'}
+
           p={8}>
           <Stack spacing={4}>
+
             <FormControl id="email">
               <FormLabel>Email address</FormLabel>
-              <Input type="email" />
+              <Input type="email" value={username} placeholder='Enter your email' onChange={handleUserNameInput} />
             </FormControl>
             <FormControl id="password">
               <FormLabel>Password</FormLabel>
-              <Input type="password" />
+              <Input type={eye ? 'text' : 'password'} value={password} placeholder='Enter your password' onChange={handlePasswordInput} />
+              <span onClick={handleShowHidePassword}><i class={eye ? "far fa-eye eye" : "far fa-eye-slash eye"}></i></span>
             </FormControl>
             <Stack spacing={10}>
               <Stack
@@ -59,30 +116,32 @@ const handleLogin = () => {
                 <Link color={'blue.400'}>Forgot password?</Link>
               </Stack>
               <Button
-                onClick={handleLogin()}
+                href={'/signin'}
                 bg={'blue.400'}
                 color={'white'}
                 _hover={{
                   bg: 'blue.500',
-                }}>
+
+                }}
+                onClick={handleLogin}
+
+              >
                 Sign in
               </Button>
-              <Link to='/signup'>
-              <Button
-                as={'a'}
-                href={'signup'}
-                bg={'blue.400'}
-                color={'white'}
-                _hover={{
-                  bg: 'blue.500',
-                }}>
-                Sign up
-              </Button>
-              </Link>
+              <Text color='red'
+
+              >
+                {messagea}
+              </Text>
             </Stack>
           </Stack>
+
         </Box>
+
       </Stack>
+
     </Flex>
+
+  </div>
   );
 }

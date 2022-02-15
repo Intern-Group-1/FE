@@ -17,8 +17,9 @@ import {
   import { FaInstagram, FaYoutube, FaFacebook } from 'react-icons/fa';
   import { BiMailSend } from 'react-icons/bi';
   import logo from '../assets/image/logo-doctor-care.png'
+// import { Link } from 'react-router-dom';
   
-  const Logo = (props: any) => {
+  const Logo = (props) => {
     return (
         <Image
             alt={'Login Image'}
@@ -43,10 +44,6 @@ import {
     children,
     label,
     href,
-  }: {
-    children: ReactNode;
-    label: string;
-    href: string;
   }) => {
     return (
       <chakra.button
@@ -70,7 +67,8 @@ import {
     );
   };
   
-  const ListHeader = ({ children }: { children: ReactNode }) => {
+
+  const ListHeader = ({ children }) => {
     return (
       <Text fontWeight={'500'} fontSize={'lg'} mb={2}>
         {children}
@@ -134,10 +132,13 @@ import {
                   }}
                 />
                 <Button 
-                href={'/contact'}
-                as={'a'}
-                w='0'>
+
+                as={'a'}  
+                href={'/contact'} 
+                 maxW='10px'
+                >
                 <IconButton
+                    href={'/contact'}
                   bg={useColorModeValue('blue.500', 'blue.500')}
                   color={useColorModeValue('white', 'gray.800')}
                   _hover={{

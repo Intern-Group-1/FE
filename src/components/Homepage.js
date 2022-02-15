@@ -1,16 +1,17 @@
 import Banner from "./Banner"
-import Speciality from "./Speciality";
+
 import Doctor from "./Doctors";
-// import Handbook from "./Handbook";
+import Navbar from "./Navbar";
+import Footer from './Footer'
 import PreviousNextMethods from "./Testslick"
 
 function Home(){
     return(
-        <>
+        <>   <Navbar/>
             <Banner />
-            <Speciality />
-            <PreviousNextMethods />
+           <PreviousNextMethods/>       
             <Doctor />
+           <Footer/>
         </>
     )
 }
