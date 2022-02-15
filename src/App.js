@@ -26,6 +26,7 @@ function App() {
 
   return (
     <ChakraProvider>
+
     
      
       <Routes>
@@ -43,7 +44,7 @@ function App() {
       {/* <Datepicker/>
       <PreviousNextMethods />
       <SliderDoctor/> */}
-      <SliderDoctor/>
+      //<SliderDoctor/>
     </ChakraProvider>
 
   )
