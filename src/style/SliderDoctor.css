@@ -100,13 +100,13 @@
     border: 1px #d7d7d7 solid;
     width: 100px;
     height: 40px;
-    border-radius: 5px;
+    border-radius: 2px;
     position: absolute;
     top: 80px;
     right: 222px;
 }
 #slide-doctor .btn-more:hover{
-    border: 3px rgba(69, 69, 209, 0.979) solid;
-
+    background-color: #4299e1;
+    color: #fff;
 }
 

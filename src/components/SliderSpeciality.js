@@ -35,29 +35,29 @@ function SliderSpeciality() {
     const dts = [{
         age: 12,
         full_name: 'John',
-        speciality: 'Surgery', 
+        speciality: 'Neurology', 
         avt: sp1
     },
     {
         age: 20,
         full_name: 'Anna',
-        speciality: 'Gynecology',  
+        speciality: 'Consultant Physician',  
         avt: sp2
     }, {
         age: 23,
         full_name: 'Nam',
-        speciality: 'Immunology',   
+        speciality: 'General Physician',   
         avt: sp3
     }, 
     {
         age: 24,
         full_name: 'Lyna',
-        speciality: 'Oncology', 
+        speciality: 'Cardiologist', 
         avt: sp4   
     },{
         age: 25,
         full_name: 'Mia',
-        speciality: 'Gastroenterology',
+        speciality: 'Orthopedic',
         avt: sp5     
     }]
     return (
