@@ -5,6 +5,7 @@ import Navbar from "./Navbar";
 import Footer from './Footer'
 import PreviousNextMethods from "./Testslick"
 
+
 function Home(){
     return(
         <>   <Navbar/>
@@ -13,6 +14,7 @@ function Home(){
            <PreviousNextMethods/>       
            <SliderDoctor/>
            <Footer/>
+
         </>
     )
 }

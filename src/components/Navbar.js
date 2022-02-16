@@ -13,14 +13,7 @@ import {
   PopoverTrigger,
   PopoverContent,
   useColorModeValue,
-  // useBreakpointValue,
   useDisclosure,
-  Menu,
-  MenuButton,
-  Avatar,
-  MenuList,
-  MenuItem,
-  MenuDivider
 } from '@chakra-ui/react';
 import {
   HamburgerIcon,
@@ -100,12 +93,14 @@ export default function Navbar() {
               
                 <Button
              as={'a'}
+
             display={{ base: 'none', md: 'inline-flex' }}
             fontSize={'sm'}
             fontWeight={600}
             color={'white'}
             bg={'blue.500'}
             onClick={HandleLogout}
+
             _hover={{
               bg: 'blue.300',
             }}>
@@ -312,6 +307,7 @@ const NAV_ITEMS: Array<NavItem> = [
   {
     label: 'Home',
     href: '/home',
+
   },
   {
     label: 'Speciality',
