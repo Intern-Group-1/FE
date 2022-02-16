@@ -12,8 +12,10 @@ function Home(){
             <Banner />
             <SliderDoctor/>
            <PreviousNextMethods/>       
+            
+            <Footer/>
+          
          
-           <Footer/>
         </>
     )
 }
