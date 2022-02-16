@@ -28,23 +28,27 @@ import Footer from './Footer'
     return (
       <>
       <Navbar/>
-      <Center py={6}>
+      <Center py={6}   d='flex'
+          flexWrap={'wrap'} >
            {Api.map(api => (  
         <Box ml='20px'
+        
           maxW={'320px'}
-          w={'full'}
+          h={'400px'}
+          w={'320px'}
           bg={ 'white'}
           boxShadow={'2xl'}
-          rounded={'lg'}
-
+          rounded={'lg'}      
           p={6}
+          ml= '80px'
+          mt= '25px'
           textAlign={'center'}>
           <Avatar
             size={'xl'}
             src={
                 api.Avatar
             }
-            alt={'Avatar Alt'}
+            alt={api.full_name}
             mb={4}
             pos={'relative'}
             _after={{
@@ -59,7 +63,7 @@ import Footer from './Footer'
               right: 3,
             }}
           />
-          <Heading fontSize={'2xl'} fontFamily={'body'}>
+          <Heading fontSize={'2xl'} fontFamily={'body'} >
             {api.full_name}
           </Heading>
           <Text fontWeight={600} color={'black'} mb={4}>
@@ -90,10 +94,15 @@ import Footer from './Footer'
           </Text>
   
   
-          <Stack mt={8} direction={'row'} spacing={4}>
+          <Stack   mt='8px'
+        //   border={'solid 1px'}
+        //  borderColor={'red'}
+           direction={'row'} 
+           spacing={4}>
          
 
             <Button
+            mt='30px'
               flex={1}
               fontSize={'sm'}
               rounded={'full'}

@@ -20,13 +20,22 @@ import {
   Avatar,
   MenuList,
   MenuItem,
-  MenuDivider
+  MenuDivider,
+  HStack,
+  VStack,
+  
 } from '@chakra-ui/react';
+import {
+ 
+  FiChevronDown,
+} from 'react-icons/fi';
 import {
   HamburgerIcon,
   CloseIcon,
   ChevronDownIcon,
   ChevronRightIcon,
+  
+  
 } from '@chakra-ui/icons';
 import logo from '../assets/image/logo-doctor-care.png'
 
@@ -89,7 +98,7 @@ export default function Navbar() {
           spacing={6}>
           {loggedInUser ?
             <>
-              <Button
+              {/* <Button
                 as={'a'}
                 fontSize={'sm'}
                 fontWeight={400}
@@ -110,7 +119,50 @@ export default function Navbar() {
                   bg: 'blue.300',
                 }}>
                 Log Out
-              </Button>
+              </Button> */}
+                <Flex >
+          <Menu>
+            <MenuButton 
+             mr={'20px'}
+              py={2}
+              transition="all 0.3s"
+              _focus={{ boxShadow: 'none' }}>
+              <HStack>
+                <Avatar
+               
+                  size={'sm'}
+                  src={
+                    'https://images.unsplash.com/photo-1619946794135-5bc917a27793?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=b616b2c5b373a80ffc9636ba24f7a4a9'
+                  }
+                />
+                <VStack
+                  width={'100px'}
+                  display={{ base: 'none', md: 'flex' }}
+                  alignItems="flex-start"
+                  spacing="1px"
+                  ml="2">
+                  <Text fontSize="sm">Justina Clark</Text>
+                  <Text fontSize="xs" color="gray.600">
+                    Customer
+                  </Text>
+                
+                </VStack>
+                <Box display={{ base: 'none', md: 'flex' }}>
+                <FiChevronDown />
+                </Box>
+              </HStack>
+            </MenuButton>
+            <MenuList
+              bg={'white'}
+              borderColor={'gray.700'}>
+              <MenuItem as='a'  href={'/pro5'}>Profile</MenuItem>
+              <MenuItem>Settings</MenuItem>
+              <MenuItem>Billing</MenuItem>
+              <MenuDivider />
+              <MenuItem  onClick={HandleLogout}>Sign out</MenuItem>
+            </MenuList>
+          </Menu>
+        </Flex>
             </>
             :
             <>
@@ -135,6 +187,7 @@ export default function Navbar() {
                 }}>
                 Sign Up
               </Button>
+            
             </>
           }
 
@@ -163,6 +216,7 @@ const DesktopNav = () => {
           <Popover trigger={'hover'} placement={'bottom-start'} >
             <PopoverTrigger>
               <Link
+               
                 p={2}
                 href={navItem.href ?? '#'}
                 fontSize={'lm'}
@@ -178,12 +232,13 @@ const DesktopNav = () => {
 
             {navItem.children && (
               <PopoverContent
+
                 border={0}
                 boxShadow={'xl'}
                 bg={popoverContentBgColor}
                 p={4}
                 rounded={'xl'}
-                minW={'sm'}>
+                maxW={'fit-content'}>
                 <Stack >
                   {navItem.children.map((child) => (
                     <DesktopSubNav key={child.label} {...child} />
@@ -293,6 +348,7 @@ const MobileNavItem = ({ label, children, href }: NavItem) => {
         </Stack>
 
       </Collapse>
+      
     </Stack>
 
   );
