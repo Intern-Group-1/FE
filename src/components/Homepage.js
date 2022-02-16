@@ -10,7 +10,7 @@ function Home(){
         <>   <Navbar/>
             <Banner />
             <SliderSpeciality />
-           <PreviousNextMethods/>       
+              
            <SliderDoctor/>
            <Footer/>
 
