@@ -32,7 +32,7 @@ import logo from '../assets/image/logo-doctor-care.png'
 
 export default function Navbar() {
   const { isOpen, onToggle } = useDisclosure();
-  const HandleLogout=()=>{
+  const HandleLogout = () => {
     delete localStorage.token;
     window.location.href = 'http://localhost:3000/home';
   }
@@ -51,7 +51,7 @@ export default function Navbar() {
         borderStyle={'solid'}
         borderColor={useColorModeValue('gray.200', 'gray.900')}
         align={'center'}>
-        
+
         <Flex
           flex={{ base: 1, md: 'auto' }}
           ml={{ base: -2 }}
@@ -67,14 +67,14 @@ export default function Navbar() {
         </Flex>
         <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }}>
           <Box
-          w='120px'
+            w='120px'
           >
-          <Image
-            // boxSize='50px'
-            alt={'Login Image'}
-            objectFit={'cover'}
-            src={logo}
-          />
+            <Image ml='50px'
+              // boxSize='50px'
+              alt={'Login Image'}
+              objectFit={'cover'}
+              src={logo}
+            />
           </Box>
 
           <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
@@ -87,63 +87,60 @@ export default function Navbar() {
           justify={'flex-end'}
           direction={'row'}
           spacing={6}>
-              {loggedInUser ? 
-              <>
-                   <Button
-                        as={'a'}
-                        fontSize={'sm'}
-                        fontWeight={400}
-                        variant={'link'}
-                        href={'/pro5'}>
-                         ProFile
-                      </Button> 
-              
-                <Button
-             as={'a'}
-            display={{ base: 'none', md: 'inline-flex' }}
-            fontSize={'sm'}
-            fontWeight={600}
-            color={'white'}
-            bg={'blue.500'}
-            onClick={HandleLogout}
-            _hover={{
-              bg: 'blue.300',
-            }}>
-            Log Out
-          </Button>
-              </>
+          {loggedInUser ?
+            <>
+              <Button
+                as={'a'}
+                fontSize={'sm'}
+                fontWeight={400}
+                variant={'link'}
+                href={'/pro5'}>
+                ProFile
+              </Button>
 
-              
-                            :  
-                         <>
+              <Button
+                as={'a'}
+                display={{ base: 'none', md: 'inline-flex' }}
+                fontSize={'sm'}
+                fontWeight={600}
+                color={'white'}
+                bg={'blue.500'}
+                onClick={HandleLogout}
+                _hover={{
+                  bg: 'blue.300',
+                }}>
+                Log Out
+              </Button>
+            </>
+            :
+            <>
+              <Button
+                as={'a'}
+                fontSize={'sm'}
+                fontWeight={400}
+                variant={'link'}
+                href={'/signin'}>
+                Sign In
+              </Button>
+              <Button
+                as={'a'}
+                display={{ base: 'none', md: 'inline-flex' }}
+                fontSize={'sm'}
+                fontWeight={600}
+                color={'white'}
+                bg={'blue.500'}
+                href={'/signup'}
+                _hover={{
+                  bg: 'blue.300',
+                }}>
+                Sign Up
+              </Button>
+            </>
+          }
 
-                          <Button
-                        as={'a'}
-                        fontSize={'sm'}
-                        fontWeight={400}
-                        variant={'link'}
-                        href={'/signin'}>
-                        Sign In
-                      </Button> 
-                      <Button
-                      as={'a'}
-                      display={{ base: 'none', md: 'inline-flex' }}
-                      fontSize={'sm'}
-                      fontWeight={600}
-                      color={'white'}
-                      bg={'blue.500'}
-                      href={'/signup'}
-                      _hover={{
-                        bg: 'blue.300',
-                      }}>
-                      Sign Up
-                    </Button>
-                         </>
-              }
-             
-          
+
               // ab
-        
+
         </Stack>
       </Flex>
 
@@ -160,10 +157,10 @@ const DesktopNav = () => {
   const popoverContentBgColor = useColorModeValue('white', 'gray.800');
 
   return (
-    <Stack direction={'row'} spacing={4}>
+    <Stack pl='100px' direction={'row'} spacing={4}>
       {NAV_ITEMS.map((navItem) => (
         <Box key={navItem.label}>
-          <Popover trigger={'hover'} placement={'bottom-start'}>
+          <Popover trigger={'hover'} placement={'bottom-start'} >
             <PopoverTrigger>
               <Link
                 p={2}
@@ -187,7 +184,7 @@ const DesktopNav = () => {
                 p={4}
                 rounded={'xl'}
                 minW={'sm'}>
-                <Stack>
+                <Stack >
                   {navItem.children.map((child) => (
                     <DesktopSubNav key={child.label} {...child} />
                   ))}
@@ -231,7 +228,7 @@ const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
           <Icon color={'pink.400'} w={5} h={5} as={ChevronRightIcon} />
         </Flex>
       </Stack>
-     
+
     </Link>
   );
 };
@@ -294,10 +291,10 @@ const MobileNavItem = ({ label, children, href }: NavItem) => {
               </Link>
             ))}
         </Stack>
-       
+
       </Collapse>
     </Stack>
-    
+
   );
 };
 
