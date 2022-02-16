@@ -1,8 +1,8 @@
 {
   "name": "reactjs-fe-doctorcare",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
-  "proxy":"https://be-doctor-care-v3.herokuapp.com",
+  "proxy": "https://be-doctor-care-v3.herokuapp.com",
   "dependencies": {
     "@chakra-ui/icons": "^1.1.5",
     "@chakra-ui/react": "^1.8.1",
@@ -25,7 +25,8 @@
     "react-scripts": "5.0.0",
     "react-slick": "^0.28.1",
     "slick-carousel": "^1.8.1",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "yup": "^0.32.11"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -45,7 +46,6 @@
       "not dead",
       "not op_mini all"
     ],
-   
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",

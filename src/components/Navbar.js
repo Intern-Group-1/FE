@@ -14,18 +14,32 @@ import {
   PopoverContent,
   useColorModeValue,
   useDisclosure,
+  Menu,
+  MenuButton,
+  Avatar,
+  MenuList,
+  MenuItem,
+  MenuDivider,
+  HStack,
+  VStack,
 } from '@chakra-ui/react';
+import {
+ 
+  FiChevronDown,
+} from 'react-icons/fi';
 import {
   HamburgerIcon,
   CloseIcon,
   ChevronDownIcon,
   ChevronRightIcon,
+  
+  
 } from '@chakra-ui/icons';
 import logo from '../assets/image/logo-doctor-care.png'
 
 export default function Navbar() {
   const { isOpen, onToggle } = useDisclosure();
-  const HandleLogout=()=>{
+  const HandleLogout = () => {
     delete localStorage.token;
     window.location.href = 'http://localhost:3000/home';
   }
@@ -44,7 +58,7 @@ export default function Navbar() {
         borderStyle={'solid'}
         borderColor={useColorModeValue('gray.200', 'gray.900')}
         align={'center'}>
-        
+
         <Flex
           flex={{ base: 1, md: 'auto' }}
           ml={{ base: -2 }}
@@ -60,14 +74,14 @@ export default function Navbar() {
         </Flex>
         <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }}>
           <Box
-          w='120px'
+            w='120px'
           >
-          <Image
-            // boxSize='50px'
-            alt={'Login Image'}
-            objectFit={'cover'}
-            src={logo}
-          />
+            <Image ml='50px'
+              // boxSize='50px'
+              alt={'Login Image'}
+              objectFit={'cover'}
+              src={logo}
+            />
           </Box>
 
           <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
@@ -80,66 +94,101 @@ export default function Navbar() {
           justify={'flex-end'}
           direction={'row'}
           spacing={6}>
-              {loggedInUser ? 
-              <>
-                   <Button
-                        as={'a'}
-                        fontSize={'sm'}
-                        fontWeight={400}
-                        variant={'link'}
-                        href={'/pro5'}>
-                         ProFile
-                      </Button> 
-              
-                <Button
-             as={'a'}
+          {loggedInUser ?
+            <>
+              {/* <Button
+                as={'a'}
+                fontSize={'sm'}
+                fontWeight={400}
+                variant={'link'}
+                href={'/pro5'}>
+                ProFile
+              </Button>
 
-            display={{ base: 'none', md: 'inline-flex' }}
-            fontSize={'sm'}
-            fontWeight={600}
-            color={'white'}
-            bg={'blue.500'}
-            onClick={HandleLogout}
-
-            _hover={{
-              bg: 'blue.300',
-            }}>
-            Log Out
-          </Button>
-              </>
-
-              
-                            :  
-                         <>
-
-                          <Button
-                        as={'a'}
-                        fontSize={'sm'}
-                        fontWeight={400}
-                        variant={'link'}
-                        href={'/signin'}>
-                        Sign In
-                      </Button> 
-                      <Button
-                      as={'a'}
-                      display={{ base: 'none', md: 'inline-flex' }}
-                      fontSize={'sm'}
-                      fontWeight={600}
-                      color={'white'}
-                      bg={'blue.500'}
-                      href={'/signup'}
-                      _hover={{
-                        bg: 'blue.300',
-                      }}>
-                      Sign Up
-                    </Button>
-                         </>
-              }
-             
-          
-              // ab
-        
-        </Stack>
+              <Button
+                as={'a'}
+                display={{ base: 'none', md: 'inline-flex' }}
+                fontSize={'sm'}
+                fontWeight={600}
+                color={'white'}
+                bg={'blue.500'}
+                onClick={HandleLogout}
+                _hover={{
+                  bg: 'blue.300',
+                }}>
+                Log Out
+              </Button> */}
+                <Flex >
+          <Menu>
+            <MenuButton 
+             mr={'20px'}
+              py={2}
+              transition="all 0.3s"
+              _focus={{ boxShadow: 'none' }}>
+              <HStack>
+                <Avatar
+               
+                  size={'sm'}
+                  src={
+                    'https://images.unsplash.com/photo-1619946794135-5bc917a27793?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=b616b2c5b373a80ffc9636ba24f7a4a9'
+                  }
+                />
+                <VStack
+                  width={'100px'}
+                  display={{ base: 'none', md: 'flex' }}
+                  alignItems="flex-start"
+                  spacing="1px"
+                  ml="2">
+                  <Text fontSize="sm">Justina Clark</Text>
+                  <Text fontSize="xs" color="gray.600">
+                    Customer
+                  </Text>
+                
+                </VStack>
+                <Box display={{ base: 'none', md: 'flex' }}>
+                <FiChevronDown />
+                </Box>
+              </HStack>
+            </MenuButton>
+            <MenuList
+              bg={'white'}
+              borderColor={'gray.700'}>
+              <MenuItem as='a'  href={'/pro5'}>Profile</MenuItem>
+              <MenuItem>Settings</MenuItem>
+              <MenuItem>Billing</MenuItem>
+              <MenuDivider />
+              <MenuItem  onClick={HandleLogout}>Sign out</MenuItem>
+            </MenuList>
+          </Menu>
+        </Flex>
+            </>
+            :
+            <>
+              <Button
+                as={'a'}
+                fontSize={'sm'}
+                fontWeight={400}
+                variant={'link'}
+                href={'/signin'}>
+                Sign In
+              </Button>
+              <Button
+                as={'a'}
+                display={{ base: 'none', md: 'inline-flex' }}
+                fontSize={'sm'}
+                fontWeight={600}
+                color={'white'}
+                bg={'blue.500'}
+                href={'/signup'}
+                _hover={{
+                  bg: 'blue.300',
+                }}>
+                Sign Up
+              </Button>
+            
+            </>
+          }
+       </Stack>
       </Flex>
 
       <Collapse in={isOpen} animateOpacity>
@@ -155,12 +204,13 @@ const DesktopNav = () => {
   const popoverContentBgColor = useColorModeValue('white', 'gray.800');
 
   return (
-    <Stack direction={'row'} spacing={4}>
+    <Stack pl='100px' direction={'row'} spacing={4}>
       {NAV_ITEMS.map((navItem) => (
         <Box key={navItem.label}>
-          <Popover trigger={'hover'} placement={'bottom-start'}>
+          <Popover trigger={'hover'} placement={'bottom-start'} >
             <PopoverTrigger>
               <Link
+               
                 p={2}
                 href={navItem.href ?? '#'}
                 fontSize={'lm'}
@@ -176,13 +226,16 @@ const DesktopNav = () => {
 
             {navItem.children && (
               <PopoverContent
+
                 border={0}
                 boxShadow={'xl'}
                 bg={popoverContentBgColor}
                 p={4}
                 rounded={'xl'}
                 maxW={'fit-content'}>
+
                 <Stack>
+
                   {navItem.children.map((child) => (
                     <DesktopSubNav key={child.label} {...child} />
                   ))}
@@ -226,7 +279,7 @@ const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
           <Icon color={'blue.500'} w={5} h={5} as={ChevronRightIcon} />
         </Flex>
       </Stack>
-     
+
     </Link>
   );
 };
@@ -289,10 +342,11 @@ const MobileNavItem = ({ label, children, href }: NavItem) => {
               </Link>
             ))}
         </Stack>
-       
+
       </Collapse>
+      
     </Stack>
-    
+
   );
 };
 

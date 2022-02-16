@@ -1,5 +1,5 @@
 import axios from "axios";
-import * as Config from '../constant/Config'
+import * as Config from '../constant/config'
 
 
 function   ApiCaller(endpoint, method) {

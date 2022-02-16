@@ -3,7 +3,6 @@ import SliderSpeciality from "./SliderSpeciality";
 import SliderDoctor from "./SliderDoctor";
 import Navbar from "./Navbar";
 import Footer from './Footer'
-import PreviousNextMethods from "./Testslick"
 
 
 function Home(){

@@ -16,9 +16,12 @@ import {
   AlertIcon,
   AlertTitle,
   AlertDescription,
-  Link
+  Link,
+  Img,
+ 
 
 } from '@chakra-ui/react';
+
 import { } from 'react-router-dom';
 import Footer from './Footer';
 import Navbar from './Navbar';
@@ -26,6 +29,10 @@ import Signup from './Signup';
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { handleLoginAPI } from '../services/User'
+import bg from '../assets/image/backgroundLogin.jpg'
+import gif from '../assets/image/heart.gif'
+import { ArrowBackIcon } from '@chakra-ui/icons';
+
 export default function SimpleCard() {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
@@ -69,6 +76,12 @@ export default function SimpleCard() {
     setEye(!eye)
   }
   return (<div >
+          <Stack direction='row' spacing={4}>
+       
+        <Button  as={'a'} leftIcon={<ArrowBackIcon />} href='/home' >
+          Back to Homepage
+        </Button>
+      </Stack>
     <div />
     <Flex
 
@@ -138,10 +151,15 @@ export default function SimpleCard() {
 
         </Box>
 
-      </Stack>
+      </Stack >
+      <Box>
+      <Img src={gif} width='50%'/>
+      <Img src={gif} width='100%'/>
+      <Img src={gif} width='50%'/>
 
+      </Box>
     </Flex>
-
+            
   </div>
   );
 }
