@@ -14,7 +14,7 @@ function SliderDoctor() {
         dots: true,
         infinite: true,
         speed: 900,
-        slidesToShow: 2,
+        slidesToShow: 3,
         slidesToScroll: 1
     };
     const [Api, setApi] = useState([]);
@@ -26,18 +26,44 @@ function SliderDoctor() {
                 setApi(res.data.data)
             })
     }, [])
-
+    const dts = [{
+        age: 12,
+        full_name: 'John',
+        speciality: 'Surgery' 
+    },
+    {
+        age: 20,
+        full_name: 'Anna',
+        speciality: 'Gynecology'  
+    }, {
+        age: 23,
+        full_name: 'Nam',
+        speciality: 'Immunology'   
+    }, 
+    {
+        age: 24,
+        full_name: 'Lyna',
+        speciality: 'Oncology'    
+    },{
+        age: 25,
+        full_name: 'Mia',
+        speciality: 'Gastroenterology'     
+    }]
     return (
         <div id='slide-doctor'>     
-        <div className="section-specialty">
-
+        <div className="section-doctor">
+        <button className='btn-more'>More...</button>
+        <div className='doctor-header'>
+                <p className='doctor-title1'>Book Our Doctor</p>
+                <p className='doctor-title2'>Quick appointment with doctors</p>
+            </div>
             <div className="doctor-content">
 
                 <Slider {...settings}>
                     {/* <Alldoctor/> */}
-                    {Api.map(api => (
+                    {dts.map(dt => (
 
-                        <Adoctor age={api.age} full_name={api.full_name} speciality={api.speciality} avt='https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png' />
+                        <Adoctor age={dt.age} full_name={dt.full_name} speciality={dt.speciality} avt='https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png' />
                     ))}
                 </Slider>
             </div>

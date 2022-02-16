@@ -94,13 +94,12 @@ import Footer from './Footer'
           </Text>
   
   
+
           <Stack   mt='8px'
         //   border={'solid 1px'}
         //  borderColor={'red'}
            direction={'row'} 
            spacing={4}>
-         
-
             <Button
             mt='30px'
               flex={1}

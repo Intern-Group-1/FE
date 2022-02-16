@@ -11,9 +11,6 @@ import { ChakraProvider } from '@chakra-ui/react'
 import ProfileUser from "./components/ProfileUser";
 import ContactFormWithSocialButtons from "./components/Contact";
 import Alldoctor from "./components/Alldoctor";
-import SliderDoctor from "./components/SliderDoctor";
-
-
 
 
 function App() {
@@ -31,8 +28,8 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/doctor" element={<Alldoctor />} />
       </Routes>
-     
     </ChakraProvider>
+
 
   )
 }
