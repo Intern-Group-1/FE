@@ -41,7 +41,7 @@ export default function Navbar() {
   const { isOpen, onToggle } = useDisclosure();
   const HandleLogout = () => {
     delete localStorage.token;
-    window.location.href = 'http://localhost:3000/home';
+    window.location.href = '/home';
   }
   console.log(localStorage.token)
   const loggedInUser = localStorage.getItem('token');
