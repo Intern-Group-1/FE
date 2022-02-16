@@ -91,8 +91,6 @@ import Footer from './Footer'
   
   
           <Stack mt={8} direction={'row'} spacing={4}>
-         
-
             <Button
               flex={1}
               fontSize={'sm'}

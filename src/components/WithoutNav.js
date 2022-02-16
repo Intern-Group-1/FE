@@ -4,7 +4,7 @@ import '../style/SliderDoctor.css'
 function Adoctor(props) {
   return (
 
-    <Flex w='300px'
+    <Flex w='280px'
       h='340px'
       borderRadius='2xl'
       bgColor='gray.200'
