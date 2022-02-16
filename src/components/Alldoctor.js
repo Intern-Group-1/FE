@@ -29,7 +29,7 @@ import Footer from './Footer'
       <>
       <Navbar/>
       <Center py={6}>
-           {Api.map(api => (    
+           {Api.map(api => (  
         <Box ml='20px'
           maxW={'320px'}
           w={'full'}
@@ -85,6 +85,7 @@ import Footer from './Footer'
             textAlign={'left'}
             color={'black'}
             px={3}>
+
          <EmailIcon/>   {api.account.email}
           </Text>
   
