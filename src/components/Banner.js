@@ -11,7 +11,7 @@ import {
   export default function SplitScreen() {
     return (
       <Stack minH={'100vh'} direction={{ base: 'column', md: 'row' }}>
-        <Flex p={8} flex={1} align={'center'} justify={'center'}>
+        <Flex mr={'-2'} p={'8'} flex={1} align={'center'} justify={'center'} bg={'gray.100'}>
           <Stack spacing={6} w={'full'} maxW={'lg'}>
             <Heading fontSize={{ base: '3xl', md: '4xl', lg: '5xl' }}>
               <Text
@@ -34,7 +34,7 @@ import {
               For Healthy Lifestyle!
               </Text>{' '}
             </Heading>
-            <Text fontSize={{ base: 'md', lg: 'lg' }} color={'gray.500'}>
+            <Text fontSize={{ base: 'md', lg: 'lg' }} color={'gray.700'}>
             Maybe we are not hesin enough to love the enemy but at least because of your health and happiness for forgiven and ignore them.
             </Text>
             <Stack direction={{ base: 'column', md: 'row' }} spacing={4}>
@@ -55,8 +55,6 @@ import {
         </Flex>
         <Flex flex={1}>
           <Image
-
-            
             opacity='0.6'
             alt={'Login Image'}
             objectFit={'cover'}
@@ -66,4 +64,4 @@ import {
         </Flex>
       </Stack>
     );
-  }
+    }

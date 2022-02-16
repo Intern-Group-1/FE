@@ -17,6 +17,7 @@ export default class SimpleSlider extends Component {
     };
     return (
       <div className="section-specialty">
+        <button className='btn-more'>More...</button>
         <div className="banner-content">
         <Slider {...settings}>
         <div className='img-customize'>

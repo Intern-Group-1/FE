@@ -13,13 +13,13 @@ import {
     Link,
     Button,
   } from '@chakra-ui/react';
-  import { ReactNode } from 'react';
   import { FaInstagram, FaYoutube, FaFacebook } from 'react-icons/fa';
   import { BiMailSend } from 'react-icons/bi';
   import logo from '../assets/image/logo-doctor-care.png'
 // import { Link } from 'react-router-dom';
   
-  const Logo = (props) => {
+ const Logo = (props) => {
+
     return (
         <Image
             alt={'Login Image'}
@@ -69,6 +69,7 @@ import {
   
 
   const ListHeader = ({ children }) => {
+
     return (
       <Text fontWeight={'500'} fontSize={'lg'} mb={2}>
         {children}
