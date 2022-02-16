@@ -38,7 +38,7 @@ import {
   
 } from '@chakra-ui/icons';
 import logo from '../assets/image/logo-doctor-care.png'
-
+import '../style/Navbar.css'
 export default function Navbar() {
   const { isOpen, onToggle } = useDisclosure();
   const HandleLogout = () => {
@@ -47,9 +47,27 @@ export default function Navbar() {
   }
   console.log(localStorage.token)
   const loggedInUser = localStorage.getItem('token');
+
+
+  window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+    console.log(document.body.scrollTop);
+    document.getElementById("navbar").style.padding = "10px ";
+    
+  } else {
+    document.getElementById("navbar").style.padding = "10px";
+   
+  }
+
+  
+}
   return (
     <Box>
       <Flex
+      id='navbar'
+     
         boxShadow='xl' p='6' rounded='md' bg='white'
         bg={useColorModeValue('white', 'gray.800')}
         color={useColorModeValue('gray.600', 'white')}
