@@ -5,7 +5,7 @@ function Adoctor(props) {
   return (
 
     <Flex w='280px'
-      h='340px'
+      h='360px'
       borderRadius='2xl'
       bgColor='gray.200'
       border='none'
@@ -16,6 +16,7 @@ function Adoctor(props) {
         <Text className='text-info'>{props.speciality}</Text>
         <Button colorScheme='blue'className='btn-book' >Book now</Button>
       </Box>
+      
 
     </Flex>
   )
