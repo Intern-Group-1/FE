@@ -1,6 +1,6 @@
 {
   "name": "reactjs-fe-doctorcare",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "private": true,
   "proxy": "https://be-doctor-care-v3.herokuapp.com",
   "dependencies": {
@@ -29,7 +29,7 @@
     "yup": "^0.32.11"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "react-scripts --openssl-legacy-provider start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
