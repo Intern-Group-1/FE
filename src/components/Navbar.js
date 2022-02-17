@@ -13,7 +13,6 @@ import {
   PopoverTrigger,
   PopoverContent,
   useColorModeValue,
-  // useBreakpointValue,
   useDisclosure,
   Menu,
   MenuButton,
@@ -23,7 +22,6 @@ import {
   MenuDivider,
   HStack,
   VStack,
-  
 } from '@chakra-ui/react';
 import {
  
@@ -38,18 +36,36 @@ import {
   
 } from '@chakra-ui/icons';
 import logo from '../assets/image/logo-doctor-care.png'
-
+import '../style/Navbar.css'
 export default function Navbar() {
   const { isOpen, onToggle } = useDisclosure();
   const HandleLogout = () => {
     delete localStorage.token;
-    window.location.href = 'http://localhost:3000/home';
+    window.location.href = '/home';
   }
   console.log(localStorage.token)
   const loggedInUser = localStorage.getItem('token');
+
+
+  window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+    console.log(document.body.scrollTop);
+    document.getElementById("navbar").style.padding = "10px ";
+    
+  } else {
+    document.getElementById("navbar").style.padding = "10px";
+   
+  }
+
+  
+}
   return (
     <Box>
       <Flex
+      id='navbar'
+     
         boxShadow='xl' p='6' rounded='md' bg='white'
         bg={useColorModeValue('white', 'gray.800')}
         color={useColorModeValue('gray.600', 'white')}
@@ -190,11 +206,7 @@ export default function Navbar() {
             
             </>
           }
-
-
-              // ab
-
-        </Stack>
+       </Stack>
       </Flex>
 
       <Collapse in={isOpen} animateOpacity>
@@ -239,7 +251,9 @@ const DesktopNav = () => {
                 p={4}
                 rounded={'xl'}
                 maxW={'fit-content'}>
-                <Stack >
+
+                <Stack>
+
                   {navItem.children.map((child) => (
                     <DesktopSubNav key={child.label} {...child} />
                   ))}
@@ -261,12 +275,12 @@ const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
       display={'block'}
       p={2}
       rounded={'md'}
-      _hover={{ bg: useColorModeValue('pink.50', 'gray.900') }}>
+      _hover={{ bg: useColorModeValue('blue.100', 'gray.900') }}>
       <Stack direction={'row'} align={'center'}>
         <Box>
           <Text
             transition={'all .3s ease'}
-            _groupHover={{ color: 'pink.400' }}
+            _groupHover={{ color: 'blue.500' }}
             fontWeight={500}>
             {label}
           </Text>
@@ -280,7 +294,7 @@ const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
           justify={'flex-end'}
           align={'center'}
           flex={1}>
-          <Icon color={'pink.400'} w={5} h={5} as={ChevronRightIcon} />
+          <Icon color={'blue.500'} w={5} h={5} as={ChevronRightIcon} />
         </Flex>
       </Stack>
 
@@ -365,6 +379,7 @@ const NAV_ITEMS: Array<NavItem> = [
   {
     label: 'Home',
     href: '/home',
+
   },
   {
     label: 'Speciality',
