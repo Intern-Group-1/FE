@@ -1,4 +1,7 @@
 import React from 'react';
+import Navbar from "./Navbar";
+import Footer from './Footer'
+import '../style/button.css'
 import {
   Box,
   Heading,
@@ -7,16 +10,16 @@ import {
   Text,
   HStack,
   Tag,
-  Wrap,
-  WrapItem,
   SpaceProps,
   useColorModeValue,
   Container,
-  VStack,
   Flex,
   Center,
   Square,
+  Button,
 } from '@chakra-ui/react';
+import Doctor from '../assets/image/dtavt.png'
+import Datepicker from './Datepicker'
 
 interface IBlogTags {
   tags: Array<string>;
@@ -48,7 +51,7 @@ export const BlogAuthor: React.FC<BlogAuthorProps> = (props) => {
       <Image
         borderRadius="full"
         boxSize="40px"
-        src="https://100k-faces.glitch.me/random-image"
+        src={Doctor}
         alt={`Avatar of ${props.name}`}
       />
       <Text fontWeight="medium">{props.name}</Text>
@@ -60,7 +63,9 @@ export const BlogAuthor: React.FC<BlogAuthorProps> = (props) => {
 
 const ArticleList = () => {
   return (
-    <Container maxW={'7xl'} p="12">
+    <>
+    <Navbar />
+    <Container maxW={'7xl'} p="12" mt={'20'}>
       <Heading as="h1">Make an appointment</Heading>
       <Box
         marginTop={{ base: '1', sm: '5' }}
@@ -81,11 +86,11 @@ const ArticleList = () => {
             <Link textDecoration="none" _hover={{ textDecoration: 'none' }}>
               <Image
                 borderRadius="full"
-                src={
-                  'https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=800&q=80'
-                }
+                src={Doctor}
+                boxShadow={'md'}
                 alt="some good alt text"
                 objectFit="contain"
+                mb={5}
               />
             </Link>
           </Box>
@@ -103,7 +108,7 @@ const ArticleList = () => {
         </Box>
         <Box
           display="flex"
-          ml={50}
+          ml={60}
           flex="1"
           flexDirection="column"
           justifyContent="center"
@@ -116,42 +121,163 @@ const ArticleList = () => {
           </Heading>
           <Text
             as="p"
-            marginTop="2"
+            marginTop="5"
             color={useColorModeValue('gray.700', 'gray.200')}
             fontSize="lg">
-            Age
+            Age:
           </Text>
           <Text
             as="p"
-            marginTop="2"
+            marginTop="5"
             color={useColorModeValue('gray.700', 'gray.200')}
             fontSize="lg">
-            Speciality
+            Speciality:
           </Text>
           <Text
             as="p"
-            marginTop="2"
+            marginTop="5"
             color={useColorModeValue('gray.700', 'gray.200')}
             fontSize="lg">
-            Gender
+            Gender:
           </Text>
-          {/* <BlogAuthor name="John Doe" date={new Date('2021-04-06T19:01:27Z')} /> */}
         </Box>
       </Box>
       
-      <Flex color='white'>
-  <Center w='100px' bg='green.500'>
-    <Text>Box 1</Text>
+<Flex color='white' mt={20} w='1400px' h='500px' ml={'-100'}>
+  <Center w='400px' bg='green.500' flexDirection={'column'} justifyContent={'flex-start'}>
+  <Heading as="h1" mt={'15'}>Information customer</Heading>
+    <Text
+      as="p"
+      marginTop="50"
+      color={useColorModeValue('gray.700', 'gray.200')}
+      fontSize="lg">
+      Name:
+    </Text>
+    <Text
+      as="p"
+      marginTop="5"
+      color={useColorModeValue('gray.700', 'gray.200')}
+      fontSize="lg">
+      Age:
+    </Text>
+    <Text
+      as="p"
+      marginTop="5"
+      color={useColorModeValue('gray.700', 'gray.200')}
+      fontSize="lg">
+      Phone:
+    </Text>
+    <Text
+      as="p"
+      marginTop="5"
+      color={useColorModeValue('gray.700', 'gray.200')}
+      fontSize="lg">
+      Address:
+    </Text>
   </Center>
-  <Square bg='blue.500' size='150px'>
-    <Text>Box 2</Text>
+  <Square bg='gray.400' w='550px' flexDirection={'column'} justifyContent={'flex-start'}>
+  <Heading as="h1" mt={'5'} mb={'10'}>Choose time and date</Heading>
+    <Datepicker />
+    <Box mt={'5'}>
+      <Box className='wrapper-btn-time'>
+        <Button className='btn-time'>07:00 - 08:00</Button>
+        <Button className='btn-time'>08:00 - 09:00</Button>
+        <Button className='btn-time'>09:00 - 10:00</Button>
+        <Button className='btn-time'>10:00 - 11:00</Button>
+        <Button className='btn-time'>14:00 - 15:00</Button>
+        <Button className='btn-time'>15:00 - 16:00</Button>
+        <Button className='btn-time'>16:00 - 17:00</Button>
+        <Button className='btn-time'>17:00 - 18:00</Button>
+      </Box>         
+    </Box>
   </Square>
-  <Box flex='1' bg='tomato'>
-    <Text>Box 3</Text>
-  </Box>
+  <Center flex='1' bg='blue.500' id='confirm'>
+    <Heading as="h1" mt={'5'} mb={'0'}>Confirm appointment</Heading>
+    <Text fontSize={'27'} mt={'15'} className='name-customer'>Customer</Text>
+    <Box className='wrapper-customer'>
+    <Text
+      as="p"
+      marginTop="5"
+      color={useColorModeValue('gray.700', 'gray.200')}
+      fontSize="lg">
+      Name:
+    </Text>
+    <Text
+      as="p"
+      marginTop="5"
+      color={useColorModeValue('gray.700', 'gray.200')}
+      fontSize="lg">
+      Age:
+    </Text>
+    <Text
+      as="p"
+      marginTop="5"
+      color={useColorModeValue('gray.700', 'gray.200')}
+      fontSize="lg">
+      Address:
+    </Text>
+    <Text
+      as="p"
+      marginTop="5"
+      color={useColorModeValue('gray.700', 'gray.200')}
+      fontSize="lg">
+      Phone:
+    </Text>         
+    </Box>
+    <Text fontSize={'27'} mt={'15'} className='name-doctor'>Doctor</Text>
+    <Box className='wrapper-doctor'>
+    <Text
+      as="p"
+      marginTop="5"
+      color={useColorModeValue('gray.700', 'gray.200')}
+      fontSize="lg">
+      Name:
+    </Text>
+    <Text
+      as="p"
+      marginTop="5"
+      color={useColorModeValue('gray.700', 'gray.200')}
+      fontSize="lg">
+      Age:
+    </Text>
+    <Text
+      as="p"
+      marginTop="5"
+      color={useColorModeValue('gray.700', 'gray.200')}
+      fontSize="lg">
+      Speciality:
+    </Text>
+    <Text
+      as="p"
+      marginTop="5"
+      color={useColorModeValue('gray.700', 'gray.200')}
+      fontSize="lg">
+      Gender:
+    </Text>         
+    </Box>
+    <Text fontSize={'27'} mt={'15'} className='name-datetime'>Date and time</Text>
+    <Box className='wrapper-datetime'>
+    <Text
+      as="p"
+      marginTop="5"
+      color={useColorModeValue('gray.700', 'gray.200')}
+      fontSize="lg">
+      Date:
+    </Text>
+    <Text
+      as="p"
+      marginTop="5"
+      color={useColorModeValue('gray.700', 'gray.200')}
+      fontSize="lg">
+      Time:
+    </Text>          
+    </Box>
+  <Button className='btn-confirm'>Confirm appointment</Button>
+  </Center>
 </Flex>
     </Container>
-    
+    <Footer />
+    </>
   );
 };
 
