@@ -25,6 +25,7 @@
     "react-scripts": "5.0.0",
     "react-slick": "^0.28.1",
     "slick-carousel": "^1.8.1",
+    "toast": "^0.3.47",
     "web-vitals": "^2.1.4",
     "yup": "^0.32.11"
   },
