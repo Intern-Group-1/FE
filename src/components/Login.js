@@ -33,6 +33,8 @@ import bg from '../assets/image/backgroundLogin.jpg'
 import gif from '../assets/image/heart.gif'
 import { ArrowBackIcon } from '@chakra-ui/icons';
 import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import InitialFocus from './Modal'
 
 export default function SimpleCard() {
