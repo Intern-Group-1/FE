@@ -33,9 +33,9 @@ import bg from '../assets/image/backgroundLogin.jpg'
 import gif from '../assets/image/heart.gif'
 import { ArrowBackIcon } from '@chakra-ui/icons';
 import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import InitialFocus from './Modal'
 
-import 'react-toastify/dist/ReactToastify.css';
 
 function SimpleCard() {
   const [username, setUsername] = useState('')
@@ -175,4 +175,6 @@ function SimpleCard() {
   </div>
   );
 }
+
 export default SimpleCard;
+
