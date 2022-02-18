@@ -10,7 +10,7 @@
 }
  .text-info{
     margin-top: 5px;
-    font-size: 25px;
+    font-size: 20px;
 }
  .btn-book{
     margin-top: 12px;
@@ -48,7 +48,7 @@
 
 }
 #slide-doctor .doctor:hover  .text-info{
-  font-size: 25px;
+  font-size: 20px;
   z-index: 2;
   color: white;
     

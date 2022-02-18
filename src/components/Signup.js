@@ -22,32 +22,31 @@ import {
 } from '@chakra-ui/react';
 import { ArrowBackIcon, ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import { handleSignUpAPI } from '../services/User'
-
+import { useNavigate } from 'react-router-dom'
 export const Signup = () => {
 
   const [showPassword, setShowPassword] = useState(false);
   //const email = document.getElementById('email').value;
-  
+  const navigate = useNavigate()
   const handleSignup = async () => {
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
     const confirmPassword = document.getElementById("confirmPassword").value;
-    console.log(password);
-    console.log(confirmPassword);
+  
     try {
       const data = await handleSignUpAPI(email, password, confirmPassword,'customer')
       console.log(data);
-      // if (data) {
-      //   localStorage.setItem('token', data.data.data.tokens[0].token)
-      //   localStorage.setItem('user', data.data.data._id)
+       if (data) {
+         localStorage.setItem('token', data.data.data.tokens[0].token)
+         //localStorage.setItem('user', data.data.data._id)
 
-      // }
-      // var loggedInUser = localStorage.getItem('token');
-      // console.log(loggedInUser)
+       }
+       var loggedInUser = localStorage.getItem('token');
+       console.log(loggedInUser)
 
-      // if (loggedInUser !== null) {
-      //   navigate('/home')
-      // }
+       if (loggedInUser !== null) {
+         navigate('/home')
+       }
 
     } catch (error) {
       console.log(error);

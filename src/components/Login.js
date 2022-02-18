@@ -44,6 +44,7 @@ export default function SimpleCard() {
   }
   const handlePasswordInput = e => {
     setPassword(e.target.value);
+    
   }
   const handleLogin = async () => {
     try {

@@ -7,9 +7,9 @@ const handleLoginAPI = (email, password)=>{
         console.log(error)
     }
 }
-const handleSignUpAPI = (email, password,password_1,role)=>{
+const handleSignUpAPI = (email, password,password_again,role)=>{
     try {
-        return axios.post('http://localhost:5000/api/register', {email, password, password_1,role})
+        return axios.post('https://be-doctor-care-v3.herokuapp.com/api/register', {email, password, password_again,role})
     } catch (error) {
         console.log(error)
     }

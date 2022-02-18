@@ -28,8 +28,11 @@ import Footer from './Footer'
     return (
       <>
       <Navbar/>
-      <Center py={6}   d='flex'
+      <Box>
+      <Heading mt='100px' textAlign={'center'}>Doctor</Heading>
+      <Center  mt ='10px' py={6}   d='flex'
           flexWrap={'wrap'} >
+           
            {Api.map(api => (  
         <Box ml='20px'
         
@@ -40,7 +43,7 @@ import Footer from './Footer'
           boxShadow={'2xl'}
           rounded={'lg'}      
           p={6}
-          ml= '80px'
+         ml='80px'
           mt= '25px'
           textAlign={'center'}>
           <Avatar
@@ -122,6 +125,7 @@ import Footer from './Footer'
         </Box> 
            ))}
       </Center>
+      </Box>
       <Footer/>
 
       </>

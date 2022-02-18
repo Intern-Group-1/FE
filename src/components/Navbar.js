@@ -157,7 +157,7 @@ function scrollFunction() {
                   alignItems="flex-start"
                   spacing="1px"
                   ml="2">
-                  <Text fontSize="sm">Justina Clark</Text>
+                  <Text fontSize="sm">Tên</Text>
                   <Text fontSize="xs" color="gray.600">
                     Customer
                   </Text>
