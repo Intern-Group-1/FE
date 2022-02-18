@@ -5,7 +5,7 @@ function Adoctor(props) {
   return (
 
     <Flex w='280px'
-      h='340px'
+      h='360px'
       borderRadius='2xl'
       bgColor='gray.200'
       border='none'

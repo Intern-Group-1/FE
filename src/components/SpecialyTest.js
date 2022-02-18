@@ -16,7 +16,7 @@ export default class SpecialyTest extends Component {
       slidesToScroll: 1
     };
     return (
-      <div className="section-specialty">
+      <div id="section-specialty">
         <div className="specialty-content">
         <Slider {...settings}>
         <div className='img-customize'>

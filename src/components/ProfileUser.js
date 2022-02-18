@@ -1,14 +1,26 @@
 import React from 'react';
 import '../style/input-file.css'
+import InitialFocus from './Modal'
+import AlertsSuccess from './Success'
 import {
     Flex,
     Box,
     Input,
     Text,
     Image,
+    Button,
   } from '@chakra-ui/react';
   import avt from '../assets/image/client.jpg'
+  import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
+
+  toast.configure()
 function ProfileUser() {
+    const HandleClick = () =>{
+        alert(<AlertsSuccess />)
+    }
+    const notify = () => toast.success("Login success!");
+    const notify1 = () => toast.error("Login failed!");
     const user={
         name:'dung',
         address :' hue',
@@ -43,8 +55,29 @@ function ProfileUser() {
             <Input type='text' placeholder={user.gender} className='text-inf'></Input>
         </Text>
         </Box>
+            <Button 
+            h={'45px'}
+            w={'120px'}
+            mt={'10px'}
+            ml={'170px'}
+            >
+                <InitialFocus />
+            </Button>
+            <Button
+            onClick={notify}
+            >
+                Test
+            </Button>
+            {/* <ToastContainer /> */}
+            <Button
+            onClick={notify1}
+            >
+                Test1
+            </Button>
+            <ToastContainer />
+        </Box> 
         </Box>
-        </Box>
+        
     </Flex>
   </>;
 }

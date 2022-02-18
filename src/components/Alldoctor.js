@@ -23,8 +23,6 @@ import Footer from './Footer'
       })
     },[])
 
-
-
     return (
       <>
       <Navbar/>
@@ -46,7 +44,7 @@ import Footer from './Footer'
           <Avatar
             size={'xl'}
             src={
-                api.Avatar
+                api.avatar
             }
             alt={api.full_name}
             mb={4}
@@ -96,8 +94,6 @@ import Footer from './Footer'
   
 
           <Stack   mt='8px'
-        //   border={'solid 1px'}
-        //  borderColor={'red'}
            direction={'row'} 
            spacing={4}>
             <Button
