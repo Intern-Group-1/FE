@@ -10,10 +10,12 @@ function Home(){
     return(
         <>   <Navbar/>
             <Banner />
+
             <SliderSpeciality />
                 <SimpleSlider/>
            <SliderDoctor/>
            <Footer/>
+
 
         </>
     )

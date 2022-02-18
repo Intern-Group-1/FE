@@ -32,6 +32,8 @@ import { handleLoginAPI } from '../services/User'
 import bg from '../assets/image/backgroundLogin.jpg'
 import gif from '../assets/image/heart.gif'
 import { ArrowBackIcon } from '@chakra-ui/icons';
+import { ToastContainer, toast } from 'react-toastify';
+import InitialFocus from './Modal'
 
 export default function SimpleCard() {
   const [username, setUsername] = useState('')
@@ -46,6 +48,7 @@ export default function SimpleCard() {
     setPassword(e.target.value);
     
   }
+ 
   const handleLogin = async () => {
     try {
       const data = await handleLoginAPI(username, password)
@@ -58,25 +61,35 @@ export default function SimpleCard() {
       var loggedInUser = localStorage.getItem('token');
       console.log(loggedInUser)
 
-      if (loggedInUser !== null) {
+      if (loggedInUser !=null  ) {
+        toast.success("Login success!");
         navigate('/home')
       }
+      
 
     } catch (error) {
-
-      if (error) {
-        if (error.response) {
-          if (error.response.data) {
-            setMessage(error.response.data.message)
-          }
-        }
-      }
+     
+          toast.error("Login failed!");
+     
+    
+      //console.log(error);
+      // if (error) {
+      //   if (error.response) {
+      //     if (error.response.data) {
+      //       console.log(error.response.data);
+      //       setMessage(error.response.data.message);
+           
+      //     }
+      //   }
+      // }
+     
     }
   }
   const handleShowHidePassword = () => {
     setEye(!eye)
   }
   return (<div >
+         
           <Stack direction='row' spacing={4}>
        
         <Button  as={'a'} leftIcon={<ArrowBackIcon />} href='/home' >
@@ -142,11 +155,7 @@ export default function SimpleCard() {
               >
                 Sign in
               </Button>
-              <Text color='red'
-
-              >
-                {messagea}
-              </Text>
+             
             </Stack>
           </Stack>
 

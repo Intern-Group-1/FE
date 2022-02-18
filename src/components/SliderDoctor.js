@@ -29,16 +29,16 @@ function SliderDoctor() {
     }, [])
 
     const book=()=>{
-        const infor = document.getElementById(Api.map(dt =>(dt.full_name)));
-     console.log(Api.map(dt =>(dt.age)));
+        const infor = document.getElementsByTagName('Adoctor');
+            console.log( infor);
     }
     return (
         <div id='slide-doctor'>
             <div className="section-doctor">
                 
-                <Button
+                <Button 
                     className='btn-more'
-                    href='/doctor '
+                     href='/doctor '
                     as={'a'}
                    >
                     More...
@@ -47,14 +47,16 @@ function SliderDoctor() {
                     <p className='doctor-title1'>Book Our Doctor</p>
                     <p className='doctor-title2'>Quick appointment with doctors</p>
                 </div>
-                <div className="doctor-content">
+                <div className="doctor-content" >
 
-                    <Slider {...settings} >
+                    <Slider  {...settings} >
                         {/* <Alldoctor/> */}
                         {Api.map(dt => (
-                                <>
-                            <Adoctor id={dt.age} key={dt.full_name} age={dt.age} full_name={dt.full_name} speciality={dt.speciality} avt='https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png' />
                            
+                                <>
+                                  {/* <a>{'id là '+dt._id}</a> */}
+                            <Adoctor   _id={dt._id} key={dt._id} age={dt.age} full_name={dt.full_name} speciality={dt.speciality} avt={dt.avatar} />
+                          
                             </>
                       ))}
                     </Slider>
