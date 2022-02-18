@@ -35,7 +35,9 @@ import { ArrowBackIcon } from '@chakra-ui/icons';
 import { ToastContainer, toast } from 'react-toastify';
 import InitialFocus from './Modal'
 
-export default function SimpleCard() {
+import 'react-toastify/dist/ReactToastify.css';
+
+function SimpleCard() {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [messagea, setMessage] = useState('')
@@ -173,3 +175,4 @@ export default function SimpleCard() {
   </div>
   );
 }
+export default SimpleCard;
