@@ -1,14 +1,22 @@
 import React from 'react';
 import '../style/input-file.css'
+import InitialFocus from './Modal'
+
 import {
     Flex,
     Box,
     Input,
     Text,
     Image,
+    Button,
   } from '@chakra-ui/react';
   import avt from '../assets/image/client.jpg'
-function ProfileUser() {
+  import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
+  import Modal from './Modal'
+
+toast.configure()
+function ProfileUser() { 
     const user={
         name:'dung',
         address :' hue',
@@ -17,9 +25,11 @@ function ProfileUser() {
     }
   return <>
     <Flex >
+       
         <Box  w='80%' h='50%' m='10%' boxShadow='2xl' borderRadius='2xl' d='flex' rounded='md' bg='white' boxShadow='outline'
          d='flex' justifyContent='center'
          alignContent='center'>
+               
         <Box className='user-avt'>
             <Image src={avt} w='250' h='250' boxShadow='2xl' m='10' borderRadius='50%' border='1px' borderColor='blue.300'></Image>
             <input  type='file' className='custom-file-input' /> 
@@ -42,9 +52,12 @@ function ProfileUser() {
             Gender
             <Input type='text' placeholder={user.gender} className='text-inf'></Input>
         </Text>
+     
         </Box>
         </Box>
-        </Box>
+           
+           <ToastContainer />
+                     </Box> 
     </Flex>
   </>;
 }

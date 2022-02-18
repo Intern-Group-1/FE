@@ -31,13 +31,13 @@ import {
   HamburgerIcon,
   CloseIcon,
   ChevronDownIcon,
-  ChevronRightIcon,
-  
-  
+  ChevronRightIcon, 
 } from '@chakra-ui/icons';
 import logo from '../assets/image/logo-doctor-care.png'
 import '../style/Navbar.css'
+
 export default function Navbar() {
+  
   const { isOpen, onToggle } = useDisclosure();
   const HandleLogout = () => {
     delete localStorage.token;
@@ -63,6 +63,7 @@ function scrollFunction() {
 }
   return (
     <Box>
+      
       <Flex
       id='navbar'
      
@@ -90,6 +91,7 @@ function scrollFunction() {
             aria-label={'Toggle Navigation'}
           />
         </Flex>
+        
         <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }}>
           <Box
             w='120px'
@@ -137,6 +139,7 @@ function scrollFunction() {
                 Log Out
               </Button> */}
                 <Flex >
+                
           <Menu>
             <MenuButton 
              mr={'20px'}
@@ -157,7 +160,7 @@ function scrollFunction() {
                   alignItems="flex-start"
                   spacing="1px"
                   ml="2">
-                  <Text fontSize="sm">Justina Clark</Text>
+                  <Text fontSize="sm">Tên</Text>
                   <Text fontSize="xs" color="gray.600">
                     Customer
                   </Text>
@@ -296,6 +299,7 @@ const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
           flex={1}>
           <Icon color={'blue.500'} w={5} h={5} as={ChevronRightIcon} />
         </Flex>
+        
       </Stack>
 
     </Link>

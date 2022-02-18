@@ -3,6 +3,7 @@ import SliderSpeciality from "./SliderSpeciality";
 import SliderDoctor from "./SliderDoctor";
 import Navbar from "./Navbar";
 import Footer from './Footer'
+ import SimpleSlider from './Testslick'
 
 
 function Home(){
@@ -10,12 +11,11 @@ function Home(){
         <>   <Navbar/>
             <Banner />
 
-            <SliderDoctor/>
-           <PreviousNextMethods/>       
-            
-            <Footer/>
-          
-         
+            <SliderSpeciality />
+                <SimpleSlider/>
+           <SliderDoctor/>
+           <Footer/>
+
 
         </>
     )

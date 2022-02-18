@@ -4,7 +4,8 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useState, useEffect } from 'react';
 import ApiCaller from '../utils/apiCaller';
-import Adoctor from './WithoutNav';
+import Adoctor from './Adoctor';
+import { Button } from '@chakra-ui/react';
 
 
 
@@ -26,49 +27,42 @@ function SliderDoctor() {
                 setApi(res.data.data)
             })
     }, [])
-    const dts = [{
-        age: 12,
-        full_name: 'John',
-        speciality: 'Surgery' 
-    },
-    {
-        age: 20,
-        full_name: 'Anna',
-        speciality: 'Gynecology'  
-    }, {
-        age: 23,
-        full_name: 'Nam',
-        speciality: 'Immunology'   
-    }, 
-    {
-        age: 24,
-        full_name: 'Lyna',
-        speciality: 'Oncology'    
-    },{
-        age: 25,
-        full_name: 'Mia',
-        speciality: 'Gastroenterology'     
-    }]
+
+    const book=()=>{
+        const infor = document.getElementsByTagName('Adoctor');
+            console.log( infor);
+    }
     return (
-        <div id='slide-doctor'>     
-        <div className="section-doctor">
-        <button className='btn-more'>More...</button>
-        <div className='doctor-header'>
-                <p className='doctor-title1'>Book Our Doctor</p>
-                <p className='doctor-title2'>Quick appointment with doctors</p>
-            </div>
-            <div className="doctor-content">
+        <div id='slide-doctor'>
+            <div className="section-doctor">
+                
+                <Button 
+                    className='btn-more'
+                     href='/doctor '
+                    as={'a'}
+                   >
+                    More...
+                </Button>
+                <div className='doctor-header'>
+                    <p className='doctor-title1'>Book Our Doctor</p>
+                    <p className='doctor-title2'>Quick appointment with doctors</p>
+                </div>
+                <div className="doctor-content" >
 
-                <Slider {...settings}>
-                    {/* <Alldoctor/> */}
-                    {dts.map(dt => (
-
-                        <Adoctor age={dt.age} full_name={dt.full_name} speciality={dt.speciality} avt='https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png' />
-                    ))}
-                </Slider>
+                    <Slider  {...settings} >
+                        {/* <Alldoctor/> */}
+                        {Api.map(dt => (
+                           
+                                <>
+                                  {/* <a>{'id là '+dt._id}</a> */}
+                            <Adoctor   _id={dt._id} key={dt._id} age={dt.age} full_name={dt.full_name} speciality={dt.speciality} avt={dt.avatar} />
+                          
+                            </>
+                      ))}
+                    </Slider>
+                </div>
             </div>
         </div>
-        </div>                    
     );
 
 }

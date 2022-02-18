@@ -11,6 +11,7 @@ import { ChakraProvider } from '@chakra-ui/react'
 import ProfileUser from "./components/ProfileUser";
 import ContactFormWithSocialButtons from "./components/Contact";
 import Alldoctor from "./components/Alldoctor";
+import Datepicker from "./components/Datepicker";
 
 
 function App() {
@@ -18,7 +19,7 @@ function App() {
 
   return (
     <ChakraProvider>
-
+     
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/signin" element={<Login />} />
@@ -28,6 +29,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/doctor" element={<Alldoctor />} />
       </Routes>
+      {/* <Datepicker/> */}
     </ChakraProvider>
 
 
