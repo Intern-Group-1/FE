@@ -55,7 +55,7 @@ function SliderDoctor() {
                            
                                 <>
                                   {/* <a>{'id là '+dt._id}</a> */}
-                            <Adoctor   _id={dt._id} key={dt._id} age={dt.age} full_name={dt.full_name} speciality={dt.speciality} avt={dt.avatar} />
+                            <Adoctor   _id={dt._id} key={dt._id} age={dt.age} full_name={dt.full_name} speciality={dt.speciality.name} avt={dt.avatar} />
                           
                             </>
                       ))}
