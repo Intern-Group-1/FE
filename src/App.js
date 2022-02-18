@@ -29,7 +29,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/doctor" element={<Alldoctor />} />
       </Routes>
-      <Datepicker/>
+//       <Datepicker/>
     </ChakraProvider>
 
 
