@@ -47,32 +47,32 @@ export default function Navbar() {
   const loggedInUser = localStorage.getItem('token');
 
 
-  window.onscroll = function() {scrollFunction()};
+  window.onscroll = function() {};
 
-function scrollFunction() {
-  if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
-    console.log(document.body.scrollTop);
-    document.getElementById("navbar").style.padding = "10px ";
+// function scrollFunction() {
+//   if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+//     console.log(document.body.scrollTop);
+//     document.getElementById("navbar").style.paddingTop = "0px ";
     
-  } else {
-    document.getElementById("navbar").style.padding = "10px";
+//   } else {
+//     document.getElementById("navbar").style.paddingTop = "0px";
    
-  }
+// //   }
 
   
-}
+// }
   return (
     <Box>
       
       <Flex
-      id='navbar'
-     
-        boxShadow='xl' p='6' rounded='md' bg='white'
+        id='navbar'
+        fontSize={'20px'}
+        boxShadow='xl' p='3' rounded='md' bg='white'
         bg={useColorModeValue('white', 'gray.800')}
         color={useColorModeValue('gray.600', 'white')}
-        minH={'60px'}
-        py={{ base: 2 }}
-        px={{ base: 4 }}
+        minH={'20px'}
+        //py={{ base: 2 }}
+        // px={{ base: 4 }}
         borderBottom={1}
         borderStyle={'solid'}
         borderColor={useColorModeValue('gray.200', 'gray.900')}
@@ -94,13 +94,18 @@ function scrollFunction() {
         
         <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }}>
           <Box
-            w='120px'
+          as='a'
+          href='/home'
+            w='100px'
           >
             <Image ml='50px'
+            mt='5px'
               // boxSize='50px'
               alt={'Login Image'}
               objectFit={'cover'}
               src={logo}
+              
+              
             />
           </Box>
 
@@ -142,8 +147,9 @@ function scrollFunction() {
                 
           <Menu>
             <MenuButton 
+           
              mr={'20px'}
-              py={2}
+              py={1}
               transition="all 0.3s"
               _focus={{ boxShadow: 'none' }}>
               <HStack>
@@ -155,7 +161,7 @@ function scrollFunction() {
                   }
                 />
                 <VStack
-                  width={'100px'}
+                  width={'50px'}
                   display={{ base: 'none', md: 'flex' }}
                   alignItems="flex-start"
                   spacing="1px"
@@ -172,12 +178,13 @@ function scrollFunction() {
               </HStack>
             </MenuButton>
             <MenuList
+             border={'0.5px'}
               bg={'white'}
               borderColor={'gray.700'}>
               <MenuItem as='a'  href={'/pro5'}>Profile</MenuItem>
               <MenuItem>Settings</MenuItem>
               <MenuItem>Billing</MenuItem>
-              <MenuDivider />
+              <MenuDivider/>
               <MenuItem  onClick={HandleLogout}>Sign out</MenuItem>
             </MenuList>
           </Menu>
@@ -191,9 +198,10 @@ function scrollFunction() {
                 fontWeight={400}
                 variant={'link'}
                 href={'/signin'}>
-                Sign In
+                Sign in
               </Button>
               <Button
+                //h='30px'
                 as={'a'}
                 display={{ base: 'none', md: 'inline-flex' }}
                 fontSize={'sm'}
@@ -204,7 +212,7 @@ function scrollFunction() {
                 _hover={{
                   bg: 'blue.300',
                 }}>
-                Sign Up
+                Sign up
               </Button>
             
             </>
@@ -220,8 +228,8 @@ function scrollFunction() {
 }
 
 const DesktopNav = () => {
-  const linkColor = useColorModeValue('gray.600', 'gray.200');
-  const linkHoverColor = useColorModeValue('gray.800', 'white');
+  const linkColor = useColorModeValue('#1872a4', 'gray.200');
+  const linkHoverColor = useColorModeValue('#15bbe0', 'white');
   const popoverContentBgColor = useColorModeValue('white', 'gray.800');
 
   return (
@@ -237,8 +245,13 @@ const DesktopNav = () => {
                 fontSize={'lm'}
                 fontWeight={500}
                 color={linkColor}
+               
+               
+
+              
                 _hover={{
                   textDecoration: 'none',
+                
                   color: linkHoverColor,
                 }}>
                 {navItem.label}

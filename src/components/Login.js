@@ -104,15 +104,17 @@ function SimpleCard() {
       minH={'120vh'}
       align={'center'}
       justify={'center'}
-      // backgroundImage={bglg} 
-      backgroundRepeat='no-repeat' backgroundSize='cover'>
-      <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6} ml='200' mb='20'>
+      //  backgroundImage={bglg} 
+      // backgroundColor='blue.100'
+      // backgroundRepeat='no-repeat' backgroundSize='cover'
+      >
+      <Stack  spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6} ml='200' mb='20'>
         <Stack align={'center'}>
           <Heading fontSize={'4xl'} color='blue.400'>Welcome to Doctor Care</Heading>
-          <Text fontSize={'lg'} color={'gray.600'}>
+          <Text fontSize={'lg'} color={'gray.500'}>
 
-            to enjoy all of our cool
-            <Link href='/signup' color={'blue.400'}>Sign Up</Link>
+          If you don't have an account, please 
+            <Link href='/signup' color={'blue.500'}> register</Link>
 
             ✌️
 

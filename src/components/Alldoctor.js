@@ -35,7 +35,7 @@ import Footer from './Footer'
            
            {Api.map(api => (  
         <Box ml='20px'
-        
+           
           maxW={'320px'}
           h={'400px'}
           w={'320px'}
@@ -70,7 +70,7 @@ import Footer from './Footer'
             {api.full_name}
           </Heading>
           <Text fontWeight={600} color={'black'} mb={4}>
-            {api.speciality}
+            {api.speciality.name}
           </Text>
           
           <Text

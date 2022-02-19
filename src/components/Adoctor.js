@@ -20,17 +20,21 @@ function Adoctor(props) {
         console.log(e.target.value);
 }
   return (
-    <Flex w='280px'
+    <>
+    
+    <Flex 
+      w='280px'
       h='360px'
       borderRadius='2xl'
       bgColor='gray.200'
       border='none'
-      className='doctor' >
+      //  className='doctor' 
+      >
       <Box d='flex' flexDirection='column' alignItems='center'  >
         <Image className='img-doctor'  src={props.avt} />
         <Text className='text-info' >{props.full_name}</Text>
         <Text className='text-info'>{props.speciality}</Text>
-        <Text className='text-info' id='id' value={props._id}>{props._id}</Text>
+        {/* <Text className='text-info' id='id' value={props._id}>{props._id}</Text> */}
         <Button   value={props._id} onClick={book}
         // id={Api.map(api=>api._id)}
           colorScheme='blue' className='btn-book' >Book Now</Button>
@@ -38,6 +42,7 @@ function Adoctor(props) {
        
       </Box>
     </Flex>
+    </>
   )
 }
 

@@ -71,7 +71,7 @@ function SliderSpeciality() {
 
                 <Slider {...settings}>
                     {dts.map(dt => (
-                        <ASpeciality speciality={dt.speciality} avt={dt.avt} />
+                        <ASpeciality key={dt.age} speciality={dt.speciality} avt={dt.avt} />
                     ))}
                 </Slider>
             </div>

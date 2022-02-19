@@ -23,7 +23,7 @@ function ASpeciality(props) {
         <Image  
          src={props.avt} />
         </Box>
-        <Text className='text-info-speciality'>{props.speciality}</Text>
+        <Text className='text-info-speciality'>{props.speciality.name}</Text>
       </Box>
 
     </Flex>
