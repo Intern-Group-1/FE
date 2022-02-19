@@ -53,12 +53,10 @@
     margin-right: auto;
     width: 1200px;
     margin-top: 65px;
-    /* background-color: aqua; */
 }
 #slide-doctor .img-customize{  
     height: 100px;  
     padding-left: 20px;
-    
 }
 #slide-doctor .slick-prev:before{
     font-family: FontAwesome !important;

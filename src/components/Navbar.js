@@ -24,7 +24,6 @@ import {
   VStack,
 } from '@chakra-ui/react';
 import {
- 
   FiChevronDown,
 } from 'react-icons/fi';
 import {
@@ -32,11 +31,11 @@ import {
   CloseIcon,
   ChevronDownIcon,
   ChevronRightIcon,
-  
-  
 } from '@chakra-ui/icons';
+
 import logo from '../assets/image/logo-doctor-care.png'
-import '../style/Navbar.css'
+import '../responsive/homepage/Navbar.css'
+
 export default function Navbar() {
   const { isOpen, onToggle } = useDisclosure();
   const HandleLogout = () => {
@@ -114,28 +113,6 @@ function scrollFunction() {
           spacing={6}>
           {loggedInUser ?
             <>
-              {/* <Button
-                as={'a'}
-                fontSize={'sm'}
-                fontWeight={400}
-                variant={'link'}
-                href={'/pro5'}>
-                ProFile
-              </Button>
-
-              <Button
-                as={'a'}
-                display={{ base: 'none', md: 'inline-flex' }}
-                fontSize={'sm'}
-                fontWeight={600}
-                color={'white'}
-                bg={'blue.500'}
-                onClick={HandleLogout}
-                _hover={{
-                  bg: 'blue.300',
-                }}>
-                Log Out
-              </Button> */}
                 <Flex >
           <Menu>
             <MenuButton 
@@ -145,7 +122,7 @@ function scrollFunction() {
               _focus={{ boxShadow: 'none' }}>
               <HStack>
                 <Avatar
-               
+                  // className='img-nav'
                   size={'sm'}
                   src={
                     'https://images.unsplash.com/photo-1619946794135-5bc917a27793?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=b616b2c5b373a80ffc9636ba24f7a4a9'

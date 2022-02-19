@@ -1,12 +1,11 @@
-import '../style/SliderDoctor.css'
+import '../style/SliderDoctor.css';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useState, useEffect } from 'react';
 import ApiCaller from '../utils/apiCaller';
 import Adoctor from './WithoutNav';
-
-
+import '../responsive/homepage/SliderDoctor.css';
 
 
 function SliderDoctor() {

@@ -1,7 +1,10 @@
 import React from 'react';
 import '../style/input-file.css'
+import '../responsive/profile/Profile.css'
 import InitialFocus from './Modal'
 import AlertsSuccess from './Success'
+import Navbar from './Navbar'
+import Footer from './Footer'
 import {
     Flex,
     Box,
@@ -28,8 +31,9 @@ function ProfileUser() {
         gender :'Male'
     }
   return <>
+    <Navbar />
     <Flex >
-        <Box  w='80%' h='50%' m='10%' boxShadow='2xl' borderRadius='2xl' d='flex' rounded='md' bg='white' boxShadow='outline'
+        <Box className='container-profile' w='80%' h='50%' m='10%' boxShadow='2xl' borderRadius='2xl' d='flex' rounded='md' bg='white' boxShadow='outline'
          d='flex' justifyContent='center'
          alignContent='center'>
         <Box className='user-avt'>
@@ -56,6 +60,7 @@ function ProfileUser() {
         </Text>
         </Box>
             <Button 
+            className='change-info'
             h={'45px'}
             w={'120px'}
             mt={'10px'}
@@ -63,23 +68,24 @@ function ProfileUser() {
             >
                 <InitialFocus />
             </Button>
-            <Button
+            {/* <Button
             onClick={notify}
             >
                 Test
             </Button>
-            {/* <ToastContainer /> */}
+             <ToastContainer /> 
             <Button
             onClick={notify1}
             >
                 Test1
-            </Button>
+            </Button> */}
             <ToastContainer />
         </Box> 
         </Box>
         
     </Flex>
-  </>;
+  <Footer />
+  </>
 }
 
 export default ProfileUser;
