@@ -15,8 +15,8 @@ function SliderDoctor() {
         dots: true,
         infinite: true,
         speed: 900,
-        slidesToShow: 3,
-        slidesToScroll: 1
+        slidesToShow: 4,
+        slidesToScroll: 2
     };
     const [Api, setApi] = useState([]);
 
@@ -28,10 +28,7 @@ function SliderDoctor() {
             })
     }, [])
 
-    const book=()=>{
-        const infor = document.getElementsByTagName('Adoctor');
-            console.log( infor);
-    }
+  
     return (
         <div id='slide-doctor'>
             <div className="section-doctor">
@@ -55,13 +52,9 @@ function SliderDoctor() {
                            
                                 <>
                                   {/* <a>{'id là '+dt._id}</a> */}
-                            <Adoctor   
-                            _id={dt._id} 
-                            key={dt._id} 
-                            age={dt.age} 
-                            full_name={dt.full_name} 
-                            speciality={dt.speciality.name} 
-                            avt={dt.avatar} />                         
+
+                            <Adoctor   _id={dt._id} key={dt._id} age={dt.age} full_name={dt.full_name} speciality={dt.speciality.name} avt={dt.avatar} />
+
                             </>
                       ))}
                     </Slider>

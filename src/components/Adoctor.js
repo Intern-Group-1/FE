@@ -2,7 +2,14 @@ import { Flex, Box, Image, Button, Text,} from '@chakra-ui/react'
 import React,{useEffect,useState} from 'react'
 import '../style/SliderDoctor.css'
 import ApiCaller from '../utils/apiCaller';
+import { Router, useNavigate } from 'react-router-dom'
+import Book from './book';
+import { Routes, Route } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+
 function Adoctor(props) {
+  const navigate = useNavigate()
+
   const [Api, setApi] = useState([]);
   const [Id, setId] =useState('');
    useEffect(()=>{
@@ -15,9 +22,24 @@ function Adoctor(props) {
    },[])
    
    const book=(e)=>{
-    //const infor = document.getElementById('id').key;
-    //const selectedIndex = e.target.options.selectedIndex;
+
+   const loggedInUser = localStorage.getItem('token');
+      if(!loggedInUser){
+        navigate('/signin')
+        toast.warning("Please Login To Continue");
+      }
+      else{
         console.log(e.target.value);
+        navigate('/book/'+`${e.target.value}`);
+        //console.log('/book/'+`${e.target.value}`);
+      }
+
+         
+        // <Routes>
+        
+        // <Route path={`/book/:${e.target.value}`} element={<Book/>}/>
+        //  </Routes>
+
 }
   return (
     <>
@@ -28,7 +50,7 @@ function Adoctor(props) {
       borderRadius='2xl'
       bgColor='gray.200'
       border='none'
-      //  className='doctor' 
+        className='Adoctor' 
       >
       <Box d='flex' flexDirection='column' alignItems='center'  >
         <Image className='img-doctor'  src={props.avt} />

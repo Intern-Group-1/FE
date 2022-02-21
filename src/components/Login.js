@@ -50,7 +50,7 @@ function SimpleCard() {
     setPassword(e.target.value);
     
   }
- 
+  
   const handleLogin = async () => {
     try {
       const data = await handleLoginAPI(username, password)
@@ -90,6 +90,25 @@ function SimpleCard() {
   const handleShowHidePassword = () => {
     setEye(!eye)
   }
+
+  function handleChange(e){
+   
+  let checked=e.target.checked;
+  var loggedInUser = localStorage.getItem('token');
+  document.cookie="token="+loggedInUser+";path=http://localhost:3000/home";
+  
+  // console.log(u+p);
+  if(checked==true){
+    console.log('1');
+  }
+  else{
+    console.log('0');
+  }
+
+   }
+
+
+   
   return (<div >
          
           <Stack direction='row' spacing={4}>
@@ -129,13 +148,13 @@ function SimpleCard() {
           p={8}>
           <Stack spacing={4}>
 
-            <FormControl id="email">
+            <FormControl >
               <FormLabel>Email address</FormLabel>
-              <Input type="email" value={username} placeholder='Enter your email' onChange={handleUserNameInput} />
+              <Input type="email" id="email" value={username} placeholder='Enter your email' onChange={handleUserNameInput} />
             </FormControl>
-            <FormControl id="password">
+            <FormControl >
               <FormLabel>Password</FormLabel>
-              <Input type={eye ? 'text' : 'password'} value={password} placeholder='Enter your password' onChange={handlePasswordInput} />
+              <Input  id="password" type={eye ? 'text' : 'password'} value={password} placeholder='Enter your password' onChange={handlePasswordInput} />
               <span onClick={handleShowHidePassword}><i class={eye ? "far fa-eye eye" : "far fa-eye-slash eye"}></i></span>
             </FormControl>
             <Stack spacing={10}>
@@ -143,7 +162,8 @@ function SimpleCard() {
                 direction={{ base: 'column', sm: 'row' }}
                 align={'start'}
                 justify={'space-between'}>
-                <Checkbox>Remember me</Checkbox>
+                <Checkbox onChange={handleChange}>Remember Me</Checkbox>
+                {/* Remember me</Checkbox> */}
                 <Link color={'blue.400'}>Forgot password?</Link>
               </Stack>
               <Button

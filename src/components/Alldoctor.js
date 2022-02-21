@@ -9,10 +9,14 @@ import {
   } from '@chakra-ui/react';
   import React,{useEffect,useState} from 'react';
 import ApiCaller from '../utils/apiCaller';
+import { Router, useNavigate } from 'react-router-dom'
 import { PhoneIcon, EmailIcon, RepeatClockIcon,InfoIcon } from '@chakra-ui/icons' 
 import Navbar from "./Navbar";
 import Footer from './Footer' 
-  export default function Alldoctor() {
+import Book from './book';
+import { ToastContainer, toast } from 'react-toastify';
+  export default function Alldoctor(props) {
+    const navigate = useNavigate()
     const [Api, setApi] = useState([]);
 
     useEffect(()=>{
@@ -22,7 +26,28 @@ import Footer from './Footer'
           setApi(res.data.data)
       })
     },[])
+    const loggedInUser = localStorage.getItem('token');
+    const book1=(e)=>{
 
+     
+         if(!loggedInUser){
+           navigate('/signin')
+           toast.warning("Please Login To Continue");
+         }
+         else{
+          //  console.log(e.target.value);
+          navigate('/book/'+`${e.target.value}`);
+          // console.log('/book/'+`${e.target.value}`);
+         
+         }
+   
+            
+           // <Routes>
+           
+           // <Route path={`/book/:${e.target.value}`} element={<Book/>}/>
+           //  </Routes>
+   
+   }
 
 
     return (
@@ -116,6 +141,8 @@ import Footer from './Footer'
               _hover={{
                 bg: 'blue.500',
               }}
+              value={ api._id}
+               onClick={book1}
               _focus={{
                 bg: 'blue.500',
               }}>

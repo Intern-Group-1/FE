@@ -57,17 +57,17 @@ export default function Navbar() {
 //   } else {
 //     document.getElementById("navbar").style.paddingTop = "0px";
    
-// //   }
+//   }
 
   
 // }
   return (
-    <Box>
+    <Box   id='navbar'>
       
       <Flex
-        id='navbar'
+       
         fontSize={'20px'}
-        boxShadow='xl' p='3' rounded='md' bg='white'
+        boxShadow='xl' p='1' rounded='md' bg='white'
         bg={useColorModeValue('white', 'gray.800')}
         color={useColorModeValue('gray.600', 'white')}
         minH={'20px'}
@@ -78,11 +78,11 @@ export default function Navbar() {
         borderColor={useColorModeValue('gray.200', 'gray.900')}
         align={'center'}>
 
-        <Flex
+        <Flex  
           flex={{ base: 1, md: 'auto' }}
           ml={{ base: -2 }}
           display={{ base: 'flex', md: 'none' }}>
-          <IconButton
+          <IconButton 
             onClick={onToggle}
             icon={
               isOpen ? <CloseIcon w={3} h={3} /> : <HamburgerIcon w={5} h={5} />
@@ -181,7 +181,7 @@ export default function Navbar() {
              border={'0.5px'}
               bg={'white'}
               borderColor={'gray.700'}>
-              <MenuItem as='a'  href={'/pro5'}>Profile</MenuItem>
+              <MenuItem as='a'  href={'/profile'}>Profile</MenuItem>
               <MenuItem>Settings</MenuItem>
               <MenuItem>Billing</MenuItem>
               <MenuDivider/>
@@ -322,9 +322,11 @@ const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
 const MobileNav = () => {
   return (
     <Stack
-      bg={useColorModeValue('white', 'gray.800')}
+      bg={useColorModeValue('white', 'gray.800')} 
       p={4}
-      display={{ md: 'none' }}>
+      display={{ md: 'none' }}
+      // id='navbar'
+      >
       {NAV_ITEMS.map((navItem) => (
         <MobileNavItem key={navItem.label} {...navItem} />
       ))}
@@ -336,7 +338,7 @@ const MobileNavItem = ({ label, children, href }: NavItem) => {
   const { isOpen, onToggle } = useDisclosure();
 
   return (
-    <Stack spacing={4} onClick={children && onToggle}>
+    <Stack spacing={4} onClick={children && onToggle} > 
       <Flex
         py={2}
         as={Link}
