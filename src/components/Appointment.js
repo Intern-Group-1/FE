@@ -20,6 +20,7 @@ import {
 } from '@chakra-ui/react';
 import Doctor from '../assets/image/dtavt.png'
 import Datepicker from './Datepicker'
+import '../responsive/Appointment.css'
 
 interface IBlogTags {
   tags: Array<string>;
@@ -73,18 +74,21 @@ const ArticleList = () => {
         flexDirection={{ base: 'column', sm: 'row' }}
         justifyContent="space-between">
         <Box
+          className='wrapper-avt-doctor'
           display="flex"
           flex="1"
           marginRight="3"
           position="relative"
           alignItems="center">
           <Box
+            className='avt-doctor'
             width={{ base: '100%', sm: '85%' }}
             zIndex="2"
             marginLeft={{ base: '0', sm: '5%' }}
             marginTop="5%">
             <Link textDecoration="none" _hover={{ textDecoration: 'none' }}>
               <Image
+              className='img-doctor'
                 borderRadius="full"
                 src={Doctor}
                 boxShadow={'md'}
@@ -107,6 +111,7 @@ const ArticleList = () => {
           </Box>
         </Box>
         <Box
+        className='info-doctor'
           display="flex"
           ml={60}
           flex="1"
@@ -143,8 +148,8 @@ const ArticleList = () => {
         </Box>
       </Box>
       
-<Flex color='white' mt={20} w='1400px' h='500px' ml={'-100'}>
-  <Center w='400px' bg='green.500' flexDirection={'column'} justifyContent={'flex-start'}>
+<Flex className='container-booking' color='white' mt={20} w='1400px' h='500px' ml={'-100'}>
+  <Center className='info-customer' w='400px' bg='green.500' flexDirection={'column'} justifyContent={'flex-start'}>
   <Heading as="h1" mt={'15'}>Information customer</Heading>
     <Text
       as="p"
@@ -175,11 +180,11 @@ const ArticleList = () => {
       Address:
     </Text>
   </Center>
-  <Square bg='gray.400' w='550px' flexDirection={'column'} justifyContent={'flex-start'}>
+  <Square className='date-time' bg='gray.400' w='550px' flexDirection={'column'} justifyContent={'flex-start'}>
   <Heading as="h1" mt={'5'} mb={'10'}>Choose time and date</Heading>
     <Datepicker />
-    <Box mt={'5'}>
-      <Box className='wrapper-btn-time'>
+    <Box mt={'5'} className='wrapper-btn-time'>
+      <Box >
         <Button className='btn-time'>07:00 - 08:00</Button>
         <Button className='btn-time'>08:00 - 09:00</Button>
         <Button className='btn-time'>09:00 - 10:00</Button>
@@ -191,7 +196,7 @@ const ArticleList = () => {
       </Box>         
     </Box>
   </Square>
-  <Center flex='1' bg='blue.500' id='confirm'>
+  <Center className='comfirm-appointment' flex='1' bg='blue.500' id='confirm'>
     <Heading as="h1" mt={'5'} mb={'0'}>Confirm appointment</Heading>
     <Text fontSize={'27'} mt={'15'} className='name-customer'>Customer</Text>
     <Box className='wrapper-customer'>

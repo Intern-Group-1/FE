@@ -50,23 +50,21 @@ function SliderDoctor() {
     }]
     return (
         <div id='slide-doctor'>     
-        <div className="section-doctor">
-        <button className='btn-more'>More...</button>
-        <div className='doctor-header'>
-                <p className='doctor-title1'>Book Our Doctor</p>
-                <p className='doctor-title2'>Quick appointment with doctors</p>
+            <div className="section-doctor">
+            <button className='btn-more'>More...</button>
+            <div className='doctor-header'>
+                    <p className='doctor-title1'>Book Our Doctor</p>
+                    <p className='doctor-title2'>Quick appointment with doctors</p>
+                </div>
+                <div className="doctor-content">
+                    <Slider {...settings}>
+                        {/* <Alldoctor/> */}
+                        {dts.map(dt => (
+                            <Adoctor age={dt.age} full_name={dt.full_name} speciality={dt.speciality} avt='https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png' />
+                        ))}
+                    </Slider>
+                </div>
             </div>
-            <div className="doctor-content">
-
-                <Slider {...settings}>
-                    {/* <Alldoctor/> */}
-                    {dts.map(dt => (
-
-                        <Adoctor age={dt.age} full_name={dt.full_name} speciality={dt.speciality} avt='https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png' />
-                    ))}
-                </Slider>
-            </div>
-        </div>
         </div>                    
     );
 

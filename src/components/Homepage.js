@@ -8,15 +8,14 @@ import Footer from './Footer'
 
 function Home(){
     return(
-        <>   <Navbar/>
+        <>   
+            <Navbar/>
             <Banner />
             <SliderSpeciality />
             <SimpleSlider/>
-           <SliderDoctor/>
-           <Footer/>
-
+            <SliderDoctor/>
+            <Footer/>
         </>
     )
 }
-
 export default Home;
