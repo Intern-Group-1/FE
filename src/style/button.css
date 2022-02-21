@@ -1,0 +1,83 @@
+.wrapper-btn-time{
+    width: 500px !important;
+}
+.btn-time{
+    background-color: #4299e1 !important;
+    width: 110px !important;
+    height: 40px;
+    margin: 10px 5px;
+    border: 2px #7fb9e9c7 solid;
+}
+.btn-time:hover{
+    background-color: #216ba5 !important;
+}
+.wrapper-customer{
+    display: grid;
+    width: 400px;
+    height: 100px;
+    grid-template-columns: 200px 200px;
+    grid-template-rows: 40px 40px;
+    border: 2px white dashed;
+    border-radius: 10px;
+    padding-left: 10px;
+    margin-top: 20px;
+}
+.wrapper-doctor{
+    display: grid;
+    width: 400px;
+    height: 100px;
+    grid-template-columns: 200px 200px;
+    grid-template-rows: 40px 40px;
+    border: 2px white dashed;
+    border-radius: 10px;
+    margin-top: 23px;
+    padding-left: 10px;
+}
+#confirm{
+    flex-direction: column;
+    justify-content: flex-start;
+    position: relative;
+}
+.name-customer{
+    position: absolute;
+    background-color: #3182ce;
+    top: 46px;
+    left: 35px;
+    height: 30px;
+}
+.name-doctor{
+    position: absolute;
+    background-color: #3182ce;
+    top: 170px;
+    left: 35px;
+    height: 30px;
+}
+.wrapper-datetime{
+    display: grid;
+    width: 400px;
+    height: 65px;
+    grid-template-columns: 200px 200px;
+    border: 2px white dashed;
+    border-radius: 10px;
+    margin-top: 26px;
+    padding-left: 10px;
+}
+.name-datetime{
+    position: absolute;
+    background-color: #3182ce;
+    top: 295px;
+    left: 35px;
+    height: 30px;
+    width: 180px;
+    text-align: center;
+}
+.btn-confirm{
+    background-color: #d7d7d7d5 !important;
+    color: black !important;
+    margin-top: 25px;
+    border: 2px white solid;
+}
+.btn-confirm:hover{
+    background-color: #55bb85 !important;
+    color: white !important;
+}

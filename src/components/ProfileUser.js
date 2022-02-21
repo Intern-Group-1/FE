@@ -1,14 +1,29 @@
 import React from 'react';
 import '../style/input-file.css'
+import '../responsive/profile/Profile.css'
+import InitialFocus from './Modal'
+import AlertsSuccess from './Success'
+import Navbar from './Navbar'
+import Footer from './Footer'
 import {
     Flex,
     Box,
     Input,
     Text,
     Image,
+    Button,
   } from '@chakra-ui/react';
   import avt from '../assets/image/client.jpg'
+  import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
+
+toast.configure()
 function ProfileUser() {
+    const HandleClick = () =>{
+        alert(<AlertsSuccess />)
+    }
+    const notify = () => toast.success("Login success!");
+    const notify1 = () => toast.error("Login failed!");
     const user={
         name:'dung',
         address :' hue',
@@ -16,8 +31,9 @@ function ProfileUser() {
         gender :'Male'
     }
   return <>
+    <Navbar />
     <Flex >
-        <Box  w='80%' h='50%' m='10%' boxShadow='2xl' borderRadius='2xl' d='flex' rounded='md' bg='white' boxShadow='outline'
+        <Box className='container-profile' w='80%' h='50%' m='10%' boxShadow='2xl' borderRadius='2xl' d='flex' rounded='md' bg='white' boxShadow='outline'
          d='flex' justifyContent='center'
          alignContent='center'>
         <Box className='user-avt'>
@@ -43,10 +59,33 @@ function ProfileUser() {
             <Input type='text' placeholder={user.gender} className='text-inf'></Input>
         </Text>
         </Box>
+            <Button 
+            className='change-info'
+            h={'45px'}
+            w={'120px'}
+            mt={'10px'}
+            ml={'170px'}
+            >
+                <InitialFocus />
+            </Button>
+            {/* <Button
+            onClick={notify}
+            >
+                Test
+            </Button>
+             <ToastContainer /> 
+            <Button
+            onClick={notify1}
+            >
+                Test1
+            </Button> */}
+            <ToastContainer />
+        </Box> 
         </Box>
-        </Box>
+        
     </Flex>
-  </>;
+  <Footer />
+  </>
 }
 
 export default ProfileUser;

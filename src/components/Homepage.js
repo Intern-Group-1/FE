@@ -1,19 +1,20 @@
 import Banner from "./Banner"
-import Speciality from "./Speciality";
-import Doctor from "./Doctors";
-import Handbook from "./Handbook";
-import MultipleItems from "./slick";
+import SliderSpeciality from "./SliderSpeciality";
+import SliderDoctor from "./SliderDoctor";
+import SimpleSlider from "./Testslick";
+import Navbar from "./Navbar";
+import Footer from './Footer'
 
 
 function Home(){
     return(
-        <>  
+        <>   <Navbar/>
             <Banner />
-            <Speciality />
-             {/* <MultipleItems/>  */}
-            {/* <Handbook /> */}
-            <Doctor />
-           
+            <SliderSpeciality />
+            <SimpleSlider/>
+           <SliderDoctor/>
+           <Footer/>
+
         </>
     )
 }

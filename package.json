@@ -2,8 +2,9 @@
   "name": "reactjs-fe-doctorcare",
   "version": "0.1.0",
   "private": true,
+  "proxy": "https://be-doctor-care-v3.herokuapp.com",
   "dependencies": {
-    "@chakra-ui/icons": "^1.1.1",
+    "@chakra-ui/icons": "^1.1.5",
     "@chakra-ui/react": "^1.8.1",
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
@@ -11,6 +12,8 @@
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.25.0",
+    "cors": "^2.8.5",
+    "formik": "^2.2.9",
     "framer-motion": "^5.6.0",
     "react": "^17.0.2",
     "react-bootstrap-v5": "^1.4.0",
@@ -21,8 +24,10 @@
     "react-router-dom": "^6.2.1",
     "react-scripts": "5.0.0",
     "react-slick": "^0.28.1",
+    "react-toastify": "^8.2.0",
     "slick-carousel": "^1.8.1",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "yup": "^0.32.11"
   },
   "scripts": {
     "start": "react-scripts start",

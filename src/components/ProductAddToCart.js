@@ -18,17 +18,17 @@ import {
   Text,
   Button
 } from '@chakra-ui/react';
-import LazyLoad from 'react-lazyload'
-
-
 function ProductAddToCart() {
 
   const [Api, setApi] = useState([]);
-  ApiCaller('products?limit=10', 'GET', null)
-  .then ( async res => {
-    //console.log(res);
-    await setApi(res.data)
-  })
+
+  useEffect(()=>{
+      ApiCaller('get-all-doctor', 'GET')
+    .then ( async res => {
+      console.log(res);
+        setApi(res.data.data)
+    })
+  },[])
 
 
   return (
@@ -39,8 +39,8 @@ function ProductAddToCart() {
       {Api.map(api => (
        
 
-        <Flex d='flex' p={2} key={api.id}>
-
+        <Flex d='flex' p={2} key={api.speciality}>
+            {/* <Text>{api.speciality}</Text> */}
           <Box
             // bg={useColorModeValue('white', 'gray.800')}
             bg='blue.600'
@@ -63,8 +63,9 @@ function ProductAddToCart() {
             <Image
               height='250'
               width='100'
-              src={api.image}
-              alt={`Picture of ${api.title}`}
+              //src={api.image}
+              src='https://images.unsplash.com/photo-1527980965255-d3b416303d12?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80'
+              alt={`Picture of ${api.full_name}`}
               roundedTop="lg"
             />
 
@@ -72,21 +73,24 @@ function ProductAddToCart() {
               <Box d="flex" alignItems="baseline">
                 {(
                   <Badge rounded="full" px="2" fontSize="0.8em" colorScheme="red">
-                    New
+                    HOT
                   </Badge>
                 )}
               </Box>
               <Flex mt="1" justifyContent="space-between" alignContent="center">
                 <Box
 
-                  fontSize="10px"
+                  fontSize="15px"
                   fontWeight="semibold"
                   as="h4"
                   lineHeight="tight"
                 // isTruncated
+                  
                 >
-                  {api.title}
+                  {api.full_name}
+                 
                 </Box>
+                <Text fontSize='20px' color='red'> {api.speciality}</Text>
                 <Tooltip
                   label="Book Now"
                   bg="white"

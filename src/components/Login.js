@@ -16,70 +16,109 @@ import {
   AlertIcon,
   AlertTitle,
   AlertDescription,
-  Link
-  
+  Link,
+  Img,
+ 
+
 } from '@chakra-ui/react';
-import {} from 'react-router-dom';
+
+import { } from 'react-router-dom';
 import Footer from './Footer';
 import Navbar from './Navbar';
 import Signup from './Signup';
-import bglg from '../assets/image/bg-login.jpg'
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { handleLoginAPI } from '../services/User'
+import bg from '../assets/image/backgroundLogin.jpg'
+import gif from '../assets/image/heart.gif'
+import { ArrowBackIcon } from '@chakra-ui/icons';
 
-
-
-
-
-function btnlogin() {
-    const id = document.getElementById('email').value;
-    const pw=document.getElementById('password').value;
-    console.log(id);
-    var js= {
-      iduser: {id},
-      pwuser:{pw}
-    }
-    var text = JSON.stringify(js);
-    console.log(text);
-
-
-  
-}
 export default function SimpleCard() {
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+  const [messagea, setMessage] = useState('')
+  const [eye, setEye] = useState(false)
+  const navigate = useNavigate()
+  const handleUserNameInput = e => {
+    setUsername(e.target.value);
+  }
+  const handlePasswordInput = e => {
+    setPassword(e.target.value);
+  }
+  const handleLogin = async () => {
+    try {
+      const data = await handleLoginAPI(username, password)
+      console.log(data);
+      if (data) {
+        localStorage.setItem('token', data.data.data.tokens[0].token)
+        localStorage.setItem('user', data.data.data._id)
+
+      }
+      var loggedInUser = localStorage.getItem('token');
+      console.log(loggedInUser)
+
+      if (loggedInUser !== null) {
+        navigate('/home')
+      }
+
+    } catch (error) {
+
+      if (error) {
+        if (error.response) {
+          if (error.response.data) {
+            setMessage(error.response.data.message)
+          }
+        }
+      }
+    }
+  }
+  const handleShowHidePassword = () => {
+    setEye(!eye)
+  }
   return (<div >
+          <Stack direction='row' spacing={4}>
+       
+        <Button  as={'a'} leftIcon={<ArrowBackIcon />} href='/home' >
+          Back to Homepage
+        </Button>
+      </Stack>
     <div />
     <Flex
 
       minH={'120vh'}
       align={'center'}
       justify={'center'}
-      backgroundImage={bglg} backgroundRepeat='no-repeat' backgroundSize='cover'>
+      // backgroundImage={bglg} 
+      backgroundRepeat='no-repeat' backgroundSize='cover'>
       <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6} ml='200' mb='20'>
         <Stack align={'center'}>
           <Heading fontSize={'4xl'} color='blue.400'>Welcome to Doctor Care</Heading>
           <Text fontSize={'lg'} color={'gray.600'}>
-           
+
             to enjoy all of our cool
-             <Link  href='/signup' color={'blue.400'}>signup</Link>
-             
-              ✌️
-         
+            <Link href='/signup' color={'blue.400'}>Sign Up</Link>
+
+            ✌️
+
           </Text>
         </Stack>
 
         <Box
           rounded={'lg'}
-          bg={bglg}
+          // bg={bglg}
           boxShadow={'lg'}
-          
+
           p={8}>
           <Stack spacing={4}>
 
             <FormControl id="email">
               <FormLabel>Email address</FormLabel>
-              <Input type="email" />
+              <Input type="email" value={username} placeholder='Enter your email' onChange={handleUserNameInput} />
             </FormControl>
             <FormControl id="password">
               <FormLabel>Password</FormLabel>
-              <Input type="password" />
+              <Input type={eye ? 'text' : 'password'} value={password} placeholder='Enter your password' onChange={handlePasswordInput} />
+              <span onClick={handleShowHidePassword}><i class={eye ? "far fa-eye eye" : "far fa-eye-slash eye"}></i></span>
             </FormControl>
             <Stack spacing={10}>
               <Stack
@@ -90,33 +129,37 @@ export default function SimpleCard() {
                 <Link color={'blue.400'}>Forgot password?</Link>
               </Stack>
               <Button
+                href={'/signin'}
                 bg={'blue.400'}
                 color={'white'}
                 _hover={{
                   bg: 'blue.500',
+
                 }}
-                onClick={btnlogin}
+                onClick={handleLogin}
 
               >
                 Sign in
               </Button>
-              <Text color='blue.400'
+              <Text color='red'
 
-                _hover={{
-                  color: 'black'
-                }}
               >
-
+                {messagea}
               </Text>
             </Stack>
           </Stack>
 
         </Box>
 
-      </Stack>
+      </Stack >
+      <Box>
+      <Img src={gif} width='50%'/>
+      <Img src={gif} width='100%'/>
+      <Img src={gif} width='50%'/>
 
+      </Box>
     </Flex>
-
+            
   </div>
   );
 }

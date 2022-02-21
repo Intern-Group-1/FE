@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@900&family=Poppins:ital,wght@0,100;1,300;1,900&display=swap');
 #banner{
     position: relative;
 }
@@ -27,6 +28,10 @@
     font-size: 18px;
     margin-left: 60px;
     padding-top: 30px;
+    font-family: 'Inter', sans-serif;
+    font-family: 'Poppins', sans-serif;
+    font-style: italic;
+    font-weight: 600;
 }
 .banner-content .btn-banner{
     background-color: #5FC3FD;
@@ -43,6 +48,10 @@
     height: 62px;
     border-radius: 15px;
     box-shadow: 2px 1px 5px #066d6d;
+}
+#banner .banner-content .btn-banner:hover{
+    border: 3px solid #124969;
+    background-color: #4da1d1;
 }
 #banner .banner-content .btn-banner p{
     font-weight: bold;
