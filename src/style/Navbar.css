@@ -57,20 +57,26 @@ img{
     padding-left: 1px;
 }
 .home , .specialist, .doctor, .about{
-    
+  
+
     font-size: 25px;
-    text-decoration: none;
+    
     font-weight: bold;
     transition: 0.2s;
     color: black;
-  
+        background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% 100%;
+    background-position: 100%;
+    transition: background-position 275ms ease;
 }
 .home :hover, .specialist:hover, .doctor:hover, .about:hover{
-
+    background-position:0 100%;
     opacity: 1;
 
    font-size: 28px;
-   color: rgb(71, 71, 177);
+   
 
 }
 .btn-login{

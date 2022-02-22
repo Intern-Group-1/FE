@@ -1,0 +1,27 @@
+@media (max-width: 740px){
+    .container-profile{
+        /* background-color: rgb(182, 132, 67) !important; */
+        flex-direction: column;
+    }
+    .user-avt{
+        margin-left: 20px;
+      }
+      .custom-file-input{
+        margin-left: 20px;
+      }
+      .box{
+        margin-left: 40px;
+        width: 200px;
+        
+      }
+      .text-inf{
+        border: 1px black solid !important;
+        margin-bottom: 10px !important;
+      }
+      img{
+        padding-left: 0;
+      }
+      .change-info{
+          margin-left: 78px !important;
+      }
+}

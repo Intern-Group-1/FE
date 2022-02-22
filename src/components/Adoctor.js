@@ -2,7 +2,14 @@ import { Flex, Box, Image, Button, Text,} from '@chakra-ui/react'
 import React,{useEffect,useState} from 'react'
 import '../style/SliderDoctor.css'
 import ApiCaller from '../utils/apiCaller';
+import { Router, useNavigate } from 'react-router-dom'
+import Book from './book';
+import { Routes, Route } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+
 function Adoctor(props) {
+  const navigate = useNavigate()
+
   const [Api, setApi] = useState([]);
   const [Id, setId] =useState('');
    useEffect(()=>{
@@ -15,22 +22,42 @@ function Adoctor(props) {
    },[])
    
    const book=(e)=>{
-    //const infor = document.getElementById('id').key;
-    //const selectedIndex = e.target.options.selectedIndex;
+
+   const loggedInUser = localStorage.getItem('token');
+      if(!loggedInUser){
+        navigate('/signin')
+        toast.warning("Please Login To Continue");
+      }
+      else{
         console.log(e.target.value);
+        navigate('/book/'+`${e.target.value}`);
+        //console.log('/book/'+`${e.target.value}`);
+      }
+
+         
+        // <Routes>
+        
+        // <Route path={`/book/:${e.target.value}`} element={<Book/>}/>
+        //  </Routes>
+
 }
   return (
-    <Flex w='280px'
+    <>
+    
+    <Flex
+     
+      w='280px'
       h='360px'
       borderRadius='2xl'
       bgColor='gray.200'
       border='none'
-      className='doctor' >
+        className='Adoctor' 
+      >
       <Box d='flex' flexDirection='column' alignItems='center'  >
-        <Image className='img-doctor'  src={props.avt} />
-        <Text className='text-info' >{props.full_name}</Text>
-        <Text className='text-info'>{props.speciality}</Text>
-        <Text className='text-info' id='id' value={props._id}>{props._id}</Text>
+        <Image className='img-doctor1'  src={props.avt} />
+        <Text className='text-info1' >{props.full_name}</Text>
+        <Text className='text-info1'>{props.speciality}</Text>
+        {/* <Text className='text-info' id='id' value={props._id}>{props._id}</Text> */}
         <Button   value={props._id} onClick={book}
         // id={Api.map(api=>api._id)}
           colorScheme='blue' className='btn-book' >Book Now</Button>
@@ -38,6 +65,7 @@ function Adoctor(props) {
        
       </Box>
     </Flex>
+    </>
   )
 }
 

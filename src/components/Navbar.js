@@ -24,18 +24,20 @@ import {
   VStack,
 } from '@chakra-ui/react';
 import {
- 
   FiChevronDown,
 } from 'react-icons/fi';
 import {
   HamburgerIcon,
   CloseIcon,
   ChevronDownIcon,
+
   ChevronRightIcon, 
 } from '@chakra-ui/icons';
-import logo from '../assets/image/logo-doctor-care.png'
-import '../style/Navbar.css'
 
+import logo from '../assets/image/logo-doctor-care.png'
+
+import '../responsive/homepage/Navbar.css'
+import '../style/Navbar.css'
 export default function Navbar() {
   
   const { isOpen, onToggle } = useDisclosure();
@@ -47,42 +49,43 @@ export default function Navbar() {
   const loggedInUser = localStorage.getItem('token');
 
 
-  window.onscroll = function() {scrollFunction()};
+  window.onscroll = function() {};
 
-function scrollFunction() {
-  if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
-    console.log(document.body.scrollTop);
-    document.getElementById("navbar").style.padding = "10px ";
+// function scrollFunction() {
+//   if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+//     console.log(document.body.scrollTop);
+//     document.getElementById("navbar").style.paddingTop = "0px ";
     
-  } else {
-    document.getElementById("navbar").style.padding = "10px";
+//   } else {
+//     document.getElementById("navbar").style.paddingTop = "0px";
    
-  }
+//   }
 
   
-}
+// }
   return (
-    <Box>
+    <Box   id='navbar'>
       
       <Flex
-      id='navbar'
-     
-        boxShadow='xl' p='6' rounded='md' bg='white'
+       
+        fontSize={'15px'}
+        fontWeight={'bold'}
+        boxShadow='xl' p='1' rounded='md' bg='white'
         bg={useColorModeValue('white', 'gray.800')}
         color={useColorModeValue('gray.600', 'white')}
-        minH={'60px'}
-        py={{ base: 2 }}
-        px={{ base: 4 }}
+        minH={'20px'}
+        //py={{ base: 2 }}
+        // px={{ base: 4 }}
         borderBottom={1}
         borderStyle={'solid'}
         borderColor={useColorModeValue('gray.200', 'gray.900')}
         align={'center'}>
 
-        <Flex
+        <Flex  
           flex={{ base: 1, md: 'auto' }}
           ml={{ base: -2 }}
           display={{ base: 'flex', md: 'none' }}>
-          <IconButton
+          <IconButton 
             onClick={onToggle}
             icon={
               isOpen ? <CloseIcon w={3} h={3} /> : <HamburgerIcon w={5} h={5} />
@@ -94,13 +97,18 @@ function scrollFunction() {
         
         <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }}>
           <Box
-            w='120px'
+          as='a'
+          href='/home'
+            w='100px'
           >
             <Image ml='50px'
+            mt='5px'
               // boxSize='50px'
               alt={'Login Image'}
               objectFit={'cover'}
               src={logo}
+              
+              
             />
           </Box>
 
@@ -116,46 +124,25 @@ function scrollFunction() {
           spacing={6}>
           {loggedInUser ?
             <>
-              {/* <Button
-                as={'a'}
-                fontSize={'sm'}
-                fontWeight={400}
-                variant={'link'}
-                href={'/pro5'}>
-                ProFile
-              </Button>
-
-              <Button
-                as={'a'}
-                display={{ base: 'none', md: 'inline-flex' }}
-                fontSize={'sm'}
-                fontWeight={600}
-                color={'white'}
-                bg={'blue.500'}
-                onClick={HandleLogout}
-                _hover={{
-                  bg: 'blue.300',
-                }}>
-                Log Out
-              </Button> */}
                 <Flex >
                 
           <Menu>
             <MenuButton 
+           
              mr={'20px'}
-              py={2}
+              py={1}
               transition="all 0.3s"
               _focus={{ boxShadow: 'none' }}>
               <HStack>
                 <Avatar
-               
+                  // className='img-nav'
                   size={'sm'}
                   src={
                     'https://images.unsplash.com/photo-1619946794135-5bc917a27793?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=b616b2c5b373a80ffc9636ba24f7a4a9'
                   }
                 />
                 <VStack
-                  width={'100px'}
+                  width={'50px'}
                   display={{ base: 'none', md: 'flex' }}
                   alignItems="flex-start"
                   spacing="1px"
@@ -172,13 +159,17 @@ function scrollFunction() {
               </HStack>
             </MenuButton>
             <MenuList
+             border={'0.5px'}
               bg={'white'}
-              borderColor={'gray.700'}>
-              <MenuItem as='a'  href={'/pro5'}>Profile</MenuItem>
-              <MenuItem>Settings</MenuItem>
-              <MenuItem>Billing</MenuItem>
-              <MenuDivider />
-              <MenuItem  onClick={HandleLogout}>Sign out</MenuItem>
+              // borderColor={'gray.700'}
+              >
+              <MenuItem as='a' color={'black'} fontWeight='normal' href={'/profile'}>Profile</MenuItem>
+              <MenuItem as='a' color={'black'} fontWeight='normal' href={'/#'} >Settings</MenuItem>
+              <MenuItem as='a' color={'black'} fontWeight='normal' href={'/#'}>Billing</MenuItem>
+              <MenuDivider/>
+              <MenuItem color={'blue.500'} _hover={{
+                backgroundColor:'blue.100'
+              }} onClick={HandleLogout}>Sign out</MenuItem>
             </MenuList>
           </Menu>
         </Flex>
@@ -191,9 +182,10 @@ function scrollFunction() {
                 fontWeight={400}
                 variant={'link'}
                 href={'/signin'}>
-                Sign In
+                Sign in
               </Button>
               <Button
+                //h='30px'
                 as={'a'}
                 display={{ base: 'none', md: 'inline-flex' }}
                 fontSize={'sm'}
@@ -204,7 +196,7 @@ function scrollFunction() {
                 _hover={{
                   bg: 'blue.300',
                 }}>
-                Sign Up
+                Sign up
               </Button>
             
             </>
@@ -220,8 +212,8 @@ function scrollFunction() {
 }
 
 const DesktopNav = () => {
-  const linkColor = useColorModeValue('gray.600', 'gray.200');
-  const linkHoverColor = useColorModeValue('gray.800', 'white');
+  const linkColor = useColorModeValue('#1872a4', 'gray.200');
+  const linkHoverColor = useColorModeValue('#15bbe0', 'white');
   const popoverContentBgColor = useColorModeValue('white', 'gray.800');
 
   return (
@@ -237,8 +229,13 @@ const DesktopNav = () => {
                 fontSize={'lm'}
                 fontWeight={500}
                 color={linkColor}
+               
+               
+
+              
                 _hover={{
                   textDecoration: 'none',
+                
                   color: linkHoverColor,
                 }}>
                 {navItem.label}
@@ -309,9 +306,11 @@ const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
 const MobileNav = () => {
   return (
     <Stack
-      bg={useColorModeValue('white', 'gray.800')}
+      bg={useColorModeValue('white', 'gray.800')} 
       p={4}
-      display={{ md: 'none' }}>
+      display={{ md: 'none' }}
+      // id='navbar'
+      >
       {NAV_ITEMS.map((navItem) => (
         <MobileNavItem key={navItem.label} {...navItem} />
       ))}
@@ -323,7 +322,7 @@ const MobileNavItem = ({ label, children, href }: NavItem) => {
   const { isOpen, onToggle } = useDisclosure();
 
   return (
-    <Stack spacing={4} onClick={children && onToggle}>
+    <Stack spacing={4} onClick={children && onToggle} > 
       <Flex
         py={2}
         as={Link}

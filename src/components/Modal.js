@@ -11,9 +11,16 @@ import {
     FormControl,
     Input,
     Button,
-    
+    Box,
+    Image
   } from '@chakra-ui/react'
 import React from 'react';
+import avt from '../assets/image/Doctor.jpg'
+import '../style/input-file.css'
+
+    
+  
+
 function InitialFocus() {
     const { isOpen, onOpen, onClose } = useDisclosure()
   
@@ -22,11 +29,10 @@ function InitialFocus() {
   
     return (
       <>
-        <Button onClick={onOpen}>Open Modal</Button>
-        {/* <Button ml={4} ref={finalRef}>
-          I'll receive focus on close
-        </Button> */}
+
+        <Button onClick={onOpen}>Confirm</Button>
   
+
         <Modal
           initialFocusRef={initialRef}
           finalFocusRef={finalRef}
@@ -67,7 +73,11 @@ function InitialFocus() {
             </ModalFooter>
           </ModalContent>
         </Modal>
+
+        {/* </Box> */}
       </>
+     
+
     )
   }
 

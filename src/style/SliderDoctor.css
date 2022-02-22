@@ -1,18 +1,17 @@
- .doctor{
-    /* width: 400px;
-    height:400px; */
+
+.Adoctor{
     transition: 0.2s;  
 }
- .img-doctor{
+ .img-doctor1{
     border-radius: 0 0 0 40%;
     width: 400px;
     height:200px;
 }
- .text-info{
+ .text-info1{
     margin-top: 5px;
     font-size: 20px;
 }
- .btn-book{
+ .btn-book1{
     margin-top: 12px;
     max-width: 100px;
     height: 30px;
@@ -35,22 +34,27 @@
     word-spacing: 3px;
     color: #5c5656;
 }
-#slide-doctor .doctor:hover{
+#slide-doctor .Adoctor:hover{
+    /* color: blue; */
     box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
     width: 280px;
-    height: 355px;
+
+    height: 354px;
     background-color: #045de9;
+
     background-image: linear-gradient(315deg, #045de9 0%, #09c6f9 74%);
 }
 
-#slide-doctor .doctor:hover  .btn-book{
+#slide-doctor .Adoctor:hover  .btn-book{
     background-color: #68D391;
 
 }
-#slide-doctor .doctor:hover  .text-info{
+#slide-doctor .Adoctor:hover  .text-info{
   font-size: 20px;
   z-index: 2;
   color: white;
+  /* text-decoration-color: red; */
+
     
 }
 #slide-doctor .section-doctor{
@@ -64,12 +68,10 @@
     margin-right: auto;
     width: 1200px;
     margin-top: 65px;
-    /* background-color: aqua; */
 }
 #slide-doctor .img-customize{  
     height: 100px;  
     padding-left: 20px;
-    
 }
 #slide-doctor .slick-prev:before{
     font-family: FontAwesome !important;
@@ -117,5 +119,5 @@
 #slide-doctor .btn-more:hover{
     background-color: #4299e1;
     color: #fff;
-}
 
+}
