@@ -12,6 +12,7 @@ import ProfileUser from "./components/ProfileUser";
 import ContactFormWithSocialButtons from "./components/Contact";
 import Alldoctor from "./components/Alldoctor";
 import ArticleList from "./components/Appointment"
+import Booking from "./components/Booking"
 
  
 function App() {
@@ -29,6 +30,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/doctor" element={<Alldoctor />} />
         <Route path="/booking" element={<ArticleList />} />
+        <Route path="/test" element={<Booking />} />
       </Routes>
     </ChakraProvider>
   )
