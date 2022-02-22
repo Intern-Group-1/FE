@@ -2,14 +2,14 @@
     width: 500px !important;
 }
 .btn-time{
-    background-color: #4299e1 !important;
+    background-color: #ffff !important;
     width: 110px !important;
     height: 40px;
     margin: 10px 5px;
     border: 2px #7fb9e9c7 solid;
 }
 .btn-time:hover{
-    background-color: #216ba5 !important;
+    background-color: #4299e1 !important;
 }
 .wrapper-customer{
     display: grid;
@@ -40,14 +40,14 @@
 }
 .name-customer{
     position: absolute;
-    background-color: #3182ce;
+    /* background-color: #3182ce; */
     top: 46px;
     left: 35px;
     height: 30px;
 }
 .name-doctor{
     position: absolute;
-    background-color: #3182ce;
+    /* background-color: #3182ce; */
     top: 170px;
     left: 35px;
     height: 30px;
@@ -64,7 +64,7 @@
 }
 .name-datetime{
     position: absolute;
-    background-color: #3182ce;
+    /* background-color: #3182ce; */
     top: 295px;
     left: 35px;
     height: 30px;
@@ -74,10 +74,13 @@
 .btn-confirm{
     background-color: #d7d7d7d5 !important;
     color: black !important;
-    margin-top: 25px;
+    margin-top: 10px;
     border: 2px white solid;
 }
 .btn-confirm:hover{
     background-color: #55bb85 !important;
     color: white !important;
+}
+.comfirm-appointment{
+    width: 500px;
 }

@@ -1,6 +1,9 @@
 @media (max-width: 740px){
     #slide-doctor .section-doctor{
-        height: 520px;
+        height: 540px;
+    }
+    #slide-doctor .doctor-content{
+        margin-left: -20px;
     }
     #slide-doctor .doctor-title1{
         font-size: 26px;
@@ -15,6 +18,6 @@
         border-radius: 7px;
         position: absolute;
         top: 108px;
-        right: 75px;
+        right: 33px;
     }
 }

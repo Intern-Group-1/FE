@@ -22,7 +22,7 @@ function InitialFocus() {
   
     return (
       <>
-        <Button onClick={onOpen}>Open Modal</Button>
+        <Button onClick={onOpen}>Confirm</Button>
   
         <Modal
           initialFocusRef={initialRef}
