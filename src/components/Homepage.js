@@ -5,27 +5,23 @@ import SimpleSlider from "./Testslick";
 import Navbar from "./Navbar";
 import Footer from './Footer'
 import { lazy, Suspense } from "react";
- 
-const SlideDoctor =lazy(() =>import("./SliderDoctor"))
+ import SliderDoctor from './SliderDoctor'
+// const SliderDoctor =lazy(() =>import("./SliderDoctor"))
 
 
 function Home(){
     return(
-        <>   <Navbar/>
+        <>   
+            <Navbar/>
             <Banner />
 
             <SliderSpeciality />
 
-                <SimpleSlider/>
-<Suspense fallback={<div>Loading......</div>}>
-<SlideDoctor/>
-</Suspense>
-           
-           <Footer/>
-
+            <SimpleSlider/>
+            <SliderDoctor/>
+            <Footer/>
 
         </>
     )
 }
-
 export default Home;

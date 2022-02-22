@@ -44,7 +44,8 @@ function Adoctor(props) {
   return (
     <>
     
-    <Flex 
+    <Flex
+     
       w='280px'
       h='360px'
       borderRadius='2xl'
@@ -53,9 +54,9 @@ function Adoctor(props) {
         className='Adoctor' 
       >
       <Box d='flex' flexDirection='column' alignItems='center'  >
-        <Image className='img-doctor'  src={props.avt} />
-        <Text className='text-info' >{props.full_name}</Text>
-        <Text className='text-info'>{props.speciality}</Text>
+        <Image className='img-doctor1'  src={props.avt} />
+        <Text className='text-info1' >{props.full_name}</Text>
+        <Text className='text-info1'>{props.speciality}</Text>
         {/* <Text className='text-info' id='id' value={props._id}>{props._id}</Text> */}
         <Button   value={props._id} onClick={book}
         // id={Api.map(api=>api._id)}

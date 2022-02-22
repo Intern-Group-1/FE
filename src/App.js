@@ -12,25 +12,25 @@ import ProfileUser from "./components/ProfileUser";
 import ContactFormWithSocialButtons from "./components/Contact";
 import Alldoctor from "./components/Alldoctor";
 
-import Datepicker from "./components/Datepicker";
+
+import {rt,Datepicker} from "./components/Datepicker";
 import Book from "./components/book";
 import InitialFocus from "./components/Modal";
 
-import ArticleList from "./components/TestProfile"
+// import ArticleList from "./components/Booking"
 
-
+import Booking from "./components/Booking"
 
 function App() {
-
+ 
 
   return (
     <ChakraProvider>
-     
+      {/* <Datepicker />
+      <rt/> */}
       <Routes>
-        {/* <Route path={`/auth`} element={<AuthLayout/>} />
-        <Route path={`/admin`} element={<AdminLayout/>} />
-        <Route path={`/rtl`} element={<RTLLayout/>} /> */}
-        {/* <Navigate  to="/admin/dashboard" /> */}
+      
+      
         <Route path="/" element={<Home />} />
         <Route path="/signin" element={<Login />} />
         <Route path="/contact" element={<ContactFormWithSocialButtons />} />
@@ -38,8 +38,9 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/doctor" element={<Alldoctor />} />
-        <Route path="/test" element={<ArticleList />} />
-        <Route path='/test/:id' element={<ArticleList />} />
+
+        <Route path="/test" element={<Booking />} />
+        <Route path='/test/:id' element={<Booking />} />
         <Route path='/book/:id' element={<Book/>}/>
 
       </Routes>

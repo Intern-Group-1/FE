@@ -21,7 +21,7 @@ import {
  
 
 } from '@chakra-ui/react';
-
+import '../responsive/account/signin.css'
 import { } from 'react-router-dom';
 import Footer from './Footer';
 import Navbar from './Navbar';
@@ -91,33 +91,20 @@ function SimpleCard() {
     setEye(!eye)
   }
 
-  function handleChange(e){
-   
-  let checked=e.target.checked;
-  var loggedInUser = localStorage.getItem('token');
-  document.cookie="token="+loggedInUser+";path=http://localhost:3000/home";
-  
-  // console.log(u+p);
-  if(checked==true){
-    console.log('1');
-  }
-  else{
-    console.log('0');
-  }
+  return (<div className='login-page' >
+        <Stack direction='row' spacing={4} className='btn-backtohome'>
+        <Button  as={'a'} leftIcon={<ArrowBackIcon />} href='/home' >
+          Back to Homepage
+        </Button>
+      </Stack>
 
-   }
-
-
-   
-  return (<div >
-         
-         
     <div />
     <Flex
-
+      className='container-form'
       minH={'120vh'}
       align={'center'}
       justify={'center'}
+
       //  backgroundImage={bglg} 
       // backgroundColor='blue.100'
       // backgroundRepeat='no-repeat' backgroundSize='cover'
@@ -130,20 +117,20 @@ function SimpleCard() {
           If you don't have an account, please 
             <Link href='/signup' color={'blue.500'}> register</Link>
 
-            ✌️
 
+            ✌️
           </Text>
         </Stack>
 
         <Box
           rounded={'lg'}
-          // bg={bglg}
           boxShadow={'lg'}
-
+          className='form-signin'
           p={8}>
-          <Stack spacing={4}>
 
-            <FormControl >
+          <Stack spacing={4} >
+            <FormControl id="email">
+
               <FormLabel>Email address</FormLabel>
               <Input type="email" id="email" value={username} placeholder='Enter your email' onChange={handleUserNameInput} />
             </FormControl>
@@ -157,7 +144,7 @@ function SimpleCard() {
                 direction={{ base: 'column', sm: 'row' }}
                 align={'start'}
                 justify={'space-between'}>
-                <Checkbox onChange={handleChange}>Remember Me</Checkbox>
+                <Checkbox >Remember Me</Checkbox>
                 {/* Remember me</Checkbox> */}
                 <Link color={'blue.400'}>Forgot password?</Link>
               </Stack>
@@ -174,18 +161,22 @@ function SimpleCard() {
               >
                 Sign in
               </Button>
-             
+
+              <Text color='red'
+              >
+                {messagea}
+              </Text>
+
             </Stack>
           </Stack>
 
         </Box>
 
       </Stack >
-      <Box>
+      <Box className='animation'>
       <Img src={gif} width='50%'/>
       <Img src={gif} width='100%'/>
       <Img src={gif} width='50%'/>
-
       </Box>
     </Flex>
             

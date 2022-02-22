@@ -1,17 +1,17 @@
 
-.doctor{
+.Adoctor{
     transition: 0.2s;  
 }
- .img-doctor{
+ .img-doctor1{
     border-radius: 0 0 0 40%;
     width: 400px;
     height:200px;
 }
- .text-info{
+ .text-info1{
     margin-top: 5px;
     font-size: 20px;
 }
- .btn-book{
+ .btn-book1{
     margin-top: 12px;
     max-width: 100px;
     height: 30px;

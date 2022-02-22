@@ -7,7 +7,7 @@ import ApiCaller from '../utils/apiCaller';
 import LazyLoad from 'react-lazyload';
 import '../responsive/homepage/SliderDoctor.css';
 import { Button } from '@chakra-ui/react';
-
+import '../style/SliderDoctor.css'
 import Adoctor from './Adoctor'
 
 function SliderDoctor() {
@@ -33,6 +33,7 @@ function SliderDoctor() {
 
   
     return (
+
         <div id='slide-doctor'>
             <LazyLoad>
             <div className="section-doctor">
@@ -77,6 +78,7 @@ function SliderDoctor() {
             </div>
             </LazyLoad>
         </div>
+
     );
 
 }
