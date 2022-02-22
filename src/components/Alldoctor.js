@@ -7,18 +7,19 @@ import {
     Stack,
     Button
   } from '@chakra-ui/react';
-  import React,{useEffect,useState} from 'react';
+  import React,{lazy, Suspense, useEffect,useState} from 'react';
 import ApiCaller from '../utils/apiCaller';
 import { Router, useNavigate } from 'react-router-dom'
 import { PhoneIcon, EmailIcon, RepeatClockIcon,InfoIcon } from '@chakra-ui/icons' 
 import Navbar from "./Navbar";
 import Footer from './Footer' 
 import Book from './book';
+import LazyLoad from 'react-lazyload';
 import { ToastContainer, toast } from 'react-toastify';
   export default function Alldoctor(props) {
     const navigate = useNavigate()
     const [Api, setApi] = useState([]);
-
+ 
     useEffect(()=>{
         ApiCaller('get-all-doctor', 'GET')
       .then ( async res => {
@@ -26,8 +27,10 @@ import { ToastContainer, toast } from 'react-toastify';
           setApi(res.data.data)
       })
     },[])
+
     const loggedInUser = localStorage.getItem('token');
     const book1=(e)=>{
+
 
      
          if(!loggedInUser){
@@ -36,7 +39,7 @@ import { ToastContainer, toast } from 'react-toastify';
          }
          else{
           //  console.log(e.target.value);
-          navigate('/book/'+`${e.target.value}`);
+          navigate('/test/'+`${e.target.value}`);
           // console.log('/book/'+`${e.target.value}`);
          
          }
@@ -48,17 +51,22 @@ import { ToastContainer, toast } from 'react-toastify';
            //  </Routes>
    
    }
-
-
+  
+   const [header,setHeader] =useState('Doctor');
     return (
       <>
       <Navbar/>
       <Box>
-      <Heading mt='100px' textAlign={'center'}>Doctor</Heading>
+     
+      <Heading mt='100px' textAlign={'center'}>{header}</Heading>
+      {/* <LazyLoad> */}
       <Center  mt ='10px' py={6}   d='flex'
           flexWrap={'wrap'} >
+         <> 
+           {Api.map(api => (
            
-           {Api.map(api => (  
+               <Suspense >
+                  
         <Box ml='20px'
            
           maxW={'320px'}
@@ -74,7 +82,7 @@ import { ToastContainer, toast } from 'react-toastify';
           <Avatar
             size={'xl'}
             src={
-                api.Avatar
+                api.avatar
             }
             alt={api.full_name}
             mb={4}
@@ -124,8 +132,6 @@ import { ToastContainer, toast } from 'react-toastify';
   
 
           <Stack   mt='8px'
-        //   border={'solid 1px'}
-        //  borderColor={'red'}
            direction={'row'} 
            spacing={4}>
             <Button
@@ -150,8 +156,11 @@ import { ToastContainer, toast } from 'react-toastify';
             </Button>
           </Stack>
         </Box> 
-           ))}
+        </Suspense>))}
+        </>
       </Center>
+      
+      {/* </LazyLoad> */}
       </Box>
       <Footer/>
 

@@ -1,4 +1,4 @@
-.section-specialty{
+#section-specialty{
     height: 400px;
     background-color: #f5f5f5f5;
     border: 1px #f5f5f5f5 solid;
@@ -7,7 +7,11 @@
 .slick-list{
     margin-top: 100px;
     margin-left: -131px;
+<<<<<<< HEAD
     border: 2px solid rgb(255, 255, 255);
+=======
+    /* border: 2px solid red; */
+>>>>>>> f45308e3e9e6e5b322a7f3e198b416392a8ae4f7
     height: 300px;
 }
 .specialty-content{
@@ -18,7 +22,6 @@
 }
 .img-customize{
     height: 250px;
-    border: 2px solid blue;
     margin-top: 20px;
 }
 .slick-prev:before{

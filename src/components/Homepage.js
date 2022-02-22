@@ -1,9 +1,12 @@
 import Banner from "./Banner"
 import SliderSpeciality from "./SliderSpeciality";
-import SliderDoctor from "./SliderDoctor";
+
+import SimpleSlider from "./Testslick";
 import Navbar from "./Navbar";
 import Footer from './Footer'
- import SimpleSlider from './Testslick'
+import { lazy, Suspense } from "react";
+ 
+const SlideDoctor =lazy(() =>import("./SliderDoctor"))
 
 
 function Home(){
@@ -12,8 +15,12 @@ function Home(){
             <Banner />
 
             <SliderSpeciality />
+
                 <SimpleSlider/>
-           <SliderDoctor/>
+<Suspense fallback={<div>Loading......</div>}>
+<SlideDoctor/>
+</Suspense>
+           
            <Footer/>
 
 

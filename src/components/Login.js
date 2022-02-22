@@ -111,12 +111,7 @@ function SimpleCard() {
    
   return (<div >
          
-          <Stack direction='row' spacing={4}>
-       
-        <Button  as={'a'} leftIcon={<ArrowBackIcon />} href='/home' >
-          Back to Homepage
-        </Button>
-      </Stack>
+         
     <div />
     <Flex
 

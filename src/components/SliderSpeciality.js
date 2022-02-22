@@ -1,4 +1,4 @@
-import '../style/SliderSpeciality.css'
+
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -10,7 +10,7 @@ import sp2 from '../assets/image/speciality/Consultant Physician.png'
 import sp3 from '../assets/image/speciality/General Physician.png'
 import sp4 from '../assets/image/speciality/heart.png'
 import sp5 from '../assets/image/speciality/orthopedic.png'
-
+import '../responsive/homepage/SliderSpeciality.css'
 
 
 
@@ -68,7 +68,6 @@ function SliderSpeciality() {
                 <p className='speciality-title2'>Find experienced doctors across all specialties</p>
             </div>
             <div className="speciality-content">
-
                 <Slider {...settings}>
                     {dts.map(dt => (
                         <ASpeciality key={dt.age} speciality={dt.speciality} avt={dt.avt} />
