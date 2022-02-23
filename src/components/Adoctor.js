@@ -58,7 +58,7 @@ function Adoctor(props) {
         <Text className='text-info1' >{props.full_name}</Text>
         <Text className='text-info1'>{props.speciality}</Text>
         {/* <Text className='text-info' id='id' value={props._id}>{props._id}</Text> */}
-        <Button   value={props._id} onClick={book}
+        <Button mt='20px '  value={props._id} onClick={book}
         // id={Api.map(api=>api._id)}
           colorScheme='blue' className='btn-book' >Book Now</Button>
        

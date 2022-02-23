@@ -301,7 +301,7 @@ export default function Booking(){
         marginTop="5"
         color={ 'gray.900'}
         fontSize="md">
-        Gender: {(api.gender)='true' ?<b>Nữ</b>:<b>Nam</b>}
+        Gender: {(api.gender)='true' ?<b>Male</b>:<b>Female</b>}
         </Text>         
         </Box>
         </>)

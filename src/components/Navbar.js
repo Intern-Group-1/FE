@@ -33,7 +33,8 @@ import {
 
   ChevronRightIcon, 
 } from '@chakra-ui/icons';
-
+import { useState, useEffect } from 'react';
+import ApiCaller from '../utils/apiCaller';
 import logo from '../assets/image/logo-doctor-care.png'
 
 import '../responsive/homepage/Navbar.css'
@@ -63,9 +64,18 @@ export default function Navbar() {
 
   
 // }
+const [Api, setApi] = useState([]);
+
+useEffect(() => {
+    ApiCaller('get-all-speciality', 'GET')
+        .then(async res => {
+            console.log(res);
+            setApi(res.data.data)
+        })
+}, [])
   return (
     <Box   id='navbar'>
-      
+   
       <Flex
        
         fontSize={'15px'}
@@ -378,16 +388,18 @@ interface NavItem {
   href?: string;
 }
 
+
 const NAV_ITEMS: Array<NavItem> = [
+  
   {
     label: 'Home',
     href: '/home',
 
   },
-  {
+  { 
     label: 'Speciality',
     children: [
-      {
+      { 
         label: 'Cardiologist',
         subLabel: 'Trending Design to inspire you',
         href: '#',
