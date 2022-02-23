@@ -34,7 +34,7 @@ function SliderSpeciality() {
     const [Api, setApi] = useState([]);
 
     useEffect(() => {
-        ApiCaller('get-all-doctor', 'GET')
+        ApiCaller('get-all-speciality', 'GET')
             .then(async res => {
                 console.log(res);
                 setApi(res.data.data)
@@ -77,8 +77,8 @@ function SliderSpeciality() {
             </div>
             <div className="speciality-content" >
                 <Slider {...settings} >
-                    {dts.map(dt => (
-                        <ASpeciality key={dt.age} speciality={dt.speciality} avt={dt.avt} />
+                    {Api.map(dt => (
+                        <ASpeciality key={dt._id} name={dt.name} avt={dt.images} />
                     ))}
                 </Slider>
             </div>
