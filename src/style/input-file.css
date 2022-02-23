@@ -5,13 +5,11 @@
   margin-left: 80px;
 }
 .box{
-  margin-left: 10%;
+  margin-left: 100px;
 }
 .text-inf{
-  /* border: 1px black solid !important; */
+  border: 1px black solid !important;
   margin-bottom: 10px !important;
-  /* margin-left: 0%; */
-  /* padding-left: -10%; */
 }
 img{
   padding-left: 0;

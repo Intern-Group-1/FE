@@ -21,7 +21,15 @@ function SliderSpeciality() {
         infinite: true,
         speed: 900,
         slidesToShow: 3,
-        slidesToScroll: 1
+        slidesToScroll: 1,
+        autoplay: true,
+        speed: 1000,
+        autoplaySpeed: 5000,
+        cssEase: "linear",
+        lazyLoad: true,
+        className: "center",
+        centerPadding: "60px",
+       
     };
     const [Api, setApi] = useState([]);
 
@@ -67,8 +75,8 @@ function SliderSpeciality() {
                 <p className='speciality-title1'>Clinic and Specialities</p>
                 <p className='speciality-title2'>Find experienced doctors across all specialties</p>
             </div>
-            <div className="speciality-content">
-                <Slider {...settings}>
+            <div className="speciality-content" >
+                <Slider {...settings} >
                     {dts.map(dt => (
                         <ASpeciality key={dt.age} speciality={dt.speciality} avt={dt.avt} />
                     ))}

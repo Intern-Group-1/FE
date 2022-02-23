@@ -60,8 +60,13 @@ import { ToastContainer, toast } from 'react-toastify';
      
       <Heading mt='100px' textAlign={'center'}>{header}</Heading>
       {/* <LazyLoad> */}
-      <Center  mt ='10px' py={6}   d='flex'
-          flexWrap={'wrap'} >
+      <Center  mt ='10px' py={4} 
+     
+      d='flex'
+          flexWrap={'wrap'} 
+         justifyContent='start'
+        
+        >
          <> 
            {Api.map(api => (
            
@@ -76,7 +81,7 @@ import { ToastContainer, toast } from 'react-toastify';
           boxShadow={'2xl'}
           rounded={'lg'}      
           p={6}
-         ml='80px'
+          ml='40px'
           mt= '25px'
           textAlign={'center'}>
           <Avatar

@@ -41,7 +41,7 @@ function App() {
 
         <Route path="/test" element={<Booking />} />
         <Route path='/test/:id' element={<Booking />} />
-        <Route path='/book/:id' element={<Book/>}/>
+       
 
       </Routes>
 
