@@ -30,7 +30,7 @@ function Adoctor(props) {
       }
       else{
         console.log(e.target.value);
-        navigate('/book/'+`${e.target.value}`);
+        navigate('/test/'+`${e.target.value}`);
         //console.log('/book/'+`${e.target.value}`);
       }
 

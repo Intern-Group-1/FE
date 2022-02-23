@@ -10,8 +10,9 @@ function ASpeciality(props) {
       bgColor='whrite.100'
       border='none'
       className='speciality'
-      justifyContent='center'>
-      <Box d='flex' flexDirection='column' alignItems='center'>
+      justifyContent='center'
+      >
+      <Box  d='flex' flexDirection='column' alignItems='center'>
         <Box 
         className='img-speciality'
         w='150px' 

@@ -14,9 +14,14 @@ function SliderDoctor() {
     let settings = {
         dots: true,
         infinite: true,
-        speed: 900,
+       
         slidesToShow: 3,
-        slidesToScroll: 2
+        slidesToScroll: 1,
+        autoplay: true,
+        speed: 2000,
+        autoplaySpeed: 5000,
+        cssEase: "linear",
+       
     };
     const [Api, setApi] = useState([]);
 

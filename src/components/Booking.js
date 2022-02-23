@@ -1,4 +1,8 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useParams } from "react-router-dom";
+
+import ApiCaller from '../utils/apiCaller';
+import Adoctor from './Adoctor';
 import DatePicker from "react-datepicker";
 import { addDays } from 'date-fns';
 import Navbar from "./Navbar";
@@ -24,6 +28,17 @@ import styled from '@emotion/styled';
 
 
 function Booking() {
+    const { id } = useParams();
+    const [Api, setApi] = useState([]);
+    const [Id, setId] = useState('');
+    useEffect(() => {
+        ApiCaller('get-all-doctor', 'GET')
+            .then(async res => {
+                console.log(res);
+                setApi(res.data.data)
+            })
+
+    }, []);
     const [startDate, setStartDate] = useState(new Date());
   
    
@@ -46,53 +61,67 @@ function Booking() {
 
 
             <Navbar />
+                
 
             <Box id='container-booking'>
                 <Heading as="h1">Make an appointment</Heading>
                 <Box className='info-personal'>
                     <Box className='info-doctor'>
-                        <Text
+                    {Api.map(api => (
+                <>
+                   
+                    {(id == api._id) ? (
+                        <>
+                             <Text
                             as="p"
                             marginTop="5"
-                            color={useColorModeValue('gray.700', 'gray.200')}
+                            color={'gray.900'}
                             fontSize="lg">
                             Doctor
                         </Text>
                         <Image
                             className='img-doctor'
                             borderRadius="full"
-                            src={Doctor}
+                            src={api.avatar}
                         />
                         <Box className='wrapper-info-doctor'>
                             <Text
                                 as="p"
                                 marginTop="20"
-                                color={useColorModeValue('gray.700', 'gray.200')}
+                                color={ 'gray.900'}
                                 fontSize="lg">
-                                Name:
+                                Name: {api.full_name}
                             </Text>
                             <Text
                                 as="p"
                                 marginTop="5"
-                                color={useColorModeValue('gray.700', 'gray.200')}
+                                color={ 'gray.900'}
                                 fontSize="lg">
-                                Age:
+                                Age: {api.age}
                             </Text>
                             <Text
                                 as="p"
                                 marginTop="5"
-                                color={useColorModeValue('gray.700', 'gray.200')}
+                                color={'gray.900'}
                                 fontSize="lg">
-                                Speciality:
+                                Speciality: {api.speciality.name}
                             </Text>
                             <Text
                                 as="p"
                                 marginTop="5"
-                                color={useColorModeValue('gray.700', 'gray.200')}
+                                color={ 'gray.900'}
                                 fontSize="lg">
-                                Gender:
+                                Gender: {(api.gender)='true' ?<a>Nữ</a>:<a>Nam</a>}
                             </Text>
                         </Box>
+                            </>)
+
+                        : <></>}
+
+                </>
+            ))}
+           
+                       
                     </Box>
                     <Box className='info-customer'>
                         <Text
@@ -100,28 +129,28 @@ function Booking() {
                             marginTop="50"
                             color={useColorModeValue('gray.700', 'gray.200')}
                             fontSize="lg">
-                            Name:
+                            Your Name: 
                         </Text>
                         <Text
                             as="p"
                             marginTop="5"
                             color={useColorModeValue('gray.700', 'gray.200')}
                             fontSize="lg">
-                            Age:
+                            Your Age:
                         </Text>
                         <Text
                             as="p"
                             marginTop="5"
                             color={useColorModeValue('gray.700', 'gray.200')}
                             fontSize="lg">
-                            Phone:
+                            Your Phone number:
                         </Text>
                         <Text
                             as="p"
                             marginTop="5"
                             color={useColorModeValue('gray.700', 'gray.200')}
                             fontSize="lg">
-                            Address:
+                            Your Address:
                         </Text>
                     </Box>
                 </Box>
@@ -229,51 +258,69 @@ function Booking() {
                             </Text>
                         </Box>
                         <Text fontSize={'20'} mt={'15'} className='name-doctor'>Doctor</Text>
+                        {Api.map(api => (
+                <>
+                   
+                    {(id == api._id) ? (
+                        <>
                         <Box className='wrapper-doctor'>
-                            <Text
-                                as="p"
+                        
+                            <Text  
+                                
                                 marginTop="5"
-                                color={useColorModeValue('gray.700', 'gray.200')}
-                                fontSize="lg">
-                                Name:
+                                color={ 'gray.900'}
+                                fontSize="lg"
+                                >
+                                Name: {<b>{api.full_name}</b>}
                             </Text>
                             <Text
-                                as="p"
+                                
                                 marginTop="5"
-                                color={useColorModeValue('gray.700', 'gray.200')}
+                                color={'gray.900'}
                                 fontSize="lg">
-                                Age:
+                                Speciality:  {<b>{api.speciality.name}</b>} 
                             </Text>
-                            <Text
-                                as="p"
+                            <Text  
+                              
                                 marginTop="5"
-                                color={useColorModeValue('gray.700', 'gray.200')}
+                                color={ 'gray.900'}
                                 fontSize="lg">
-                                Speciality:
+                                Age:  {<b>{api.age}</b>}
                             </Text>
-                            <Text
-                                as="p"
+                            
+                            <Text   
                                 marginTop="5"
-                                color={useColorModeValue('gray.700', 'gray.200')}
+                                color={'gray.900'}
                                 fontSize="lg">
-                                Gender:
+                                 Gender: {(api.gender)='true' ?<b>Nữ</b>:<b>Nam</b>}
                             </Text>
+                         
                         </Box>
-                        <Text fontSize={'20'} mt={'15'} className='name-datetime'>Date and time</Text>
+                           </>)
+
+                           : <></>}
+   
+                   </>
+               ))}
+                        <Text fontSize={'20'} mt='10'  className='name-datetime'>Date and time</Text>
                         <Box className='wrapper-datetime'>
                             <Text
+                                maxW={'fit-content'}
                                 as="p"
                                 marginTop="5"
                                 color={useColorModeValue('gray.700', 'gray.200')}
                                 fontSize="lg">
-                                 Date: {d.toString()}-{m.toString()}
+                                    {<Box bgColor={'blue.100'}>  Date: {d.toString()}-{m.toString()}</Box>}
+                               
                             </Text>
                             <Text
+                             maxW={'fit-content'}
                                 as="p"
                                 marginTop="5"
                                 color={useColorModeValue('gray.700', 'gray.200')}
-                                fontSize="lg">
-                                Time: {time}
+                                fontSize="lg"
+                               >
+                                {<Box bgColor={'blue.100'}   > Time:{time}</Box>}
                             </Text>
                         </Box>
                         <Button className='btn-confirm'>Confirm appointment</Button>
