@@ -1,3 +1,6 @@
+.title-appoitment{
+    margin: 30px 0px 30px 60px;
+}
 .wrapper-btn-time{
     width: 500px !important;
 }
@@ -13,30 +16,25 @@
 }
 .wrapper-customer{
     display: grid;
-    width: 400px;
+    width: 450px;
     height: 100px;
-    grid-template-columns: 200px 200px;
+    grid-template-columns: 275px 158px;
     grid-template-rows: 40px 40px;
-    border: 2px white dashed;
+    border: 2px black dashed;
     border-radius: 10px;
     padding-left: 10px;
     margin-top: 20px;
 }
 .wrapper-doctor{
-   
-    display: flex;
-    align-content:space-between;
-    flex-direction: column;
-    flex-wrap: wrap;
-    background-color: rgb(217, 217, 255);
-    width: 550px;
-    height: 150px;
-    /* grid-template-columns: 250px 200px;
-    grid-template-rows: 60px 40px; */
-    border: 2px white dashed;
+    display: grid;
+    width: 450px;
+    height: 100px;
+    grid-template-columns: 275px 158px;
+    grid-template-rows: 40px 40px;
+    border: 2px black dashed;
     border-radius: 10px;
-    /* margin-top: 23px;
-    padding-left: 10px; */
+    margin-top: 23px;
+    padding-left: 10px;
 }
 #confirm{
     flex-direction: column;
@@ -45,46 +43,47 @@
 }
 .name-customer{
     position: absolute;
-    /* background-color: #3182ce; */
-    top: 46px;
-    left: 35px;
+    background-color: #ffff;
+    top: 92px;
+    left: 21px;
     height: 30px;
 }
 .name-doctor{
     position: absolute;
-    /* background-color: #3182ce; */
-    top: 170px;
-    left: 35px;
+    background-color: #ffff;
+    top: 215px;
+    left: 21px;
     height: 30px;
 }
 .wrapper-datetime{
-    padding-top: -10px;
     display: grid;
-    width: 400px;
-    height: 65px;
-    grid-template-columns: 200px 200px;
-    border: 2px white dashed;
+    width: 450px;
+    height: 100px;
+    grid-template-columns: 275px 158px;
+    grid-template-rows: 30px 30px;
+    border: 2px black dashed;
     border-radius: 10px;
-    margin-top: 20px;
+    margin-top: 26px;
     padding-left: 10px;
 }
 .name-datetime{
     position: absolute;
-    /* background-color: #3182ce; */
-    top: 295px;
-    left: 35px;
+    background-color: #ffff;
+    top: 341px;
+    left: 21px;
     height: 30px;
     width: 180px;
     text-align: center;
 }
 .btn-confirm{
-    background-color: #d7d7d7d5 !important;
+    background-color: #ffff !important;
     color: black !important;
-    margin-top: 10px;
-    border: 2px white solid;
+    margin-top: 17px;
+    border: 2px #7fb9e9c7 solid;
+    margin-left: 130px;
 }
 .btn-confirm:hover{
-    background-color: #55bb85 !important;
+    background-color: #4299e1 !important;
     color: white !important;
 }
 .comfirm-appointment{
