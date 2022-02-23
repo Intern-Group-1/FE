@@ -2,8 +2,6 @@ import React from 'react';
 import Navbar from "./Navbar";
 import Footer from './Footer'
 import '../style/button.css'
-// import InitialFocus from './Modal'
-import ConfirmBooking from './ModalBooking'
 import {
     Box,
     Heading,
@@ -11,32 +9,35 @@ import {
     Text,
     useColorModeValue,
     Button,
-    Center,
   } from '@chakra-ui/react';
   import Doctor from '../assets/image/dtavt.png'
   import Datepicker from './Datepicker'
-//   import '../responsive/Appointment.css'
   import '../style/Booking.css'
+  import '../responsive/Appointment.css'
 export default function Booking(){
     return(
         <>
             <Navbar />
             <Box id='container-booking'>
-                <Heading as="h1">Make an appointment</Heading>
+                <Heading as="h1" className='title-appoitment'>Make an appointment</Heading>
                 <Box className='info-personal'>
                     <Box className='info-doctor'>
-                    <Text
-                        as="p"
-                        marginTop="5"
-                        color={useColorModeValue('gray.700', 'gray.200')}
-                        fontSize="lg">
-                        Doctor
-                    </Text>
-                    <Image
-                            className='img-doctor'
-                            borderRadius="full"
-                            src={Doctor}
-                        />
+                    <Box>
+                        <Text
+                            as="p"
+                            marginTop="5"
+                            color={useColorModeValue('gray.700', 'gray.200')}
+                            fontSize="xl"
+                            fontWeight={"bold"}
+                            >
+                            Doctor
+                        </Text>
+                        <Image
+                                className='img-doctor'
+                                borderRadius="full"
+                                src={Doctor}
+                            />
+                    </Box>
                     <Box className='wrapper-info-doctor'>
                         <Text
                             as="p"
@@ -69,9 +70,18 @@ export default function Booking(){
                     </Box>
                     </Box>
                     <Box className='info-customer'>
+                    <Text
+                            as="p"
+                            marginTop="5"
+                            color={useColorModeValue('gray.700', 'gray.200')}
+                            fontSize="xl"
+                            fontWeight={"bold"}
+                            >
+                            Customer
+                        </Text>
                         <Text
                             as="p"
-                            marginTop="50"
+                            marginTop="7"
                             color={useColorModeValue('gray.700', 'gray.200')}
                             fontSize="lg">
                             Name:
@@ -136,42 +146,36 @@ export default function Booking(){
                             </select>
                         </Box> 
                     </Box>
-                    {/* <Box className='confirm'>
-                        <Heading as="h3"mt={'10'} mb={'45'}>Confirm appointment</Heading>
-                        <Button> 
-                            <ConfirmBooking />
-                        </Button>
-                    </Box> */}
     <Box className='comfirm-appointment' flex='1' bg='' id='confirm'>
-        <Heading as="h1" mt={'5'} mb={'0'}>Confirm appointment</Heading>
+        <Heading as="h1" mt={'10'} mb={'10'}>Confirm appointment</Heading>
         <Text fontSize={'20'} mt={'15'} className='name-customer'>Customer</Text>
         <Box className='wrapper-customer'>
         <Text
         as="p"
         marginTop="5"
         color={useColorModeValue('gray.700', 'gray.200')}
-        fontSize="lg">
+        fontSize="md">
         Name:
         </Text>
         <Text
         as="p"
         marginTop="5"
         color={useColorModeValue('gray.700', 'gray.200')}
-        fontSize="lg">
+        fontSize="md">
         Age:
         </Text>
         <Text
         as="p"
         marginTop="5"
         color={useColorModeValue('gray.700', 'gray.200')}
-        fontSize="lg">
+        fontSize="md">
         Address:
         </Text>
         <Text
         as="p"
         marginTop="5"
         color={useColorModeValue('gray.700', 'gray.200')}
-        fontSize="lg">
+        fontSize="md">
         Phone:
         </Text>         
         </Box>
@@ -181,52 +185,59 @@ export default function Booking(){
         as="p"
         marginTop="5"
         color={useColorModeValue('gray.700', 'gray.200')}
-        fontSize="lg">
+        fontSize="md">
         Name:
         </Text>
         <Text
         as="p"
         marginTop="5"
         color={useColorModeValue('gray.700', 'gray.200')}
-        fontSize="lg">
+        fontSize="md">
         Age:
         </Text>
         <Text
         as="p"
         marginTop="5"
         color={useColorModeValue('gray.700', 'gray.200')}
-        fontSize="lg">
+        fontSize="md">
         Speciality:
         </Text>
         <Text
         as="p"
         marginTop="5"
         color={useColorModeValue('gray.700', 'gray.200')}
-        fontSize="lg">
+        fontSize="md">
         Gender:
         </Text>         
         </Box>
-        <Text fontSize={'20'} mt={'15'} className='name-datetime'>Date and time</Text>
+        <Text fontSize={'20'} mt={'15'} className='name-datetime'>Datetime and clinic</Text>
         <Box className='wrapper-datetime'>
         <Text
         as="p"
         marginTop="5"
         color={useColorModeValue('gray.700', 'gray.200')}
-        fontSize="lg">
+        fontSize="md">
         Date:
         </Text>
         <Text
         as="p"
         marginTop="5"
         color={useColorModeValue('gray.700', 'gray.200')}
-        fontSize="lg">
+        fontSize="md">
         Time:
-        </Text>          
+        </Text>  
+        <Text
+            as="p"
+            marginTop="5"
+            color={useColorModeValue('gray.700', 'gray.200')}
+            fontSize="md">
+            Clinic:
+            </Text>        
         </Box>
-        <Button className='btn-confirm'>Confirm appointment</Button>
-  </Box>
-                </Box>
-            </Box>
+            <Button className='btn-confirm'>Confirm appointment</Button>
+        </Box> 
+    </Box>
+</Box>
             <Footer />
         </>
     )
