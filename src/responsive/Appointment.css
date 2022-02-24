@@ -1,54 +1,4 @@
 @media (max-width: 740px){
-    /* .info-doctor{
-        margin-left: 0 !important;
-        margin-top: 35px !important;
-    }
-    .img-doctor{
-        font-size: 14px;
-    }
-    .avt-doctor{
-        width: 200px !important;
-    }
-    .wrapper-avt-doctor{
-        justify-content: center;
-
-    }
-    .container-booking{
-        flex-direction: column;
-        height: 1350px !important;
-         width: 455px !important; 
-        align-items: center;
-        margin-left: -48px !important;
-        width: 100% !important; 
-        padding-left: 0 !important;
-        padding-right: 0 !important;
-        margin-left: 0 !important;
-        margin-left: 0 !important;
-    }
-    .info-customer,
-    .date-time,
-    .comfirm-appointment{
-        width: 100% !important; 
-        padding-left: 0 !important;
-        padding-right: 0 !important;
-        margin-left: 0 !important;
-        margin-left: 0 !important;
-    }
-    .date-time{
-         width: 100% !important;  
-    }
-    .comfirm-appointment{
-     width: 100% !important;  
-        
-    }
-    .wrapper-btn-time{
-        width: 100% !important;
-    }
-    .wrapper-btn-time{
-        display: flex;
-        justify-content: center;
-        width: 66% !important;
-    } */
     .info-personal{
         flex-direction: column;
         height: 850px !important;
@@ -68,6 +18,8 @@
     }
     .info-customer {
         max-width: 270px !important;
+        border-left: none !important;
+        padding-left: 0 !important;
     }
     .picker-comfirm {
         display: flex !important;

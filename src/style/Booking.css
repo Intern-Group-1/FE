@@ -22,6 +22,8 @@
 }
 .info-customer{
     width: 600px !important;
+    padding-left: 35px;
+    border-left: 2px rgb(214, 217, 219) dashed;
 }
 /* .wrapper-info-doctor{
     grid-row: 1 / span 2;

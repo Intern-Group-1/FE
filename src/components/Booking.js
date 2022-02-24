@@ -127,6 +127,13 @@ export default function Booking(){
                             <Button className='btn-time'>17:00 - 18:00</Button>
                         </Box>
                         <Box className='clinic'>
+                        {/* <select name="hue" className='select-clinic'>
+                                <option value="">Hue city</option>
+                                <option value="">ĐN</option>
+                                <option value="">HCM</option>
+                            </select> */}
+
+
                             <select name="hue" className='select-clinic'>
                                 <option value="">Hue city</option>
                                 <option value="">Hoang Long, 14 Le Loi</option>
@@ -148,7 +155,7 @@ export default function Booking(){
                     </Box>
     <Box className='comfirm-appointment' flex='1' bg='' id='confirm'>
         <Heading as="h1" mt={'10'} mb={'10'}>Confirm appointment</Heading>
-        <Text fontSize={'20'} mt={'15'} className='name-customer'>Customer</Text>
+        <Text fontSize={'20'} fontWeight={'bold'} mt={'15'} className='name-customer'>Customer</Text>
         <Box className='wrapper-customer'>
         <Text
         as="p"
@@ -179,7 +186,7 @@ export default function Booking(){
         Phone:
         </Text>         
         </Box>
-        <Text fontSize={'20'} mt={'15'} className='name-doctor'>Doctor</Text>
+        <Text fontSize={'20'} fontWeight={'bold'} mt={'15'} className='name-doctor'>Doctor</Text>
         <Box className='wrapper-doctor'>
         <Text
         as="p"
@@ -210,7 +217,7 @@ export default function Booking(){
         Gender:
         </Text>         
         </Box>
-        <Text fontSize={'20'} mt={'15'} className='name-datetime'>Datetime and clinic</Text>
+        <Text fontSize={'20'} fontWeight={'bold'} mt={'15'} className='name-datetime'>Datetime and clinic</Text>
         <Box className='wrapper-datetime'>
         <Text
         as="p"

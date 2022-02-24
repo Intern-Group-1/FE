@@ -1,10 +1,11 @@
 @media (max-width: 740px){
     .container-profile{
-        /* background-color: rgb(182, 132, 67) !important; */
         flex-direction: column;
+        min-height: 1320px;
     }
     .user-avt{
         margin-left: 20px;
+        width: 94% !important;
       }
       .custom-file-input{
         margin-left: 20px;
@@ -23,4 +24,9 @@
       .change-info{
           margin-left: 78px !important;
       }
+      .schedule {
+        border-left: none;
+        flex-wrap: nowrap;
+        width: 324px !important;
+    }
 }
