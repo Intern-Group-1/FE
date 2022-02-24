@@ -5,6 +5,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import tin1 from '../assets/image/tin1.jpg'
 import tin2 from '../assets/image/tin2.jpg'
+import '../responsive/homepage/Handbook.css'
 
 export default class SimpleSlider extends Component {
   render() {
@@ -16,7 +17,8 @@ export default class SimpleSlider extends Component {
       slidesToScroll: 1
     };
     return (
-      <div className="section-specialty">
+      <div className="section-handbook">
+        <button className='btn-more'>More...</button>
         <div className="banner-content">
         <Slider {...settings}>
         <div className='img-customize'>

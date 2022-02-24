@@ -1,14 +1,29 @@
 import React from 'react';
 import '../style/input-file.css'
+import '../responsive/profile/Profile.css'
+import InitialFocus from './Modal'
+import AlertsSuccess from './Success'
+import Navbar from './Navbar'
+import Footer from './Footer'
 import {
     Flex,
     Box,
     Input,
     Text,
     Image,
+    Button,
   } from '@chakra-ui/react';
   import avt from '../assets/image/client.jpg'
+  import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
+
+toast.configure()
 function ProfileUser() {
+    const HandleClick = () =>{
+        alert(<AlertsSuccess />)
+    }
+    const notify = () => toast.success("Login success!");
+    const notify1 = () => toast.error("Login failed!");
     const user={
         name:'dung',
         address :' hue',
@@ -16,15 +31,16 @@ function ProfileUser() {
         gender :'Male'
     }
   return <>
+    <Navbar />
     <Flex >
-        <Box  w='80%' h='50%' m='10%' boxShadow='2xl' borderRadius='2xl' d='flex' rounded='md' bg='white' boxShadow='outline'
+        <Box className='container-profile' w='90%' h='50%' m='5%' boxShadow='2xl' borderRadius='2xl' d='flex' rounded='md' bg='white' boxShadow='outline'
          d='flex' justifyContent='center'
          alignContent='center'>
-        <Box className='user-avt'>
+        <Box className='user-avt' w={'22%'}>
             <Image src={avt} w='250' h='250' boxShadow='2xl' m='10' borderRadius='50%' border='1px' borderColor='blue.300'></Image>
             <input  type='file' className='custom-file-input' /> 
         </Box>
-       <Box d='flex' justifyContent='center' alignItems='flex-start' w='50%' h='400' flexDirection='column'  flexGrow='2'>
+       <Box d='flex' justifyContent='center' alignItems='flex-start' h='400' w='360' flexDirection='column' >
         <Box maxH='300' className='box'>
         <Text maxH='100' >
             Full Name
@@ -43,10 +59,69 @@ function ProfileUser() {
             <Input type='text' placeholder={user.gender} className='text-inf'></Input>
         </Text>
         </Box>
+            <Button 
+            className='change-info'
+            h={'45px'}
+            w={'120px'}
+            mt={'10px'}
+            ml={'115px'}
+            >
+                <InitialFocus />
+            </Button>
+            <ToastContainer />
+       </Box> 
+       <Box className='schedule' w={'720px'} h={'410px'}>
+           {/* <Text textAlign={'center'} mt={'5px'}  >Schedule</Text>  */}
+           <Box className='tag-schedule'>
+                <Box className='infodoctor'>
+                    <Text>Dr Thanh</Text>
+                    <Text>Cadiologry</Text>
+                </Box>
+                <Box className='info-schdule'>
+                    <Text>Time: 10:00</Text>
+                    <Text>Date: 12/03</Text>
+                    <Text>Address: 12 Le Loi</Text>
+                </Box>
+           </Box>
+           <Box className='tag-schedule'>
+                <Box className='infodoctor'>
+                    <Text>Dr Thanh</Text>
+                    <Text>Cadiologry</Text>
+                </Box>
+                <Box className='info-schdule'>
+                    <Text>Time: 10:00</Text>
+                    <Text>Date: 12/03</Text>
+                    <Text>Address: 12 Le Loi</Text>
+                </Box>
+           </Box>
+           <Box className='tag-schedule'>
+                <Box className='infodoctor'>
+                    <Text>Dr Thanh</Text>
+                    <Text>Cadiologry</Text>
+                </Box>
+                <Box className='info-schdule'>
+                    <Text>Time: 10:00</Text>
+                    <Text>Date: 12/03</Text>
+                    <Text>Address: 12 Le Loi</Text>
+                </Box>
+           </Box>
+           <Box className='tag-schedule'>
+                <Box className='infodoctor'>
+                    <Text>Dr Thanh</Text>
+                    <Text>Cadiologry</Text>
+                </Box>
+                <Box className='info-schdule'>
+                    <Text>Time: 10:00</Text>
+                    <Text>Date: 12/03</Text>
+                    <Text>Address: 12 Le Loi</Text>
+                </Box>
+           </Box>
+       </Box>
         </Box>
-        </Box>
+        
     </Flex>
-  </>;
+  <Footer />
+  </>
 }
 
 export default ProfileUser;
