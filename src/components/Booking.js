@@ -19,6 +19,8 @@ import {
   import '../style/Booking.css'
   import '../responsive/Appointment.css'
 import { getValue } from '@testing-library/user-event/dist/utils';
+import InitialFocus from './Modal';
+import ConfirmAppointment from './ConfirmAppointment';
 export default function Booking(){
 
     const { id } = useParams();
@@ -117,6 +119,10 @@ export default function Booking(){
                             fontSize="lg">
                             Gender: {(api.gender)='true' ?<b>Male</b>:<b>Female</b>}
                         </Text>
+                        <Button mt='7px' as='a' href='/doctor' _hover={{
+                            backgroundColor:'blue.300',
+                            color:'white'
+                        }} >Change Doctor</Button>
                     </Box>
                     </>)
 
@@ -142,34 +148,34 @@ export default function Booking(){
                             marginTop="7"
                             color={useColorModeValue('gray.700', 'gray.200')}
                             fontSize="lg">
-                            Name:
+                            Name: Ho Quang DUng
                         </Text>
                         <Text
                             as="p"
                             marginTop="5"
                             color={useColorModeValue('gray.700', 'gray.200')}
                             fontSize="lg">
-                            Age:
+                            Age: 22
                         </Text>
                         <Text
                             as="p"
                             marginTop="5"
                             color={useColorModeValue('gray.700', 'gray.200')}
                             fontSize="lg">
-                            Phone:
+                            Phone: 037582670
                         </Text>
                         <Text
                             as="p"
                             marginTop="5"
                             color={useColorModeValue('gray.700', 'gray.200')}
                             fontSize="lg">
-                            Address:
+                            Address: Thanh Pho Hue
                         </Text>
                     </Box>
                 </Box>
                 <Box className='picker-comfirm'>
                     <Box className='date'>
-                        <Heading as="h3"mt={'10'} mb={'45'}>Chosse date</Heading>
+                        <Heading as="h3"mt={'10'} mb={'45'}>Choose date</Heading>
                         <DatePicker
 
                             selected={startDate}
@@ -183,7 +189,7 @@ export default function Booking(){
 
                     </Box>
                     <Box className='time-clinic'>
-                        <Heading as="h3"mt={'10'} mb={'45'}>Chosse time and clinic</Heading>
+                        <Heading as="h3"mt={'10'} mb={'45'}>Choose time and clinic</Heading>
                         <Box className='time'   >
                             <Button onClick={()=>{
                                 setTime('07:00 - 08:00')
@@ -220,7 +226,7 @@ export default function Booking(){
                                 <option  key="Ton Duc Thang, 23 Dien Bien Phu">Ton Duc Thang, 23 Dien Bien Phu</option>
                                 <option  key="Kim Anh, 23 Tran Phu">Kim Anh, 23 Tran Phu</option>
                             </select>
-                            <select  onChange={handleChange} name="danang" className='select-clinic'>
+                            {/* <select  onChange={handleChange} name="danang" className='select-clinic'>
                                 <option value="Da Nang city" hidden={'false'}>Da Nang city</option>
                                 <option value="Bach Ma, 12 Le Huan">Bach Ma, 12 Le Huan</option>
                                 <option value="Mai Anh, 45 Tran Hung Dao">Mai Anh, 45 Tran Hung Dao</option>
@@ -230,43 +236,43 @@ export default function Booking(){
                                 <option value="Ho Chi Minh city" selected>Ho Chi Minh city</option>
                                 <option value="Bach Lan, 12 Le Dai Hanh, Quan 1 ">Bach Lan, 12 Le Dai Hanh, Quan 1 </option>
                                 <option value="An Dinh, 65 Hoang Van Thu, Quan 7">An Dinh, 65 Hoang Van Thu, Quan 7</option>
-                            </select>
+                            </select> */}
                         </Box> 
                     </Box>
     <Box className='comfirm-appointment' flex='1' bg='' id='confirm'>
         <Heading as="h1" mt={'10'} mb={'10'}>Confirm appointment</Heading>
-        <Text fontSize={'20'} mt={'15'} className='name-customer'>Customer</Text>
+        <Text fontSize={'20'} mt={'15'} fontWeight='bold' className='name-customer'>Customer</Text>
         <Box className='wrapper-customer'>
         <Text
         as="p"
         marginTop="5"
         color={useColorModeValue('gray.700', 'gray.200')}
         fontSize="md">
-        Name:
+        Name: Ho Quang DUng
         </Text>
         <Text
         as="p"
         marginTop="5"
         color={useColorModeValue('gray.700', 'gray.200')}
         fontSize="md">
-        Age:
+        Age: 22
         </Text>
         <Text
         as="p"
         marginTop="5"
         color={useColorModeValue('gray.700', 'gray.200')}
         fontSize="md">
-        Address:
+        Address: Thanh Pho Hue
         </Text>
         <Text
         as="p"
         marginTop="5"
         color={useColorModeValue('gray.700', 'gray.200')}
         fontSize="md">
-        Phone:
+        Phone: 037582670
         </Text>         
         </Box>
-        <Text fontSize={'20'} mt={'15'} className='name-doctor'>Doctor</Text>
+        <Text fontSize={'20'} mt={'15'} fontWeight='bold' className='name-doctor'>Doctor</Text>
 
         {Api.map(api => (
                 <>
@@ -311,7 +317,7 @@ export default function Booking(){
 </>
 ))}
 
-        <Text fontSize={'20'} mt={'15'} className='name-datetime'>Datetime and clinic</Text>
+        <Text fontSize={'20'} mt={'15'} fontWeight='bold' className='name-datetime'>Datetime and clinic</Text>
         <Box className='wrapper-datetime'>
         <Text
         as="p"
@@ -335,7 +341,10 @@ export default function Booking(){
             Clinic:  {<b>{branch}</b>}
             </Text>        
         </Box>
-            <Button className='btn-confirm'>Confirm appointment</Button>
+      
+           
+            <ConfirmAppointment/>
+ 
         </Box> 
     </Box>
 </Box>

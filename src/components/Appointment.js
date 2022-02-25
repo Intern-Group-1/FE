@@ -187,6 +187,7 @@ const ArticleList = () => {
             fontSize="lg">
             Gender: {api.gender=='true'?<a>Nam</a>:<a>Nữ</a>}
           </Text>
+          <Button>Change Doc</Button>
         </Box>
       </Box>
       
