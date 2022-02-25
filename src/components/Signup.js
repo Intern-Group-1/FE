@@ -49,7 +49,7 @@ export const Signup = () => {
        console.log(loggedInUser)
 
        if (loggedInUser !== null) {
-         navigate('/home')
+         navigate('/profile')
        }
 
     } catch (error) {
