@@ -31,7 +31,7 @@ import {
   CloseIcon,
   ChevronDownIcon,
 
-  ChevronRightIcon, 
+  ChevronRightIcon,
 } from '@chakra-ui/icons';
 import { useState, useEffect } from 'react';
 import ApiCaller from '../utils/apiCaller';
@@ -40,7 +40,8 @@ import logo from '../assets/image/logo-doctor-care.png'
 import '../responsive/homepage/Navbar.css'
 import '../style/Navbar.css'
 export default function Navbar() {
-  
+
+
   const { isOpen, onToggle } = useDisclosure();
   const HandleLogout = () => {
     delete localStorage.token;
@@ -50,34 +51,35 @@ export default function Navbar() {
   const loggedInUser = localStorage.getItem('token');
 
 
-  window.onscroll = function() {};
+  window.onscroll = function () { };
 
-// function scrollFunction() {
-//   if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
-//     console.log(document.body.scrollTop);
-//     document.getElementById("navbar").style.paddingTop = "0px ";
-    
-//   } else {
-//     document.getElementById("navbar").style.paddingTop = "0px";
-   
-//   }
+  // function scrollFunction() {
+  //   if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+  //     console.log(document.body.scrollTop);
+  //     document.getElementById("navbar").style.paddingTop = "0px ";
 
-  
-// }
-const [Api, setApi] = useState([]);
+  //   } else {
+  //     document.getElementById("navbar").style.paddingTop = "0px";
 
-useEffect(() => {
+  //   }
+
+
+  // }
+
+  const [Api, setApi] = useState([]);
+
+  useEffect(() => {
     ApiCaller('get-all-speciality', 'GET')
-        .then(async res => {
-            console.log(res);
-            setApi(res.data.data)
-        })
-}, [])
+      .then(async res => {
+        console.log(res);
+        setApi(res.data.data)
+      })
+  }, [])
   return (
-    <Box   id='navbar'>
-   
+    <Box id='navbar'>
+
       <Flex
-       
+
         fontSize={'15px'}
         fontWeight={'bold'}
         boxShadow='xl' p='1' rounded='md' bg='white'
@@ -91,11 +93,11 @@ useEffect(() => {
         borderColor={useColorModeValue('gray.200', 'gray.900')}
         align={'center'}>
 
-        <Flex  
+        <Flex
           flex={{ base: 1, md: 'auto' }}
           ml={{ base: -2 }}
           display={{ base: 'flex', md: 'none' }}>
-          <IconButton 
+          <IconButton
             onClick={onToggle}
             icon={
               isOpen ? <CloseIcon w={3} h={3} /> : <HamburgerIcon w={5} h={5} />
@@ -104,21 +106,21 @@ useEffect(() => {
             aria-label={'Toggle Navigation'}
           />
         </Flex>
-        
+
         <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }}>
           <Box
-          as='a'
-          href='/home'
+            as='a'
+            href='/home'
             w='100px'
           >
             <Image ml='50px'
-            mt='5px'
+              mt='5px'
               // boxSize='50px'
               alt={'Login Image'}
               objectFit={'cover'}
               src={logo}
-              
-              
+
+
             />
           </Box>
 
@@ -134,55 +136,55 @@ useEffect(() => {
           spacing={6}>
           {loggedInUser ?
             <>
-                <Flex >
-                
-          <Menu>
-            <MenuButton 
-           
-             mr={'20px'}
-              py={1}
-              transition="all 0.3s"
-              _focus={{ boxShadow: 'none' }}>
-              <HStack>
-                <Avatar
-                  // className='img-nav'
-                  size={'sm'}
-                  src={
-                    'https://images.unsplash.com/photo-1619946794135-5bc917a27793?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=b616b2c5b373a80ffc9636ba24f7a4a9'
-                  }
-                />
-                <VStack
-                  width={'50px'}
-                  display={{ base: 'none', md: 'flex' }}
-                  alignItems="flex-start"
-                  spacing="1px"
-                  ml="2">
-                  <Text fontSize="sm">Tên</Text>
-                  <Text fontSize="xs" color="gray.600">
-                    Customer
-                  </Text>
-                
-                </VStack>
-                <Box display={{ base: 'none', md: 'flex' }}>
-                <FiChevronDown />
-                </Box>
-              </HStack>
-            </MenuButton>
-            <MenuList
-             border={'0.5px'}
-              bg={'white'}
-              // borderColor={'gray.700'}
-              >
-              <MenuItem as='a' color={'black'} fontWeight='normal' href={'/profile'}>Profile</MenuItem>
-              <MenuItem as='a' color={'black'} fontWeight='normal' href={'/#'} >Settings</MenuItem>
-              <MenuItem as='a' color={'black'} fontWeight='normal' href={'/#'}>Billing</MenuItem>
-              <MenuDivider/>
-              <MenuItem color={'blue.500'} _hover={{
-                backgroundColor:'blue.100'
-              }} onClick={HandleLogout}>Sign out</MenuItem>
-            </MenuList>
-          </Menu>
-        </Flex>
+              <Flex >
+
+                <Menu>
+                  <MenuButton
+
+                    mr={'20px'}
+                    py={1}
+                    transition="all 0.3s"
+                    _focus={{ boxShadow: 'none' }}>
+                    <HStack>
+                      <Avatar
+                        // className='img-nav'
+                        size={'sm'}
+                        src={
+                          'https://images.unsplash.com/photo-1619946794135-5bc917a27793?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=b616b2c5b373a80ffc9636ba24f7a4a9'
+                        }
+                      />
+                      <VStack
+                        minW={'120px'}
+                        display={{ base: 'none', md: 'flex' }}
+                        alignItems="flex-start"
+                        spacing="1px"
+                        ml="2">
+                        <Text fontSize="sm">Ho Quang DUng</Text>
+                        <Text fontSize="xs" color="gray.600">
+                          Customer
+                        </Text>
+
+                      </VStack>
+                      <Box display={{ base: 'none', md: 'flex' }}>
+                        <FiChevronDown />
+                      </Box>
+                    </HStack>
+                  </MenuButton>
+                  <MenuList
+                    border={'0.5px'}
+                    bg={'white'}
+                  // borderColor={'gray.700'}
+                  >
+                    <MenuItem as='a' color={'black'} fontWeight='normal' href={'/profile'}>Profile</MenuItem>
+                    <MenuItem as='a' color={'black'} fontWeight='normal' href={'/#'} >Settings</MenuItem>
+                    <MenuItem as='a' color={'black'} fontWeight='normal' href={'/#'}>Billing</MenuItem>
+                    <MenuDivider />
+                    <MenuItem color={'blue.500'} _hover={{
+                      backgroundColor: 'blue.100'
+                    }} onClick={HandleLogout}>Sign out</MenuItem>
+                  </MenuList>
+                </Menu>
+              </Flex>
             </>
             :
             <>
@@ -208,10 +210,10 @@ useEffect(() => {
                 }}>
                 Sign up
               </Button>
-            
+
             </>
           }
-       </Stack>
+        </Stack>
       </Flex>
 
       <Collapse in={isOpen} animateOpacity>
@@ -222,10 +224,32 @@ useEffect(() => {
 }
 
 const DesktopNav = () => {
+  const about = [{
+
+    label: 'Address',
+    href: '#'
+  }, {
+    label: 'Phone',
+    href: '#'
+  }, {
+    label: 'Reference',
+    href: '#'
+  }, {
+    label: 'Fanpage',
+    href: '#'
+  }]
   const linkColor = useColorModeValue('#1872a4', 'gray.200');
   const linkHoverColor = useColorModeValue('#15bbe0', 'white');
   const popoverContentBgColor = useColorModeValue('white', 'gray.800');
+  const [Api, setApi] = useState([]);
 
+  useEffect(() => {
+    ApiCaller('get-all-speciality', 'GET')
+      .then(async res => {
+        console.log(res);
+        setApi(res.data.data)
+      })
+  }, [])
   return (
     <Stack pl='100px' direction={'row'} spacing={4}>
       {NAV_ITEMS.map((navItem) => (
@@ -233,19 +257,19 @@ const DesktopNav = () => {
           <Popover trigger={'hover'} placement={'bottom-start'} >
             <PopoverTrigger>
               <Link
-               
+
                 p={2}
                 href={navItem.href ?? '#'}
                 fontSize={'lm'}
                 fontWeight={500}
                 color={linkColor}
-               
-               
 
-              
+
+
+
                 _hover={{
                   textDecoration: 'none',
-                
+
                   color: linkHoverColor,
                 }}>
                 {navItem.label}
@@ -264,23 +288,30 @@ const DesktopNav = () => {
 
                 <Stack>
 
-                  {navItem.children.map((child) => (
-                    <DesktopSubNav key={child.label} {...child} />
+                  {Api.map(child => (
+                  <DesktopSubNav key={child._id} name={child.name} />
+                   
                   ))}
+
                 </Stack>
+               
               </PopoverContent>
+
             )}
           </Popover>
+
+
         </Box>
       ))}
     </Stack>
   );
 };
 
-const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
+const DesktopSubNav = (props) => {
+
   return (
     <Link
-      href={href}
+      // href={href}
       role={'group'}
       display={'block'}
       p={2}
@@ -292,7 +323,7 @@ const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
             transition={'all .3s ease'}
             _groupHover={{ color: 'blue.500' }}
             fontWeight={500}>
-            {label}
+            {props.name}
           </Text>
           {/* <Text fontSize={'sm'}>{subLabel}</Text> */}
         </Box>
@@ -306,7 +337,7 @@ const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
           flex={1}>
           <Icon color={'blue.500'} w={5} h={5} as={ChevronRightIcon} />
         </Flex>
-        
+
       </Stack>
 
     </Link>
@@ -314,13 +345,22 @@ const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
 };
 
 const MobileNav = () => {
+  const [Api, setApi] = useState([]);
+
+  useEffect(() => {
+    ApiCaller('get-all-speciality', 'GET')
+      .then(async res => {
+        console.log(res);
+        setApi(res.data.data)
+      })
+  }, [])
   return (
     <Stack
-      bg={useColorModeValue('white', 'gray.800')} 
+      bg={useColorModeValue('white', 'gray.800')}
       p={4}
       display={{ md: 'none' }}
-      // id='navbar'
-      >
+    // id='navbar'
+    >
       {NAV_ITEMS.map((navItem) => (
         <MobileNavItem key={navItem.label} {...navItem} />
       ))}
@@ -330,9 +370,17 @@ const MobileNav = () => {
 
 const MobileNavItem = ({ label, children, href }: NavItem) => {
   const { isOpen, onToggle } = useDisclosure();
+  const [Api, setApi] = useState([]);
 
+  useEffect(() => {
+    ApiCaller('get-all-speciality', 'GET')
+      .then(async res => {
+        console.log(res);
+        setApi(res.data.data)
+      })
+  }, [])
   return (
-    <Stack spacing={4} onClick={children && onToggle} > 
+    <Stack spacing={4} onClick={children && onToggle} >
       <Flex
         py={2}
         as={Link}
@@ -366,16 +414,16 @@ const MobileNavItem = ({ label, children, href }: NavItem) => {
           borderStyle={'solid'}
           borderColor={useColorModeValue('gray.200', 'gray.700')}
           align={'start'}>
-          {children &&
-            children.map((child) => (
-              <Link key={child.label} py={2} href={child.href}>
-                {child.label}
+          {
+            Api.map((child) => (
+              <Link key={child._id} py={2} >
+                {child.name}
               </Link>
             ))}
         </Stack>
 
       </Collapse>
-      
+
     </Stack>
 
   );
@@ -390,17 +438,18 @@ interface NavItem {
 
 
 const NAV_ITEMS: Array<NavItem> = [
-  
+
+
   {
     label: 'Home',
     href: '/home',
 
   },
-  { 
+  {
     label: 'Speciality',
     children: [
-      { 
-        label: 'Cardiologist',
+      {
+        label: '{a}',
         subLabel: 'Trending Design to inspire you',
         href: '#',
       },
@@ -423,26 +472,26 @@ const NAV_ITEMS: Array<NavItem> = [
   {
     label: 'About',
     children: [
-      {
-        label: 'Address',
-        subLabel: 'Find your dream design job',
-        href: '#',
-      },
-      {
-        label: 'Phone',
-        subLabel: 'An exclusive list for contract work',
-        href: '#',
-      },
-      {
-        label: 'Reference',
-        subLabel: 'An exclusive list for contract work',
-        href: '#',
-      },
-      {
-        label: 'Fanpage',
-        subLabel: 'An exclusive list for contract work',
-        href: '#',
-      },
+      // {
+      //   label: 'Address',
+      //   subLabel: 'Find your dream design job',
+      //   href: '#',
+      // },
+      // {
+      //   label: 'Phone1',
+      //   subLabel: 'An exclusive list for contract work',
+      //   href: '#',
+      // },
+      // {
+      //   label: 'Reference',
+      //   subLabel: 'An exclusive list for contract work',
+      //   href: '#',
+      // },
+      // {
+      //   label: 'Fanpage',
+      //   subLabel: 'An exclusive list for contract work',
+      //   href: '#',
+      // },
     ],
   },
 ];

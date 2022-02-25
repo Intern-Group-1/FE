@@ -42,7 +42,7 @@ export const Signup = () => {
       console.log(data);
        if (data) {
          localStorage.setItem('token', data.data.data.tokens[0].token)
-         //localStorage.setItem('user', data.data.data._id)
+         localStorage.setItem('user', data.data.data._id)
 
        }
        var loggedInUser = localStorage.getItem('token');

@@ -14,18 +14,25 @@ const handleSignUpAPI = (email, password,password_1,role)=>{
         console.log(error)
     }
 }
-// const handleCreateUser = (full_name,address,phone_number,account)=>{
-    
+// const handleCreateUser = (full_name, address, phone_number,gender,avatar,age)=>{
 //     try {
-//         return axios.post('http://localhost:5000/api/create-user', {full_name,address,phone_number,account},{
-//             headers: {
-//                 'Authorization': `Bearer ${token}` 
-//               }
-//         })
+//         return axios.post('https://be-doctor-care-v3.herokuapp.com/api/create-user', {full_name, address, phone_number,gender,avatar,age})
 //     } catch (error) {
 //         console.log(error)
 //     }
 // }
+const handleCreateUser = (full_name,address,phone_number,gender,age,account)=>{
+    
+    try {
+        return axios.post('https://be-doctor-care-v3.herokuapp.com/api/create-user', {full_name, address, phone_number,gender,age,account},{
+            headers: {
+                'Authorization': `Bearer ${token}` 
+              }
+        })
+    } catch (error) {
+        console.log(error)
+    }
+}
 
 // const handleGetUserId = (id)=>{
 //     console.log(token)
@@ -43,6 +50,6 @@ const handleSignUpAPI = (email, password,password_1,role)=>{
 export {
     handleLoginAPI
     ,handleSignUpAPI
-    // ,handleCreateUser
+    ,handleCreateUser
     // ,handleGetUserId
 }

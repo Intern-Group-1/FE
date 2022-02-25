@@ -1,84 +1,143 @@
 import {
-    Modal,
-    ModalOverlay,
-    ModalContent,
-    ModalHeader,
-    ModalFooter,
-    ModalBody,
-    ModalCloseButton,
-    useDisclosure,
-    FormLabel,
-    FormControl,
-    Input,
-    Button,
-    Box,
-    Image
-  } from '@chakra-ui/react'
-import React from 'react';
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  useDisclosure,
+  FormLabel,
+  FormControl,
+  Input,
+  Button,
+  Box,
+  Image
+} from '@chakra-ui/react'
+import React, { useState } from 'react';
 import avt from '../assets/image/Doctor.jpg'
 import '../style/input-file.css'
+import "react-widgets/styles.css";
+import Combobox from "react-widgets/Combobox";
+import { handleCreateUser } from '../services/User';
+import { ToastContainer, toast } from 'react-toastify';
 
-    
-  
+
+
+
 
 function InitialFocus() {
-    const { isOpen, onOpen, onClose } = useDisclosure()
-  
-    const initialRef = React.useRef()
-    const finalRef = React.useRef()
-  
-    return (
-      <>
-
-        <Button onClick={onOpen}>Confirm</Button>
-  
-
-        <Modal
-          initialFocusRef={initialRef}
-          finalFocusRef={finalRef}
-          isOpen={isOpen}
-          onClose={onClose}
-        >
-          <ModalOverlay />
-          <ModalContent>
-            <ModalHeader>Change your infomation</ModalHeader>
-            <ModalCloseButton />
-            <ModalBody pb={6}>
-              <FormControl>
-                <FormLabel>Full name</FormLabel>
-                <Input ref={initialRef} placeholder='Full name' />
-              </FormControl>
-  
-              <FormControl mt={4}>
-                <FormLabel>Address</FormLabel>
-                <Input placeholder='Address' />
-              </FormControl>
-
-              <FormControl mt={4}>
-                <FormLabel>Phone</FormLabel>
-                <Input placeholder='Phone' />
-              </FormControl>
-
-              <FormControl mt={4}>
-                <FormLabel>Gender</FormLabel>
-                <Input placeholder='Gender' />
-              </FormControl>
-            </ModalBody>
-  
-            <ModalFooter>
-              <Button colorScheme='blue' mr={3}>
-                Save
-              </Button>
-              <Button onClick={onClose}>Cancel</Button>
-            </ModalFooter>
-          </ModalContent>
-        </Modal>
-
-        {/* </Box> */}
-      </>
-     
-
-    )
+  const [fullname, setFullname] = useState('')
+  const [address, setAddress] = useState('')
+  const [phone, setPhone] = useState('')
+  const [sex, setSex] = useState('')
+  const [avt, setAvt] = useState('')
+  const handleFullNameInput = e => {
+    setFullname(e.target.value);
   }
+  const handleAddressInput = e => {
+    setAddress(e.target.value);
 
-  export default InitialFocus;
+  }
+  const handlePhoneInput = e => {
+    setPhone(e.target.value);
+
+  }
+  const handleGenderInput = e => {
+    setSex(e.target.value);
+
+  }
+  const handleAvtInput = e => {
+    setAvt(e.target.value);
+
+  }
+  
+  const handleCreate = async () => {
+    
+    const account=localStorage.getItem('user');
+   
+    console.log(account);
+    console.log(fullname, address, phone, gender, avt);
+    try {
+      console.log('kkkk');
+      setOpen(onClose)
+      const data = await handleCreateUser(fullname, address, phone, true, 23,account)
+      console.log(data);
+      console.log('thanh cong');     
+      if (data) {
+        localStorage.getItem('user');
+        localStorage.setItem('Id_user',data.data.data[0]._id);
+      }  
+      console.log( localStorage.getItem('Id_user'));
+      toast.success("Successful!");
+    } catch (error) {
+      console.log('thất bại');
+      toast.error("Failed!");
+    }
+  }
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const [open,setOpen]=useState('');
+  const [gender, setGender] = useState('')
+  const initialRef = React.useRef()
+  const finalRef = React.useRef()
+  let genderlist = ['Female', 'Male'];
+  return (
+    <>
+      <Button onClick={onOpen}>Edit Profile</Button>
+      <Modal
+        initialFocusRef={initialRef}
+        finalFocusRef={finalRef}
+        isOpen={isOpen}
+        onClose={open}
+      >
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Change your infomation</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody pb={6}>
+            <FormControl>
+              <FormLabel>Full name</FormLabel>
+              <Input ref={initialRef} placeholder='Full name' onChange={handleFullNameInput} />
+            </FormControl>
+
+            <FormControl mt={4}>
+              <FormLabel>Address</FormLabel>
+              <Input placeholder='Address' onChange={handleAddressInput} />
+            </FormControl>
+
+            <FormControl mt={4}>
+              <FormLabel>Phone</FormLabel>
+              <Input placeholder='Phone' onChange={handlePhoneInput} />
+            </FormControl>
+            <FormControl mt={4}>
+              <FormLabel>Gender</FormLabel>
+              <Combobox
+                data={genderlist}
+                value={gender}
+                onChange={gender => setGender(gender)}
+              />
+            </FormControl>
+            <FormControl mt={4}>
+              <FormLabel>avt</FormLabel>
+              <Input name='avatar' type={'file'} onChange={handleAvtInput}></Input>
+            </FormControl>
+
+          </ModalBody>
+
+          <ModalFooter>
+            <Button colorScheme='blue' mr={3} onClick={handleCreate}>
+              Save
+            </Button>
+            <Button onClick={onClose}>Cancel</Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+
+      {/* </Box> */}
+    </>
+
+
+  )
+}
+
+export default InitialFocus;

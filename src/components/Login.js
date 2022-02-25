@@ -54,7 +54,7 @@ function SimpleCard() {
   const handleLogin = async () => {
     try {
       const data = await handleLoginAPI(username, password)
-      console.log(data);
+      console.log(data.data.data._id);
       if (data) {
         localStorage.setItem('token', data.data.data.tokens[0].token)
         localStorage.setItem('user', data.data.data._id)

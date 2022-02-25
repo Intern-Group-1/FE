@@ -17,14 +17,13 @@
     grid-template-columns: 250px 400px;
 }
 .img-doctor{
-    width: 190px;
+    width: 200px;
     margin: 20px 20px 0 0px;
-    border-radius: 50%;
-    height: 190px;
-    box-shadow: 2px 2px 5px #4a4040;
 }
 .info-customer{
     width: 600px !important;
+    padding-left: 35px;
+    border-left: 2px rgb(214, 217, 219) dashed;
 }
 /* .wrapper-info-doctor{
     grid-row: 1 / span 2;
