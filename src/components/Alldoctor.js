@@ -28,7 +28,7 @@ import { ToastContainer, toast } from 'react-toastify';
       })
     },[])
 
-    const loggedInUser = localStorage.getItem('token');
+    const loggedInUser = sessionStorage.getItem('token');
     const book1=(e)=>{
 
 

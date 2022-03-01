@@ -36,7 +36,7 @@ import {
 import { useState, useEffect } from 'react';
 import ApiCaller from '../utils/apiCaller';
 import logo from '../assets/image/logo-doctor-care.png'
-
+import Session from 'react-session-api'
 import '../responsive/homepage/Navbar.css'
 import '../style/Navbar.css'
 export default function Navbar() {
@@ -45,12 +45,14 @@ export default function Navbar() {
   const { isOpen, onToggle } = useDisclosure();
   const HandleLogout = () => {
     delete localStorage.token;
+    
     window.location.href = '/home';
   }
-  console.log(localStorage.token)
-  const loggedInUser = localStorage.getItem('token');
-
-
+  console.log(sessionStorage.token)
+  const  loggedInUser =  localStorage.getItem('token');
+  const InUser = localStorage.getItem('user');
+  console.log('id local');
+  console.log(InUser);
   window.onscroll = function () { };
 
   // function scrollFunction() {
@@ -75,6 +77,21 @@ export default function Navbar() {
         setApi(res.data.data)
       })
   }, [])
+  console.log(localStorage.user);
+  const [user, setUser] = useState([]);
+
+
+  useEffect(() => {
+    ApiCaller('get-all-user', 'GET')
+      .then(async res => {
+        console.log(res);
+
+        setUser(res.data.data)
+        console.log('id là ');
+        console.log(res.data.data);
+      })
+
+  }, []);
   return (
     <Box id='navbar'>
 
@@ -159,7 +176,16 @@ export default function Navbar() {
                         alignItems="flex-start"
                         spacing="1px"
                         ml="2">
-                        <Text fontSize="sm">Ho Quang DUng</Text>
+                        {user.map(u => (
+                              <>
+                              {(u._id==sessionStorage.Id_user)
+                              ? 
+                              
+                              <Text fontSize="sm">{u.full_name}</Text>
+                              
+                                  :<></>    
+                                  }   </>))}
+                        
                         <Text fontSize="xs" color="gray.600">
                           Customer
                         </Text>
@@ -289,12 +315,12 @@ const DesktopNav = () => {
                 <Stack>
 
                   {Api.map(child => (
-                  <DesktopSubNav key={child._id} name={child.name} />
-                   
+                    <DesktopSubNav key={child._id} name={child.name} />
+
                   ))}
 
                 </Stack>
-               
+
               </PopoverContent>
 
             )}
@@ -472,26 +498,7 @@ const NAV_ITEMS: Array<NavItem> = [
   {
     label: 'About',
     children: [
-      // {
-      //   label: 'Address',
-      //   subLabel: 'Find your dream design job',
-      //   href: '#',
-      // },
-      // {
-      //   label: 'Phone1',
-      //   subLabel: 'An exclusive list for contract work',
-      //   href: '#',
-      // },
-      // {
-      //   label: 'Reference',
-      //   subLabel: 'An exclusive list for contract work',
-      //   href: '#',
-      // },
-      // {
-      //   label: 'Fanpage',
-      //   subLabel: 'An exclusive list for contract work',
-      //   href: '#',
-      // },
+    
     ],
   },
 ];

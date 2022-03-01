@@ -18,20 +18,21 @@ import React, { useState } from 'react';
 import avt from '../assets/image/Doctor.jpg'
 import '../style/input-file.css'
 import "react-widgets/styles.css";
+import { useNavigate } from 'react-router-dom'
 import Combobox from "react-widgets/Combobox";
 import { handleCreateUser } from '../services/User';
 import { ToastContainer, toast } from 'react-toastify';
-
-
-
-
+import axios from 'axios'
+import Session from 'react-session-api'
 
 function InitialFocus() {
   const [fullname, setFullname] = useState('')
   const [address, setAddress] = useState('')
   const [phone, setPhone] = useState('')
-  const [sex, setSex] = useState('')
+  const [gender, setSex] = useState('')
   const [avt, setAvt] = useState('')
+
+  const navigate = useNavigate()
   const handleFullNameInput = e => {
     setFullname(e.target.value);
   }
@@ -47,37 +48,48 @@ function InitialFocus() {
     setSex(e.target.value);
 
   }
-  const handleAvtInput = e => {
-    setAvt(e.target.value);
+  const handleAvtInput = e => 
+    { 
+    setAvt(e.target.files[0]);
 
   }
-  
+  console.log(avt)
+  console.log(avt)
   const handleCreate = async () => {
     
-    const account=localStorage.getItem('user');
-   
-    console.log(account);
-    console.log(fullname, address, phone, gender, avt);
+    const account= Session.get('user');
+    const data = new FormData();
+    data.append("full_name", fullname)
+    data.append("address", address)
+    data.append("phone_number", phone)
+    data.append("gender", gender)
+    data.append("file", avt)
+    data.append("account", account)
     try {
-      console.log('kkkk');
-      setOpen(onClose)
-      const data = await handleCreateUser(fullname, address, phone, true, 23,account)
-      console.log(data);
-      console.log('thanh cong');     
-      if (data) {
-        localStorage.getItem('user');
-        localStorage.setItem('Id_user',data.data.data[0]._id);
+     
+      console.log('ahai');
+      const data1 = await handleCreateUser(data)
+          console.log(data1)
+      if (data1) {
+        console.log('thanh cong'); 
+        console.log( localStorage.getItem('user'));  
+        toast.success("Successful!");
+        navigate('/home') 
+        console.log('KHONG CO');
+        console.log(data1.data.data);
+        localStorage.setItem('Id_user',data1.data.data[0]._id)
+        console.log( localStorage.setItem('Id_user',data1.data.data[0]._id));
+        
       }  
-      console.log( localStorage.getItem('Id_user'));
       toast.success("Successful!");
+      navigate('/home')  
     } catch (error) {
-      console.log('thất bại');
       toast.error("Failed!");
     }
   }
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [open,setOpen]=useState('');
-  const [gender, setGender] = useState('')
+ 
   const initialRef = React.useRef()
   const finalRef = React.useRef()
   let genderlist = ['Female', 'Male'];
@@ -93,7 +105,7 @@ function InitialFocus() {
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>Change your infomation</ModalHeader>
-          <ModalCloseButton />
+          <ModalCloseButton onClick={onClose} />
           <ModalBody pb={6}>
             <FormControl>
               <FormLabel>Full name</FormLabel>
@@ -107,21 +119,20 @@ function InitialFocus() {
 
             <FormControl mt={4}>
               <FormLabel>Phone</FormLabel>
-              <Input placeholder='Phone' onChange={handlePhoneInput} />
+              <Input placeholder='Phone'  onChange={handlePhoneInput} />
             </FormControl>
             <FormControl mt={4}>
               <FormLabel>Gender</FormLabel>
               <Combobox
-                data={genderlist}
-                value={gender}
-                onChange={gender => setGender(gender)}
+                // data={genderlist}
+                // value={gender}
+                // onChange={gender => setGender(gender)}
               />
             </FormControl>
             <FormControl mt={4}>
-              <FormLabel>avt</FormLabel>
-              <Input name='avatar' type={'file'} onChange={handleAvtInput}></Input>
+              <FormLabel>Avatar</FormLabel>
+              <Input id ='file' type={'file'} onChange={handleAvtInput}></Input>
             </FormControl>
-
           </ModalBody>
 
           <ModalFooter>
@@ -131,9 +142,7 @@ function InitialFocus() {
             <Button onClick={onClose}>Cancel</Button>
           </ModalFooter>
         </ModalContent>
-      </Modal>
-
-      {/* </Box> */}
+      </Modal> 
     </>
 
 

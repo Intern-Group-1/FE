@@ -28,6 +28,7 @@ import Navbar from './Navbar';
 import Signup from './Signup';
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import Session from 'react-session-api'
 import { handleLoginAPI } from '../services/User'
 import bg from '../assets/image/backgroundLogin.jpg'
 import gif from '../assets/image/heart.gif'
@@ -57,7 +58,9 @@ function SimpleCard() {
       console.log(data.data.data._id);
       if (data) {
         localStorage.setItem('token', data.data.data.tokens[0].token)
-        localStorage.setItem('user', data.data.data._id)
+        Session.set('user', data.data.data._id)
+        console.log('datala');
+        console.log(data.data.data);
 
       }
       var loggedInUser = localStorage.getItem('token');
@@ -72,18 +75,7 @@ function SimpleCard() {
     } catch (error) {
      
           toast.error("Login failed!");
-     
-    
-      //console.log(error);
-      // if (error) {
-      //   if (error.response) {
-      //     if (error.response.data) {
-      //       console.log(error.response.data);
-      //       setMessage(error.response.data.message);
-           
-      //     }
-      //   }
-      // }
+
      
     }
   }

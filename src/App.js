@@ -15,11 +15,14 @@ import Alldoctor from "./components/Alldoctor";
 
 import {rt,Datepicker} from "./components/Datepicker";
 import Book from "./components/book";
-import InitialFocus from "./components/Modal";
+import InitialFocus2 from "./components/updateprofile";
 
 // import ArticleList from "./components/Booking"
 
 import Booking from "./components/Booking"
+
+
+import Infor from "./components/updateprofile";
 
 function App() {
  
@@ -34,14 +37,17 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/signin" element={<Login />} />
         <Route path="/contact" element={<ContactFormWithSocialButtons />} />
-        <Route path="/profile" element={<ProfileUser />} />
+        <Route path="/profile" element={<ProfileUser />} >
+        
+          
+          </Route>      <Route path="/profile/user" element={<InitialFocus2/>}/>
         <Route path="/home" element={<Home />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/doctor" element={<Alldoctor />} />
 
         <Route path="/test" element={<Booking />} />
         <Route path='/test/:id' element={<Booking />} />
-       
+        
 
       </Routes>
 

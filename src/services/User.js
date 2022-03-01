@@ -1,5 +1,6 @@
 import axios from 'axios'
-var token = localStorage.getItem('token');
+import Session from 'react-session-api'
+
 const handleLoginAPI = (email, password)=>{
     try {
         return axios.post('https://be-doctor-care-v3.herokuapp.com/api/login', {email, password})
@@ -9,6 +10,7 @@ const handleLoginAPI = (email, password)=>{
 }
 const handleSignUpAPI = (email, password,password_1,role)=>{
     try {
+        
         return axios.post('https://be-doctor-care-v3.herokuapp.com/api/register', {email, password, password_1,role})
     } catch (error) {
         console.log(error)
@@ -21,14 +23,17 @@ const handleSignUpAPI = (email, password,password_1,role)=>{
 //         console.log(error)
 //     }
 // }
-const handleCreateUser = (full_name,address,phone_number,gender,age,account)=>{
+const handleCreateUser = async (data)=>{
     
     try {
-        return axios.post('https://be-doctor-care-v3.herokuapp.com/api/create-user', {full_name, address, phone_number,gender,age,account},{
+        const  token = Session.get('token');
+       return  axios.post('https://be-doctor-care-v3.herokuapp.com/api/create-user/', data,{
             headers: {
-                'Authorization': `Bearer ${token}` 
+                'Authorization': `Bearer ${token}`,
               }
         })
+        .then(res => console.log(res))
+        .catch(err => console.log(err))        
     } catch (error) {
         console.log(error)
     }
