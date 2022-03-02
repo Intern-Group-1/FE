@@ -44,8 +44,8 @@ export const Signup = () => {
       const data = await handleSignUpAPI(email, password, confirmPassword, 'customer')
       console.log( data.data.data);
       if (data) {
-        localStorage.setItem('token', data.data.data.tokens[0].token)
-        localStorage.setItem('user', data.data.data._id)
+        Session.set('token', data.data.data.tokens[0].token)
+        Session.set('user', data.data.data._id)
 
       }
       var loggedInUser = Session.get('token');

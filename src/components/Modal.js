@@ -18,21 +18,16 @@ import React, { useState } from 'react';
 import avt from '../assets/image/Doctor.jpg'
 import '../style/input-file.css'
 import "react-widgets/styles.css";
-import { useNavigate } from 'react-router-dom'
 import Combobox from "react-widgets/Combobox";
-import { handleCreateUser } from '../services/User';
+import { handleCreateUser, handleGetUserId } from '../services/User';
 import { ToastContainer, toast } from 'react-toastify';
-import axios from 'axios'
 import Session from 'react-session-api'
-
 function InitialFocus() {
   const [fullname, setFullname] = useState('')
   const [address, setAddress] = useState('')
   const [phone, setPhone] = useState('')
-  const [gender, setSex] = useState('')
+  const [gender, setSex] = useState(true)
   const [avt, setAvt] = useState('')
-
-  const navigate = useNavigate()
   const handleFullNameInput = e => {
     setFullname(e.target.value);
   }
@@ -53,37 +48,32 @@ function InitialFocus() {
     setAvt(e.target.files[0]);
 
   }
-  console.log(avt)
-  console.log(avt)
-  const handleCreate = async () => {
-    
-    const account= Session.get('user');
-    const data = new FormData();
-    data.append("full_name", fullname)
-    data.append("address", address)
-    data.append("phone_number", phone)
-    data.append("gender", gender)
-    data.append("file", avt)
-    data.append("account", account)
+  const account= Session.get('user')
+  console.log(Session.get('token'))
+
+  //const dt = await handleGetUserId(account)
+
+  const handleCreate = async (req, res) => {
+    const da_ta = new FormData();
+    da_ta.append("full_name", fullname)
+    da_ta.append("address", address)
+    da_ta.append("phone_number", phone)
+    da_ta.append("gender", gender)
+    da_ta.append("file", avt)
+    da_ta.append("account", account)
     try {
-     
-      console.log('ahai');
-      const data1 = await handleCreateUser(data)
-          console.log(data1)
-      if (data1) {
-        console.log('thanh cong'); 
-        console.log( localStorage.getItem('user'));  
+      setOpen(onClose)
+      const data = await handleCreateUser(da_ta)
+      
+       console.log(data)
+      if (data) {
         toast.success("Successful!");
-        navigate('/home') 
-        console.log('KHONG CO');
-        console.log(data1.data.data);
-        localStorage.setItem('Id_user',data1.data.data[0]._id)
-        console.log( localStorage.setItem('Id_user',data1.data.data[0]._id));
-        
+        console.log(data.data.data[0]._id)
+        Session.set('id_user',data.data.data[0]._id)
       }  
-      toast.success("Successful!");
-      navigate('/home')  
+     
     } catch (error) {
+      console.log(error)
       toast.error("Failed!");
     }
   }
@@ -105,7 +95,7 @@ function InitialFocus() {
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>Change your infomation</ModalHeader>
-          <ModalCloseButton onClick={onClose} />
+          <ModalCloseButton />
           <ModalBody pb={6}>
             <FormControl>
               <FormLabel>Full name</FormLabel>
@@ -119,7 +109,7 @@ function InitialFocus() {
 
             <FormControl mt={4}>
               <FormLabel>Phone</FormLabel>
-              <Input placeholder='Phone'  onChange={handlePhoneInput} />
+              <Input placeholder='Phone' onChange={handlePhoneInput} />
             </FormControl>
             <FormControl mt={4}>
               <FormLabel>Gender</FormLabel>
@@ -130,7 +120,7 @@ function InitialFocus() {
               />
             </FormControl>
             <FormControl mt={4}>
-              <FormLabel>Avatar</FormLabel>
+              <FormLabel>avt</FormLabel>
               <Input id ='file' type={'file'} onChange={handleAvtInput}></Input>
             </FormControl>
           </ModalBody>

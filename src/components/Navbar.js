@@ -45,12 +45,14 @@ export default function Navbar() {
   const { isOpen, onToggle } = useDisclosure();
   const HandleLogout = () => {
     delete localStorage.token;
+    delete localStorage.byToken
     
     window.location.href = '/home';
   }
-  console.log(sessionStorage.token)
+
   const  loggedInUser =  localStorage.getItem('token');
-  const InUser = localStorage.getItem('user');
+  console.log('token la'+loggedInUser);
+  const InUser = Session.get('user');
   console.log('id local');
   console.log(InUser);
   window.onscroll = function () { };
@@ -178,7 +180,7 @@ export default function Navbar() {
                         ml="2">
                         {user.map(u => (
                               <>
-                              {(u._id==sessionStorage.Id_user)
+                              {(u._id==Session.Id_user)
                               ? 
                               
                               <Text fontSize="sm">{u.full_name}</Text>

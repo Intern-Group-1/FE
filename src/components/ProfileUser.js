@@ -18,14 +18,14 @@ import {
   import avt from '../assets/image/client.png'
   import { ToastContainer, toast } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
+  import { handleCreateUser, handleGetUserId } from '../services/User';
 
 toast.configure()
 function ProfileUser() {
     console.log('id là use: ');
-   console.log(localStorage.getItem('user')); 
+   console.log(Session.get('user')); 
     const [Api, setApi] = useState([]);
-
-    
+    const [id,setID]=useState('');
     useEffect(() => {
         ApiCaller('get-all-user', 'GET')
             .then(async res => {
@@ -44,11 +44,24 @@ function ProfileUser() {
         
     }
     //Id_user=_id rồi,  map roi thôi
+
+    const byID= async ()=>{
+        localStorage.getItem('token')
+        console.log( localStorage.getItem('token'));
+        const data2= await handleGetUserId()
+        console.log('haha');
+        console.log(data2.data.data);
+        localStorage.setItem('byToken',data2.data.data._id)
+       
+    }
+
+
+
   return <>
     <Navbar />
     <Flex >
         
-    
+       
 
        
         <Box className='container-profile'  w='90%' h='50%' m='5%' boxShadow='2xl' borderRadius='2xl' d='flex' rounded='md' bg='white' boxShadow='outline'
@@ -60,12 +73,14 @@ function ProfileUser() {
         </Box>
        <Box d='flex' justifyContent='center' alignItems='flex-start' w='400' h='360' flexDirection='column' >
         <Box maxH='300' className='box'>
+        <Button onClick={byID}>ID</Button>
         {/* {Api.map(user=>{ <> */}
         {   Api.map(u=>(
             <>
             {
             //  console.log(u._id)
-            (u._id==localStorage.getItem('user'))
+            (u._id == Session.get('byToken')
+            )
             ? 
             <>
                <Text maxH='100' >
