@@ -19,18 +19,14 @@ import avt from '../assets/image/Doctor.jpg'
 import '../style/input-file.css'
 import "react-widgets/styles.css";
 import Combobox from "react-widgets/Combobox";
-import { handleCreateUser } from '../services/User';
+import { handleCreateUser, handleGetUserId } from '../services/User';
 import { ToastContainer, toast } from 'react-toastify';
-
-
-
-
-
+import Session from 'react-session-api'
 function InitialFocus() {
   const [fullname, setFullname] = useState('')
   const [address, setAddress] = useState('')
   const [phone, setPhone] = useState('')
-  const [sex, setSex] = useState('')
+  const [gender, setSex] = useState(true)
   const [avt, setAvt] = useState('')
   const handleFullNameInput = e => {
     setFullname(e.target.value);
@@ -47,47 +43,56 @@ function InitialFocus() {
     setSex(e.target.value);
 
   }
-  const handleAvtInput = e => {
-    setAvt(e.target.value);
+  const handleAvtInput = e => 
+    { 
+    setAvt(e.target.files[0]);
 
   }
-  
-  const handleCreate = async () => {
-    
-    const account=localStorage.getItem('user');
-   
-    console.log(account);
-    console.log(fullname, address, phone, gender, avt);
+  const account= Session.get('user')
+  console.log(Session.get('token'))
+
+  //const dt = await handleGetUserId(account)
+
+  const handleCreate = async (req, res) => {
+    const da_ta = new FormData();
+    da_ta.append("full_name", fullname)
+    da_ta.append("address", address)
+    da_ta.append("phone_number", phone)
+    da_ta.append("gender", gender)
+    da_ta.append("file", avt)
+    da_ta.append("account", account)
     try {
-      console.log('kkkk');
       setOpen(onClose)
-      const data = await handleCreateUser(fullname, address, phone, true, 23,account)
-      console.log(data);
-      console.log('thanh cong');     
+      const data = await handleCreateUser(da_ta)
+      
+       console.log(data)
       if (data) {
-        localStorage.getItem('user');
-        localStorage.setItem('Id_user',data.data.data[0]._id);
+        toast.success("Successful!");
+        console.log(data.data.data[0]._id)
+        Session.set('id_user',data.data.data[0]._id)
       }  
-      console.log( localStorage.getItem('Id_user'));
-      toast.success("Successful!");
+     
     } catch (error) {
-      console.log('thất bại');
+      console.log(error)
       toast.error("Failed!");
     }
   }
+ const byid=()=>{
+   console.log('hahah');
+ }
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [open,setOpen]=useState('');
-  const [gender, setGender] = useState('')
   const initialRef = React.useRef()
   const finalRef = React.useRef()
   let genderlist = ['Female', 'Male'];
   return (
     <>
-      <Button onClick={onOpen}>Edit Profile</Button>
+      <Button  onClick={(event)=>{ onOpen(event); byid() }}
+        >Edit Profile</Button>
       <Modal
-        initialFocusRef={initialRef}
-        finalFocusRef={finalRef}
-        isOpen={isOpen}
+          initialFocusRef={initialRef}
+          finalFocusRef={finalRef}
+          isOpen={isOpen}
         onClose={open}
       >
         <ModalOverlay />
@@ -112,16 +117,15 @@ function InitialFocus() {
             <FormControl mt={4}>
               <FormLabel>Gender</FormLabel>
               <Combobox
-                data={genderlist}
-                value={gender}
-                onChange={gender => setGender(gender)}
+                // data={genderlist}
+                // value={gender}
+                // onChange={gender => setGender(gender)}
               />
             </FormControl>
             <FormControl mt={4}>
               <FormLabel>avt</FormLabel>
-              <Input name='avatar' type={'file'} onChange={handleAvtInput}></Input>
+              <Input id ='file' type={'file'} onChange={handleAvtInput}></Input>
             </FormControl>
-
           </ModalBody>
 
           <ModalFooter>
@@ -131,9 +135,7 @@ function InitialFocus() {
             <Button onClick={onClose}>Cancel</Button>
           </ModalFooter>
         </ModalContent>
-      </Modal>
-
-      {/* </Box> */}
+      </Modal> 
     </>
 
 

@@ -1,4 +1,5 @@
 import React,{useState,useEffect} from 'react';
+import Session from 'react-session-api'
 import ApiCaller from '../utils/apiCaller';
 import '../style/input-file.css'
 import '../responsive/profile/Profile.css'
@@ -17,40 +18,50 @@ import {
   import avt from '../assets/image/client.png'
   import { ToastContainer, toast } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
+  import { handleCreateUser, handleGetUserId } from '../services/User';
 
 toast.configure()
 function ProfileUser() {
-   console.log(localStorage.user); 
+    console.log('id là use: ');
+   console.log(Session.get('user')); 
     const [Api, setApi] = useState([]);
-
+    const [id,setID]=useState('');
     useEffect(() => {
-      
         ApiCaller('get-all-user', 'GET')
-            .then( res => {
-                // console.log('data la');
-                //console.log(res.data.data);
-                // console.log(localStorage.Id_user);
-                console.log(res.data.data);
-                 if(res.data.data._id==localStorage.Id_user){
-
-
-                    setApi(res.data.data._id)
-                     
-                        }
-              
-                
+            .then(async res => {
+                // console.log(res);
+            //   console.log();
+                setApi(res.data.data)
+                console.log('id là ');
+                   console.log(res.data.data);
             })
-           
-    }, [])
 
+    }, []);
+    const usertest={
+        full_name: "Dung",
+        address: 'Hue',
+        phone_number:'90292',
+        
+    }
     //Id_user=_id rồi,  map roi thôi
+
+    const byID= async ()=>{
+        // localStorage.getItem('token')
+        // console.log( localStorage.getItem('token'));
+        // const data2= await handleGetUserId()
+        // console.log('haha');
+        // console.log(data2.data.data);
+        // localStorage.setItem('byToken',data2.data.data._id)
+       
+    }
+
+
+
   return <>
     <Navbar />
     <Flex >
-       {/* { Api.map(u=>{   <a>{u._id}</a>
-                               
-                             } )
-                            } */}
+        
+       
 
        
         <Box className='container-profile'  w='90%' h='50%' m='5%' boxShadow='2xl' borderRadius='2xl' d='flex' rounded='md' bg='white' boxShadow='outline'
@@ -62,33 +73,49 @@ function ProfileUser() {
         </Box>
        <Box d='flex' justifyContent='center' alignItems='flex-start' w='400' h='360' flexDirection='column' >
         <Box maxH='300' className='box'>
+        <Button onClick={byID}>ID</Button>
         {/* {Api.map(user=>{ <> */}
-        <Text maxH='100' >
+        {   Api.map(u=>(
+            <>
+            {
+            //  console.log(u._id)
+            (u._id == Session.get('byToken')
+            )
+            ? 
+            <>
+               <Text maxH='100' >
             Full Name
+            
             <Input type='text'  
-              value={"Ho Quang DUng"} 
+              value={u.full_name} 
             className='text-inf'></Input>
         </Text>
         <Text  maxH='100'>
            Address
             <Input type='text' 
-             value={"Thanh Pho Hue"} 
+             value={u.address} 
             className='text-inf'></Input>
         </Text>
         <Text maxH='100'>
             Phone
             <Input type='text' 
-            value={"037582670"}
+            value={u.phone_number}
              className='text-inf'></Input>
         </Text>
         <Text>
             Gender
             <Input type='text' 
-             value={'Male'} 
+             value={(u.gender)='true' ?'Male':'Female'} 
             className='text-inf'></Input>
         </Text>
-        {/* </>
-    })} */}
+       
+            </>:<></>
+            // console.log(+u.full_name):console.log('null')}
+        
+        // console.log(u._id)
+            }</>
+        ))}
+     
 
         </Box>
       
