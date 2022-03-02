@@ -6,9 +6,7 @@ import '../admin2/css/table.css'
 import Right from './right';
 import { PhoneIcon, AddIcon, CheckIcon,DeleteIcon} from '@chakra-ui/icons'
 function TableUser() {
-    function  deleteDoctor(){
-        console.log('ahii');
-    }
+    
 
     const [Api, setApi] = useState([]);
  
@@ -21,12 +19,15 @@ function TableUser() {
     },[])
 
 
-
+    let i=0;
+    function  deleteUser(id){     
+        console.log(id);
+    }
   return (
     <>
    
     
-    <Center  pt='50px' pl='500px'>
+    <Center  pt='50px' pl='340px'>
         <Box >
         <Right/>
         <table className="table table-hover" style={{
@@ -35,7 +36,7 @@ function TableUser() {
         }} >
   <thead>
     <tr>
-      {/* <th scope="col">#</th> */}
+       <th scope="col">#</th> 
       <th scope="col">Name</th>
       <th scope="col">Address</th>
       <th scope="col">Phone Number</th>
@@ -45,16 +46,17 @@ function TableUser() {
   </thead>
   <tbody>
   {Api.map(api => (
-        <>
-    <tr>
-   
-      {/* <th scope="row">1</th> */}
+        <>           
+    <tr  id={api._id}>
+    
+       <th  scope="row">{(api._id!=null) ? i++: <></> 
+            }</th> 
       <td>{api.full_name}</td>
-     
+    
       <td>{api.address}</td>
       <td>{api.phone_number}</td>
        <td>{
-           (api.account!=null) ?<a>{api.account.email}</a> : <a>NULL</a>
+           (api.account!=null) ?<a>{api.account.email}</a> : <a>null</a>
        }</td> 
       <td>
         <tr>
@@ -64,7 +66,7 @@ function TableUser() {
                 <Button className='btn btn-success'> <CheckIcon/></Button>
         
             </td>
-            <td><Button className='btn btn-danger'> <DeleteIcon  onClick={deleteDoctor} /></Button></td>
+            <td><Button className='btn btn-danger'  onClick={()=>deleteUser(api._id)} > <DeleteIcon  /></Button></td>
         </tr>
  
    
