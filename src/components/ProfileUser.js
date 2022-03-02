@@ -46,12 +46,12 @@ function ProfileUser() {
     //Id_user=_id rồi,  map roi thôi
 
     const byID= async ()=>{
-        localStorage.getItem('token')
-        console.log( localStorage.getItem('token'));
-        const data2= await handleGetUserId()
-        console.log('haha');
-        console.log(data2.data.data);
-        localStorage.setItem('byToken',data2.data.data._id)
+        // localStorage.getItem('token')
+        // console.log( localStorage.getItem('token'));
+        // const data2= await handleGetUserId()
+        // console.log('haha');
+        // console.log(data2.data.data);
+        // localStorage.setItem('byToken',data2.data.data._id)
        
     }
 

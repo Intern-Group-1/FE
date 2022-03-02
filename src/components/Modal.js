@@ -77,19 +77,22 @@ function InitialFocus() {
       toast.error("Failed!");
     }
   }
+ const byid=()=>{
+   console.log('hahah');
+ }
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [open,setOpen]=useState('');
- 
   const initialRef = React.useRef()
   const finalRef = React.useRef()
   let genderlist = ['Female', 'Male'];
   return (
     <>
-      <Button onClick={onOpen}>Edit Profile</Button>
+      <Button  onClick={(event)=>{ onOpen(event); byid() }}
+        >Edit Profile</Button>
       <Modal
-        initialFocusRef={initialRef}
-        finalFocusRef={finalRef}
-        isOpen={isOpen}
+          initialFocusRef={initialRef}
+          finalFocusRef={finalRef}
+          isOpen={isOpen}
         onClose={open}
       >
         <ModalOverlay />

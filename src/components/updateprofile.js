@@ -83,11 +83,10 @@ function InitialFocus2() {
       toast.error("Failed!");
     }
   }
-  const popup=(e)=>{
-    if(window.location.reload()) {
-    setOn(onOpen)}
-    return on
+  const byid=()=>{
+    console.log('huhu');
   }
+  
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [open, setOpen] = useState('');
   const [on,setOn]=useState('')

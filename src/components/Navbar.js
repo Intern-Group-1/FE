@@ -180,7 +180,7 @@ export default function Navbar() {
                         ml="2">
                         {user.map(u => (
                               <>
-                              {(u._id==Session.Id_user)
+                              {(u._id==localStorage.Id_user)
                               ? 
                               
                               <Text fontSize="sm">{u.full_name}</Text>

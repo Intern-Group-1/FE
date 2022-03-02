@@ -158,7 +158,7 @@ export default function Booking() {
                     <Box className='info-customer'>
                         {user.map(u => (
                             <>
-                                {(u._id != localStorage.Id_user)
+                                {(u._id == localStorage.Id_user)
                                     ?
                                     <>  <div>{u._id +'hahah'+ localStorage.Id_user}</div>
                                         <Text

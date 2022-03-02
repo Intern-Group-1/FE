@@ -24,10 +24,11 @@ import Booking from "./components/Booking"
 
 import Infor from "./components/updateprofile";
 import Admin from "./admin2/admin";
-import Table from "./admin2/table";
+import Table from "./admin2/tableDoctor";
 import PrivateRoute from '../src/admin2/auth/PrivateRoute'
 import PrivateOutlet from "./admin2/auth/PrivateOutlet";
 import Logoutadmin from "./admin2/logout";
+import TableUser from "./admin2/tableUser";
 
 function App() {
   // function PrivateRoute(props) {
@@ -60,6 +61,7 @@ function App() {
       
          </Route>
          <Route path='/admin/doctor' element={<PrivateRoute> <Table /></PrivateRoute>} />
+         <Route path='/admin/user' element={<PrivateRoute> <TableUser /></PrivateRoute>} />
         <Route path="/test" element={<Booking />} />
         <Route path='/test/:id' element={<Booking />} />
         <Route  path="/logout" element={<PrivateRoute> <Logoutadmin /></PrivateRoute>}> 

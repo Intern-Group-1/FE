@@ -26,7 +26,7 @@ const sidebarNavItems = [
     {
         display: 'User',
         icon: <box-icon name='user' ></box-icon>,
-        to: '/user',
+        to: '/admin/user',
         section: 'user'
     },
     {
