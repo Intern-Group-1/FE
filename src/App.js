@@ -13,6 +13,8 @@ import ContactFormWithSocialButtons from "./components/Contact";
 import Alldoctor from "./components/Alldoctor";
 import ArticleList from "./components/Appointment"
 import Booking from "./components/Booking"
+import News from "./components/News"
+import DataTable from "./components/Admin"
 
  
 function App() {
@@ -30,7 +32,10 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/doctor" element={<Alldoctor />} />
         <Route path="/booking" element={<ArticleList />} />
-        <Route path="/test" element={<Booking />} />
+        {/* <Route path="/test" element={<Booking />} /> */}
+        <Route path="/news" element={<News />} />
+        <Route path="/test" element={<DataTable />} />
+
       </Routes>
     </ChakraProvider>
   )
