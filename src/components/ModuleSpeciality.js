@@ -10,8 +10,9 @@ function ASpeciality(props) {
       bgColor='whrite.100'
       border='none'
       className='speciality'
-      justifyContent='center'>
-      <Box d='flex' flexDirection='column' alignItems='center'>
+      justifyContent='center'
+      >
+      <Box  d='flex' flexDirection='column' alignItems='center'>
         <Box 
         className='img-speciality'
         w='150px' 
@@ -23,7 +24,7 @@ function ASpeciality(props) {
         <Image  
          src={props.avt} />
         </Box>
-        <Text className='text-info-speciality'>{props.speciality}</Text>
+        <b className='text-info-speciality'>{props.name}</b>
       </Box>
 
     </Flex>

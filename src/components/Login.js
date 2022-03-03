@@ -28,12 +28,17 @@ import Navbar from './Navbar';
 import Signup from './Signup';
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { handleLoginAPI } from '../services/User'
+import Session from 'react-session-api'
+import { handleLoginAPI,handleGetUserId } from '../services/User'
 import bg from '../assets/image/backgroundLogin.jpg'
 import gif from '../assets/image/heart.gif'
 import { ArrowBackIcon } from '@chakra-ui/icons';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import InitialFocus from './Modal'
 
-export default function SimpleCard() {
+
+function SimpleCard() {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [messagea, setMessage] = useState('')
@@ -44,56 +49,88 @@ export default function SimpleCard() {
   }
   const handlePasswordInput = e => {
     setPassword(e.target.value);
+    
   }
+  
   const handleLogin = async () => {
     try {
       const data = await handleLoginAPI(username, password)
+      console.log('datala');
       console.log(data);
+      localStorage.setItem('role',data.data.data.role)
+      
+      
+
       if (data) {
         localStorage.setItem('token', data.data.data.tokens[0].token)
-        localStorage.setItem('user', data.data.data._id)
+        Session.set('user', data.data.data._id)
+           
+       
 
       }
       var loggedInUser = localStorage.getItem('token');
       console.log(loggedInUser)
-
-      if (loggedInUser !== null) {
+      
+      if (loggedInUser!=null) {
+        toast.success("Login success!");
+        
+        // const data2= await handleGetUserId()
+        // console.log(data2.data.data);
+        // localStorage.setItem('byToken',data2.data.data._id)
         navigate('/home')
+        // delete localStorage.role;
       }
-
+      // if(localStorage.getItem('role') =='admin'){
+      //   navigate('/admin')
+      // }
+      
     } catch (error) {
-
-      if (error) {
-        if (error.response) {
-          if (error.response.data) {
-            setMessage(error.response.data.message)
-          }
-        }
-      }
+     
+          toast.error("Login failed!");
+      //console.log(error);
+      // if (error) {
+      //   if (error.response) {
+      //     if (error.response.data) {
+      //       console.log(error.response.data);
+      //       setMessage(error.response.data.message);
+           
+      //     }
+      //   }
+      // }
+     
     }
   }
   const handleShowHidePassword = () => {
     setEye(!eye)
   }
+
   return (<div className='login-page' >
         <Stack direction='row' spacing={4} className='btn-backtohome'>
         <Button  as={'a'} leftIcon={<ArrowBackIcon />} href='/home' >
           Back to Homepage
         </Button>
       </Stack>
+
     <div />
     <Flex
       className='container-form'
       minH={'120vh'}
       align={'center'}
       justify={'center'}
-      backgroundRepeat='no-repeat' backgroundSize='cover'>
-      <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6} ml='200' mb='20'>
+
+      //  backgroundImage={bglg} 
+      // backgroundColor='blue.100'
+      // backgroundRepeat='no-repeat' backgroundSize='cover'
+      >
+      <Stack  spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6} ml='200' mb='20'>
         <Stack align={'center'}>
-          <Heading fontSize={'4xl'} color='blue.400' className='title-signin'>Welcome to Doctor Care</Heading>
-          <Text fontSize={'lg'} color={'gray.600'}>
-            to enjoy all of our cool
-            <Link href='/signup' color={'blue.400'}>Sign Up</Link>
+          <Heading fontSize={'4xl'} color='blue.400'>Welcome to Doctor Care</Heading>
+          <Text fontSize={'lg'} color={'gray.500'}>
+
+          If you don't have an account, please 
+            <Link href='/signup' color={'blue.500'}> register</Link>
+
+
             ✌️
           </Text>
         </Stack>
@@ -103,14 +140,16 @@ export default function SimpleCard() {
           boxShadow={'lg'}
           className='form-signin'
           p={8}>
+
           <Stack spacing={4} >
             <FormControl id="email">
+
               <FormLabel>Email address</FormLabel>
-              <Input type="email" value={username} placeholder='Enter your email' onChange={handleUserNameInput} />
+              <Input type="email" id="email" value={username} placeholder='Enter your email' onChange={handleUserNameInput} />
             </FormControl>
-            <FormControl id="password">
+            <FormControl >
               <FormLabel>Password</FormLabel>
-              <Input type={eye ? 'text' : 'password'} value={password} placeholder='Enter your password' onChange={handlePasswordInput} />
+              <Input  id="password" type={eye ? 'text' : 'password'} value={password} placeholder='Enter your password' onChange={handlePasswordInput} />
               <span onClick={handleShowHidePassword}><i class={eye ? "far fa-eye eye" : "far fa-eye-slash eye"}></i></span>
             </FormControl>
             <Stack spacing={10}>
@@ -118,7 +157,8 @@ export default function SimpleCard() {
                 direction={{ base: 'column', sm: 'row' }}
                 align={'start'}
                 justify={'space-between'}>
-                <Checkbox>Remember me</Checkbox>
+                <Checkbox >Remember Me</Checkbox>
+                {/* Remember me</Checkbox> */}
                 <Link color={'blue.400'}>Forgot password?</Link>
               </Stack>
               <Button
@@ -134,10 +174,12 @@ export default function SimpleCard() {
               >
                 Sign in
               </Button>
+
               <Text color='red'
               >
                 {messagea}
               </Text>
+
             </Stack>
           </Stack>
 
@@ -154,3 +196,6 @@ export default function SimpleCard() {
   </div>
   );
 }
+
+export default SimpleCard;
+

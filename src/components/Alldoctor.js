@@ -7,14 +7,19 @@ import {
     Stack,
     Button
   } from '@chakra-ui/react';
-  import React,{useEffect,useState} from 'react';
+  import React,{lazy, Suspense, useEffect,useState} from 'react';
 import ApiCaller from '../utils/apiCaller';
+import { Router, useNavigate } from 'react-router-dom'
 import { PhoneIcon, EmailIcon, RepeatClockIcon,InfoIcon } from '@chakra-ui/icons' 
 import Navbar from "./Navbar";
 import Footer from './Footer' 
-  export default function Alldoctor() {
+import Book from './book';
+import LazyLoad from 'react-lazyload';
+import { ToastContainer, toast } from 'react-toastify';
+  export default function Alldoctor(props) {
+    const navigate = useNavigate()
     const [Api, setApi] = useState([]);
-
+ 
     useEffect(()=>{
         ApiCaller('get-all-doctor', 'GET')
       .then ( async res => {
@@ -23,14 +28,52 @@ import Footer from './Footer'
       })
     },[])
 
+    const loggedInUser = localStorage.getItem('token');
+    const book1=(e)=>{
+
+
+     
+         if(!loggedInUser){
+           navigate('/signin')
+           toast.warning("Please Login To Continue");
+         }
+         else{
+          //  console.log(e.target.value);
+          navigate('/test/'+`${e.target.value}`);
+          // console.log('/book/'+`${e.target.value}`);
+         
+         }
+   
+            
+           // <Routes>
+           
+           // <Route path={`/book/:${e.target.value}`} element={<Book/>}/>
+           //  </Routes>
+   
+   }
+  
+   const [header,setHeader] =useState('Doctor');
     return (
       <>
       <Navbar/>
-      <Center py={6}   d='flex'
-          flexWrap={'wrap'} >
-           {Api.map(api => (  
-        <Box ml='20px'
+      <Box>
+     
+      <Heading mt='100px' textAlign={'center'}>{header}</Heading>
+      {/* <LazyLoad> */}
+      <Center  mt ='10px' py={4} 
+     
+      d='flex'
+          flexWrap={'wrap'} 
+         justifyContent='start'
         
+        >
+         <> 
+           {Api.map(api => (
+           
+               <Suspense >
+                  
+        <Box ml='20px'
+           
           maxW={'320px'}
           h={'400px'}
           w={'320px'}
@@ -38,7 +81,7 @@ import Footer from './Footer'
           boxShadow={'2xl'}
           rounded={'lg'}      
           p={6}
-          ml= '80px'
+          ml='40px'
           mt= '25px'
           textAlign={'center'}>
           <Avatar
@@ -65,7 +108,7 @@ import Footer from './Footer'
             {api.full_name}
           </Heading>
           <Text fontWeight={600} color={'black'} mb={4}>
-            {api.speciality}
+            {api.speciality.name}
           </Text>
           
           <Text
@@ -109,6 +152,8 @@ import Footer from './Footer'
               _hover={{
                 bg: 'blue.500',
               }}
+              value={ api._id}
+               onClick={book1}
               _focus={{
                 bg: 'blue.500',
               }}>
@@ -116,8 +161,12 @@ import Footer from './Footer'
             </Button>
           </Stack>
         </Box> 
-           ))}
+        </Suspense>))}
+        </>
       </Center>
+      
+      {/* </LazyLoad> */}
+      </Box>
       <Footer/>
 
       </>

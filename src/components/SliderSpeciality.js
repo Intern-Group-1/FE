@@ -1,4 +1,4 @@
-import '../style/SliderSpeciality.css'
+
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -21,12 +21,20 @@ function SliderSpeciality() {
         infinite: true,
         speed: 900,
         slidesToShow: 3,
-        slidesToScroll: 1
+        slidesToScroll: 1,
+        autoplay: true,
+        speed: 1000,
+        autoplaySpeed: 5000,
+        cssEase: "linear",
+        lazyLoad: true,
+        className: "center",
+        centerPadding: "60px",
+       
     };
     const [Api, setApi] = useState([]);
 
     useEffect(() => {
-        ApiCaller('get-all-doctor', 'GET')
+        ApiCaller('get-all-speciality', 'GET')
             .then(async res => {
                 console.log(res);
                 setApi(res.data.data)
@@ -67,10 +75,10 @@ function SliderSpeciality() {
                 <p className='speciality-title1'>Clinic and Specialities</p>
                 <p className='speciality-title2'>Find experienced doctors across all specialties</p>
             </div>
-            <div className="speciality-content">
-                <Slider {...settings}>
-                    {dts.map(dt => (
-                        <ASpeciality speciality={dt.speciality} avt={dt.avt} />
+            <div className="speciality-content" >
+                <Slider {...settings} >
+                    {Api.map(dt => (
+                        <ASpeciality key={dt._id} name={dt.name} avt={dt.images} />
                     ))}
                 </Slider>
             </div>

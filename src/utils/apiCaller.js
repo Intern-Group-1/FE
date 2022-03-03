@@ -1,5 +1,9 @@
 import axios from "axios";
 import * as Config from '../constant/config'
+import {
+  Text
+}
+from '@chakra-ui/react'
 
 
 function   ApiCaller(endpoint, method) {
@@ -11,6 +15,7 @@ function   ApiCaller(endpoint, method) {
      
       .catch(err => {
         console.log(err);
+       
       }
       );
       
