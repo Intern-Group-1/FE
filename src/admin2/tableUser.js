@@ -4,29 +4,24 @@ import ApiCaller from '../utils/apiCaller';
 import { Button } from 'react-bootstrap-v5'
 import '../admin2/css/table.css'
 import Right from './right';
-import { PhoneIcon, AddIcon, CheckIcon,DeleteIcon} from '@chakra-ui/icons'
+import { PhoneIcon, AddIcon, CheckIcon,DeleteIcon,EditIcon} from '@chakra-ui/icons'
+import { handleDeleteUser } from '../services/User';
+import DeleteUser from './ModalConfirm';
+import UpdateUser from './ModalUpdate';
+import { render } from 'react-dom';
 function TableUser() {
-    
-
     const [Api, setApi] = useState([]);
  
     useEffect(()=>{
         ApiCaller('get-all-user', 'GET')
       .then ( async res => {
-        console.log(res);
+        // console.log(res);
           setApi(res.data.data)
       })
-    },[])
-
-
-    let i=0;
-    function  deleteUser(id){     
-        console.log(id);
-    }
+    },[Api])
+    let i=1;
   return (
-    <>
-   
-    
+    <> 
     <Center  pt='50px' pl='340px'>
         <Box >
         <Right/>
@@ -63,14 +58,16 @@ function TableUser() {
             <td   style={{
                 paddingRight: '20px'
             }}>
-                <Button className='btn btn-success'> <CheckIcon/></Button>
+                <Button className='btn btn-info'> <UpdateUser user={api._id}/></Button>
         
             </td>
-            <td><Button className='btn btn-danger'  onClick={()=>deleteUser(api._id)} > <DeleteIcon  /></Button></td>
-        </tr>
- 
-   
-          
+           
+            <td>
+              <Button className='btn btn-danger'> 
+            <DeleteUser  user={api._id}/> 
+            </Button>
+            </td>
+        </tr>         
       </td>
     
     </tr>

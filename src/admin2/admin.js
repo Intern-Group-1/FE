@@ -12,7 +12,7 @@ function Admin() {
     return (
     <> <Right/>
         <Table/>
-</>
+    </>
        
     )
 }

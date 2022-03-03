@@ -13,7 +13,6 @@ import { Router, useNavigate } from 'react-router-dom'
 import { PhoneIcon, EmailIcon, RepeatClockIcon,InfoIcon } from '@chakra-ui/icons' 
 import Navbar from "./Navbar";
 import Footer from './Footer' 
-import Book from './book';
 import LazyLoad from 'react-lazyload';
 import { ToastContainer, toast } from 'react-toastify';
   export default function Alldoctor(props) {

@@ -28,15 +28,14 @@ import Navbar from './Navbar';
 import Signup from './Signup';
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import Session from 'react-session-api'
-import { handleLoginAPI,handleGetUserId } from '../services/User'
+import { handleLoginAPI } from '../services/User'
 import bg from '../assets/image/backgroundLogin.jpg'
 import gif from '../assets/image/heart.gif'
 import { ArrowBackIcon } from '@chakra-ui/icons';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import InitialFocus from './Modal'
-
+// import Session from 'react-session-api'
 
 function SimpleCard() {
   const [username, setUsername] = useState('')
@@ -55,35 +54,15 @@ function SimpleCard() {
   const handleLogin = async () => {
     try {
       const data = await handleLoginAPI(username, password)
-      console.log('datala');
-      console.log(data);
-      localStorage.setItem('role',data.data.data.role)
-      
-      
-
-      if (data) {
         localStorage.setItem('token', data.data.data.tokens[0].token)
-        Session.set('user', data.data.data._id)
-           
-       
-
-      }
-      var loggedInUser = localStorage.getItem('token');
-      console.log(loggedInUser)
-      
-      if (loggedInUser!=null) {
+        localStorage.setItem('user', data.data.data._id)
+        localStorage.setItem('role',data.data.data.role)
+      var loggedInUser = localStorage.getItem('token')
+      console.log('User token'+loggedInUser)
+      if (loggedInUser !=null  ) {
         toast.success("Login success!");
-        
-        // const data2= await handleGetUserId()
-        // console.log(data2.data.data);
-        // localStorage.setItem('byToken',data2.data.data._id)
         navigate('/home')
-        // delete localStorage.role;
       }
-      // if(localStorage.getItem('role') =='admin'){
-      //   navigate('/admin')
-      // }
-      
     } catch (error) {
      
           toast.error("Login failed!");
@@ -198,4 +177,3 @@ function SimpleCard() {
 }
 
 export default SimpleCard;
-

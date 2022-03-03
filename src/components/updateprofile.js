@@ -14,24 +14,24 @@ import {
   Box,
   Image
 } from '@chakra-ui/react'
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import avt from '../assets/image/Doctor.jpg'
 import '../style/input-file.css'
 import "react-widgets/styles.css";
-import { useNavigate } from 'react-router-dom'
 import Combobox from "react-widgets/Combobox";
-import { handleCreateUser } from '../services/User';
+import { handleCreateUser, handleGetUserId, handleUpdateUser } from '../services/User';
 import { ToastContainer, toast } from 'react-toastify';
-import axios from 'axios'
-import { Signup } from './Signup';
-function InitialFocus2() {
+import Navbar from './Navbar';
+import Footer from './Footer'
+import Home from './Homepage';
+import { useNavigate } from 'react-router-dom';
+function InitialFocus() {
+  const navigate=useNavigate()
   const [fullname, setFullname] = useState('')
   const [address, setAddress] = useState('')
   const [phone, setPhone] = useState('')
-  const [gender, setSex] = useState('')
+  const [gender, setSex] = useState(true)
   const [avt, setAvt] = useState('')
-
-  const navigate = useNavigate()
   const handleFullNameInput = e => {
     setFullname(e.target.value);
   }
@@ -47,69 +47,93 @@ function InitialFocus2() {
     setSex(e.target.value);
 
   }
-  const handleAvtInput = e => {
+  const handleAvtInput = e => 
+    { 
     setAvt(e.target.files[0]);
 
   }
-  console.log(avt)
-  console.log(avt)
+  const [Id, setId] = useState('')
+  const account= localStorage.getItem('user')
   const handleCreate = async () => {
-
-    const account = window.sessionStorage.getItem('user');
-    const data = new FormData();
-    data.append("full_name", fullname)
-    data.append("address", address)
-    data.append("phone_number", phone)
-    data.append("gender", gender)
-    data.append("file", avt)
-    data.append("account", account)
+    const da_ta = new FormData();
+    da_ta.append("full_name", fullname)
+    da_ta.append("address", address)
+    da_ta.append("phone_number", phone)
+    da_ta.append("gender", gender)
+    da_ta.append("file", avt)
+    da_ta.append("account", account)
     try {
-
       setOpen(onClose)
-      const data1 = await handleCreateUser(data)
-      console.log(data1)
-      if (data1) {
-        console.log('thanh cong');
-        sessionStorage.getItem('user');
-        toast.success("Successful!");
-        navigate('/home')
-       const Id_user=localStorage.setItem('Id_user', data1.data.data[0]._id)
-       console.log(' Id user là :  ');
-       console.log(Id_user);
-      }
-      
-      navigate('/home')
+      const data = await handleCreateUser(da_ta)
+      if (data) {
+        await localStorage.setItem('Id_User',data.data.data[0]._id)
+        const id = localStorage.getItem('Id_User')
+        console.log(id)
+        setId(id)
+        
+      }   navigate('/home')
+      toast.success("Successful!");
+     
     } catch (error) {
+      console.log(error)
       toast.error("Failed!");
     }
   }
-  const byid=()=>{
-    console.log('huhu');
-  }
-  
+const handleUpdate = async () =>{
+  const da_ta = new FormData();
+    da_ta.append("full_name", fullname)
+    da_ta.append("address", address)
+    da_ta.append("phone_number", phone)
+    da_ta.append("gender", gender)
+    da_ta.append("file", avt)
+    try {
+      setOpen(onClose)
+      const data = await handleUpdateUser(Id,da_ta) 
+      if (data) {
+        await localStorage.setItem('Id_User',data.data.data[0]._id)
+        await setId(localStorage.getItem('Id_User'))
+      }
+      toast.success("Successful!");
+      
+    } catch (error) {
+      console.log(error)
+      toast.error("Failed!");
+    }
+}
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const [open, setOpen] = useState('');
-  const [on,setOn]=useState('')
+  const [open,setOpen]=useState('');
   const initialRef = React.useRef()
   const finalRef = React.useRef()
   let genderlist = ['Female', 'Male'];
-  function PopUp(hideOrshow) {
-    if (hideOrshow == 'hide') document.getElementById('ac-wrapper').style.display = "none";
-    else document.getElementById('ac-wrapper').removeAttribute('style');
-}
-window.onload = function () {
-    setTimeout(function () {
-        PopUp('show');
-    }, 0);
-}
+const byID = async ()=>{
+        const data= await  handleGetUserId()
+        if(data)
+        {
+          await localStorage.setItem('Id_User',data.data.data[0]._id)
+          const id = localStorage.getItem('Id_User')
+        setId(id)
+            setFullname(data.data.data[0].full_name)
+            setAvt(data.data.data[0].avatar)
+            setAddress(data.data.data[0].address)
+            setPhone(data.data.data[0].phone_number)
+            setSex(data.data.data[0].gender)
+        }
+    }
+    const loggedInUser = localStorage.getItem('token');
+useEffect(() => {
+  if(loggedInUser){
+    byID() 
+  }
+  
+}, [])
   return (
-    <>    <Signup/>
-    <div id="ac-wrapper" style={{
-      display:'none'
-    }}>
-    <div id="popup">
-        <center>
-        <Modal
+     <>  
+     {/* <Navbar/> */}
+    <Home/>
+      <Button onClick={  
+         onOpen
+      } >Edit Profile</Button>
+      <Modal
         initialFocusRef={initialRef}
         finalFocusRef={finalRef}
         isOpen={onOpen}
@@ -117,52 +141,52 @@ window.onload = function () {
       >
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Enter your information so we know.</ModalHeader>
-          <ModalCloseButton onClick={onClose} />
+          <ModalHeader>Change your infomation</ModalHeader>
+          <ModalCloseButton />
           <ModalBody pb={6}>
             <FormControl>
               <FormLabel>Full name</FormLabel>
-              <Input ref={initialRef} placeholder='Full name' onChange={handleFullNameInput} />
+              <Input ref={initialRef} value={fullname}  placeholder='Full name' onChange={handleFullNameInput} />
             </FormControl>
-
+            
             <FormControl mt={4}>
               <FormLabel>Address</FormLabel>
-              <Input placeholder='Address' onChange={handleAddressInput} />
+              <Input placeholder='Address' value={address}  onChange={handleAddressInput} />
             </FormControl>
 
             <FormControl mt={4}>
               <FormLabel>Phone</FormLabel>
-              <Input placeholder='Phone' onChange={handlePhoneInput} />
+              <Input placeholder='Phone' value={phone}  onChange={handlePhoneInput} /> 
             </FormControl>
             <FormControl mt={4}>
               <FormLabel>Gender</FormLabel>
               <Combobox
-              // data={genderlist}
-              // value={gender}
-              // onChange={gender => setGender(gender)}
+                // data={genderlist}
+                // value={gender}
+                // onChange={gender => setGender(gender)}
               />
             </FormControl>
             <FormControl mt={4}>
-              <FormLabel>Avatar</FormLabel>
-              <Input id='file' type={'file'} onChange={handleAvtInput}></Input>
+              <FormLabel>avt</FormLabel>
+              <Input id ='file' type={'file'} onChange={handleAvtInput}></Input>
             </FormControl>
+            
           </ModalBody>
 
           <ModalFooter>
-            <Button colorScheme='blue' mr={3} onClick={handleCreate}>
+            <Button colorScheme='blue' mr={3} onClick={Id ?handleUpdate: handleCreate}>
               Save
             </Button>
             <Button onClick={onClose}>Cancel</Button>
           </ModalFooter>
         </ModalContent>
       </Modal> 
-        </center>
-    </div>
-</div>
+      {/* <Box h={'600px'}></Box>
+      <Footer/> */}
     </>
 
 
   )
 }
-
-export default InitialFocus2;
+//Id ? handleCreate:
+export default InitialFocus;
