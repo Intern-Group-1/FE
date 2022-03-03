@@ -1,5 +1,4 @@
 import React,{useState,useEffect} from 'react';
-import Session from 'react-session-api'
 import ApiCaller from '../utils/apiCaller';
 import '../style/input-file.css'
 import '../responsive/profile/Profile.css'
@@ -15,107 +14,92 @@ import {
     Image,
     Button,
   } from '@chakra-ui/react';
-  import avt from '../assets/image/client.png'
   import { ToastContainer, toast } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
   import { handleCreateUser, handleGetUserId } from '../services/User';
-
 toast.configure()
-function ProfileUser() {
-    console.log('id là use: ');
-   console.log(Session.get('user')); 
-    const [Api, setApi] = useState([]);
-    const [id,setID]=useState('');
+function ProfileUser(){
+   const [full_name, setName] = useState('')
+   const [avatar, setAvt] = useState('')
+   const [gender, setGender] = useState('')
+   const [address, setAddress] = useState('')
+   const [phone, setPhone] = useState('')
+    const byID = async ()=>{ 
+        const data= await handleGetUserId()
+        console.log(data)
+        if(data)
+        {
+            setName(data.data.data[0].full_name)
+            setAvt(data.data.data[0].avatar)
+            setAddress(data.data.data[0].address)
+            setPhone(data.data.data[0].phone_number)
+            setGender(data.data.data[0].gender)
+        }
+    }
+    const loggedInUser = localStorage.getItem('token')
     useEffect(() => {
-        ApiCaller('get-all-user', 'GET')
-            .then(async res => {
-                // console.log(res);
-            //   console.log();
-                setApi(res.data.data)
-                console.log('id là ');
-                   console.log(res.data.data);
-            })
-
-    }, []);
-    const usertest={
-        full_name: "Dung",
-        address: 'Hue',
-        phone_number:'90292',
-        
-    }
-    //Id_user=_id rồi,  map roi thôi
-
-    const byID= async ()=>{
-        // localStorage.getItem('token')
-        // console.log( localStorage.getItem('token'));
-        // const data2= await handleGetUserId()
-        // console.log('haha');
-        // console.log(data2.data.data);
-        // localStorage.setItem('byToken',data2.data.data._id)
-       
-    }
+        if(loggedInUser){
+            byID()
+        }
+      }, [ byID()])
+    // useEffect(() => {
+      
+    //     ApiCaller('get-all-user', 'GET')
+    //         .then( res => {
+    //             // console.log('data la');
+    //             //console.log(res.data.data);
+    //             // console.log(localStorage.Id_user);
+    //             console.log(res.data.data);
+    //              if(res.data.data._id==localStorage.Id_user){
 
 
-
+    //                 setApi(res.data.data._id)
+                     
+    //                     }
+              
+                
+    //         })
+           
+    // }, [])
   return <>
+    
     <Navbar />
+   
     <Flex >
-        
-       
-
-       
         <Box className='container-profile'  w='90%' h='50%' m='5%' boxShadow='2xl' borderRadius='2xl' d='flex' rounded='md' bg='white' boxShadow='outline'
          d='flex' justifyContent='center'
          alignContent='center'>
         <Box className='user-avt'  w={'22%'}>
-            <Image src={avt} w='250' h='250' boxShadow='2xl' m='10' borderRadius='50%' border='1px' borderColor='blue.300'></Image>
+            <Image src={avatar} w='250' h='250' boxShadow='2xl' m='10' borderRadius='50%' border='1px' borderColor='blue.300'></Image>
             <input  type='file' className='custom-file-input' /> 
         </Box>
+       
        <Box d='flex' justifyContent='center' alignItems='flex-start' w='400' h='360' flexDirection='column' >
         <Box maxH='300' className='box'>
-        <Button onClick={byID}>ID</Button>
-        {/* {Api.map(user=>{ <> */}
-        {   Api.map(u=>(
-            <>
-            {
-            //  console.log(u._id)
-            (u._id == Session.get('byToken')
-            )
-            ? 
-            <>
-               <Text maxH='100' >
+        <Text maxH='100' >
             Full Name
-            
             <Input type='text'  
-              value={u.full_name} 
+              value={full_name} 
             className='text-inf'></Input>
         </Text>
         <Text  maxH='100'>
            Address
             <Input type='text' 
-             value={u.address} 
+             value={address} 
             className='text-inf'></Input>
         </Text>
         <Text maxH='100'>
             Phone
             <Input type='text' 
-            value={u.phone_number}
+            value={phone}
              className='text-inf'></Input>
         </Text>
         <Text>
             Gender
             <Input type='text' 
-             value={(u.gender)='true' ?'Male':'Female'} 
+             value={gender} 
             className='text-inf'></Input>
         </Text>
-       
-            </>:<></>
-            // console.log(+u.full_name):console.log('null')}
-        
-        // console.log(u._id)
-            }</>
-        ))}
-     
 
         </Box>
       
@@ -128,21 +112,9 @@ function ProfileUser() {
             >
                 <InitialFocus />
             </Button>
-            {/* <Button
-            onClick={notify}
-            >
-                Test
-            </Button>
-             <ToastContainer /> 
-            <Button
-            onClick={notify1}
-            >
-                Test1
-            </Button> */}
             <ToastContainer />
         </Box> 
         <Box className='schedule' w={'720px'} h={'410px'}>
-           {/* <Text textAlign={'center'} mt={'5px'}  >Schedule</Text>  */}
            <Box className='tag-schedule'>
                 <Box className='infodoctor'>
                     <Text>Dr Gutman</Text>

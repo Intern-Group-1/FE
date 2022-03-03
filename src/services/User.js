@@ -1,6 +1,5 @@
-import axios from 'axios'
-import Session from 'react-session-api'
 
+import axios from 'axios'
 const handleLoginAPI = (email, password)=>{
     try {
         return axios.post('https://be-doctor-care-v3.herokuapp.com/api/login', {email, password})
@@ -10,23 +9,16 @@ const handleLoginAPI = (email, password)=>{
 }
 const handleSignUpAPI = (email, password,password_1,role)=>{
     try {
-        
         return axios.post('https://be-doctor-care-v3.herokuapp.com/api/register', {email, password, password_1,role})
     } catch (error) {
         console.log(error)
     }
 }
-// const handleCreateUser = (full_name, address, phone_number,gender,avatar,age)=>{
-//     try {
-//         return axios.post('https://be-doctor-care-v3.herokuapp.com/api/create-user', {full_name, address, phone_number,gender,avatar,age})
-//     } catch (error) {
-//         console.log(error)
-//     }
-// }
 const handleCreateUser = async (data)=>{
     try {
          var token = await localStorage.getItem('token')
-        return await axios.post('https://be-doctor-care-v3.herokuapp.com/api/create-user/', data,{
+         
+        return axios.post('https://be-doctor-care-v3.herokuapp.com/api/create-user/', data,{
             headers: {
                 'Authorization': `Bearer ${token}` 
               }
@@ -35,24 +27,34 @@ const handleCreateUser = async (data)=>{
         console.log(error)
     }
 }
+
 const handleGetUserId = async ()=>{
     try {
-        var token1 = localStorage.getItem('token')
-        // var token1='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjFkOWQxODM1MzY1YTNhODEwNDMyYzEiLCJpYXQiOjE2NDYxMDc5Mjh9.3izG2wtLLyx53UMT4LDEhMQJV3qxkFDqDdHNoA41rrY'
-        console.log('token la'+ token1);
-        return await axios.get('https://be-doctor-care-v3.herokuapp.com/api/profile-user',{
+        let token = await localStorage.getItem('token')
+       
+        return axios.get('https://be-doctor-care-v3.herokuapp.com/api/profile-user',{
             headers: {
-                'Authorization': `Bearer ${token1}` 
+                'Authorization': `Bearer ${token}` 
               }
         })
     } catch (error) {
         console.log(error)
     }
 }
+const handleUpdateUser = async (id,data)=>{
+    try {
+        console.log('id user' + id)
+         var token = await localStorage.getItem('token')
+        return axios.put(`https://be-doctor-care-v3.herokuapp.com/api/update-user/${id}`, data,{
+            headers: {
+                'Authorization': `Bearer ${token}` 
+              }
+        })      
+    } catch (error) {
+        console.log(error)
+    }
+}
 
 export {
-    handleLoginAPI
-    ,handleSignUpAPI
-    ,handleCreateUser
-     ,handleGetUserId
+    handleLoginAPI ,handleSignUpAPI ,handleCreateUser, handleGetUserId, handleUpdateUser
 }

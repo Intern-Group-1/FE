@@ -14,7 +14,6 @@ import Alldoctor from "./components/Alldoctor";
 
 
 import { rt, Datepicker } from "./components/Datepicker";
-import Book from "./components/book";
 import InitialFocus2 from "./components/updateprofile";
 
 // import ArticleList from "./components/Booking"
