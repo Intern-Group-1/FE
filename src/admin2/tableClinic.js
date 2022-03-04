@@ -5,11 +5,11 @@ import { Button } from 'react-bootstrap-v5'
 import '../admin2/css/table.css'
 import Right from './RightTest';
 import { EditIcon, AddIcon,DeleteIcon} from '@chakra-ui/icons'
-function TableUser() {    
+function TableClinic() {    
 
     const [Api, setApi] = useState([]);
     useEffect(()=>{
-        ApiCaller('get-all-user', 'GET')
+        ApiCaller('get-all-branch', 'GET')
       .then ( async res => {
         console.log(res);
           setApi(res.data.data)
@@ -28,24 +28,21 @@ function TableUser() {
         <Right/>
         <Button className='btn btn-success'
         style={{
-          marginLeft:'1308px',
+          marginLeft:'322px',
           marginTop:'15px',
           marginBottom:'15px'
         }}
         
-        > <AddIcon/> Add user</Button> 
+        > <AddIcon/> Add clinic</Button> 
         <table className="table table-hover" style={{
-            width:'1100px',
+            width:'800px',
             height:'600px',
             marginLeft:'320px'
         }} >
             <thead>
               <tr>
                 <th scope="col">Order</th> 
-                <th scope="col">Name</th>
                 <th scope="col">Address</th>
-                <th scope="col" width='200px'>Phone Number</th>
-                <th scope="col">Gmail</th>
                 <th scope="col">Handle</th>
               </tr>
             </thead>
@@ -56,24 +53,18 @@ function TableUser() {
     
        <th  scope="row">{(api._id!=null) ? i++: <></> 
             }</th> 
-      <td>{api.full_name}</td>
-    
-      <td>{api.address}</td>
-      <td>{api.phone_number}</td>
-       <td>{
-           (api.account!=null) ?<a>{api.account.email}</a> : <a>null</a>
-       }</td> 
-      <td>
-        <tr>
-            <td   style={{
-                paddingRight: '20px'
-            }}>
-                <Button className='btn btn-info'> <EditIcon/></Button>  
-            </td>
-            <td><Button className='btn btn-danger'  onClick={()=>deleteUser(api._id)} > <DeleteIcon  /></Button></td>
-        </tr>  
-      </td>
-              </tr>
+        <td>{api.address}</td>
+        <td>
+          <tr>
+              <td   style={{
+                  paddingRight: '20px'
+              }}>
+                  <Button className='btn btn-success'> <EditIcon/></Button>  
+              </td>
+              <td><Button className='btn btn-danger'  onClick={()=>deleteUser(api._id)} > <DeleteIcon  /></Button></td>
+          </tr>  
+        </td>
+      </tr>
               </>
                 ))} 
             </tbody>
@@ -84,4 +75,4 @@ function TableUser() {
   )
 }
 
-export default TableUser
+export default TableClinic

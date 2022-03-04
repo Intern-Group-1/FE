@@ -21,7 +21,6 @@ import {
   FiTrendingUp,
   FiCompass,
   FiStar,
-  FiSettings,
   FiMenu,
 } from 'react-icons/fi';
 import { IconType } from 'react-icons';
@@ -36,7 +35,6 @@ const LinkItems: Array<LinkItemProps> = [
   { name: 'Doctor', icon: FiTrendingUp },
   { name: 'Clinic', icon: FiCompass },
   { name: 'User', icon: FiStar },
-  // { name: 'Settings', icon: FiSettings },
 ];
 
 export default function Right({ children }: { children: ReactNode }) {
@@ -46,6 +44,7 @@ export default function Right({ children }: { children: ReactNode }) {
       <SidebarContent
         onClose={() => onClose}
         display={{ base: 'none', md: 'block' }}
+        w={'260px'}
       />
       <Drawer
         autoFocus={false}
@@ -74,7 +73,8 @@ interface SidebarProps extends BoxProps {
 const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
   return (
     <Box
-    mt="32px"
+      mt="32px"
+      fontSize={"18px"}
       bg={useColorModeValue('white', 'gray.900')}
       borderRight="1px"
       borderRightColor={useColorModeValue('gray.200', 'gray.700')}

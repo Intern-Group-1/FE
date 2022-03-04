@@ -14,6 +14,7 @@ import Booking from "./components/Booking"
 import Infor from "./components/updateprofile";
 import Admin from "./admin2/admin";
 import Table from "./admin2/tableDoctor";
+import TableClinic from "./admin2/tableClinic";
 import PrivateRoute from '../src/admin2/auth/PrivateRoute'
 import PrivateOutlet from "./admin2/auth/PrivateOutlet";
 import Logoutadmin from "./admin2/logout";
@@ -43,6 +44,7 @@ function App() {
          </Route>
          <Route path='/admin/doctor' element={<PrivateRoute> <Table /></PrivateRoute>} />
          <Route path='/admin/user' element={<PrivateRoute> <TableUser /></PrivateRoute>} />
+         <Route path='/admin/clinic' element={<PrivateRoute> <TableClinic /></PrivateRoute>} />
         <Route path="/test" element={<Booking />} />
         <Route path='/test/:id' element={<Booking />} />
         <Route  path="/logout" element={<PrivateRoute> <Logoutadmin /></PrivateRoute>}> 

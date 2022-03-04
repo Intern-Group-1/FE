@@ -3,8 +3,8 @@ import React,{lazy, Suspense, useEffect,useState} from 'react';
 import ApiCaller from '../utils/apiCaller';
 import { Button } from 'react-bootstrap-v5'
 import '../admin2/css/table.css'
-import Right from './right';
-import { PhoneIcon, AddIcon, CheckIcon,DeleteIcon} from '@chakra-ui/icons'
+import Right from './RightTest';
+import { EditIcon, AddIcon, CheckIcon,DeleteIcon} from '@chakra-ui/icons'
 function Table() {
     function  deleteDoctor(){
         console.log('ahii');
@@ -23,12 +23,22 @@ function Table() {
 
 
   return (
-    <>
-   
-    
-    <Center  pt='50px' pl='500px'>
+    <>    
+    <Box  ml={'330px'}>
         <Box >
-        <Right/>
+        <Box
+        ml={'-340px'}
+        >
+          <Right/>
+        </Box>
+        <Button className='btn btn-success'
+        style={{
+          marginTop:'15px',
+          marginBottom:'15px',
+          marginLeft:'885px'
+        }}
+        
+        > <AddIcon/> Add user</Button> 
         <table className="table table-hover" style={{
             width:'1000px',
             height:'600px'
@@ -38,6 +48,8 @@ function Table() {
       {/* <th scope="col">#</th> */}
       <th scope="col">Name</th>
       <th scope="col">Specialy</th>
+      <th scope="col">Age</th>
+      <th scope="col">Gender</th>
       <th scope="col">Handle</th>
     </tr>
   </thead>
@@ -50,12 +62,16 @@ function Table() {
       <td>{api.full_name}</td>
      
       <td>{api.speciality.name}</td>
+
+      <td>{api.age}</td>
+     
+      <td>{(api.gender) = 'true' ? <p>Male</p> : <p>Female</p>}</td>
       <td>
         <tr>
             <td   style={{
                 paddingRight: '20px'
             }}>
-                <Button className='btn btn-success'> <CheckIcon/></Button>
+                <Button className='btn btn-info'> <EditIcon/></Button>
         
             </td>
             <td><Button className='btn btn-danger'> <DeleteIcon  onClick={deleteDoctor} /></Button></td>
@@ -68,75 +84,14 @@ function Table() {
     </tr>
     </>
       ))}
-    {/* <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>    <tr>
-            <td   style={{
-                paddingRight: '20px'
-            }}>
-                <Button className='btn btn-success'> <CheckIcon/></Button>
-        
-            </td>
-            <td><Button className='btn btn-danger'> <DeleteIcon  onClick={deleteDoctor} /></Button></td>
-        </tr>
-        </td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>
-      <tr>
-            <td   style={{
-                paddingRight: '20px'
-            }}>
-                <Button className='btn btn-success'> <CheckIcon/></Button>
-        
-            </td>
-            <td><Button className='btn btn-danger'> <DeleteIcon  onClick={deleteDoctor} /></Button></td>
-        </tr>
-      </td>
-    </tr>
-    <tr>
-      <th scope="row">4</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>
-      <tr>
-            <td   style={{
-                paddingRight: '20px'
-            }}>
-                <Button className='btn btn-success'> <CheckIcon/></Button>
-        
-            </td>
-            <td><Button className='btn btn-danger'> <DeleteIcon  onClick={deleteDoctor} /></Button></td>
-        </tr>
-      </td>
-    </tr>
-    <tr>
-      <th scope="row">5</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>
-      <tr>
-            <td   style={{
-                paddingRight: '20px'
-            }}>
-                <Button className='btn btn-success'> <CheckIcon/></Button>
-        
-            </td>
-            <td><Button className='btn btn-danger'> <DeleteIcon  onClick={deleteDoctor} /></Button></td>
-        </tr>
-      </td>
-    </tr> */}
+    
    
     
   </tbody>
 </table>
 
         </Box>
-    </Center>
+    </Box>
     </>
 
     
