@@ -27,6 +27,8 @@ function InitialFocus() {
   const [phone, setPhone] = useState('')
   const [gender, setSex] = useState(true)
   const [avt, setAvt] = useState('')
+  const [save,setSave]=useState('Save')
+  
   const handleFullNameInput = e => {
     setFullname(e.target.value);
   }
@@ -49,6 +51,7 @@ function InitialFocus() {
   }
   const [Id, setId] = useState('')
   const account= localStorage.getItem('user')
+
   const handleCreate = async () => {
     const da_ta = new FormData();
     da_ta.append("full_name", fullname)
@@ -58,7 +61,9 @@ function InitialFocus() {
     da_ta.append("file", avt)
     da_ta.append("account", account)
     try {
-      setOpen(onClose)
+      setSave('Loading...')
+      console.log(save);
+      setOpen(onOpen)
       const data = await handleCreateUser(da_ta)
       if (data) {
         await localStorage.setItem('Id_User',data.data.data[0]._id)
@@ -66,13 +71,18 @@ function InitialFocus() {
         console.log(id)
         setId(id)
       }  
+    
+      setOpen(onClose)
+      
       toast.success("Successful!");
+     
     } catch (error) {
       console.log(error)
       toast.error("Failed!");
     }
   }
 const handleUpdate = async () =>{
+ 
   const da_ta = new FormData();
     da_ta.append("full_name", fullname)
     da_ta.append("address", address)
@@ -80,13 +90,20 @@ const handleUpdate = async () =>{
     da_ta.append("gender", gender)
     da_ta.append("file", avt)
     try {
-      setOpen(onClose)
-      const data = await handleUpdateUser(Id,da_ta) 
-      if (data) {
+      setSave('Loading...')
+      console.log(save);
+      setOpen(onOpen)
+     
+      if (da_ta) {      
+        const data = await handleUpdateUser(Id,da_ta) 
         await localStorage.setItem('Id_User',data.data.data[0]._id)
         await setId(localStorage.getItem('Id_User'))
       }
+      setOpen(onClose)
+      setSave('Save')
       toast.success("Successful!");
+
+
     } catch (error) {
       console.log(error)
       toast.error("Failed!");
@@ -165,7 +182,7 @@ useEffect(() => {
 
           <ModalFooter>
             <Button colorScheme='blue' mr={3} onClick={Id ?handleUpdate: handleCreate}>
-              Save
+              {save}
             </Button>
             <Button onClick={onClose}>Cancel</Button>
           </ModalFooter>

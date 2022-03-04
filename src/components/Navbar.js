@@ -47,6 +47,7 @@ export default function Navbar() {
     delete localStorage.token
     delete localStorage.user
     delete localStorage.Id_User
+    delete localStorage.role;
     navigate('/home');
   }
   const HandleProfile = () => {
