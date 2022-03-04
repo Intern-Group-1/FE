@@ -69,10 +69,13 @@ function ProfileUser(){
         <Box className='container-profile'  w='90%' h='50%' m='5%' boxShadow='2xl' borderRadius='2xl' d='flex' rounded='md' bg='white' boxShadow='outline'
          d='flex' justifyContent='center'
          alignContent='center'>
-        <Box className='user-avt'  w={'22%'}>
-            <Image src={avatar} w='250' h='250' boxShadow='2xl' m='10' borderRadius='50%' border='1px' borderColor='blue.300'></Image>
+        <Box className='user-avt'>
+           <Box width='250px' height='250px' borderRadius='50%'  border='1px' boxShadow='2xl' m='10'  border='1px' borderColor='blue.300'>
+           <Image src={avatar} width='250px' height='250px' borderRadius='50%' />
+               </Box> 
             <input  type='file' className='custom-file-input' /> 
         </Box>
+        
        
        <Box d='flex' justifyContent='center' alignItems='flex-start' w='400' h='360' flexDirection='column' >
         <Box maxH='300' className='box'>

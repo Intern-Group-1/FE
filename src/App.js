@@ -10,7 +10,7 @@ import { Routes, Route, Navigate, RequireAuth } from "react-router-dom";
 import { ChakraProvider } from '@chakra-ui/react'
 import ProfileUser from "./components/ProfileUser";
 import ContactFormWithSocialButtons from "./components/Contact";
-import Alldoctor from "./components/Alldoctor";
+import {Alldoctor} from "./components/Alldoctor";
 
 
 import { rt, Datepicker } from "./components/Datepicker";

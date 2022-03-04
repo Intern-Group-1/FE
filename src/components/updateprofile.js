@@ -25,12 +25,30 @@ import Navbar from './Navbar';
 import Footer from './Footer'
 import Home from './Homepage';
 import { useNavigate } from 'react-router-dom';
+// import '../style/ModalLoading.css'
+
+var wait = function() {
+  
+  return (<>
+
+    <ons-modal var="modal">   
+      <div className="loading-area">
+        <img className="loading-image" 
+        src="http://www.downgraf.com/wp-content/uploads/2014/09/01-progress.gif"/>
+        <p className="loading-text">Loading ...</p>
+      </div>  
+    </ons-modal>
+  
+  </>)
+  
+}
+
 function InitialFocus() {
   const navigate=useNavigate()
   const [fullname, setFullname] = useState('')
   const [address, setAddress] = useState('')
   const [phone, setPhone] = useState('')
-  const [gender, setSex] = useState(true)
+  const [gender, setGender] = useState('')
   const [avt, setAvt] = useState('')
   const handleFullNameInput = e => {
     setFullname(e.target.value);
@@ -44,7 +62,7 @@ function InitialFocus() {
 
   }
   const handleGenderInput = e => {
-    setSex(e.target.value);
+    setGender(e.target.value);
 
   }
   const handleAvtInput = e => 
@@ -53,8 +71,13 @@ function InitialFocus() {
 
   }
   const [Id, setId] = useState('')
+  const [save,setSave]=useState('Save')
   const account= localStorage.getItem('user')
   const handleCreate = async () => {
+
+    
+
+
     const da_ta = new FormData();
     da_ta.append("full_name", fullname)
     da_ta.append("address", address)
@@ -64,15 +87,28 @@ function InitialFocus() {
     da_ta.append("account", account)
     try {
       setOpen(onClose)
+      
+      console.log('đang chờ kết quả');
+     
+
+     
       const data = await handleCreateUser(da_ta)
+      setSave('Loading...')
+      console.log(save);
+      setOpen(onOpen)
       if (data) {
+      
+        console.log('data là');
+        console.log(data);
         await localStorage.setItem('Id_User',data.data.data[0]._id)
+             
         const id = localStorage.getItem('Id_User')
         console.log(id)
         setId(id)
-        
-      }   navigate('/home')
-      toast.success("Successful!");
+        navigate('/home')
+        setOpen(onClose)
+        toast.success("Successful!");
+      }  
      
     } catch (error) {
       console.log(error)
@@ -116,7 +152,7 @@ const byID = async ()=>{
             setAvt(data.data.data[0].avatar)
             setAddress(data.data.data[0].address)
             setPhone(data.data.data[0].phone_number)
-            setSex(data.data.data[0].gender)
+            setGender(data.data.data[0].gender)
         }
     }
     const loggedInUser = localStorage.getItem('token');
@@ -141,7 +177,7 @@ useEffect(() => {
       >
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Change your infomation</ModalHeader>
+          <ModalHeader>Please update your personal information to let us know!</ModalHeader>
           <ModalCloseButton />
           <ModalBody pb={6}>
             <FormControl>
@@ -161,13 +197,13 @@ useEffect(() => {
             <FormControl mt={4}>
               <FormLabel>Gender</FormLabel>
               <Combobox
-                // data={genderlist}
-                // value={gender}
-                // onChange={gender => setGender(gender)}
+                data={genderlist}
+                //value={gender == 'true' ? 'Male' : 'Female'}
+                onChange={gender => setGender(gender == 'Male' ? 'true' : 'false')}
               />
             </FormControl>
             <FormControl mt={4}>
-              <FormLabel>avt</FormLabel>
+              <FormLabel>Avatar</FormLabel>
               <Input id ='file' type={'file'} onChange={handleAvtInput}></Input>
             </FormControl>
             
@@ -177,7 +213,7 @@ useEffect(() => {
             <Button colorScheme='blue' mr={3} onClick={Id ?handleUpdate: handleCreate}>
               Save
             </Button>
-            <Button onClick={onClose}>Cancel</Button>
+            {/* <Button onClick={onClose}>Cancel</Button> */}
           </ModalFooter>
         </ModalContent>
       </Modal> 
