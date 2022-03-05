@@ -5,6 +5,7 @@ import { Button } from 'react-bootstrap-v5'
 import '../admin2/css/table.css'
 import Right from './RightTest';
 import { EditIcon, AddIcon,DeleteIcon} from '@chakra-ui/icons'
+import ModalUser from './ModalUser'
 function TableUser() {    
 
     const [Api, setApi] = useState([]);
@@ -26,14 +27,20 @@ function TableUser() {
      
         <Box >
         <Right/>
-        <Button className='btn btn-success'
+        {/* <Button className='btn btn-success'
         style={{
           marginLeft:'1308px',
           marginTop:'15px',
           marginBottom:'15px'
-        }}
-        
-        > <AddIcon/> Add user</Button> 
+        }}>  */}
+        <Box
+        style={{
+          marginLeft:'1308px',
+          marginTop:'15px',
+          marginBottom:'15px'
+        }} 
+        ><ModalUser /></Box>
+        {/* </Button>  */}
         <table className="table table-hover" style={{
             width:'1100px',
             height:'600px',

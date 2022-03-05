@@ -51,8 +51,6 @@ function InitialFocus() {
   const account= Session.get('user')
   console.log(Session.get('token'))
 
-  //const dt = await handleGetUserId(account)
-
   const handleCreate = async (req, res) => {
     const da_ta = new FormData();
     da_ta.append("full_name", fullname)

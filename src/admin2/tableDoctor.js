@@ -3,7 +3,8 @@ import React,{lazy, Suspense, useEffect,useState} from 'react';
 import ApiCaller from '../utils/apiCaller';
 import { Button } from 'react-bootstrap-v5'
 import '../admin2/css/table.css'
-import Right from './RightTest';
+import Right from './RightTest'
+import ModalDoctor from './ModalDoctor'
 import { EditIcon, AddIcon, CheckIcon,DeleteIcon} from '@chakra-ui/icons'
 function Table() {
     function  deleteDoctor(){
@@ -31,14 +32,13 @@ function Table() {
         >
           <Right/>
         </Box>
-        <Button className='btn btn-success'
+        <Box
         style={{
           marginTop:'15px',
           marginBottom:'15px',
-          marginLeft:'885px'
-        }}
-        
-        > <AddIcon/> Add user</Button> 
+          marginLeft:'870px'
+        }} 
+        ><ModalDoctor /></Box>
         <table className="table table-hover" style={{
             width:'1000px',
             height:'600px'
@@ -57,19 +57,15 @@ function Table() {
   {Api.map(api => (
         <>
     <tr>
-   
-      {/* <th scope="row">1</th> */}
       <td>{api.full_name}</td>
-     
       <td>{api.speciality.name}</td>
-
       <td>{api.age}</td>
      
       <td>{(api.gender) = 'true' ? <p>Male</p> : <p>Female</p>}</td>
       <td>
         <tr>
             <td   style={{
-                paddingRight: '20px'
+                  paddingRight: '20px'
             }}>
                 <Button className='btn btn-info'> <EditIcon/></Button>
         

@@ -7,18 +7,15 @@ import { ChakraProvider } from '@chakra-ui/react'
 import ProfileUser from "./components/ProfileUser";
 import ContactFormWithSocialButtons from "./components/Contact";
 import Alldoctor from "./components/Alldoctor";
-import { rt, Datepicker } from "./components/Datepicker";
-import Book from "./components/book";
 import InitialFocus2 from "./components/updateprofile";
 import Booking from "./components/Booking"
-import Infor from "./components/updateprofile";
 import Admin from "./admin2/admin";
 import Table from "./admin2/tableDoctor";
 import TableClinic from "./admin2/tableClinic";
 import PrivateRoute from '../src/admin2/auth/PrivateRoute'
-import PrivateOutlet from "./admin2/auth/PrivateOutlet";
 import Logoutadmin from "./admin2/logout";
 import TableUser from "./admin2/tableUser";
+import Profile from "./components/TestProfile"
 
 function App() {
 
@@ -37,7 +34,7 @@ function App() {
 
         </Route>      <Route path="/profile/user" element={<InitialFocus2 />} />
         <Route path="/home" element={<Home />} />
-
+        <Route path="/testprofile" element={<Profile />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/doctor" element={<Alldoctor />} />
         <Route  path="/admin" element={<PrivateRoute> <Admin /></PrivateRoute>}>  
