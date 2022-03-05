@@ -1,4 +1,7 @@
-import React from 'react';
+import React,{useEffect,useState} from 'react';
+import { useParams } from "react-router-dom";
+import ApiCaller from '../utils/apiCaller';
+import Adoctor from './Adoctor';
 import Navbar from "./Navbar";
 import Footer from './Footer'
 import '../style/button.css'
@@ -17,10 +20,21 @@ import {
   Center,
   Square,
   Button,
+  Select,
+  Accordion,
+  AccordionItem,
+  AccordionButton,
+  AccordionIcon ,
+  AccordionPanel ,
+
 } from '@chakra-ui/react';
 import Doctor from '../assets/image/dtavt.png'
 import Datepicker from './Datepicker'
+
+import InitialFocus from './Modal';
+
 import '../responsive/Appointment.css'
+
 
 interface IBlogTags {
   tags: Array<string>;
@@ -63,10 +77,36 @@ export const BlogAuthor: React.FC<BlogAuthorProps> = (props) => {
 };
 
 const ArticleList = () => {
+  const { id } = useParams();
+  const [Api, setApi] = useState([]);
+  const [Id, setId] = useState('');
+  useEffect(() => {
+      ApiCaller('get-all-doctor', 'GET')
+          .then(async res => {
+              console.log(res);
+              setApi(res.data.data)
+          })
+
+  }, []);
   return (
     <>
+
+
     <Navbar />
-    <Container maxW={'7xl'} p="12" mt={'20'}>
+
+
+    {Api.map(api => (
+                <>
+                   
+                    {(id == api._id) ? (
+                        <>
+         
+                            {/* <Adoctor
+                                avt={api.avatar} speciality={api.speciality.name} full_name={api.full_name} /> */}
+                        
+
+              
+    <Container maxW={'7xl'} p="12" mt={'20'} >
       <Heading as="h1">Make an appointment</Heading>
       <Box
         marginTop={{ base: '1', sm: '5' }}
@@ -79,18 +119,20 @@ const ArticleList = () => {
           flex="1"
           marginRight="3"
           position="relative"
-          alignItems="center">
+          alignItems="center"
+          >
           <Box
             className='avt-doctor'
             width={{ base: '100%', sm: '85%' }}
             zIndex="2"
             marginLeft={{ base: '0', sm: '5%' }}
-            marginTop="5%">
+            marginTop="5%"
+            >
             <Link textDecoration="none" _hover={{ textDecoration: 'none' }}>
               <Image
               className='img-doctor'
                 borderRadius="full"
-                src={Doctor}
+                src={api.avatar}
                 boxShadow={'md'}
                 alt="some good alt text"
                 objectFit="contain"
@@ -100,10 +142,10 @@ const ArticleList = () => {
           </Box>
           <Box zIndex="1" width="100%" position="absolute" height="100%">
             <Box
-              bgGradient={useColorModeValue(
-                'radial(orange.600 1px, transparent 1px)',
-                'radial(orange.300 1px, transparent 1px)'
-              )}
+              // bgGradient={useColorModeValue(
+              //   'radial(orange.600 1px, transparent 1px)',
+              //   'radial(orange.300 1px, transparent 1px)'
+              // )}
               backgroundSize="20px 20px"
               opacity="0.4"
               height="100%"
@@ -121,33 +163,35 @@ const ArticleList = () => {
           <BlogTags tags={['Quickly', 'Convenient']} />
           <Heading marginTop="1">
             <Link textDecoration="none" _hover={{ textDecoration: 'none' }}>
-              John Dang
+              {api.full_name}
             </Link>
           </Heading>
           <Text
             as="p"
             marginTop="5"
-            color={useColorModeValue('gray.700', 'gray.200')}
+            // color={useColorModeValue('gray.700', 'gray.200')}
             fontSize="lg">
-            Age:
+            Age: {api.age}
           </Text>
           <Text
             as="p"
             marginTop="5"
-            color={useColorModeValue('gray.700', 'gray.200')}
+            // color={useColorModeValue('gray.700', 'gray.200')}
             fontSize="lg">
-            Speciality:
+            Speciality: {api.speciality.name}
           </Text>
           <Text
             as="p"
             marginTop="5"
-            color={useColorModeValue('gray.700', 'gray.200')}
+            // color={useColorModeValue('gray.700', 'gray.200')}
             fontSize="lg">
-            Gender:
+            Gender: {api.gender=='true'?<a>Nam</a>:<a>Nữ</a>}
           </Text>
+          <Button>Change Doc</Button>
         </Box>
       </Box>
       
+
 <Flex className='container-booking' color='white' mt={20} w='1400px' h='500px' ml={'-100'}>
   <Center className='info-customer' w='400px' bg='green.500' flexDirection={'column'} justifyContent={'flex-start'}>
   <Heading as="h1" mt={'15'}>Information customer</Heading>
@@ -185,6 +229,7 @@ const ArticleList = () => {
     <Datepicker />
     <Box mt={'5'} className='wrapper-btn-time'>
       <Box >
+
         <Button className='btn-time'>07:00 - 08:00</Button>
         <Button className='btn-time'>08:00 - 09:00</Button>
         <Button className='btn-time'>09:00 - 10:00</Button>
@@ -195,8 +240,22 @@ const ArticleList = () => {
         <Button className='btn-time'>17:00 - 18:00</Button>
       </Box>         
     </Box>
+    <Button color={'blue.500'}>Preview appointment</Button>
+    <Button 
+            h={'45px'}
+            w={'120px'}
+            mt={'10px'}
+            ml={'170px'}
+            >
+                <InitialFocus />
+            </Button> 
+           
   </Square>
+
+
+  {/*
   <Center className='comfirm-appointment' flex='1' bg='blue.500' id='confirm'>
+>>>>>>> 33709e663ffc627dc5a5cab87be229518f7b284f:src/components/Appointment.js
     <Heading as="h1" mt={'5'} mb={'0'}>Confirm appointment</Heading>
     <Text fontSize={'27'} mt={'15'} className='name-customer'>Customer</Text>
     <Box className='wrapper-customer'>
@@ -278,11 +337,19 @@ const ArticleList = () => {
     </Text>          
     </Box>
   <Button className='btn-confirm'>Confirm appointment</Button>
-  </Center>
+  </Center> */}
+ 
 </Flex>
+ 
     </Container>
-    <Footer />
+   
+                            </>)
+
+                        : <></>}
     </>
+            ))}
+    </>
+    
   );
 };
 
