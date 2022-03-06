@@ -3,18 +3,29 @@ import React,{lazy, Suspense, useEffect,useState} from 'react';
 import ApiCaller from '../utils/apiCaller';
 import { Button } from 'react-bootstrap-v5'
 import '../admin2/css/table.css'
+<<<<<<< HEAD
 import Right from './RightTest';
 import { EditIcon, AddIcon,DeleteIcon} from '@chakra-ui/icons'
 import ModalUser from './ModalUser'
 function TableUser() {    
 
+=======
+import Right from './right';
+import { PhoneIcon, AddIcon, CheckIcon,DeleteIcon,EditIcon} from '@chakra-ui/icons'
+import { handleDeleteUser } from '../services/User';
+import DeleteUser from './ModalConfirm';
+import UpdateUser from './ModalUpdate';
+import { render } from 'react-dom';
+function TableUser() {
+>>>>>>> 0ce8ad1f4e1ba8b089cc02e738a4f8c924762261
     const [Api, setApi] = useState([]);
     useEffect(()=>{
         ApiCaller('get-all-user', 'GET')
       .then ( async res => {
-        console.log(res);
+        // console.log(res);
           setApi(res.data.data)
       })
+<<<<<<< HEAD
     },[])
 
     let i=0;
@@ -25,6 +36,13 @@ function TableUser() {
     <>  
     <Box  pt='0px' pl='0px'> 
      
+=======
+    },[Api])
+    let i=1;
+  return (
+    <> 
+    <Center  pt='50px' pl='340px'>
+>>>>>>> 0ce8ad1f4e1ba8b089cc02e738a4f8c924762261
         <Box >
         <Right/>
         {/* <Button className='btn btn-success'
@@ -75,10 +93,23 @@ function TableUser() {
             <td   style={{
                 paddingRight: '20px'
             }}>
+<<<<<<< HEAD
                 <Button className='btn btn-info'> <EditIcon/></Button>  
             </td>
             <td><Button className='btn btn-danger'  onClick={()=>deleteUser(api._id)} > <DeleteIcon  /></Button></td>
         </tr>  
+=======
+                <Button className='btn btn-info'> <UpdateUser user={api._id}/></Button>
+        
+            </td>
+           
+            <td>
+              <Button className='btn btn-danger'> 
+            <DeleteUser  user={api._id}/> 
+            </Button>
+            </td>
+        </tr>         
+>>>>>>> 0ce8ad1f4e1ba8b089cc02e738a4f8c924762261
       </td>
               </tr>
               </>

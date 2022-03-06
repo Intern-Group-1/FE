@@ -6,7 +6,14 @@ import { Routes, Route, Navigate, RequireAuth } from "react-router-dom";
 import { ChakraProvider } from '@chakra-ui/react'
 import ProfileUser from "./components/ProfileUser";
 import ContactFormWithSocialButtons from "./components/Contact";
+<<<<<<< HEAD
 import Alldoctor from "./components/Alldoctor";
+=======
+import {Alldoctor} from "./components/Alldoctor";
+
+
+import { rt, Datepicker } from "./components/Datepicker";
+>>>>>>> 0ce8ad1f4e1ba8b089cc02e738a4f8c924762261
 import InitialFocus2 from "./components/updateprofile";
 import Booking from "./components/Booking"
 import Admin from "./admin2/admin";

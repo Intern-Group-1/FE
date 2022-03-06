@@ -3,7 +3,7 @@ import React,{useEffect,useState} from 'react'
 import '../style/SliderDoctor.css'
 import ApiCaller from '../utils/apiCaller';
 import { Router, useNavigate } from 'react-router-dom'
-import Book from './book';
+
 import { Routes, Route } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 
@@ -33,12 +33,6 @@ function Adoctor(props) {
         navigate('/test/'+`${e.target.value}`);
         //console.log('/book/'+`${e.target.value}`);
       }
-
-         
-        // <Routes>
-        
-        // <Route path={`/book/:${e.target.value}`} element={<Book/>}/>
-        //  </Routes>
 
 }
   return (

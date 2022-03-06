@@ -30,26 +30,41 @@ import {
   HamburgerIcon,
   CloseIcon,
   ChevronDownIcon,
-
   ChevronRightIcon,
 } from '@chakra-ui/icons';
 import { useState, useEffect } from 'react';
 import ApiCaller from '../utils/apiCaller';
 import logo from '../assets/image/logo-doctor-care.png'
-import Session from 'react-session-api'
+import { handleGetUserId } from '../services/User';
 import '../responsive/homepage/Navbar.css'
 import '../style/Navbar.css'
+import { useNavigate } from 'react-router-dom'
 export default function Navbar() {
-
+  const navigate = useNavigate()
 
   const { isOpen, onToggle } = useDisclosure();
   const HandleLogout = () => {
-    delete localStorage.token;
-    delete localStorage.byToken
-    
-    window.location.href = '/home';
+    delete localStorage.token
+    delete localStorage.user
+    delete localStorage.Id_User
+    delete localStorage.role;
+    navigate('/home');
   }
+  const HandleProfile = () => {
+    navigate('/profile');
+  }
+  const handleSignup = () => {
+    navigate('/signup');
+  }
+  const HandleSignin = () => {
+    navigate('/signin');
+  }
+  const HandleHome = () =>{
+    navigate('/home')
+  }
+  const loggedInUser = localStorage.getItem('token');
 
+<<<<<<< HEAD
   const  loggedInUser =  localStorage.getItem('token');
   console.log('token la'+loggedInUser);
   const InUser = Session.get('user');
@@ -57,34 +72,44 @@ export default function Navbar() {
   console.log(InUser);
   window.onscroll = function () { };
 
+=======
+>>>>>>> 0ce8ad1f4e1ba8b089cc02e738a4f8c924762261
 
-  const [Api, setApi] = useState([]);
+  window.onscroll = function () { };
 
-  useEffect(() => {
+// Setting user
+const [full_name, setName] = useState('')
+   const [avatar, setAvt] = useState('')
+  //  const [gender, setGender] = useState('')
+  //  const [address, setAddress] = useState('')
+  //  const [phone, setPhone] = useState('')
+async function byID (){ 
+        const data= await handleGetUserId()
+        console.log('Data cua ta:'+data)
+        if(data)
+        {
+            setName(data.data.data[0].full_name)
+            setAvt(data.data.data[0].avatar)
+            // setAddress(data.data.data[0].address)
+            // setPhone(data.data.data[0].phone_number)
+            // setGender(data.data.data[0].gender)
+        }
+}
+  const [Api, setApi] = useState([])
+  useEffect(async () => {
     ApiCaller('get-all-speciality', 'GET')
       .then(async res => {
-        console.log(res);
+        console.log(res)
         setApi(res.data.data)
       })
+      if(loggedInUser){
+        await byID()
+      }
+      
   }, [])
-  console.log(localStorage.user);
-  const [user, setUser] = useState([]);
-
-
-  useEffect(() => {
-    ApiCaller('get-all-user', 'GET')
-      .then(async res => {
-        console.log(res);
-
-        setUser(res.data.data)
-        console.log('id là ');
-        console.log(res.data.data);
-      })
-
-  }, []);
+  const role= localStorage.getItem('role')
   return (
     <Box id='navbar'>
-
       <Flex
 
         fontSize={'15px'}
@@ -117,7 +142,7 @@ export default function Navbar() {
         <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }}>
           <Box
             as='a'
-            href='/home'
+            onClick={HandleHome}
             w='100px'
           >
             <Image ml='50px'
@@ -157,7 +182,7 @@ export default function Navbar() {
                         // className='img-nav'
                         size={'sm'}
                         src={
-                          'https://images.unsplash.com/photo-1619946794135-5bc917a27793?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=b616b2c5b373a80ffc9636ba24f7a4a9'
+                          avatar
                         }
                       />
                       <VStack
@@ -166,18 +191,9 @@ export default function Navbar() {
                         alignItems="flex-start"
                         spacing="1px"
                         ml="2">
-                        {user.map(u => (
-                              <>
-                              {(u._id==localStorage.Id_user)
-                              ? 
-                              
-                              <Text fontSize="sm">{u.full_name}</Text>
-                              
-                                  :<></>    
-                                  }   </>))}
-                        
+                        <Text fontSize="sm">{full_name}</Text>
                         <Text fontSize="xs" color="gray.600">
-                          Customer
+                          {role}
                         </Text>
 
                       </VStack>
@@ -191,7 +207,7 @@ export default function Navbar() {
                     bg={'white'}
                   // borderColor={'gray.700'}
                   >
-                    <MenuItem as='a' color={'black'} fontWeight='normal' href={'/profile'}>Profile</MenuItem>
+                    <MenuItem as='a' color={'black'} fontWeight='normal' onClick={HandleProfile}>Profile</MenuItem>
                     <MenuItem as='a' color={'black'} fontWeight='normal' href={'/#'} >Settings</MenuItem>
                     <MenuItem as='a' color={'black'} fontWeight='normal' href={'/#'}>Billing</MenuItem>
                     <MenuDivider />
@@ -209,7 +225,7 @@ export default function Navbar() {
                 fontSize={'sm'}
                 fontWeight={400}
                 variant={'link'}
-                href={'/signin'}>
+                onClick={HandleSignin}>
                 Sign in
               </Button>
               <Button
@@ -220,7 +236,7 @@ export default function Navbar() {
                 fontWeight={600}
                 color={'white'}
                 bg={'blue.500'}
-                href={'/signup'}
+                onClick={handleSignup}
                 _hover={{
                   bg: 'blue.300',
                 }}>
@@ -305,12 +321,12 @@ const DesktopNav = () => {
                 <Stack>
 
                   {Api.map(child => (
-                    <DesktopSubNav key={child._id} name={child.name} />
-
+                  <DesktopSubNav key={child._id} name={child.name} />
+                   
                   ))}
 
                 </Stack>
-
+               
               </PopoverContent>
 
             )}
@@ -444,7 +460,6 @@ const MobileNavItem = ({ label, children, href }: NavItem) => {
 
   );
 };
-
 interface NavItem {
   label: string;
   subLabel?: string;
@@ -455,10 +470,9 @@ interface NavItem {
 
 const NAV_ITEMS: Array<NavItem> = [
 
-
   {
     label: 'Home',
-    href: '/home',
+      href: '/home',
 
   },
   {
@@ -488,7 +502,26 @@ const NAV_ITEMS: Array<NavItem> = [
   {
     label: 'About',
     children: [
-    
+      // {
+      //   label: 'Address',
+      //   subLabel: 'Find your dream design job',
+      //   href: '#',
+      // },
+      // {
+      //   label: 'Phone1',
+      //   subLabel: 'An exclusive list for contract work',
+      //   href: '#',
+      // },
+      // {
+      //   label: 'Reference',
+      //   subLabel: 'An exclusive list for contract work',
+      //   href: '#',
+      // },
+      // {
+      //   label: 'Fanpage',
+      //   subLabel: 'An exclusive list for contract work',
+      //   href: '#',
+      // },
     ],
   },
 ];
