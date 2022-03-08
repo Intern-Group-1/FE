@@ -14,48 +14,28 @@ import {
   } from '@chakra-ui/react'
   import {AddIcon} from '@chakra-ui/icons'
   import React, { useState } from 'react';
+  import avt from '../assets/image/Doctor.jpg'
   import '../style/input-file.css'
   import "react-widgets/styles.css";
   import Combobox from "react-widgets/Combobox";
   import { handleCreateUser, handleGetUserId } from '../services/User';
   import { ToastContainer, toast } from 'react-toastify';
   import Session from 'react-session-api'
-  function ModalDoctor() {
-    const [fullname, setFullname] = useState('')
+  function AddClinic() {
     const [address, setAddress] = useState('')
-    const [phone, setPhone] = useState('')
-    const [gender, setSex] = useState(true)
-    const [avt, setAvt] = useState('')
-    const handleFullNameInput = e => {
-      setFullname(e.target.value);
-    }
+    
+    
     const handleAddressInput = e => {
       setAddress(e.target.value);
   
-    }
-    const handlePhoneInput = e => {
-      setPhone(e.target.value);
-  
-    }
-    const handleGenderInput = e => {
-      setSex(e.target.value);
-  
-    }
-    const handleAvtInput = e => 
-      { 
-      setAvt(e.target.files[0]);
-  
-    }
+    } 
+    
     const account= Session.get('user')
     console.log(Session.get('token'))
   
     const handleCreate = async (req, res) => {
       const da_ta = new FormData();
-      da_ta.append("full_name", fullname)
       da_ta.append("address", address)
-      da_ta.append("phone_number", phone)
-      da_ta.append("gender", gender)
-      da_ta.append("file", avt)
       da_ta.append("account", account)
       try {
         setOpen(onClose)
@@ -91,7 +71,7 @@ import {
          border={'none'}
           > 
           <AddIcon/> 
-          Add Doctor
+          Add Clinic
         </Button>
         <Modal
             initialFocusRef={initialRef}
@@ -101,32 +81,17 @@ import {
         >
           <ModalOverlay />
           <ModalContent>
-            <ModalHeader>Add information doctor</ModalHeader>
+            <ModalHeader>Add information clinic</ModalHeader>
             <ModalCloseButton onClick={onClose} />
             <ModalBody pb={6}>
-              <FormControl>
-                <FormLabel>Full name</FormLabel>
-                <Input ref={initialRef} placeholder='Full name' onChange={handleFullNameInput} />
-              </FormControl>
+              
   
               <FormControl mt={4}>
-                <FormLabel>Speciality</FormLabel>
-                <Input placeholder='Speciality' onChange={handleAddressInput} />
+                <FormLabel>Address</FormLabel>
+                <Input placeholder='Address' onChange={handleAddressInput} />
               </FormControl>
   
-              <FormControl mt={4}>
-                <FormLabel>Age</FormLabel>
-                <Input placeholder='Age' onChange={handlePhoneInput} />
-              </FormControl>
-              <FormControl mt={4}>
-                <FormLabel>Gender</FormLabel>
-                <Combobox
-                />
-              </FormControl>
-              {/* <FormControl mt={4}>
-                <FormLabel>avt</FormLabel>
-                <Input id ='file' type={'file'} onChange={handleAvtInput}></Input>
-              </FormControl> */}
+              
             </ModalBody>
   
             <ModalFooter>
@@ -143,4 +108,4 @@ import {
     )
   }
   
-  export default ModalDoctor;
+  export default AddClinic;

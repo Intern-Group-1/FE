@@ -1,5 +1,8 @@
 import React, { ReactNode } from 'react';
 import logo from '../assets/image/logo-doctor-care.png'
+import {FaUserMd, FaHospital, FaUserAlt, FaCalendarAlt} from 'react-icons/fa'
+import {MdLogout} from 'react-icons/md'
+import { useNavigate } from 'react-router-dom'
 import {
   IconButton,
   Box,
@@ -29,15 +32,19 @@ import { ReactText } from 'react';
 interface LinkItemProps {
   name: string;
   icon: IconType;
+  link: String;
 }
 const LinkItems: Array<LinkItemProps> = [
-  { name: 'Dashboard', icon: FiHome },
-  { name: 'Doctor', icon: FiTrendingUp },
-  { name: 'Clinic', icon: FiCompass },
-  { name: 'User', icon: FiStar },
+  { name: 'Dashboard', icon: FiHome, link: '/admin/user' },
+  { name: 'Doctor', icon: FaUserMd, link: '/admin/doctor' },
+  { name: 'Clinic', icon: FaHospital, link: '/admin/clinic' },
+  { name: 'User', icon: FaUserAlt, link: '/admin/user' },
+  { name: 'Appointment', icon: FaCalendarAlt, link: '/admin/appointment' },
+  { name: 'Logout', icon: MdLogout },
 ];
 
 export default function Right({ children }: { children: ReactNode }) {
+  const navigate = useNavigate()
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <Box ml="0px" minH="0vh" mt="-30" bg={useColorModeValue('gray.100', 'gray.900')}>
@@ -89,7 +96,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
         <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
       </Flex>
       {LinkItems.map((link) => (
-        <NavItem key={link.name} icon={link.icon}>
+        <NavItem fontSize={'20px'} key={link.name} icon={link.icon} style={{ textDecoration: 'none' }} as={'a'} href= {link.link}>
           {link.name}
         </NavItem>
       ))}

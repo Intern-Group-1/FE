@@ -52,11 +52,8 @@ function InitialFocus() {
   const [Id, setId] = useState('')
   const account= localStorage.getItem('user')
 
-<<<<<<< HEAD
-  const handleCreate = async (req, res) => {
-=======
+
   const handleCreate = async () => {
->>>>>>> 0ce8ad1f4e1ba8b089cc02e738a4f8c924762261
     const da_ta = new FormData();
     da_ta.append("full_name", fullname)
     da_ta.append("address", address)

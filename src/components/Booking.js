@@ -14,15 +14,14 @@ import {
     useColorModeValue,
     Button,
 } from '@chakra-ui/react';
-import Doctor from '../assets/image/dtavt.png'
 import DatePicker from "react-datepicker";
 import '../style/Booking.css'
 import '../responsive/Appointment.css'
-import { getValue } from '@testing-library/user-event/dist/utils';
-import InitialFocus from './Modal';
 import ConfirmAppointment from './ConfirmAppointment';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 export default function Booking() {
-
+    const notify = () => toast.success("Make appointment success!");
     const { id } = useParams();
     const [Api, setApi] = useState([]);
     const [Id, setId] = useState('');
@@ -46,7 +45,6 @@ export default function Booking() {
         ApiCaller('get-all-user', 'GET')
             .then(async res => {
                 console.log(res);
-
                 setUser(res.data.data)
                 console.log('id là ');
                 console.log(res.data.data);
@@ -378,9 +376,13 @@ export default function Booking() {
                                
                             </Text>
                         </Box>
-
-
                         <ConfirmAppointment />
+                        <Button colorScheme='blue' mr={3} 
+                            onClick={notify}
+                            >
+                            Confirm
+                        </Button>
+                        <ToastContainer />
 
                     </Box>
                 </Box>

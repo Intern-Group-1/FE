@@ -42,38 +42,11 @@ function ProfileUser(){
             byID()
         }
       }, [ byID()])
-    // useEffect(() => {
-      
-    //     ApiCaller('get-all-user', 'GET')
-    //         .then( res => {
-    //             // console.log('data la');
-    //             //console.log(res.data.data);
-    //             // console.log(localStorage.Id_user);
-    //             console.log(res.data.data);
-    //              if(res.data.data._id==localStorage.Id_user){
-
-
-    //                 setApi(res.data.data._id)
-                     
-    //                     }
-              
-                
-    //         })
-           
-    // }, [])
   return <>
     
     <Navbar />
    
     <Flex >
-<<<<<<< HEAD
-
-        
-       
-
-       
-=======
->>>>>>> 0ce8ad1f4e1ba8b089cc02e738a4f8c924762261
         <Box className='container-profile'  w='90%' h='50%' m='5%' boxShadow='2xl' borderRadius='2xl' d='flex' rounded='md' bg='white' boxShadow='outline'
          d='flex' justifyContent='center'
          alignContent='center'>

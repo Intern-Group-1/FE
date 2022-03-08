@@ -122,8 +122,6 @@ export const Signup = () => {
 
                   <TextField fontSize='20px' label="Email" id='email' name="email" type="email" />
                   <FormControl  >
-                    {/* <TextField label="Password" name="password" type="password" /> */}
-
                     <TextField fontSize='20px' label='Password' id="password" name="password" type={showPassword ? 'text' : 'password'} />
                     <InputRightElement h={'120px'}>
                       <Button
@@ -193,7 +191,6 @@ export const Signup = () => {
 
         )}
       </Formik>
-      {/* <Image src={bg}/> */}
       <Footer/>
     </>
   )

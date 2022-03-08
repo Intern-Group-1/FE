@@ -5,6 +5,8 @@ import { Button } from 'react-bootstrap-v5'
 import '../admin2/css/table.css'
 import Right from './RightTest';
 import { EditIcon, AddIcon,DeleteIcon} from '@chakra-ui/icons'
+import AddClinic from './ModalAddClinic'
+import DeleteClinic from './ModalDeleteClinic'
 function TableClinic() {    
 
     const [Api, setApi] = useState([]);
@@ -16,57 +18,63 @@ function TableClinic() {
       })
     },[])
 
-    let i=0;
+    let i=1;
     function  deleteUser(id){     
         console.log(id);
     }
   return (
     <>  
-    <Box  pt='0px' pl='0px'> 
-     
+    <Box> 
         <Box >
         <Right/>
-        <Button className='btn btn-success'
-        style={{
-          marginLeft:'322px',
-          marginTop:'15px',
-          marginBottom:'15px'
-        }}
-        
-        > <AddIcon/> Add clinic</Button> 
+        <Box 
+          style={{
+            marginLeft:'1055px',
+            marginTop:'15px',
+            marginBottom:'15px',
+            color:'none'
+          }} 
+          > 
+          <AddClinic/> 
+        </Box> 
         <table className="table table-hover" style={{
-            width:'800px',
+            width:'700px',
             height:'600px',
-            marginLeft:'320px'
+            marginLeft:'480px'
         }} >
             <thead>
               <tr>
-                <th scope="col">Order</th> 
-                <th scope="col">Address</th>
-                <th scope="col">Handle</th>
+                <th width={'60px'} scope="col">Order</th> 
+                <th width={'430px'} scope="col">Address</th>
+                <th scope="col" border-top={'none'}>Handle</th>
               </tr>
             </thead>
-  <tbody>
-  {Api.map(api => (
-        <>           
-    <tr  id={api._id}>
-    
-       <th  scope="row">{(api._id!=null) ? i++: <></> 
-            }</th> 
-        <td>{api.address}</td>
-        <td>
-          <tr>
-              <td   style={{
-                  paddingRight: '20px'
-              }}>
-                  <Button className='btn btn-success'> <EditIcon/></Button>  
-              </td>
-              <td><Button className='btn btn-danger'  onClick={()=>deleteUser(api._id)} > <DeleteIcon  /></Button></td>
-          </tr>  
-        </td>
-      </tr>
-              </>
-                ))} 
+            <tbody>
+              {Api.map(api => (
+                    <>           
+                <tr height={'100px'}  id={api._id}>
+                  <th  scope="row">{(api._id!=null) ? i++: <></> 
+                        }</th> 
+                    <td>{api.address}</td>
+                    <td>
+                      <tr>
+                          <td   style={{
+                              paddingRight: '20px'
+                          }}>
+                              <Button className='btn btn-info'> <EditIcon/></Button>  
+                          </td>
+                          <td>
+                            <Button 
+                            className='btn btn-danger'  
+                            > 
+                              <DeleteClinic  clinic={api._id}/>
+                            </Button>
+                          </td>
+                      </tr>  
+                    </td>
+                  </tr>
+                          </>
+                            ))} 
             </tbody>
           </table>
         </Box>

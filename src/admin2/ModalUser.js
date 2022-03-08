@@ -103,7 +103,7 @@ import {
           <ModalOverlay />
           <ModalContent>
             <ModalHeader>Add information user</ModalHeader>
-            <ModalCloseButton />
+            <ModalCloseButton onClick={onClose} />
             <ModalBody pb={6}>
               <FormControl>
                 <FormLabel>Full name</FormLabel>
@@ -124,10 +124,10 @@ import {
                 <Combobox
                 />
               </FormControl>
-              <FormControl mt={4}>
+              {/* <FormControl mt={4}>
                 <FormLabel>avt</FormLabel>
                 <Input id ='file' type={'file'} onChange={handleAvtInput}></Input>
-              </FormControl>
+              </FormControl> */}
             </ModalBody>
   
             <ModalFooter>

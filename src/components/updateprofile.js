@@ -15,17 +15,13 @@ import {
   Image
 } from '@chakra-ui/react'
 import React, { useState,useEffect } from 'react';
-import avt from '../assets/image/Doctor.jpg'
 import '../style/input-file.css'
 import "react-widgets/styles.css";
 import Combobox from "react-widgets/Combobox";
 import { handleCreateUser, handleGetUserId, handleUpdateUser } from '../services/User';
 import { ToastContainer, toast } from 'react-toastify';
-import Navbar from './Navbar';
-import Footer from './Footer'
 import Home from './Homepage';
 import { useNavigate } from 'react-router-dom';
-// import '../style/ModalLoading.css'
 
 var wait = function() {
   

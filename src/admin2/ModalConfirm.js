@@ -16,14 +16,12 @@ import {
 } from '@chakra-ui/react'
 import React, { lazy, Suspense, useEffect, useState } from 'react';
 import ApiCaller from '../utils/apiCaller';
-import avt from '../assets/image/Doctor.jpg'
 import '../style/input-file.css'
 import "react-widgets/styles.css";
 import { PhoneIcon, AddIcon, CheckIcon, DeleteIcon,EditIcon } from '@chakra-ui/icons'
 import '../style/button.css'
 import { handleDeleteUser } from '../services/admin';
 import { useNavigate } from 'react-router-dom'
-import { DefaultContext } from 'react-icons/lib';
 
 
 

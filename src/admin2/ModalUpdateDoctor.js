@@ -26,10 +26,10 @@ import {
   import Combobox from "react-widgets/Combobox";
   
   
-  function UpdateUser(props) {
+  function UpdateDoctor(props) {
     const [fullname, setFullname] = useState('')
-    const [address, setAddress] = useState('')
-    const [phone, setPhone] = useState('')
+    const [speciatily, setSpeciality] = useState('')
+    const [age, setAge] = useState('')
     const [gender, setGender] = useState(true)
     const [avt, setAvt] = useState('')
     let genderlist = ['Female', 'Male'];
@@ -37,12 +37,12 @@ import {
       setFullname(e.target.value);
       
     }
-    function handleAddressInput (e)   {
-      setAddress(e.target.value);
+    function handleSpecialityInput (e)   {
+        setSpeciality(e.target.value);
   
     }
-    const handlePhoneInput = e => {
-      setPhone(e.target.value);
+    const handleAgeInput = e => {
+        setAge(e.target.value);
   
     }
     const handleGenderInput = e => {
@@ -59,25 +59,39 @@ import {
     const initialRef = React.useRef()
     const finalRef = React.useRef()
     const [open,setOpen]=useState('');
-    const id = props.user;
+    const id = props.doctor;
     // console.log(id);
   
     const [Api, setApi] = useState([]);
   
     useEffect(() => {
-      ApiCaller('get-all-user', 'GET')
+      ApiCaller('get-all-doctor', 'GET')
         .then(async res => {
          
           setApi(res.data.data)
         })
     }, [])
-    async function  editUser(id) {
+    async function  editDoctor(id) {
         console.log(id);
         console.log(fullname);
-       console.log(address);
-       console.log(phone);
+       console.log(speciatily);
+       console.log(age);
        console.log(gender);
-      
+    //   try {
+    //     console.log('id xóa là');
+    //    console.log(id);
+   
+    //    const data= await handleDeleteUser(id);
+    //    console.log('da xoa id');
+    //    console.log(data);
+    //    console.log('thanh cong');
+    //    setOpen(onClose)
+    //    navigate('/admin/user')
+    //   } catch (error) {
+    //    console.log('that bai');
+    //     console.log(error);
+    //   }
+   
    }
   
   
@@ -96,14 +110,12 @@ import {
   
             <ModalHeader>Edit User</ModalHeader>
             <ModalCloseButton />
-            <ModalBody>Edits will be saved when you press Save 
-              {/* {(u._id==props.user)?<a>{u.full_name}</a>:<></>)} */}
-              
+            <ModalBody>Edits will be saved when you press Save               
             </ModalBody> 
             <Box w='90%' ml='20px'>   
             {Api.map(u => (               
               <>   
-              {(u._id == props.user)? 
+              {(u._id == props.doctor)? 
               <>
               <FormControl >
               <FormLabel>Full name</FormLabel>
@@ -113,13 +125,13 @@ import {
              </FormControl>
 
             <FormControl mt={4}>
-              <FormLabel>Address</FormLabel>
-              <Input defaultValue={u.address} onChange={handleAddressInput} />
+              <FormLabel>Speciality</FormLabel>
+              <Input defaultValue={u.speciality.name} onChange={handleSpecialityInput} />
             </FormControl>
 
             <FormControl mt={4}>
-              <FormLabel>Phone</FormLabel>
-              <Input defaultValue={u.phone_number} onChange={handlePhoneInput} />
+              <FormLabel>Age</FormLabel>
+              <Input defaultValue={u.age} onChange={handleAgeInput} />
             </FormControl>
             <FormControl mt={4}>
               <FormLabel>Gender</FormLabel>
@@ -139,7 +151,7 @@ import {
             ))}
              </Box>    
             <ModalFooter>
-              <Button colorScheme='blue' mr={3} onClick={(event)=>{ onOpen(event);editUser(props.user) }}
+              <Button colorScheme='blue' mr={3} onClick={(event)=>{ onOpen(event);editDoctor(props.doctor) }}
               >
                 Save
               </Button>
@@ -152,4 +164,4 @@ import {
     )
   }
   
-  export default UpdateUser;
+  export default UpdateDoctor;
