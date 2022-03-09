@@ -25,23 +25,8 @@ import Navbar from './Navbar';
 import Footer from './Footer'
 import Home from './Homepage';
 import { useNavigate } from 'react-router-dom';
-// import '../style/ModalLoading.css'
+import ProfileUser from './ProfileUser';
 
-var wait = function() {
-  
-  return (<>
-
-    <ons-modal var="modal">   
-      <div className="loading-area">
-        <img className="loading-image" 
-        src="http://www.downgraf.com/wp-content/uploads/2014/09/01-progress.gif"/>
-        <p className="loading-text">Loading ...</p>
-      </div>  
-    </ons-modal>
-  
-  </>)
-  
-}
 
 function InitialFocus() {
   const navigate=useNavigate()
@@ -50,6 +35,7 @@ function InitialFocus() {
   const [phone, setPhone] = useState('')
   const [gender, setGender] = useState('')
   const [avt, setAvt] = useState('')
+  
   const handleFullNameInput = e => {
     setFullname(e.target.value);
   }
@@ -164,8 +150,8 @@ useEffect(() => {
 }, [])
   return (
      <>  
-     {/* <Navbar/> */}
-    <Home/>
+     {/* <Navbar/>  */}
+    <ProfileUser/>
       <Button onClick={  
          onOpen
       } >Edit Profile</Button>
@@ -199,7 +185,7 @@ useEffect(() => {
               <Combobox
                 data={genderlist}
                 //value={gender == 'true' ? 'Male' : 'Female'}
-                onChange={gender => setGender(gender == 'Male' ? 'true' : 'false')}
+                onChange={gender => setGender(gender == 'Male' ? true : false)}
               />
             </FormControl>
             <FormControl mt={4}>

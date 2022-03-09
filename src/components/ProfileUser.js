@@ -19,6 +19,7 @@ import {
   import { handleCreateUser, handleGetUserId } from '../services/User';
 toast.configure()
 function ProfileUser(){
+   
    const [full_name, setName] = useState('')
    const [avatar, setAvt] = useState('')
    const [gender, setGender] = useState('')
@@ -61,6 +62,7 @@ function ProfileUser(){
     //         })
            
     // }, [])
+    console.log(gender);
   return <>
     
     <Navbar />
@@ -70,8 +72,8 @@ function ProfileUser(){
          d='flex' justifyContent='center'
          alignContent='center'>
         <Box className='user-avt'>
-           <Box width='250px' height='250px' borderRadius='50%'  border='1px' boxShadow='2xl' m='10'  border='1px' borderColor='blue.300'>
-           <Image src={avatar} width='250px' height='250px' borderRadius='50%' />
+           <Box m='10'  >
+           <Image src={avatar} width='250px' height='250px' objectFit={'cover'} borderRadius='50%' />
                </Box> 
             <input  type='file' className='custom-file-input' /> 
         </Box>
@@ -100,7 +102,9 @@ function ProfileUser(){
         <Text>
             Gender
             <Input type='text' 
-             value={gender} 
+           
+             value={gender == true ? 'Male' : 'Female'}
+            
             className='text-inf'></Input>
         </Text>
 

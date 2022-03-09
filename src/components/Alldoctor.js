@@ -27,7 +27,7 @@ function Alldoctor(props) {
   const [Api, setApi] = useState([]);
   const [header, setHeader] = useState('Doctor');
   const [loading,setLoading] =useState(false)
-  
+
   useEffect(() => {
     ApiCaller('get-all-doctor', 'GET')
       .then( res => {
@@ -49,7 +49,7 @@ function Alldoctor(props) {
     }
     else {
       //  console.log(e.target.value);
-      navigate('/test/' + `${e.target.value}`);
+      navigate('/booking/' + `${e.target.value}`);
       // console.log('/book/'+`${e.target.value}`);
 
     }

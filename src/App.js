@@ -30,46 +30,29 @@ import Logoutadmin from "./admin2/logout";
 import TableUser from "./admin2/tableUser";
 
 function App() {
-  // function PrivateRoute(props) {
-
-  //   return props.role=='admin' ? <Navigate to="/admin" /> : <Navigate to="/home" />;
-  // }
-
   return (
     <ChakraProvider>
-      {/* <Datepicker />
-      <rt/> */}
+  
       <Routes>
-
-
+        {/* customer */}
         <Route path="/" element={<Home />} />
         <Route path="/signin" element={<Login />} />
         <Route path="/contact" element={<ContactFormWithSocialButtons />} />
-        <Route path="/profile" element={<ProfileUser />} >
-
-
-        </Route>      <Route path="/profile/user" element={<InitialFocus2 />} />
+        <Route path="/profile" element={<ProfileUser />} />
+        <Route path="/profile/user" element={<InitialFocus2 />} />
         <Route path="/home" element={<Home />} />
-
         <Route path="/signup" element={<Signup />} />
-        <Route path="/doctor" element={<Alldoctor />} />
-        {/* <Route path="/admin" element={<PrivateOutlet />}>
-          <Route path="" element={<Admin />} />
-        </Route> */}
-        <Route  path="/admin" element={<PrivateRoute> <Admin /></PrivateRoute>}> 
-      
-         </Route>
-         <Route path='/admin/doctor' element={<PrivateRoute> <Table /></PrivateRoute>} />
-         <Route path='/admin/user' element={<PrivateRoute> <TableUser /></PrivateRoute>} />
-        <Route path="/test" element={<Booking />} />
-        <Route path='/test/:id' element={<Booking />} />
-        <Route  path="/logout" element={<PrivateRoute> <Logoutadmin /></PrivateRoute>}> 
-      
-         </Route>
+        <Route path="/doctor" element={<Alldoctor />} />      
+        <Route path="/booking" element={<Booking />} />
+        <Route path='/booking/:id' element={<Booking />} />
 
 
+        {/* admin */}
+        <Route  path="/admin" element={<PrivateRoute> <Admin /></PrivateRoute>}/> 
+        <Route path='/admin/doctor' element={<PrivateRoute> <Table /></PrivateRoute>} />
+        <Route path='/admin/user' element={<PrivateRoute> <TableUser /></PrivateRoute>} />
+        <Route  path="/logout" element={<PrivateRoute> <Logoutadmin /></PrivateRoute>}/> 
       </Routes>
-
     </ChakraProvider>
   )
 }

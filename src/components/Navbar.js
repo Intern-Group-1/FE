@@ -159,7 +159,7 @@ async function byID (){
           {loggedInUser ?
             <>
               <Flex >
-
+              {/* <Button>Appointment</Button> */}
                 <Menu>
                   <MenuButton
 
@@ -198,8 +198,8 @@ async function byID (){
                   // borderColor={'gray.700'}
                   >
                     <MenuItem as='a' color={'black'} fontWeight='normal' onClick={HandleProfile}>Profile</MenuItem>
-                    <MenuItem as='a' color={'black'} fontWeight='normal' href={'/#'} >Settings</MenuItem>
-                    <MenuItem as='a' color={'black'} fontWeight='normal' href={'/#'}>Billing</MenuItem>
+                    <MenuItem as='a' color={'black'} fontWeight='normal' href={'/#'} >Appointment</MenuItem>
+                    <MenuItem as='a' color={'black'} fontWeight='normal' href={'/#'}>Settings</MenuItem>
                     <MenuDivider />
                     <MenuItem color={'blue.500'} _hover={{
                       backgroundColor: 'blue.100'
@@ -246,32 +246,10 @@ async function byID (){
 }
 
 const DesktopNav = () => {
-  const about = [{
-
-    label: 'Address',
-    href: '#'
-  }, {
-    label: 'Phone',
-    href: '#'
-  }, {
-    label: 'Reference',
-    href: '#'
-  }, {
-    label: 'Fanpage',
-    href: '#'
-  }]
-  const linkColor = useColorModeValue('#1872a4', 'gray.200');
+  const linkColor = useColorModeValue('gray.600', 'gray.200');
   const linkHoverColor = useColorModeValue('#15bbe0', 'white');
   const popoverContentBgColor = useColorModeValue('white', 'gray.800');
-  const [Api, setApi] = useState([]);
 
-  useEffect(() => {
-    ApiCaller('get-all-speciality', 'GET')
-      .then(async res => {
-        console.log(res);
-        setApi(res.data.data)
-      })
-  }, [])
   return (
     <Stack pl='100px' direction={'row'} spacing={4}>
       {NAV_ITEMS.map((navItem) => (
@@ -279,19 +257,14 @@ const DesktopNav = () => {
           <Popover trigger={'hover'} placement={'bottom-start'} >
             <PopoverTrigger>
               <Link
-
+               
                 p={2}
                 href={navItem.href ?? '#'}
                 fontSize={'lm'}
                 fontWeight={500}
                 color={linkColor}
-
-
-
-
                 _hover={{
                   textDecoration: 'none',
-
                   color: linkHoverColor,
                 }}>
                 {navItem.label}
@@ -310,30 +283,23 @@ const DesktopNav = () => {
 
                 <Stack>
 
-                  {Api.map(child => (
-                  <DesktopSubNav key={child._id} name={child.name} />
-                   
+                  {navItem.children.map((child) => (
+                    <DesktopSubNav key={child.label} {...child} />
                   ))}
-
                 </Stack>
-               
               </PopoverContent>
-
             )}
           </Popover>
-
-
         </Box>
       ))}
     </Stack>
   );
 };
 
-const DesktopSubNav = (props) => {
-
+const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
   return (
     <Link
-      // href={href}
+      href={href}
       role={'group'}
       display={'block'}
       p={2}
@@ -345,7 +311,7 @@ const DesktopSubNav = (props) => {
             transition={'all .3s ease'}
             _groupHover={{ color: 'blue.500' }}
             fontWeight={500}>
-            {props.name}
+            {label}
           </Text>
           {/* <Text fontSize={'sm'}>{subLabel}</Text> */}
         </Box>
@@ -359,7 +325,6 @@ const DesktopSubNav = (props) => {
           flex={1}>
           <Icon color={'blue.500'} w={5} h={5} as={ChevronRightIcon} />
         </Flex>
-
       </Stack>
 
     </Link>
@@ -367,22 +332,11 @@ const DesktopSubNav = (props) => {
 };
 
 const MobileNav = () => {
-  const [Api, setApi] = useState([]);
-
-  useEffect(() => {
-    ApiCaller('get-all-speciality', 'GET')
-      .then(async res => {
-        console.log(res);
-        setApi(res.data.data)
-      })
-  }, [])
   return (
     <Stack
       bg={useColorModeValue('white', 'gray.800')}
       p={4}
-      display={{ md: 'none' }}
-    // id='navbar'
-    >
+      display={{ md: 'none' }}>
       {NAV_ITEMS.map((navItem) => (
         <MobileNavItem key={navItem.label} {...navItem} />
       ))}
@@ -392,17 +346,9 @@ const MobileNav = () => {
 
 const MobileNavItem = ({ label, children, href }: NavItem) => {
   const { isOpen, onToggle } = useDisclosure();
-  const [Api, setApi] = useState([]);
 
-  useEffect(() => {
-    ApiCaller('get-all-speciality', 'GET')
-      .then(async res => {
-        console.log(res);
-        setApi(res.data.data)
-      })
-  }, [])
   return (
-    <Stack spacing={4} onClick={children && onToggle} >
+    <Stack spacing={4} onClick={children && onToggle}>
       <Flex
         py={2}
         as={Link}
@@ -410,6 +356,7 @@ const MobileNavItem = ({ label, children, href }: NavItem) => {
         justify={'space-between'}
         align={'center'}
         _hover={{
+         
           textDecoration: 'none',
         }}>
         <Text
@@ -436,20 +383,21 @@ const MobileNavItem = ({ label, children, href }: NavItem) => {
           borderStyle={'solid'}
           borderColor={useColorModeValue('gray.200', 'gray.700')}
           align={'start'}>
-          {
-            Api.map((child) => (
-              <Link key={child._id} py={2} >
-                {child.name}
+          {children &&
+            children.map((child) => (
+              <Link key={child.label} py={2} href={child.href}>
+                {child.label}
               </Link>
             ))}
         </Stack>
 
       </Collapse>
-
+      
     </Stack>
 
   );
 };
+
 interface NavItem {
   label: string;
   subLabel?: string;
@@ -457,19 +405,17 @@ interface NavItem {
   href?: string;
 }
 
-
 const NAV_ITEMS: Array<NavItem> = [
-
   {
     label: 'Home',
-      href: '/home',
+    href: '/home',
 
   },
   {
     label: 'Speciality',
     children: [
       {
-        label: '{a}',
+        label: 'Urology',
         subLabel: 'Trending Design to inspire you',
         href: '#',
       },
@@ -479,39 +425,60 @@ const NAV_ITEMS: Array<NavItem> = [
         href: '#',
       },
       {
-        label: 'Obstetrics',
+        label: 'Orthopedic',
+        subLabel: 'Up-and-coming Designers',
+        href: '#',
+      },
+      {
+        label: 'General Physician',
+        subLabel: 'Trending Design to inspire you',
+        href: '#',
+      },
+      {
+        label: 'Dentist',
+        subLabel: 'Up-and-coming Designers',
+        href: '#',
+      },
+      {
+        label: 'Consultant Physician',
+        subLabel: 'Up-and-coming Designers',
+        href: '#',
+      },
+      {
+        label: 'Cardiologist',
         subLabel: 'Up-and-coming Designers',
         href: '#',
       },
     ],
   },
   {
-    label: 'Doctor',
-    href: '#',
-  },
-  {
     label: 'About',
     children: [
-      // {
-      //   label: 'Address',
-      //   subLabel: 'Find your dream design job',
-      //   href: '#',
-      // },
-      // {
-      //   label: 'Phone1',
-      //   subLabel: 'An exclusive list for contract work',
-      //   href: '#',
-      // },
-      // {
-      //   label: 'Reference',
-      //   subLabel: 'An exclusive list for contract work',
-      //   href: '#',
-      // },
-      // {
-      //   label: 'Fanpage',
-      //   subLabel: 'An exclusive list for contract work',
-      //   href: '#',
-      // },
+      {
+        label: 'Address',
+        subLabel: 'Find your dream design job',
+        href: '#',
+      },
+      {
+        label: 'Phone',
+        subLabel: 'An exclusive list for contract work',
+        href: '#',
+      },
+      {
+        label: 'Reference',
+        subLabel: 'An exclusive list for contract work',
+        href: '#',
+      },
+      {
+        label: 'Fanpage',
+        subLabel: 'An exclusive list for contract work',
+        href: '#',
+      },
     ],
   },
+  // {
+  //   label: 'Appointment',
+  //   href: '#',
+  // },
+ 
 ];

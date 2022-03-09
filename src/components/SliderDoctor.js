@@ -60,16 +60,12 @@ function SliderDoctor() {
            
             <Slider  {...settings} >
             {Api.map(dt => (
-                             <LazyLoad key={dt._id} placeholder={<div>Loading...</div>}>
-                          
-                        
-                      
-                     
-
+                           
+   
                        <Adoctor   _id={dt._id} key={dt._id} age={dt.age} full_name={dt.full_name} speciality={dt.speciality.name} avt={dt.avatar} />
 
                           
-                       </LazyLoad>
+                     
                       
                  ))}  
                   </Slider>

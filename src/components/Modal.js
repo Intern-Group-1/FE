@@ -22,10 +22,11 @@ import Combobox from "react-widgets/Combobox";
 import { handleCreateUser, handleGetUserId, handleUpdateUser } from '../services/User';
 import { ToastContainer, toast } from 'react-toastify';
 function InitialFocus() {
+  
   const [fullname, setFullname] = useState('')
   const [address, setAddress] = useState('')
   const [phone, setPhone] = useState('')
-  const [gender, setSex] = useState(true)
+  const [gender, setGender] = useState('')
   const [avt, setAvt] = useState('')
   const [save,setSave]=useState('Save')
   
@@ -41,7 +42,7 @@ function InitialFocus() {
 
   }
   const handleGenderInput = e => {
-    setSex(e.target.value);
+    setGender(e.target.value);
 
   }
   const handleAvtInput = e => 
@@ -58,6 +59,7 @@ function InitialFocus() {
     da_ta.append("address", address)
     da_ta.append("phone_number", phone)
     da_ta.append("gender", gender)
+   
     da_ta.append("file", avt)
     da_ta.append("account", account)
     try {
@@ -88,6 +90,8 @@ const handleUpdate = async () =>{
     da_ta.append("address", address)
     da_ta.append("phone_number", phone)
     da_ta.append("gender", gender)
+    console.log('gio tinh la');
+    console.log(gender);
     da_ta.append("file", avt)
     try {
       setSave('Loading...')
@@ -125,7 +129,7 @@ const byID = async ()=>{
             setAvt(data.data.data[0].avatar)
             setAddress(data.data.data[0].address)
             setPhone(data.data.data[0].phone_number)
-            setSex(data.data.data[0].gender)
+            setGender(data.data.data[0].gender)
         }
     }
     const loggedInUser = localStorage.getItem('token');
@@ -135,6 +139,7 @@ useEffect(() => {
   }
   
 }, [])
+console.log(gender);
   return (
     <>
       <Button onClick={  
@@ -168,9 +173,9 @@ useEffect(() => {
             <FormControl mt={4}>
               <FormLabel>Gender</FormLabel>
               <Combobox
-                // data={genderlist}
-                // value={gender}
-                // onChange={gender => setGender(gender)}
+                 data={genderlist}
+
+                 onChange={gender => setGender(gender == 'Male'? 'true' : 'false')}
               />
             </FormControl>
             <FormControl mt={4}>
@@ -181,7 +186,7 @@ useEffect(() => {
           </ModalBody>
 
           <ModalFooter>
-            <Button colorScheme='blue' mr={3} onClick={Id ?handleUpdate: handleCreate}>
+            <Button colorScheme='blue' mr={3} onClick={handleUpdate}>
               {save}
             </Button>
             <Button onClick={onClose}>Cancel</Button>
