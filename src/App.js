@@ -19,6 +19,7 @@ import Profile from "./components/TestProfile"
 import TableAppointment from './admin2/tableAppointment'
 import BasicStatistics from "./admin2/Dashboard"
 import BarChart from "./admin2/Chart"
+import Dashboard from "./admin2/Dashboard";
 
 function App() {
   return (
@@ -51,7 +52,8 @@ function App() {
         <Route path='/admin/doctor' element={<PrivateRoute> <Table /></PrivateRoute>} />
         <Route path='/admin/user' element={<PrivateRoute> <TableUser /></PrivateRoute>} />
         <Route path='/admin/clinic' element={<PrivateRoute> <TableClinic /></PrivateRoute>} />
-         <Route path='/admin/appointment' element={<PrivateRoute> <TableAppointment /></PrivateRoute>} />      
+         <Route path='/admin/appointment' element={<PrivateRoute> <TableAppointment /></PrivateRoute>} />  
+         <Route path='/admin/dashboard' element={<PrivateRoute> <Dashboard /></PrivateRoute>} />    
         <Route path="/testadmin" element={<BarChart />} />
         <Route  path="/logout" element={<PrivateRoute> <Logoutadmin /></PrivateRoute>}/> 
       </Routes>
