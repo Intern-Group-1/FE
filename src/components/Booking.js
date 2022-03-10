@@ -14,21 +14,19 @@ import {
     useColorModeValue,
     Button,
 } from '@chakra-ui/react';
-import Doctor from '../assets/image/dtavt.png'
 import DatePicker from "react-datepicker";
 import '../style/Booking.css'
 import '../responsive/Appointment.css'
-import { getValue } from '@testing-library/user-event/dist/utils';
-import InitialFocus from './Modal';
 import ConfirmAppointment from './ConfirmAppointment';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 export default function Booking() {
-
+    const notify = () => toast.success("Make appointment success!");
     const { id } = useParams();
     const [Api, setApi] = useState([]);
     const [Id, setId] = useState('');
     const [user, setUser] = useState([]);
-    const [branch, setBranch] = useState([{}]);
-    const [clinic, setClinic] = useState('');
+
     useEffect(() => {
         ApiCaller('get-all-doctor', 'GET')
             .then(async res => {
@@ -39,7 +37,7 @@ export default function Booking() {
             })
 
     }, []);
-
+    
 
 
 
@@ -47,21 +45,9 @@ export default function Booking() {
         ApiCaller('get-all-user', 'GET')
             .then(async res => {
                 console.log(res);
-
                 setUser(res.data.data)
                 console.log('id là ');
-                console.log(res.data);
-            })
-
-    }, []);
-    useEffect(() => {
-        ApiCaller('get-all-branch', 'GET')
-            .then(async res => {
-                console.log(res);
-
-                setBranch(res.data[0])
-                console.log('bracch ');
-                console.log(res.data[0]);
+                console.log(res.data.data);
             })
 
     }, []);
@@ -70,7 +56,7 @@ export default function Booking() {
 
     const [startDate, setStartDate] = useState(new Date());
     console.log(startDate);
-
+    const [branch, setBranch] = useState('');
     const [time, setTime] = useState('');
 
     console.log(startDate.getDate());
@@ -89,10 +75,7 @@ export default function Booking() {
     const handleChange = (e) => {
 
         console.log(e.target.value);
-        console.log(e);
-        setClinic(e.target.innerText)
-        // console.log('taget');
-        // console.log(e.target.label);
+        setBranch(e.target.value)
     }
 
 
@@ -175,7 +158,7 @@ export default function Booking() {
                             <>
                                 {(u._id == localStorage.Id_user)
                                     ?
-                                    <>  <div>{u._id + 'hahah' + localStorage.Id_user}</div>
+                                    <>  <div>{u._id +'hahah'+ localStorage.Id_user}</div>
                                         <Text
                                             as="p"
                                             marginTop="5"
@@ -265,88 +248,63 @@ export default function Booking() {
                                 setTime('17:00 - 18:00')
                             }} className='btn-time'>17:00 - 18:00</Button>
                         </Box>
+
                         <Box className='clinic'>
-                        <select style={{
-                            minWidth: 'fit-content'
-                        }}
-                            onChange={handleChange} 
-                            name="danang" 
-                            className='select-clinic'>
-                            <option selected  >Branch</option>
-                            <option label={branch.name_branch + ' (' + branch.address + ')'}  value={branch._id} >{branch.name_branch} ({branch.address})</option>
-                     
-                        </select>
-                        </Box>
-                       
-                        {/* {(
-                                <>
-                               
-                                      <div>{branch.address}</div> 
-                                    </>
-                                )} */}
-                        {/* <Box className='clinic'>
+
                             <select onChange={handleChange} name="hue" className='select-clinic'>
-                              
-                              
+                                <option key="Hue city">Hue city</option>
+                                <option key="Hoang Long, 14 Le Loi">Hoang Long, 14 Le Loi</option>
+                                <option key="Ton Duc Thang, 23 Dien Bien Phu">Ton Duc Thang, 23 Dien Bien Phu</option>
+                                <option key="Kim Anh, 23 Tran Phu">Kim Anh, 23 Tran Phu</option>
                             </select>
-                            <select  onChange={handleChange} name="danang" className='select-clinic'>
-                                <option value="Da Nang city" hidden={'false'}>Da Nang city</option>
-                                <option value="Bach Ma, 12 Le Huan">Bach Ma, 12 Le Huan</option>
-                                <option value="Mai Anh, 45 Tran Hung Dao">Mai Anh, 45 Tran Hung Dao</option>
-                                <option value="Duc Anh, 23 Luong Viet Bang">Duc Anh, 23 Luong Viet Bang</option>
-                            </select>
-                            <select  onChange={handleChange} name="hcm" className='select-clinic'>
-                                <option value="Ho Chi Minh city" selected>Ho Chi Minh city</option>
-                                <option value="Bach Lan, 12 Le Dai Hanh, Quan 1 ">Bach Lan, 12 Le Dai Hanh, Quan 1 </option>
-                                <option value="An Dinh, 65 Hoang Van Thu, Quan 7">An Dinh, 65 Hoang Van Thu, Quan 7</option>
-                            </select>
-                        </Box> */}
+                            
+                        </Box>
                     </Box>
                     <Box className='comfirm-appointment' flex='1' bg='' id='confirm'>
                         <Heading as="h1" mt={'10'} mb={'10'}>Confirm appointment</Heading>
                         <Text fontSize={'20'} mt={'15'} fontWeight='bold' className='name-customer'>Customer</Text>
+                      
+                            {user.map(u => (
+                                <>
+                                    {(u._id == sessionStorage.Id_user)
+                                        ?
+                                        <>  <Box className='wrapper-customer'>
+                                            <Text
+                                                as="p"
+                                                marginTop="5"
+                                                color={'black'}
+                                                fontSize="md">
+                                                Name: {<b>{u.full_name}</b>}
+                                            </Text>
+                                            <Text
+                                                as="p"
+                                                marginTop="5"
+                                                color={'black'}
+                                                fontSize="md">
+                                                Age: {<b>{u.age}</b>}
+                                            </Text>
+                                            <Text
+                                                as="p"
+                                                marginTop="5"
+                                                color={'black'}
+                                                fontSize="md">
+                                                Address: {<b>{u.address}</b>}
+                                            </Text>
+                                            <Text
+                                                as="p"
+                                                marginTop="5"
+                                                color={'black'}
+                                                fontSize="md">
+                                                Phone: {<b>{u.phone_number}</b>}
+                                            </Text>
+                                            </Box>
+                                        </>
+                                        : <><a></a></>
+                                    }
+                                </>
+                            ))}
 
-                        {user.map(u => (
-                            <>
-                                {(u._id == sessionStorage.Id_user)
-                                    ?
-                                    <>  <Box className='wrapper-customer'>
-                                        <Text
-                                            as="p"
-                                            marginTop="5"
-                                            color={'black'}
-                                            fontSize="md">
-                                            Name: {<b>{u.full_name}</b>}
-                                        </Text>
-                                        <Text
-                                            as="p"
-                                            marginTop="5"
-                                            color={'black'}
-                                            fontSize="md">
-                                            Age: {<b>{u.age}</b>}
-                                        </Text>
-                                        <Text
-                                            as="p"
-                                            marginTop="5"
-                                            color={'black'}
-                                            fontSize="md">
-                                            Address: {<b>{u.address}</b>}
-                                        </Text>
-                                        <Text
-                                            as="p"
-                                            marginTop="5"
-                                            color={'black'}
-                                            fontSize="md">
-                                            Phone: {<b>{u.phone_number}</b>}
-                                        </Text>
-                                    </Box>
-                                    </>
-                                    : <><a></a></>
-                                }
-                            </>
-                        ))}
-
-
+                      
                         <Text fontSize={'20'} mt={'15'} fontWeight='bold' className='name-doctor'>Doctor</Text>
 
                         {Api.map(api => (
@@ -399,8 +357,8 @@ export default function Booking() {
                                 marginTop="5"
                                 color={useColorModeValue('gray.700', 'gray.200')}
                                 fontSize="md">
-                                {<Box maxW={'fit-content'} bgColor={'blue.100'}>  Date: {<b>{d.toString()}-{m.toString()}</b>}</Box>}
-
+                                    {<Box  maxW={'fit-content'} bgColor={'blue.100'}>  Date: {<b>{d.toString()}-{m.toString()}</b>}</Box>}
+                              
                             </Text>
                             <Text
                                 as="p"
@@ -414,13 +372,17 @@ export default function Booking() {
                                 marginTop="5"
                                 color={useColorModeValue('gray.700', 'gray.200')}
                                 fontSize="md">
-                                {<Box > Clinic:  {<b>{clinic}</b>}</Box>}
-
+                                    {<Box > Clinic:  {<b>{branch}</b>}</Box>}
+                               
                             </Text>
                         </Box>
-
-
                         <ConfirmAppointment />
+                        <Button colorScheme='blue' mr={3} 
+                            onClick={notify}
+                            >
+                            Confirm
+                        </Button>
+                        <ToastContainer />
 
                     </Box>
                 </Box>

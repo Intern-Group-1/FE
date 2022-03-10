@@ -5,10 +5,9 @@ import { Button } from 'react-bootstrap-v5'
 import '../admin2/css/table.css'
 import Right from './RightTest'
 import ModalDoctor from './ModalDoctor'
-import { EditIcon, AddIcon, CheckIcon,DeleteIcon} from '@chakra-ui/icons'
-import DeleteDoctor from './ModalDeleteDoctor'
-import UpdateDoctor from './ModalUpdateDoctor'
-function Table() {
+import { AiOutlineCheck } from 'react-icons/ai'
+
+function TableAppointment() {
 
     const [Api, setApi] = useState([]);
  
@@ -31,28 +30,24 @@ function Table() {
         >
           <Right/>
         </Box>
-        <Box
-        style={{
-          marginTop:'15px',
-          marginBottom:'15px',
-          marginLeft:'870px'
-        }} 
-        ><ModalDoctor /></Box>
         <table className="table table-hover" style={{
             width:'1000px',
-            height:'600px'
+            height:'600px',
+            marginTop:'40px'
         }} >
   <thead>
     <tr>
       {/* <th scope="col">#</th> */}
       <th scope="col">Name</th>
+      <th scope="col">Phone</th>
+      <th scope="col">Doctor</th>
       <th scope="col">Specialy</th>
-      <th scope="col">Age</th>
-      <th scope="col">Gender</th>
+      <th scope="col">Clinic</th>
+      <th scope="col">Status</th>
       <th scope="col">Handle</th>
     </tr>
   </thead>
-  <tbody>
+  {/* <tbody>
   {Api.map(api => (
         <>
     <tr>
@@ -62,7 +57,9 @@ function Table() {
      
       <td>{(api.gender) = 'true' ? <p>Male</p> : <p>Female</p>}</td>
       <td>
-        <tr>
+        <tr style={{
+            border:'none'
+        }}>
             <td   style={{
                   paddingRight: '20px'
             }}>
@@ -80,6 +77,20 @@ function Table() {
     </tr>
     </>
       ))}   
+  </tbody> */}
+  <tbody>
+  {/* {Api.map(api => ( */}
+    <>
+        <tr>
+        <td>Nam</td>
+        <td>076851211034</td>
+        <td>Dr.Thanh</td>
+        <td>Neurology</td>
+        <td>Da Nang city</td>
+        <td>Waiting</td>   
+        <td><Button className='btn btn-success' width={'70px !important'}> <AiOutlineCheck /> </Button></td>
+        </tr>
+    </>   
   </tbody>
 </table>
 
@@ -91,4 +102,4 @@ function Table() {
   )
 }
 
-export default Table
+export default TableAppointment

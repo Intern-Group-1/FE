@@ -42,7 +42,7 @@ function ProfileUser(){
         if(loggedInUser){
             byID()
         }
-      }, [ byID()])
+      }, [byID()])
     // useEffect(() => {
       
     //     ApiCaller('get-all-user', 'GET')
@@ -52,23 +52,18 @@ function ProfileUser(){
     //             // console.log(localStorage.Id_user);
     //             console.log(res.data.data);
     //              if(res.data.data._id==localStorage.Id_user){
-
-
-    //                 setApi(res.data.data._id)
-                     
-    //                     }
-              
-                
+    //                 setApi(res.data.data._id)                    
+    //                     }              
     //         })
            
     // }, [])
-    console.log(gender);
   return <>
     
     <Navbar />
    
     <Flex >
-        <Box className='container-profile'  w='90%' h='50%' m='5%' boxShadow='2xl' borderRadius='2xl' d='flex' rounded='md' bg='white' boxShadow='outline'
+        <Box className='container-profile'  w='90%' h='50%' m='5%' boxShadow='2xl' borderRadius='2xl' d='flex' rounded='md' bg='white' 
+        boxShadow='outline'
          d='flex' justifyContent='center'
          alignContent='center'>
         <Box className='user-avt'>
@@ -80,6 +75,7 @@ function ProfileUser(){
         
        
        <Box d='flex' justifyContent='center' alignItems='flex-start' w='400' h='360' flexDirection='column' >
+
         <Box maxH='300' className='box'>
         <Text maxH='100' >
             Full Name
@@ -115,11 +111,13 @@ function ProfileUser(){
             h={'45px'}
             w={'120px'}
             mt={'10px'}
+
             ml={'120px'}
             >
                 <InitialFocus />
             </Button>
             <ToastContainer />
+
         </Box> 
         <Box className='schedule' w={'720px'} h={'410px'}>
            <Box className='tag-schedule'>
@@ -150,6 +148,7 @@ function ProfileUser(){
                     <Text>Cadiologry</Text>
                 </Box>
                 <Box className='info-schdule'>
+
                     <Text>Time: 07:00-08:00</Text>
                     <Text>Date: 16/03</Text>
                     <Text>Address: 12 Le Loi</Text>
@@ -166,6 +165,7 @@ function ProfileUser(){
                     <Text>Address: 12 Le Loi</Text>
                 </Box>
            </Box>
+
        
         </Box>
         </Box>

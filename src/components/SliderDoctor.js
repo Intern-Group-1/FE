@@ -2,7 +2,7 @@
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { useState, useEffect, lazy, Suspense } from 'react';
+import { useState, useEffect } from 'react';
 import ApiCaller from '../utils/apiCaller';
 import LazyLoad from 'react-lazyload';
 import '../responsive/homepage/SliderDoctor.css';
@@ -47,6 +47,7 @@ function SliderDoctor() {
                     className='btn-more'
                      href='/doctor '
                     as={'a'}
+                    style={{ textDecoration: 'none' }}
                    >
                     More...
                 </Button>

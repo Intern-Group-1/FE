@@ -21,22 +21,34 @@ import {
   import "react-widgets/styles.css";
   import { PhoneIcon, AddIcon, CheckIcon, DeleteIcon,EditIcon } from '@chakra-ui/icons'
   import '../style/button.css'
-  import { handleDeleteUser } from '../services/admin';
   import { useNavigate } from 'react-router-dom'
   import Combobox from "react-widgets/Combobox";
-  
-  
+  import { handleUpdateUser,handleGetUserId } from '../services/User';
+  import { ToastContainer, toast } from 'react-toastify';
+
   function UpdateUser(props) {
+    //  console.log(props.user);
     const [fullname, setFullname] = useState('')
     const [address, setAddress] = useState('')
     const [phone, setPhone] = useState('')
-    const [gender, setGender] = useState(true)
+    const [gender, setGender] = useState('')
     const [avt, setAvt] = useState('')
+    const [save,setSave]=useState('Save')
+    const [Id, setId] = useState('')
+    const navigate = useNavigate()
+    const { isOpen, onOpen, onClose } = useDisclosure()
+    const initialRef = React.useRef()
+    const finalRef = React.useRef()
+    const [open,setOpen]=useState('');
+    const id = props.user;
+    const [Api, setApi] = useState([]);
+    //const account= localStorage.getItem('user')
     let genderlist = ['Female', 'Male'];
     function handleFullNameInput (e) {
-        //console.log(e.target.value);
-        // this.setFullname({value: 'event.target.value'});
+      console.log('e la');
+      // console.log(e.target.value);
       setFullname(e.target.value);
+      console.log(fullname);
       
     }
     function handleAddressInput (e)   {
@@ -56,15 +68,7 @@ import {
       setAvt(e.target.files[0]);
   
     }
-    const navigate = useNavigate()
-    const { isOpen, onOpen, onClose } = useDisclosure()
-    const initialRef = React.useRef()
-    const finalRef = React.useRef()
-    const [open,setOpen]=useState('');
-    const id = props.user;
-    // console.log(id);
   
-    const [Api, setApi] = useState([]);
   
     useEffect(() => {
       ApiCaller('get-all-user', 'GET')
@@ -73,29 +77,75 @@ import {
           setApi(res.data.data)
         })
     }, [])
-    async function  editUser(id) {
-        console.log(id);
+  //   const byID = async ()=>{  
+  //     const data= await  handleGetUserId()
+  //     // console.log('dataa la');
+  //     // console.log(data);
+  //     if(data)
+  //     {
+       
+  //       // await localStorage.setItem('Id_User',data.data.data[0]._id)
+  //       // const id = localStorage.getItem('Id_User')
+  //       //   setId(id)
+  //         setFullname(data.data.data[0].full_name)
+  //         setAvt(data.data.data[0].avatar)
+  //         setAddress(data.data.data[0].address)
+  //         setPhone(data.data.data[0].phone_number)
+  //         setGender(data.data.data[0].gender)
+  //     }
+  // }
+  // const loggedInUser = localStorage.getItem('token');
+  // useEffect(() => {
+  // if(loggedInUser){
+  // byID() 
+  // }
+  
+  // }, [byID()])
+async function editUser() {
+        console.log('props ...');
+        console.log();
         console.log(fullname);
        console.log(address);
        console.log(phone);
        console.log(gender);
-    //   try {
-    //     console.log('id xóa là');
-    //    console.log(id);
+       console.log(avt);
+  const da_ta = new FormData();
+  da_ta.append("full_name", fullname)
+  da_ta.append("address", address)
+  da_ta.append("phone_number", phone)
+  da_ta.append("gender", gender)
+
+  console.log('gio tinh la');
+  console.log(fullname);
+  console.log(gender);
+
+  da_ta.append("file", avt)
+  try {
+    setSave('Loading...')
+    console.log(save);
+    setOpen(onOpen)
+    console.log('set ID là');
+    console.log(id);
+    if (da_ta) {   
+      
+      const data = await handleUpdateUser(id,da_ta) 
+      console.log('dâttaaaa');
+      console.log(data);
+      setOpen(onClose)
+      setSave('Save')
+      toast.success("Successful!");
+       //await localStorage.setItem('Id_User',data.data.data[0]._id)
+         //setId(props.user)
+      //  console.log('set ID là');
+      //  console.log(Id);
+    }
    
-    //    const data= await handleDeleteUser(id);
-    //    console.log('da xoa id');
-    //    console.log(data);
-    //    console.log('thanh cong');
-    //    setOpen(onClose)
-    //    navigate('/admin/user')
-    //   } catch (error) {
-    //    console.log('that bai');
-    //     console.log(error);
-    //   }
-   
-   }
+  } catch (error) {
+    console.log(error)
+    toast.error("Failed!");
+  } 
   
+   }
   
     return (
       <>
@@ -123,7 +173,7 @@ import {
               <>
               <FormControl >
               <FormLabel>Full name</FormLabel>
-              <Input  defaultValue={u.full_name}  
+              <Input  value={fullname}  
                 onChange={handleFullNameInput} 
               />
              </FormControl>
@@ -148,22 +198,23 @@ import {
             <FormControl mt={4}>
               <FormLabel>Avatar</FormLabel>
               <Input id ='file' type={'file'} onChange={handleAvtInput}></Input>
-            </FormControl>
-              </> 
-              :
-               <></>}
-              </>
-  
-  
-            ))}
-             </Box>    
+            </FormControl>            
+              
             <ModalFooter>
-              <Button colorScheme='blue' mr={3} onClick={(event)=>{ onOpen(event);editUser(props.user) }}
+              <Button colorScheme='blue' mr={3} onClick={(event)=>{ onOpen(event);
+              editUser(u._id) 
+              }}
               >
                 Save
               </Button>
               <Button onClick={onClose}>Cancel</Button>
             </ModalFooter>
+            </> 
+             :
+              <></>}
+             </>  
+           ))}
+             </Box>
           </ModalContent>
   
         </Modal>

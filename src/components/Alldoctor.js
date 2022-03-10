@@ -7,7 +7,8 @@ import {
   Stack,
   Button,
   Flex,
-  Spinner 
+  Spinner,
+  Input
 } from '@chakra-ui/react';
 import React, { lazy, Suspense, useEffect, useState } from 'react';
 import ApiCaller from '../utils/apiCaller';
@@ -15,11 +16,8 @@ import { Router, useNavigate } from 'react-router-dom'
 import { PhoneIcon, EmailIcon, RepeatClockIcon, InfoIcon } from '@chakra-ui/icons'
 import Navbar from "./Navbar";
 import Footer from './Footer'
-import LazyLoad from 'react-lazyload';
 import { ToastContainer, toast } from 'react-toastify';
-import { usePromiseTracker } from "react-promise-tracker";
-import Loader from 'react-loader-spinner';
-import * as ReactBootStrap from "react-bootstrap"
+import {BiSearchAlt} from 'react-icons/bi'
 
 
 function Alldoctor(props) {
@@ -48,26 +46,15 @@ function Alldoctor(props) {
       toast.warning("Please Login To Continue");
     }
     else {
+
       //  console.log(e.target.value);
       navigate('/booking/' + `${e.target.value}`);
       // console.log('/book/'+`${e.target.value}`);
 
+
     }
-
-
-    // <Routes>
-
-    // <Route path={`/book/:${e.target.value}`} element={<Book/>}/>
-    //  </Routes>
-
   }
 
-  //  if(Api){
-  //   return Api
-  // }
-  // else{
-  //   console.log('loading');
-  //   }
 
 
 
@@ -75,9 +62,31 @@ function Alldoctor(props) {
   return (
     <>
       <Navbar />
-      <Box>
+      <Box
+      position={'relative'}
+      >
 
         <Heading mt='100px' textAlign={'center'}>{header}</Heading>
+        <Box
+          d={'flex'}
+          w={'250px'}
+          alignItems={'center'}
+          border={'1px #757a80 solid'}
+          borderRadius={'15px'}
+          position={'absolute'}
+          right= {'150px'}
+          top= {'4px'}
+          pl={'5px'}
+        >
+            <BiSearchAlt 
+            color='#5b6066'
+            fontSize={'32px'} />
+            <Input 
+            border={'none'} 
+            size='sm'
+            variant='unstyled'
+            ></Input>
+        </Box>
         {/* <LazyLoad> */}
         <Center mt='10px' py={4}
 
@@ -105,7 +114,7 @@ function Alldoctor(props) {
                     boxShadow={'2xl'}
                     rounded={'lg'}
                     p={6}
-                    ml='40px'
+                    marginLeft= '40px'
                     mt='25px'
                     textAlign={'center'}>
                     <Avatar
@@ -207,4 +216,4 @@ function Alldoctor(props) {
   );
 }
 
-export { Alldoctor };
+export default  Alldoctor 

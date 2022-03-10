@@ -23,18 +23,13 @@ import {
 } from '@chakra-ui/react';
 import '../responsive/account/signin.css'
 import { } from 'react-router-dom';
-import Footer from './Footer';
-import Navbar from './Navbar';
-import Signup from './Signup';
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { handleLoginAPI } from '../services/User'
-import bg from '../assets/image/backgroundLogin.jpg'
 import gif from '../assets/image/heart.gif'
 import { ArrowBackIcon } from '@chakra-ui/icons';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import InitialFocus from './Modal'
 // import Session from 'react-session-api'
 
 function SimpleCard() {
@@ -59,9 +54,13 @@ function SimpleCard() {
         localStorage.setItem('role',data.data.data.role)
       var loggedInUser = localStorage.getItem('token')
       console.log('User token'+loggedInUser)
-      if (loggedInUser !=null  ) {
+      let role_object = localStorage.getItem('role')
+      if (loggedInUser !=null && role_object==='customer'  ) {
         toast.success("Login success!");
         navigate('/home')
+        console.log(localStorage.getItem('role'))
+      } else {
+        navigate('/admin')
       }
     } catch (error) {
      

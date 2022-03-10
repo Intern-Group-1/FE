@@ -65,14 +65,19 @@ export default function Navbar() {
   const loggedInUser = localStorage.getItem('token');
 
 
+  // const loggedInUser =  localStorage.getItem('token');
+  console.log('token la'+loggedInUser);
+  //const InUser = Session.get('user');
+  console.log('id local');
+  //console.log(InUser);
+  window.onscroll = function () { };
+
+
   window.onscroll = function () { };
 
 // Setting user
 const [full_name, setName] = useState('')
    const [avatar, setAvt] = useState('')
-  //  const [gender, setGender] = useState('')
-  //  const [address, setAddress] = useState('')
-  //  const [phone, setPhone] = useState('')
 async function byID (){ 
         const data= await handleGetUserId()
         console.log('Data cua ta:'+data)
@@ -80,9 +85,6 @@ async function byID (){
         {
             setName(data.data.data[0].full_name)
             setAvt(data.data.data[0].avatar)
-            // setAddress(data.data.data[0].address)
-            // setPhone(data.data.data[0].phone_number)
-            // setGender(data.data.data[0].gender)
         }
 }
   const [Api, setApi] = useState([])
@@ -108,8 +110,6 @@ async function byID (){
         bg={useColorModeValue('white', 'gray.800')}
         color={useColorModeValue('gray.600', 'white')}
         minH={'20px'}
-        //py={{ base: 2 }}
-        // px={{ base: 4 }}
         borderBottom={1}
         borderStyle={'solid'}
         borderColor={useColorModeValue('gray.200', 'gray.900')}
@@ -195,11 +195,12 @@ async function byID (){
                   <MenuList
                     border={'0.5px'}
                     bg={'white'}
-                  // borderColor={'gray.700'}
                   >
+
                     <MenuItem as='a' color={'black'} fontWeight='normal' onClick={HandleProfile}>Profile</MenuItem>
                     <MenuItem as='a' color={'black'} fontWeight='normal' href={'/#'} >Appointment</MenuItem>
                     <MenuItem as='a' color={'black'} fontWeight='normal' href={'/#'}>Settings</MenuItem>
+
                     <MenuDivider />
                     <MenuItem color={'blue.500'} _hover={{
                       backgroundColor: 'blue.100'
@@ -299,10 +300,15 @@ const DesktopNav = () => {
 const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
   return (
     <Link
+
       href={href}
+
+    style={{ textDecoration: 'none' }}
+
       role={'group'}
       display={'block'}
       p={2}
+      w={'200px'}
       rounded={'md'}
       _hover={{ bg: useColorModeValue('blue.100', 'gray.900') }}>
       <Stack direction={'row'} align={'center'}>
@@ -452,6 +458,12 @@ const NAV_ITEMS: Array<NavItem> = [
     ],
   },
   {
+
+    label: 'Doctor',
+    href: '/doctor',
+  },
+  {
+
     label: 'About',
     children: [
       {

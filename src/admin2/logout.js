@@ -4,7 +4,7 @@ import Admin from './admin'
 import { useNavigate } from 'react-router-dom'
 function Logoutadmin() {
     delete localStorage.token;
-    window.location.href = '/home';
+    window.location.href = '/signin';
 }
 
 export default Logoutadmin
