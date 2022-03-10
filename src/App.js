@@ -17,8 +17,8 @@ import Logoutadmin from "./admin2/logout";
 import TableUser from "./admin2/tableUser";
 import Profile from "./components/TestProfile"
 import TableAppointment from './admin2/tableAppointment'
-import BasicStatistics from "./admin2/Dashboard"
 import BarChart from "./admin2/Chart"
+import Dashboard from "./admin2/Dashboard"
 
 function App() {
 
@@ -46,6 +46,7 @@ function App() {
          <Route path='/admin/user' element={<PrivateRoute> <TableUser /></PrivateRoute>} />
          <Route path='/admin/clinic' element={<PrivateRoute> <TableClinic /></PrivateRoute>} />
          <Route path='/admin/appointment' element={<PrivateRoute> <TableAppointment /></PrivateRoute>} />
+         <Route path='/admin/dashboard' element={<PrivateRoute> <Dashboard /></PrivateRoute>} />
         <Route path="/test" element={<Booking />} />
         <Route path="/testadmin" element={<BarChart />} />
         <Route path='/test/:id' element={<Booking />} />
