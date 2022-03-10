@@ -17,13 +17,15 @@ import {
   import { ToastContainer, toast } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
   import { handleCreateUser, handleGetUserId } from '../services/User';
+  import { handleGetAppointment } from '../services/Appointment';
 toast.configure()
 function ProfileUser(){
    const [full_name, setName] = useState('')
    const [avatar, setAvt] = useState('')
-   const [gender, setGender] = useState('')
+   const [gender, setGender] = useState()
    const [address, setAddress] = useState('')
    const [phone, setPhone] = useState('')
+   const [Iduser, setIdUser] = useState('')
     const byID = async ()=>{ 
         const data= await handleGetUserId()
         console.log(data)
@@ -34,33 +36,24 @@ function ProfileUser(){
             setAddress(data.data.data[0].address)
             setPhone(data.data.data[0].phone_number)
             setGender(data.data.data[0].gender)
+            setIdUser(data.data.data[0]._id)
         }
     }
+    const [appointment, setAppointment] = useState([])
+    const handleGetApp = async (req, res)=>{
+            const data = await handleGetAppointment(Iduser)
+            return data
+    } 
     const loggedInUser = localStorage.getItem('token')
-    useEffect(() => {
+    useEffect(async () => {
+        const app =await handleGetApp()
+        setAppointment(app.data.data)
         if(loggedInUser){
             byID()
         }
       }, [ byID()])
-    // useEffect(() => {
-      
-    //     ApiCaller('get-all-user', 'GET')
-    //         .then( res => {
-    //             // console.log('data la');
-    //             //console.log(res.data.data);
-    //             // console.log(localStorage.Id_user);
-    //             console.log(res.data.data);
-    //              if(res.data.data._id==localStorage.Id_user){
 
-
-    //                 setApi(res.data.data._id)
-                     
-    //                     }
-              
-                
-    //         })
-           
-    // }, [])
+         
   return <>
     
     <Navbar />
@@ -100,7 +93,7 @@ function ProfileUser(){
         <Text>
             Gender
             <Input type='text' 
-             value={gender} 
+             value={gender == true ? 'Male': 'Female'} 
             className='text-inf'></Input>
         </Text>
 
@@ -118,50 +111,19 @@ function ProfileUser(){
             <ToastContainer />
         </Box> 
         <Box className='schedule' w={'720px'} h={'410px'}>
-           <Box className='tag-schedule'>
+        {appointment.map(app=>(
+            <Box className='tag-schedule'>
                 <Box className='infodoctor'>
-                    <Text>Dr Gutman</Text>
-                    <Text>Orthopedic</Text>
+                    <Text>{app.doctor.full_name}</Text>
+                    {/* <Text>{app.speciality}</Text> */}
                 </Box>
                 <Box className='info-schdule'>
-                    <Text>Time: 07:00-08:00</Text>
-                    <Text>Date: 25/02  </Text>
-                    <Text>Address: Hoang Long, 14 Le Loi</Text>
+                    <Text>Time: {app.time}</Text>
+                    <Text>Date: {app.date}</Text>
+                    <Text>Address: {app.branch.address}</Text>
                 </Box>
-           </Box>
-           <Box className='tag-schedule'>
-                <Box className='infodoctor'>
-                    <Text>Dr Kilgore</Text>
-                    <Text>General Physician</Text>
-                </Box>
-                <Box className='info-schdule'>
-                    <Text>Time: 09:00-10:00</Text>
-                    <Text>Date: 10/03</Text>
-                    <Text>Address: Kim Anh, 23 Tran Phu</Text>
-                </Box>
-           </Box>
-           <Box className='tag-schedule'>
-                <Box className='infodoctor'>
-                    <Text>Dr Thanh</Text>
-                    <Text>Cadiologry</Text>
-                </Box>
-                <Box className='info-schdule'>
-                    <Text>Time: 07:00-08:00</Text>
-                    <Text>Date: 16/03</Text>
-                    <Text>Address: 12 Le Loi</Text>
-                </Box>
-           </Box>
-           <Box className='tag-schedule'>
-                <Box className='infodoctor'>
-                    <Text>Dr Thanh</Text>
-                    <Text>Cadiologry</Text>
-                </Box>
-                <Box className='info-schdule'>
-                    <Text>Time: 10:00</Text>
-                    <Text>Date: 12/03</Text>
-                    <Text>Address: 12 Le Loi</Text>
-                </Box>
-           </Box>
+            </Box>
+            ))}
        
         </Box>
         </Box>
