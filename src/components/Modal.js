@@ -26,10 +26,11 @@ function InitialFocus() {
   const [fullname, setFullname] = useState('')
   const [address, setAddress] = useState('')
   const [phone, setPhone] = useState('')
-  const [gender, setGender] = useState('')
+
+  const [gender, setGender] = useState()
   const [avt, setAvt] = useState('')
   const [save,setSave]=useState('Save')
-  
+  let genderlist = ['Female', 'Male'];
   const handleFullNameInput = e => {
     setFullname(e.target.value);
   }
@@ -118,7 +119,6 @@ const handleUpdate = async () =>{
   const [open,setOpen]=useState('');
   const initialRef = React.useRef()
   const finalRef = React.useRef()
-  let genderlist = ['Female', 'Male'];
 const byID = async ()=>{
         const data= await  handleGetUserId()
         if(data)
@@ -174,13 +174,14 @@ console.log(gender);
             <FormControl mt={4}>
               <FormLabel>Gender</FormLabel>
               <Combobox
-                 data={genderlist}
 
-                 onChange={gender => setGender(gender == 'Male'? 'true' : 'false')}
+                data={genderlist}
+                defaultValue={gender == true ? 'Male': 'Female'}
+                onChange={gender => gender == 'Male'? setGender(true): setGender(false)}
               />
             </FormControl>
             <FormControl mt={4}>
-              <FormLabel>avt</FormLabel>
+              <FormLabel>avatar</FormLabel>
               <Input id ='file' type={'file'} onChange={handleAvtInput}></Input>
             </FormControl>
             

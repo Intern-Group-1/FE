@@ -21,6 +21,7 @@ import {
  
 
 } from '@chakra-ui/react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import '../responsive/account/signin.css'
 import { } from 'react-router-dom';
 import React, { useState } from 'react'
@@ -127,8 +128,12 @@ function SimpleCard() {
             </FormControl>
             <FormControl >
               <FormLabel>Password</FormLabel>
+              
               <Input  id="password" type={eye ? 'text' : 'password'} value={password} placeholder='Enter your password' onChange={handlePasswordInput} />
-              <span onClick={handleShowHidePassword}><i class={eye ? "far fa-eye eye" : "far fa-eye-slash eye"}></i></span>
+              <span onClick={handleShowHidePassword}>
+              <FontAwesomeIcon icon={eye ? "fas fa-eye" :"fas fa-eye-slash"} />
+              <FontAwesomeIcon icon="fas fa-eye-slash" />
+              </span>
             </FormControl>
             <Stack spacing={10}>
               <Stack
@@ -152,25 +157,20 @@ function SimpleCard() {
               >
                 Sign in
               </Button>
-
               <Text color='red'
               >
                 {messagea}
               </Text>
-
             </Stack>
           </Stack>
-
         </Box>
-
       </Stack >
       <Box className='animation'>
       <Img src={gif} width='50%'/>
       <Img src={gif} width='100%'/>
       <Img src={gif} width='50%'/>
       </Box>
-    </Flex>
-            
+    </Flex>           
   </div>
   );
 }

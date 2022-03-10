@@ -216,6 +216,7 @@ async function byID (){
                 fontSize={'sm'}
                 fontWeight={400}
                 variant={'link'}
+               
                 onClick={HandleSignin}>
                 Sign in
               </Button>
@@ -229,6 +230,7 @@ async function byID (){
                 bg={'blue.500'}
                 onClick={handleSignup}
                 _hover={{
+                  textDecoration:'none',
                   bg: 'blue.300',
                 }}>
                 Sign up
