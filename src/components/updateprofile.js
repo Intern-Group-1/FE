@@ -15,33 +15,15 @@ import {
   Image
 } from '@chakra-ui/react'
 import React, { useState,useEffect } from 'react';
-import avt from '../assets/image/Doctor.jpg'
 import '../style/input-file.css'
 import "react-widgets/styles.css";
 import Combobox from "react-widgets/Combobox";
 import { handleCreateUser, handleGetUserId, handleUpdateUser } from '../services/User';
 import { ToastContainer, toast } from 'react-toastify';
-import Navbar from './Navbar';
-import Footer from './Footer'
 import Home from './Homepage';
 import { useNavigate } from 'react-router-dom';
-// import '../style/ModalLoading.css'
+import ProfileUser from './ProfileUser';
 
-var wait = function() {
-  
-  return (<>
-
-    <ons-modal var="modal">   
-      <div className="loading-area">
-        <img className="loading-image" 
-        src="http://www.downgraf.com/wp-content/uploads/2014/09/01-progress.gif"/>
-        <p className="loading-text">Loading ...</p>
-      </div>  
-    </ons-modal>
-  
-  </>)
-  
-}
 
 function InitialFocus() {
   const navigate=useNavigate()
@@ -50,6 +32,7 @@ function InitialFocus() {
   const [phone, setPhone] = useState('')
   const [gender, setGender] = useState('')
   const [avt, setAvt] = useState('')
+  
   const handleFullNameInput = e => {
     setFullname(e.target.value);
   }
@@ -86,28 +69,28 @@ function InitialFocus() {
     da_ta.append("file", avt)
     da_ta.append("account", account)
     try {
-      setOpen(onClose)
+      // setOpen(onClose)
       
-      console.log('đang chờ kết quả');
+      // console.log('đang chờ kết quả');
      
-
-     
-      const data = await handleCreateUser(da_ta)
       setSave('Loading...')
       console.log(save);
       setOpen(onOpen)
+     
+      const data = await handleCreateUser(da_ta)
+     
       if (data) {
       
         console.log('data là');
         console.log(data);
-        await localStorage.setItem('Id_User',data.data.data[0]._id)
-             
+        await localStorage.setItem('Id_User',data.data.data[0]._id)          
         const id = localStorage.getItem('Id_User')
         console.log(id)
         setId(id)
+        toast.success("Successful!");
         navigate('/home')
         setOpen(onClose)
-        toast.success("Successful!");
+       
       }  
      
     } catch (error) {
@@ -123,12 +106,16 @@ const handleUpdate = async () =>{
     da_ta.append("gender", gender)
     da_ta.append("file", avt)
     try {
-      setOpen(onClose)
+      //setOpen(onClose)
+      setSave('Loading...')
+      setOpen(onOpen)
       const data = await handleUpdateUser(Id,da_ta) 
       if (data) {
         await localStorage.setItem('Id_User',data.data.data[0]._id)
         await setId(localStorage.getItem('Id_User'))
       }
+      setOpen(onClose)
+      setSave('Save')
       toast.success("Successful!");
       
     } catch (error) {
@@ -164,8 +151,8 @@ useEffect(() => {
 }, [])
   return (
      <>  
-     {/* <Navbar/> */}
-    <Home/>
+     {/* <Navbar/>  */}
+    <ProfileUser/>
       <Button onClick={  
          onOpen
       } >Edit Profile</Button>
@@ -199,7 +186,7 @@ useEffect(() => {
               <Combobox
                 data={genderlist}
                 //value={gender == 'true' ? 'Male' : 'Female'}
-                onChange={gender => setGender(gender == 'Male' ? 'true' : 'false')}
+                onChange={gender => setGender(gender == 'Male' ? true : false)}
               />
             </FormControl>
             <FormControl mt={4}>
@@ -211,7 +198,7 @@ useEffect(() => {
 
           <ModalFooter>
             <Button colorScheme='blue' mr={3} onClick={Id ?handleUpdate: handleCreate}>
-              Save
+            {save}
             </Button>
             {/* <Button onClick={onClose}>Cancel</Button> */}
           </ModalFooter>

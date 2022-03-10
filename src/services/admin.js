@@ -1,9 +1,5 @@
 import axios from 'axios'
 const handleDeleteUser = async (id)=>{
-
-
-
-
     try {
         var token = await localStorage.getItem('token')
         console.log('token là chi đó ');

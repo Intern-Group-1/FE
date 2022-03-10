@@ -65,7 +65,7 @@ const Sidebar = () => {
         paddingTop:'100px',
         backgroundColor: '#B6D0E2'
     }}>
-        <div >
+        <div>
            <Img pl='40px' src={logo}/>
         </div>
         <div ref={sidebarRef} className="sidebar__menu">
