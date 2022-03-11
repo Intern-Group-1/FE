@@ -15,10 +15,11 @@ import TableClinic from "./admin2/tableClinic";
 import PrivateRoute from '../src/admin2/auth/PrivateRoute'
 import Logoutadmin from "./admin2/logout";
 import TableUser from "./admin2/tableUser";
-import Profile from "./components/TestProfile"
 import TableAppointment from './admin2/tableAppointment'
-import BasicStatistics from "./admin2/Dashboard"
 import BarChart from "./admin2/Chart"
+
+import Dashboard from "./admin2/Dashboard"
+import DoctorBySpeciality from "./components/DoctorBySpeciality";
 
 function App() {
   return (
@@ -33,26 +34,19 @@ function App() {
         <Route path="/profile/user" element={<InitialFocus2 />} />
         <Route path="/home" element={<Home />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/doctor" element={<Alldoctor />} />      
-        <Route path="/booking" element={<Booking />} />
-        <Route path='/booking/:id' element={<Booking />} />
-       
-     
-        <Route path="/testprofile" element={<Profile />} />
 
-       
-      
-        
-
-
-
-        {/* admin */}
-        <Route  path="/admin" element={<PrivateRoute> <Admin /></PrivateRoute>}/> 
-        <Route path='/admin/doctor' element={<PrivateRoute> <Table /></PrivateRoute>} />
-        <Route path='/admin/user' element={<PrivateRoute> <TableUser /></PrivateRoute>} />
-        <Route path='/admin/clinic' element={<PrivateRoute> <TableClinic /></PrivateRoute>} />
-         <Route path='/admin/appointment' element={<PrivateRoute> <TableAppointment /></PrivateRoute>} />      
+        <Route path="/doctor" element={<Alldoctor />} />
+        <Route path='/Speciality/:name'  element={<DoctorBySpeciality/>}/>
+        <Route  path="/admin" element={<PrivateRoute> <Admin /></PrivateRoute>}>  
+         </Route>
+         <Route path='/admin/doctor' element={<PrivateRoute> <Table /></PrivateRoute>} />
+         <Route path='/admin/user' element={<PrivateRoute> <TableUser /></PrivateRoute>} />
+         <Route path='/admin/clinic' element={<PrivateRoute> <TableClinic /></PrivateRoute>} />
+         <Route path='/admin/appointment' element={<PrivateRoute> <TableAppointment /></PrivateRoute>} />
+         <Route path='/admin/dashboard' element={<PrivateRoute> <Dashboard /></PrivateRoute>} />
+        <Route path="/test" element={<Booking />} />
         <Route path="/testadmin" element={<BarChart />} />
+        <Route path='/booking/:id' element={<Booking />} />
         <Route  path="/logout" element={<PrivateRoute> <Logoutadmin /></PrivateRoute>}/> 
       </Routes>
 
