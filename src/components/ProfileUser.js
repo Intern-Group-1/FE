@@ -6,6 +6,7 @@ import InitialFocus from './Modal'
 import AlertsSuccess from './Success'
 import Navbar from './Navbar'
 import Footer from './Footer'
+import moment from 'moment'
 import {
     Flex,
     Box,
@@ -63,7 +64,8 @@ function ProfileUser(){
          d='flex' justifyContent='center'
          alignContent='center'>
         <Box className='user-avt'>
-           <Box width='250px' height='250px' borderRadius='50%'  border='1px' boxShadow='2xl' m='10'  border='1px' borderColor='blue.300'>
+           <Box width='250px' height='250px' borderRadius='50%'  border='1px' 
+           boxShadow='2xl' m='10'  border='1px' borderColor='blue.300'>
            <Image src={avatar} width='250px' height='250px' borderRadius='50%' />
                </Box> 
             <input  type='file' className='custom-file-input' /> 
@@ -119,7 +121,7 @@ function ProfileUser(){
                 </Box>
                 <Box className='info-schdule'>
                     <Text>Time: {app.time}</Text>
-                    <Text>Date: {app.date}</Text>
+                    <Text>Date: {moment(app.date).format('L')}</Text>
                     <Text>Address: {app.branch.address}</Text>
                 </Box>
             </Box>
