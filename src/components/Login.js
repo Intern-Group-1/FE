@@ -60,22 +60,12 @@ function SimpleCard() {
         navigate('/home')
         console.log(localStorage.getItem('role'))
       } else {
-        navigate('/admin')
+        toast.success("Login success!");
+        navigate('/admin/dashboard')
       }
     } catch (error) {
      
           toast.error("Login failed!");
-      //console.log(error);
-      // if (error) {
-      //   if (error.response) {
-      //     if (error.response.data) {
-      //       console.log(error.response.data);
-      //       setMessage(error.response.data.message);
-           
-      //     }
-      //   }
-      // }
-     
     }
   }
   const handleShowHidePassword = () => {

@@ -1,9 +1,7 @@
 import React,{useState,useEffect} from 'react';
-import ApiCaller from '../utils/apiCaller';
 import '../style/input-file.css'
 import '../responsive/profile/Profile.css'
 import InitialFocus from './Modal'
-import AlertsSuccess from './Success'
 import Navbar from './Navbar'
 import Footer from './Footer'
 import {
@@ -46,62 +44,80 @@ function ProfileUser(){
     
     <Navbar />
    
-    <Flex >
-        <Box className='container-profile'  w='90%' h='50%' m='5%' boxShadow='2xl' borderRadius='2xl' d='flex' rounded='md' bg='white' boxShadow='outline'
-         d='flex' justifyContent='center'
-         alignContent='center'>
-        <Box className='user-avt'>
-           <Box width='250px' height='250px' borderRadius='50%'  border='1px' boxShadow='2xl' m='10'  border='1px' borderColor='blue.300'>
-           <Image src={avatar} width='250px' height='250px' borderRadius='50%' />
-               </Box> 
-            <input  type='file' className='custom-file-input' /> 
-        </Box>
+    <Flex 
+    flexDirection={'column'}
+    alignItems={'center'}
+    >
+        <Box className='container-profile'  
+        w='90%' 
+        h='400px' 
+        m='5%' 
+        boxShadow='2xl' 
+        d='flex' 
+        rounded='md' 
+        bg='white'  
+        justifyContent='center'
+        alignItems={'center'}
+        alignContent='center'>
+            <Box className='user-avt' w={'450px'}>
+            <Box width='250px' height='250px' borderRadius='50%'  border='1px' boxShadow='2xl' m='10' border='1px' borderColor='blue.300'>
+            <Image src={avatar} width='250px' height='250px' borderRadius='50%' />
+                </Box> 
+                <input  type='file' className='custom-file-input' /> 
+            </Box>
         
        
-       <Box d='flex' justifyContent='center' alignItems='flex-start' w='400' h='360' flexDirection='column' >
-
-        <Box maxH='300' className='box'>
-        <Text maxH='100' >
-            Full Name
-            <Input type='text'  
-              value={full_name} 
-            className='text-inf'></Input>
-        </Text>
-        <Text  maxH='100'>
-           Address
-            <Input type='text' 
-             value={address} 
-            className='text-inf'></Input>
-        </Text>
-        <Text maxH='100'>
-            Phone
-            <Input type='text' 
-            value={phone}
-             className='text-inf'></Input>
-        </Text>
-        <Text>
-            Gender
-            <Input type='text' 
-             value={gender} 
-            className='text-inf'></Input>
-        </Text>
-
+            <Box d='flex' justifyContent='center' alignItems='flex-start' w='400' h='360' flexDirection='column' >
+                <Box maxH='300' className='box'>
+                    <Text maxH='100' fontWeight={'bold'}>
+                        Full Name
+                        <Input type='text'  
+                        value={full_name} 
+                        className='text-inf'
+                        border={'none'}></Input>
+                    </Text>
+                    <Text  maxH='100' fontWeight={'bold'}>
+                    Address
+                        <Input type='text' 
+                        value={address} 
+                        className='text-inf'
+                        border={'none'}></Input>
+                    </Text>
+                    <Text maxH='100' fontWeight={'bold'}>
+                        Phone
+                        <Input type='text' 
+                        value={phone}
+                        className='text-inf'
+                        border={'none'}></Input>
+                    </Text>
+                    <Text fontWeight={'bold'}>
+                        Gender
+                        <Input type='text' 
+                        value={gender} 
+                        className='text-inf'
+                        border={'none'}></Input>
+                    </Text>
+                </Box>         
+                <Button 
+                    className='change-info'
+                    h={'45px'}
+                    w={'120px'}
+                    mt={'10px'}
+                    ml={'120px'}
+                    >
+                    <InitialFocus />
+                </Button>
+                    <ToastContainer />
+            </Box> 
         </Box>
-      
-    <Button 
-            className='change-info'
-            h={'45px'}
-            w={'120px'}
-            mt={'10px'}
-
-            ml={'120px'}
-            >
-                <InitialFocus />
-            </Button>
-            <ToastContainer />
-
-        </Box> 
-        <Box className='schedule' w={'720px'} h={'410px'}>
+        <Box className='schedule' 
+        w={'90%'} 
+        h={'410px'} 
+        bg='white'  
+        boxShadow='2xl' 
+        rounded='md' 
+        marginBottom={'30px'}
+        >
            <Box className='tag-schedule'>
                 <Box className='infodoctor'>
                     <Text>Dr Gutman</Text>
@@ -146,12 +162,8 @@ function ProfileUser(){
                     <Text>Date: 12/03</Text>
                     <Text>Address: 12 Le Loi</Text>
                 </Box>
-           </Box>
-
-       
+           </Box> 
         </Box>
-        </Box>
-        
        
     </Flex>
   <Footer />

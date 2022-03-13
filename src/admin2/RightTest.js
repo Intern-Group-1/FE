@@ -35,12 +35,12 @@ interface LinkItemProps {
   link: String;
 }
 const LinkItems: Array<LinkItemProps> = [
-  { name: 'Dashboard', icon: FiHome, link: '/admin/user' },
+  { name: 'Dashboard', icon: FiHome, link: '/admin/dashboard' },
   { name: 'Doctor', icon: FaUserMd, link: '/admin/doctor' },
   { name: 'Clinic', icon: FaHospital, link: '/admin/clinic' },
   { name: 'User', icon: FaUserAlt, link: '/admin/user' },
   { name: 'Appointment', icon: FaCalendarAlt, link: '/admin/appointment' },
-  { name: 'Logout', icon: MdLogout },
+  { name: 'Logout', icon: MdLogout, link: '/logout' },
 ];
 
 export default function Right({ children }: { children: ReactNode }) {
