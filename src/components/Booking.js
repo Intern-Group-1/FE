@@ -29,9 +29,7 @@ export default function Booking() {
     const MyButton = (props) => {
         const [isActive, setActive] = useState(false);
         const handleClick = (e) => {
-                //isActive(true)
-                 setTime(e.target.innerHTML)
-                
+                  setTime(e.target.innerHTML)               
                   setActive(!isActive);
                 //  console.log('setttt');
                 //  console.log(isActive);
@@ -80,7 +78,14 @@ export default function Booking() {
     }, [])
     const [startDate, setStartDate] = useState(new Date());
     const [time, setTime] = useState('');
-    const listTime=['07:00-08:00','08:00-09:00','09:00-10:00','10:00-11:00','14:00-15:00','15:00-16:00','16:00-17:00','17:00-18:00',]
+    const listTime=['07:00-08:00',
+                    '08:00-09:00',
+                    '09:00-10:00',
+                    '10:00-11:00',
+                    '14:00-15:00',
+                    '15:00-16:00',
+                    '16:00-17:00',
+                    '17:00-18:00',]
     const onChange = (dates) => {
         const [start] = dates;
         setStartDate(start);

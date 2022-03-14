@@ -25,8 +25,11 @@ function ProfileUser(){
    const [address, setAddress] = useState('')
    const [phone, setPhone] = useState('')
    const [Iduser, setIdUser] = useState('')
+   const [appointment, setAppointment] = useState([])
    const byID = async ()=>{ 
     const data= await handleGetUserId()
+    console.log('haha');
+   
     console.log(data)
     if(data)
     {
@@ -35,26 +38,27 @@ function ProfileUser(){
         setAddress(data.data.data[0].address)
         setPhone(data.data.data[0].phone_number)
         setGender(data.data.data[0].gender)
-        setIdUser(data.data.data[0]._id)
+         setIdUser(data.data.data[0]._id)
+       
+      
     }
 
 }
-    const [appointment, setAppointment] = useState([])
-    const handleGetApp = async (req, res)=>{
-            const data = await handleGetAppointment(Iduser)
-            return data
-    } 
-    const loggedInUser = localStorage.getItem('token')
+console.log('idid');
+console.log(Iduser);
+const loggedInUser = localStorage.getItem('token')
     useEffect(async () => {
-       
-        const app = await handleGetApp()
+      
+        await byID()  
+        const app = await handleGetAppointment(Iduser)
+        console.log('apppp');
+        console.log(app);
         setAppointment(app.data.data)
-         if(loggedInUser){
-           
-             byID()
-         }
-
-      }, [  byID() ])
+        
+         
+       
+      },[Iduser])
+      
   return <>
     
     <Navbar />
