@@ -5,7 +5,16 @@
     width: 500px !important;
 }
 .btn-time{
-    background-color: #ffff !important;
+    border-radius: 20px;
+    width: 110px !important;
+    height: 40px;
+    margin: 10px 5px;
+    border: 2px #7fb9e9c7 solid;
+}
+
+.btn-time-selected{
+    border-radius: 20px;
+    background-color: rgb(69, 152, 248);
     width: 110px !important;
     height: 40px;
     margin: 10px 5px;

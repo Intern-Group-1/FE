@@ -2,6 +2,7 @@ import React from 'react';
 import { Formik, Form } from 'formik';
 import { TextField } from './TextFeild';
 import * as Yup from 'yup';
+import bg from '../assets/image/bg-signup.jpg'
 import { useState } from 'react';
 import '../style/signup.css'
 import {
@@ -19,35 +20,36 @@ import {
   Text,
   useColorModeValue,
   Link,
+  Image,
 } from '@chakra-ui/react';
-import { ArrowBackIcon, ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
+import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import { handleSignUpAPI } from '../services/User'
-
+import { useNavigate } from 'react-router-dom'
+import Navbar from './Navbar'
+import Footer from './Footer'
 export const Signup = () => {
 
   const [showPassword, setShowPassword] = useState(false);
-  //const email = document.getElementById('email').value;
-  
+  const navigate = useNavigate()
+  const [roleCustomer, setRole] = useState('customer')
   const handleSignup = async () => {
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
     const confirmPassword = document.getElementById("confirmPassword").value;
-    console.log(password);
-    console.log(confirmPassword);
+  
     try {
       const data = await handleSignUpAPI(email, password, confirmPassword,'customer')
-      console.log(data);
-      // if (data) {
-      //   localStorage.setItem('token', data.data.data.tokens[0].token)
-      //   localStorage.setItem('user', data.data.data._id)
-
-      // }
-      // var loggedInUser = localStorage.getItem('token');
-      // console.log(loggedInUser)
-
-      // if (loggedInUser !== null) {
-      //   navigate('/home')
-      // }
+      console.log(data)
+       if (data) {
+        await localStorage.setItem('token', data.data.data.tokens[0].token)
+        await localStorage.setItem('user', data.data.data._id)
+       }
+       var loggedInUser = await localStorage.getItem('token')
+      
+       if (loggedInUser !== null) {
+        localStorage.setItem('role',data.data.data.role)
+         navigate('/profile/user')
+       }
 
     } catch (error) {
       console.log(error);
@@ -74,13 +76,10 @@ export const Signup = () => {
   })
   return (
     <>
-      <Stack direction='row' spacing={4}>
-
-        <Button as={'a'} leftIcon={<ArrowBackIcon />} href='/home' >
-          Back to Homepage
-        </Button>
-      </Stack>
+    <Navbar/>
+   
       <Formik
+         
         initialValues={{
 
           email: '',
@@ -95,13 +94,16 @@ export const Signup = () => {
 
         {formik => (
           <Flex
+                
             minH={'100vh'}
             align={'center'}
             justify={'center'}
-            bg={'white'}>
-            <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
-              <Stack align={'center'}>
-                <Heading fontSize={'4xl'} textAlign={'center'}>
+            
+             bg={'blue.100'}
+            >
+            <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}  w='500px' >
+              <Stack align={'center'} pt='30px' >
+                <Heading fontSize={'40px'} fontWeight='500' textColor={'blue.300'} textAlign={'center'}>
                   Sign up
                 </Heading>
                 <Text fontSize={'lg'} color={'gray.600'}>
@@ -112,15 +114,15 @@ export const Signup = () => {
                 rounded={'lg'}
                 bg={'white'}
                 boxShadow={'lg'}
-                p={8}>
-                <Stack spacing={4}>
+                p={8}
+                fontSize='20px'
+                >
+                <Stack spacing={4}  fontSize='20px'>
 
 
-                  <TextField label="Email" id='email' name="email" type="email" />
-                  <FormControl >
-                    {/* <TextField label="Password" name="password" type="password" /> */}
-
-                    <TextField label='Password' id="password" name="password" type={showPassword ? 'text' : 'password'} />
+                  <TextField fontSize='20px' label="Email" id='email' name="email" type="email" />
+                  <FormControl  >
+                    <TextField fontSize='20px' label='Password' id="password" name="password" type={showPassword ? 'text' : 'password'} />
                     <InputRightElement h={'120px'}>
                       <Button
                         variant={'ghost'}
@@ -137,7 +139,7 @@ export const Signup = () => {
                   <FormControl >
                     {/* <TextField label="Password" name="password" type="password" /> */}
 
-                    <TextField label="Confirm Password" id="confirmPassword" name="confirmPassword" type={showPassword ? 'text' : 'password'} />
+                    <TextField fontSize='2  0px' label="Confirm Password" id="confirmPassword" name="confirmPassword" type={showPassword ? 'text' : 'password'} />
                     <InputRightElement h={'120px'}>
                       <Button
                         variant={'ghost'}
@@ -189,6 +191,7 @@ export const Signup = () => {
 
         )}
       </Formik>
+      <Footer/>
     </>
   )
 }

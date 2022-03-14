@@ -5,6 +5,7 @@ import {
     Image,
     Stack,
     Text,
+    textDecoration,
     useBreakpointValue,
   } from '@chakra-ui/react';
   import bg from '../assets/image/background.jpg'
@@ -47,6 +48,8 @@ import {
                 color={'white'}
                 _hover={{
                   bg: 'blue.500',
+                  color:'White',
+                  textDecoration:'none'
                 }}>
                 Make an appointment
               </Button>
