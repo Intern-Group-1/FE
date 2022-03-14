@@ -9,7 +9,6 @@ import ContactFormWithSocialButtons from "./components/Contact";
 import Alldoctor from "./components/Alldoctor";
 import InitialFocus2 from "./components/updateprofile";
 import Booking from "./components/Booking"
-import Admin from "./admin2/admin";
 import Table from "./admin2/tableDoctor";
 import TableClinic from "./admin2/tableClinic";
 import PrivateRoute from '../src/admin2/auth/PrivateRoute'
@@ -19,37 +18,47 @@ import TableAppointment from './admin2/tableAppointment'
 import BarChart from "./admin2/Chart"
 
 import Dashboard from "./admin2/Dashboard"
+
 import DoctorBySpeciality from "./components/DoctorBySpeciality";
+
+import AllNews from "./components/AllNew"
+import News from "./components/News"
+import Card from "./admin2/CardClinic"
 
 function App() {
   return (
     <ChakraProvider>
-  
       <Routes>
         {/* customer */}
         <Route path="/" element={<Home />} />
         <Route path="/signin" element={<Login />} />
         <Route path="/contact" element={<ContactFormWithSocialButtons />} />
-        <Route path="/profile" element={<ProfileUser />} />
-        <Route path="/profile/user" element={<InitialFocus2 />} />
+        <Route path="/profile" element={<ProfileUser />} >
+        </Route><Route path="/profile/user" element={<InitialFocus2 />} />
         <Route path="/home" element={<Home />} />
+        <Route path="/allnews" element={<AllNews />} />
+        <Route path="/news" element={<News />} />
         <Route path="/signup" element={<Signup />} />
-
         <Route path="/doctor" element={<Alldoctor />} />
         <Route path='/Speciality/:name'  element={<DoctorBySpeciality/>}/>
-        <Route  path="/admin" element={<PrivateRoute> <Admin /></PrivateRoute>}>  
-         </Route>
-         <Route path='/admin/doctor' element={<PrivateRoute> <Table /></PrivateRoute>} />
-         <Route path='/admin/user' element={<PrivateRoute> <TableUser /></PrivateRoute>} />
-         <Route path='/admin/clinic' element={<PrivateRoute> <TableClinic /></PrivateRoute>} />
-         <Route path='/admin/appointment' element={<PrivateRoute> <TableAppointment /></PrivateRoute>} />
-         <Route path='/admin/dashboard' element={<PrivateRoute> <Dashboard /></PrivateRoute>} />
-        <Route path="/test" element={<Booking />} />
+        <Route path="/booking" element={<Booking />} />
         <Route path="/testadmin" element={<BarChart />} />
         <Route path='/booking/:id' element={<Booking />} />
-        <Route  path="/logout" element={<PrivateRoute> <Logoutadmin /></PrivateRoute>}/> 
+        {/* admin */}
+        <Route path="/admin" element={<PrivateRoute><Dashboard /></PrivateRoute>}></Route>
+        <Route path='/admin/doctor' element={<PrivateRoute><Table /></PrivateRoute>} />
+        <Route path='/admin/user' element={<PrivateRoute><TableUser /></PrivateRoute>} />
+        <Route path='/admin/clinic' element={<PrivateRoute><TableClinic /></PrivateRoute>} />
+        <Route path='/admin/appointment' element={<PrivateRoute><TableAppointment /></PrivateRoute>} />
+        <Route path='/admin/dashboard' element={<PrivateRoute><Dashboard /></PrivateRoute>} />
+        <Route path='/admin/test' element={<PrivateRoute><Card /></PrivateRoute>} />
+        <Route path="/logout" element={<PrivateRoute> <Logoutadmin /></PrivateRoute>}> 
+       
+       
+     
+      
+        </Route>
       </Routes>
-
     </ChakraProvider>
   )
 }

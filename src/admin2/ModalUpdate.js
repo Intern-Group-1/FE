@@ -28,13 +28,13 @@ import {
 
   function UpdateUser(props) {
     //  console.log(props.user);
-    const [fullname, setFullname] = useState('')
+    const [fullname, setName] = useState('')
     const [address, setAddress] = useState('')
     const [phone, setPhone] = useState('')
     const [gender, setGender] = useState('')
     const [avt, setAvt] = useState('')
     const [save,setSave]=useState('Save')
-    const [Id, setId] = useState('')
+    const [Id, setIdUser] = useState('')
     const navigate = useNavigate()
     const { isOpen, onOpen, onClose } = useDisclosure()
     const initialRef = React.useRef()
@@ -47,7 +47,7 @@ import {
     function handleFullNameInput (e) {
       console.log('e la');
       // console.log(e.target.value);
-      setFullname(e.target.value);
+      setName(e.target.value);
       console.log(fullname);
       
     }
@@ -68,8 +68,7 @@ import {
       setAvt(e.target.files[0]);
   
     }
-  
-  
+
     useEffect(() => {
       ApiCaller('get-all-user', 'GET')
         .then(async res => {
@@ -77,34 +76,12 @@ import {
           setApi(res.data.data)
         })
     }, [])
-  //   const byID = async ()=>{  
-  //     const data= await  handleGetUserId()
-  //     // console.log('dataa la');
-  //     // console.log(data);
-  //     if(data)
-  //     {
-       
-  //       // await localStorage.setItem('Id_User',data.data.data[0]._id)
-  //       // const id = localStorage.getItem('Id_User')
-  //       //   setId(id)
-  //         setFullname(data.data.data[0].full_name)
-  //         setAvt(data.data.data[0].avatar)
-  //         setAddress(data.data.data[0].address)
-  //         setPhone(data.data.data[0].phone_number)
-  //         setGender(data.data.data[0].gender)
-  //     }
-  // }
-  // const loggedInUser = localStorage.getItem('token');
-  // useEffect(() => {
-  // if(loggedInUser){
-  // byID() 
-  // }
-  
-  // }, [byID()])
-async function editUser() {
-        console.log('props ...');
-        console.log();
-        console.log(fullname);
+   
+
+async function editUser(id) {
+       console.log('props ...');
+       console.log();
+       console.log(fullname);
        console.log(address);
        console.log(phone);
        console.log(gender);
@@ -114,7 +91,6 @@ async function editUser() {
   da_ta.append("address", address)
   da_ta.append("phone_number", phone)
   da_ta.append("gender", gender)
-
   console.log('gio tinh la');
   console.log(fullname);
   console.log(gender);
@@ -131,15 +107,15 @@ async function editUser() {
       const data = await handleUpdateUser(id,da_ta) 
       console.log('dâttaaaa');
       console.log(data);
-      setOpen(onClose)
-      setSave('Save')
-      toast.success("Successful!");
+     
        //await localStorage.setItem('Id_User',data.data.data[0]._id)
          //setId(props.user)
       //  console.log('set ID là');
       //  console.log(Id);
     }
-   
+    setOpen(onClose)
+      setSave('Save')
+      toast.success("Successful!");
   } catch (error) {
     console.log(error)
     toast.error("Failed!");
@@ -173,7 +149,7 @@ async function editUser() {
               <>
               <FormControl >
               <FormLabel>Full name</FormLabel>
-              <Input  value={fullname}  
+              <Input placeholder={u.full_name} defaultValue=''
                 onChange={handleFullNameInput} 
               />
              </FormControl>

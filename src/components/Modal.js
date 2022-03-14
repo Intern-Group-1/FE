@@ -15,7 +15,6 @@ import {
   Image
 } from '@chakra-ui/react'
 import React, { useState,useEffect } from 'react';
-import avt from '../assets/image/Doctor.jpg'
 import '../style/input-file.css'
 import "react-widgets/styles.css";
 import Combobox from "react-widgets/Combobox";
@@ -143,9 +142,10 @@ useEffect(() => {
 console.log(gender);
   return (
     <>
-      <Button onClick={  
-         onOpen
-      } >Edit Profile</Button>
+      <Button 
+      onClick={onOpen}
+      w={'100px'}
+      >Edit Profile</Button>
       <Modal
         initialFocusRef={initialRef}
         finalFocusRef={finalRef}
@@ -155,7 +155,7 @@ console.log(gender);
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>Change your infomation</ModalHeader>
-          <ModalCloseButton />
+          <ModalCloseButton onClick={onClose} />
           <ModalBody pb={6}>
             <FormControl>
               <FormLabel>Full name</FormLabel>

@@ -40,7 +40,7 @@ const LinkItems: Array<LinkItemProps> = [
   { name: 'Clinic', icon: FaHospital, link: '/admin/clinic' },
   { name: 'User', icon: FaUserAlt, link: '/admin/user' },
   { name: 'Appointment', icon: FaCalendarAlt, link: '/admin/appointment' },
-  { name: 'Logout', icon: MdLogout,link: '/logout' },
+  { name: 'Logout', icon: MdLogout, link: '/logout' },
 ];
 
 export default function Right({ children }: { children: ReactNode }) {

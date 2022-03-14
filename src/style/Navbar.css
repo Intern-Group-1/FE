@@ -12,7 +12,8 @@
     top: 0;
     z-index: 99;
   }
-  
+  #name {  margin:1em; padding:5px; }
+  .crop { overflow:hidden; white-space:nowrap; text-overflow:ellipsis; width:100px; }
  
   
   

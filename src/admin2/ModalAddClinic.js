@@ -70,8 +70,8 @@ import {
          onClick={(event)=>{ onOpen(event); byid() }}
          border={'none'}
           > 
-          <AddIcon/> 
-          Add Clinic
+          <AddIcon mr='7px'/> 
+           Add  Clinic
         </Button>
         <Modal
             initialFocusRef={initialRef}
