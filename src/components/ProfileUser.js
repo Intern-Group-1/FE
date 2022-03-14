@@ -1,12 +1,11 @@
 import React,{useState,useEffect} from 'react';
-import ApiCaller from '../utils/apiCaller';
 import '../style/input-file.css'
 import '../responsive/profile/Profile.css'
 import InitialFocus from './Modal'
-import AlertsSuccess from './Success'
 import Navbar from './Navbar'
 import Footer from './Footer'
 import moment from 'moment'
+import { handleGetAppointment } from '../services/Appointment';
 import {
     Flex,
     Box,
@@ -18,10 +17,9 @@ import {
   import { ToastContainer, toast } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
   import { handleCreateUser, handleGetUserId } from '../services/User';
-  import { handleGetAppointment } from '../services/Appointment';
 toast.configure()
 function ProfileUser(){
-   const [full_name, setName] = useState('')
+    const [full_name, setName] = useState('')
    const [avatar, setAvt] = useState('')
    const [gender, setGender] = useState()
    const [address, setAddress] = useState('')
@@ -39,6 +37,7 @@ function ProfileUser(){
         setGender(data.data.data[0].gender)
         setIdUser(data.data.data[0]._id)
     }
+
 }
     const [appointment, setAppointment] = useState([])
     const handleGetApp = async (req, res)=>{
@@ -47,73 +46,97 @@ function ProfileUser(){
     } 
     const loggedInUser = localStorage.getItem('token')
     useEffect(async () => {
-        const app =await handleGetApp()
+       
+        const app = await handleGetApp()
         setAppointment(app.data.data)
-        if(loggedInUser){
-            byID()
-        }
-      }, [ byID()])
+         if(loggedInUser){
+           
+             byID()
+         }
 
-         
+      }, [  byID() ])
   return <>
     
     <Navbar />
    
-    <Flex >
-        <Box className='container-profile'  w='90%' h='50%' m='5%' boxShadow='2xl' borderRadius='2xl' d='flex' rounded='md' bg='white' boxShadow='outline'
-         d='flex' justifyContent='center'
-         alignContent='center'>
-        <Box className='user-avt'>
-           <Box width='250px' height='250px' borderRadius='50%'  border='1px' 
-           boxShadow='2xl' m='10'  border='1px' borderColor='blue.300'>
-           <Image src={avatar} width='250px' height='250px' borderRadius='50%' />
-               </Box> 
-            <input  type='file' className='custom-file-input' /> 
-        </Box>
+    <Flex 
+    flexDirection={'column'}
+    alignItems={'center'}
+    >
+        <Box className='container-profile'  
+        w='90%' 
+        h='400px' 
+        m='5%' 
+        boxShadow='2xl' 
+        d='flex' 
+        rounded='md' 
+        bg='white'  
+        justifyContent='center'
+        alignItems={'center'}
+        alignContent='center'>
+            <Box className='user-avt' w={'450px'}>
+            <Box width='250px' height='250px' borderRadius='50%'  border='1px' boxShadow='2xl' m='10' border='1px' borderColor='blue.300'>
+            <Image src={avatar} width='250px' height='250px' borderRadius='50%' />
+                </Box> 
+                <input  type='file' className='custom-file-input' /> 
+            </Box>
         
        
-       <Box d='flex' justifyContent='center' alignItems='flex-start' w='400' h='360' flexDirection='column' >
-        <Box maxH='300' className='box'>
-        <Text maxH='100' >
-            Full Name
-            <Input type='text'  
-              value={full_name} 
-            className='text-inf'></Input>
-        </Text>
-        <Text  maxH='100'>
-           Address
-            <Input type='text' 
-             value={address} 
-            className='text-inf'></Input>
-        </Text>
-        <Text maxH='100'>
-            Phone
-            <Input type='text' 
-            value={phone}
-             className='text-inf'></Input>
-        </Text>
-        <Text>
-            Gender
-            <Input type='text' 
-             value={gender == true ? 'Male': 'Female'} 
-            className='text-inf'></Input>
-        </Text>
-
+            <Box d='flex' justifyContent='center' alignItems='flex-start' w='400' h='360' flexDirection='column' >
+                <Box maxH='300' className='box'>
+                    <Text maxH='100' fontWeight={'bold'}>
+                        Full Name
+                        <Input type='text'  
+                        value={full_name} 
+                        className='text-inf'
+                        border={'none'}></Input>
+                    </Text>
+                    <Text  maxH='100' fontWeight={'bold'}>
+                    Address
+                        <Input type='text' 
+                        value={address} 
+                        className='text-inf'
+                        border={'none'}></Input>
+                    </Text>
+                    <Text maxH='100' fontWeight={'bold'}>
+                        Phone
+                        <Input type='text' 
+                        value={phone}
+                        className='text-inf'
+                        border={'none'}></Input>
+                    </Text>
+                    <Text fontWeight={'bold'}>
+                        Gender
+                        <Input type='text' 
+                         value={gender == true ? 'Male': 'Female'} 
+                        className='text-inf'
+                        border={'none'}></Input>
+                    </Text>
+                </Box>         
+                <Button 
+                    className='change-info'
+                    h={'45px'}
+                    w={'120px'}
+                    mt={'10px'}
+                    ml={'120px'}
+                    >
+                    <InitialFocus />
+                </Button>
+                    <ToastContainer />
+            </Box> 
         </Box>
-      
-    <Button 
-            className='change-info'
-            h={'45px'}
-            w={'120px'}
-            mt={'10px'}
-            ml={'120px'}
+        
+        <Box className='schedule' 
+            w={'90%'} 
+            h={'410px'} 
+            bg='white'  
+            boxShadow='2xl' 
+            rounded='md' 
+            marginBottom={'30px'}
             >
-                <InitialFocus />
-            </Button>
-            <ToastContainer />
-        </Box> 
-        <Box className='schedule' w={'720px'} h={'410px'}>
+           <Box className='schedule' w={'720px'} h={'410px'}>
         {appointment.map(app=>(
+           
             <Box className='tag-schedule'>
                 <Box className='infodoctor'>
                     <Text>{app.doctor.full_name}</Text>
@@ -125,8 +148,8 @@ function ProfileUser(){
                     <Text>Address: {app.branch.address}</Text>
                 </Box>
             </Box>
+           
             ))}
-       
         </Box>
         </Box>
         

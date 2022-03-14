@@ -22,13 +22,13 @@ import {
   import { ToastContainer, toast } from 'react-toastify';
   import Session from 'react-session-api'
   function ModalUser() {
-    const [fullname, setFullname] = useState('')
+    const [fullname, setName] = useState('')
     const [address, setAddress] = useState('')
     const [phone, setPhone] = useState('')
-    const [gender, setSex] = useState(true)
+    const [gender, setGender] = useState('')
     const [avt, setAvt] = useState('')
     const handleFullNameInput = e => {
-      setFullname(e.target.value);
+      setName(e.target.value);
     }
     const handleAddressInput = e => {
       setAddress(e.target.value);
@@ -39,7 +39,7 @@ import {
   
     }
     const handleGenderInput = e => {
-      setSex(e.target.value);
+      setGender(e.target.value);
   
     }
     const handleAvtInput = e => 
@@ -91,7 +91,7 @@ import {
          onClick={(event)=>{ onOpen(event); byid() }}
          border={'none'}
           > 
-          <AddIcon/> 
+          <AddIcon mr='7px'/> 
           Add User
         </Button>
         <Modal

@@ -9,10 +9,7 @@ import {
     useColorModeValue,
   } from '@chakra-ui/react';
   import { ReactNode } from 'react';
-  import { BsPerson } from 'react-icons/bs';
-  import { FiServer } from 'react-icons/fi';
-  import { GoLocation } from 'react-icons/go';
-import {FaUserMd, FaHospital, FaUserAlt, FaCalendarAlt, FaBluetooth} from 'react-icons/fa'
+  import {FaUserMd, FaHospital, FaUserAlt} from 'react-icons/fa'
 
   
   interface StatsCardProps {
@@ -21,7 +18,7 @@ import {FaUserMd, FaHospital, FaUserAlt, FaCalendarAlt, FaBluetooth} from 'react
     icon: ReactNode;
   }
   function StatsCard(props: StatsCardProps) {
-    const { title, stat, icon } = props;
+    const { title, stat, icon, link } = props;
     return (
       <Stat
         px={{ base: 2, md: 4 }}
@@ -29,7 +26,11 @@ import {FaUserMd, FaHospital, FaUserAlt, FaCalendarAlt, FaBluetooth} from 'react
         shadow={'xl'}
         border={'1px #2B6CB0 solid'}
         borderColor={'blue.600'}
-        rounded={'lg'}>
+        rounded={'lg'}
+        as={'a'}
+        href={link}
+        style={{ textDecoration: 'none' }}
+        >
         <Flex justifyContent={'space-between'} color='blue.500'>
           <Box pl={{ base: 2, md: 4 }}>
             <StatLabel fontWeight={'medium'} isTruncated>
@@ -67,16 +68,19 @@ import {FaUserMd, FaHospital, FaUserAlt, FaCalendarAlt, FaBluetooth} from 'react
             title={'Users'}
             stat={'520'}
             icon={<FaUserAlt size={'3em'} />}
+            link={'/admin/user'}
             />
           <StatsCard
             title={'Doctor'}
             stat={'100'}
             icon={<FaUserMd size={'3em'} />}
+            link={'/admin/doctor'}
           />
           <StatsCard
             title={'Clinic'}
             stat={'180'}
             icon={<FaHospital size={'3em'} />}
+            link={'/admin/clinic'}
             />
         </SimpleGrid>
       </Box>

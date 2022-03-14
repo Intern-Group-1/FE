@@ -23,7 +23,7 @@ import {BiSearchAlt} from 'react-icons/bi'
 function Alldoctor(props) {
   const navigate = useNavigate()
   const [Api, setApi] = useState([]);
-  const [header, setHeader] = useState('Doctor');
+  const [header, setHeader] = useState('');
   const [loading,setLoading] =useState(false)
 
   useEffect(() => {
@@ -31,8 +31,9 @@ function Alldoctor(props) {
       .then( res => {
         console.log(res);
         setApi(res.data.data)
+        
         setLoading(true)
-
+        setHeader('Doctor')
       })
   }, [])
 
@@ -197,13 +198,16 @@ function Alldoctor(props) {
                 </Suspense>
               </>
             )
-            ) : <Box ml={'50%'}><Spinner
+            ) : <Box  mt='200px' height={'500px'} ml={'50%'}>
+             
+              <Spinner
+
             thickness='4px'
             speed='0.65s'
             emptyColor='gray.200'
             color='blue.500'
             size='xl'
-          /></Box>}
+          /> <Text  color={'blue.500'}>Loading...</Text>  </Box>}
 
           </>
         </Center>

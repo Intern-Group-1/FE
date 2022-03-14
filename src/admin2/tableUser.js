@@ -1,4 +1,4 @@
-import { Box, Flex,Center,Image } from '@chakra-ui/react'
+import { Box, Flex,Center,Image,Spinner,Text } from '@chakra-ui/react'
 import React,{lazy, Suspense, useEffect,useState} from 'react';
 import ApiCaller from '../utils/apiCaller';
 import { Button } from 'react-bootstrap-v5'
@@ -12,10 +12,13 @@ import { render } from 'react-dom';
 import ModalUser from './ModalUser'
 function TableUser() {
     const [Api, setApi] = useState([]);
+    const [loading,setLoading] =useState(false)
+    
     useEffect(()=>{
         ApiCaller('get-all-user', 'GET')
       .then ( async res => {
           setApi(res.data.data)
+          setLoading(true)
       })
     },[Api])
 
@@ -55,13 +58,13 @@ function TableUser() {
               </tr>
             </thead>
   <tbody>
-  {Api.map(api => (
+  { loading ? Api.map(api => (
         <>           
     <tr  id={api._id}>
     
        <th  scope="row">{(api._id!=null) ? i++: <></> 
             }</th> 
-      <td><Box h={'50px'} w='50px'>  <Image src={api.avatar}/></Box></td>
+      <td><Box className='thumb'><Image  src={api.avatar}/></Box></td>
       <td>{api.full_name}</td>
     
       <td>{api.address}</td>
@@ -89,7 +92,19 @@ function TableUser() {
       </td>
               </tr>
               </>
-                ))} 
+                ))
+                :
+                <Box  mt='200px' height={'500px'} pl={'500px'}>
+             
+                <Spinner
+  
+              thickness='4px'
+              speed='0.65s'
+              emptyColor='gray.200'
+              color='blue.500'
+              size='xl'
+            /> <Text  color={'blue.500'}>Loading...</Text>  </Box>}
+              
             </tbody>
           </table>
         </Box>

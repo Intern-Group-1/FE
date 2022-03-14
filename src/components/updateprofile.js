@@ -148,7 +148,7 @@ useEffect(() => {
     byID() 
   }
   
-}, [])
+}, [byID() ])
   return (
      <>  
      {/* <Navbar/>  */}

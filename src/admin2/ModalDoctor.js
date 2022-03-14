@@ -90,7 +90,7 @@ import {
          onClick={(event)=>{ onOpen(event); byid() }}
          border={'none'}
           > 
-          <AddIcon/> 
+          <AddIcon mr='7px'/> 
           Add Doctor
         </Button>
         <Modal
