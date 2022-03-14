@@ -12,7 +12,7 @@ const handleGetAppointment = async (id)=>{
     try {
         console.log('Id usser')
         console.log(id)
-        return axios.get(`https://be-doctor-care-v3.herokuapp.com/api/get-appointment-byuser/${id}`)       
+        return await axios.get(`https://be-doctor-care-v3.herokuapp.com/api/get-appointment-byuser/${id}`)       
     } catch (error) {
         console.log(error)
     }

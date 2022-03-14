@@ -12,8 +12,6 @@
   }
   #name {  margin:1em; padding:5px; }
   .crop { overflow:hidden; white-space:nowrap; text-overflow:ellipsis; width:100px; }
- 
-  
   
 body{
     margin: 0px;
