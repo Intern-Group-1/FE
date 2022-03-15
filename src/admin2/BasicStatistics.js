@@ -60,7 +60,9 @@ import {
           textAlign={'center'}
           fontSize={'4xl'}
           py={10}
-          fontWeight={'bold'}>
+          fontWeight={'bold'}
+          color={'#364053'}
+          >
           Our Doctorcare is expanding, you could be too!
         </chakra.h1>
         <SimpleGrid columns={{ base: 1, md: 3 }} spacing={{ base: 5, lg: 8 }}>

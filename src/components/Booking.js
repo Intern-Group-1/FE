@@ -58,6 +58,7 @@ export default function Booking() {
     console.log(startDate);
     const [branch, setBranch] = useState('');
     const [time, setTime] = useState('');
+    console.log(time);
 
     console.log(startDate.getDate());
 
@@ -221,30 +222,69 @@ export default function Booking() {
                     <Box className='time-clinic'>
                         <Heading as="h3" mt={'10'} mb={'45'}>Choose time and clinic</Heading>
                         <Box className='time'   >
-                            <Button onClick={() => {
+                            <Button 
+                            style={ time==='07:00 - 08:00' ? {
+                                color:'#3182ce',
+                                fontWeight:'bold'
+                            }:{} }
+                            onClick={() => {
                                 setTime('07:00 - 08:00')
-
-
                             }} className='btn-time' >07:00 - 08:00</Button>
-                            <Button onClick={() => {
+                            <Button 
+                            style={ time==='08:00 - 09:00' ? {
+                                color:'#3182ce',
+                                fontWeight:'bold',
+                                backgroundColor : '#ce1414 !important'
+                            }:{} }
+                            onClick={() => {
                                 setTime('08:00 - 09:00')
                             }} className='btn-time'>08:00 - 09:00</Button>
-                            <Button onClick={() => {
+                            <Button 
+                            style={ time==='09:00 - 10:00' ? {
+                                color:'#3182ce',
+                                fontWeight:'bold'
+                            }:{} }
+                            onClick={() => {
                                 setTime('09:00 - 10:00')
                             }} className='btn-time'>09:00 - 10:00</Button>
-                            <Button onClick={() => {
+                            <Button 
+                            style={ time==='10:00 - 11:00' ? {
+                                color:'#3182ce',
+                                fontWeight:'bold'
+                            }:{} }
+                            onClick={() => {
                                 setTime('10:00 - 11:00')
                             }} className='btn-time'>10:00 - 11:00</Button>
-                            <Button onClick={() => {
+                            <Button
+                            style={ time==='14:00 - 15:00' ? {
+                                color:'#3182ce',
+                                fontWeight:'bold'
+                            }:{} }
+                            onClick={() => {
                                 setTime('14:00 - 15:00')
                             }} className='btn-time'>14:00 - 15:00</Button>
-                            <Button onClick={() => {
+                            <Button 
+                            style={ time==='15:00 - 16:00' ? {
+                                color:'#3182ce',
+                                fontWeight:'bold'
+                            }:{} }
+                            onClick={() => {
                                 setTime('15:00 - 16:00')
                             }} className='btn-time'>15:00 - 16:00</Button>
-                            <Button onClick={() => {
+                            <Button 
+                            style={ time==='16:00 - 17:00' ? {
+                                color:'#3182ce',
+                                fontWeight:'bold'
+                            }:{} }
+                            onClick={() => {
                                 setTime('16:00 - 17:00')
                             }} className='btn-time'>16:00 - 17:00</Button>
-                            <Button onClick={() => {
+                            <Button 
+                            style={ time==='17:00 - 18:00' ? {
+                                color:'#3182ce',
+                                fontWeight:'bold'
+                            }:{} }
+                            onClick={() => {
                                 setTime('17:00 - 18:00')
                             }} className='btn-time'>17:00 - 18:00</Button>
                         </Box>

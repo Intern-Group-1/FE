@@ -4,6 +4,7 @@ import BarChart from './Chart'
 import ChartAppointment from './ChartAppointment'
 import Right from './RightTest'
 import { Box } from '@chakra-ui/react'
+import PieChartAppointment from  './StatisticAppointment'
 
 export default function Dashboard(){
     return(
@@ -15,6 +16,7 @@ export default function Dashboard(){
         >
             <BasicStatistics/>
             <Box>
+                <PieChartAppointment/>
                 <BarChart/>
                 <ChartAppointment/>
             </Box>
