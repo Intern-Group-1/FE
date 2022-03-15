@@ -1,4 +1,4 @@
-import { Box, Flex,Center } from '@chakra-ui/react'
+import { Box, Flex,Center,Image } from '@chakra-ui/react'
 import React,{lazy, Suspense, useEffect,useState} from 'react';
 import ApiCaller from '../utils/apiCaller';
 import { Button } from 'react-bootstrap-v5'
@@ -21,7 +21,7 @@ function Table() {
     },[])
 
 
-
+    let i=1;
   return (
     <>    
     <Box  ml={'330px'}>
@@ -39,14 +39,17 @@ function Table() {
         }} 
         ><ModalDoctor /></Box>
         <table className="table table-hover" style={{
-            width:'1000px',
+            width:'1150px',
             height:'600px'
         }} >
   <thead>
     <tr>
-      {/* <th scope="col">#</th> */}
+      <th scope="col">#</th>
+      <th scope='col'>Avatar</th>
       <th scope="col">Name</th>
       <th scope="col">Specialy</th>
+      <th scope="col">Phone</th>
+      <th scope="col">Address</th>
       <th scope="col">Age</th>
       <th scope="col">Gender</th>
       <th scope="col">Handle</th>
@@ -56,8 +59,13 @@ function Table() {
   {Api.map(api => (
         <>
     <tr>
+    <th  scope="row">{(api._id!=null) ? i++: <></> 
+            }</th> 
+            <td><Box className='thumb'><Image  src={api.avatar}/></Box></td>
       <td>{api.full_name}</td>
       <td>{api.speciality.name}</td>
+      <td>{api.phone_number}</td>
+      <td>{api.address}</td>
       <td>{api.age}</td>
      
       <td>{(api.gender) = 'true' ? <p>Male</p> : <p>Female</p>}</td>

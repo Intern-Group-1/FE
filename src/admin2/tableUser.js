@@ -20,8 +20,8 @@ function TableUser() {
           setApi(res.data.data)
           setLoading(true)
       })
-    },[Api])
-
+    },[])
+    //console.log('haha1');
     let i=1;
     function  deleteUser(id){     
         console.log(id);

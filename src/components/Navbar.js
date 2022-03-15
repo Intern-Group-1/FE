@@ -162,8 +162,8 @@ async function byID (){
               {/* <Button>Appointment</Button> */}
                 <Menu>
                   <MenuButton
-
-                    mr={'20px'}
+                    height={'10px'}
+                    mr={'13px'}
                     py={1}
                     transition="all 0.3s"
                     _focus={{ boxShadow: 'none' }}>
