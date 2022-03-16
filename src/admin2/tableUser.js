@@ -1,4 +1,4 @@
-import { Box, Flex,Center,Image,Spinner,Text } from '@chakra-ui/react'
+import { Box, Flex,Center,Image,Spinner,Text,Button as btn, ButtonSpinner, Icon } from '@chakra-ui/react'
 import React,{lazy, Suspense, useEffect,useState} from 'react';
 import ApiCaller from '../utils/apiCaller';
 import { Button } from 'react-bootstrap-v5'
@@ -10,24 +10,32 @@ import DeleteUser from './ModalConfirm';
 import UpdateUser from './ModalUpdate';
 import { render } from 'react-dom';
 import ModalUser from './ModalUser'
+import LazyLoad from 'react-lazyload'
 function TableUser() {
     const [Api, setApi] = useState([]);
     const [loading,setLoading] =useState(false)
-    
     useEffect(()=>{
-        ApiCaller('get-all-user', 'GET')
-      .then ( async res => {
-          setApi(res.data.data)
-          setLoading(true)
-      })
-    },[Api])
-
+      ApiCaller('get-all-user', 'GET')
+    .then ( async res => {
+        setApi(res.data.data)
+        setLoading(true)
+    })
+  },[])
+   
+    //console.log('haha1');
     let i=1;
-    function  deleteUser(id){     
+    function  deleteUser(id){   
+        
         console.log(id);
     }
+    const Loading = () => (
+      <div >
+        <h5>Loading...</h5>
+      </div>
+    )
   return (
     <>  
+ 
     <Box  pt='0px' pl='0px'> 
      
         <Box >
@@ -39,7 +47,7 @@ function TableUser() {
           marginBottom:'15px'
         }} 
         >
-          <ModalUser />
+          <Button   className='btn btn-success'  href='/admin/account'><AddIcon mr='12px'/>Add User</Button>
         </Box>
         <table className="table table-hover" style={{
             width:'1100px',
@@ -48,6 +56,7 @@ function TableUser() {
         }} >
             <thead>
               <tr>
+
                 <th scope="col">#</th> 
                 <th scope='col'>Avatar</th>
                 <th scope="col">Name</th>
@@ -59,7 +68,9 @@ function TableUser() {
             </thead>
   <tbody>
   { loading ? Api.map(api => (
-        <>           
+    
+        <>     
+         
     <tr  id={api._id}>
     
        <th  scope="row">{(api._id!=null) ? i++: <></> 
@@ -91,7 +102,9 @@ function TableUser() {
         </tr>         
       </td>
               </tr>
+              
               </>
+            
                 ))
                 :
                 <Box  mt='200px' height={'500px'} pl={'500px'}>

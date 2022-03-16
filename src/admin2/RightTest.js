@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import logo from '../assets/image/logo-doctor-care.png'
-import {FaUserMd, FaHospital, FaUserAlt, FaCalendarAlt} from 'react-icons/fa'
+import {FaUserMd, FaHospital, FaUserAlt, FaCalendarAlt,FaUsers} from 'react-icons/fa'
 import {MdLogout} from 'react-icons/md'
 import { useNavigate } from 'react-router-dom'
 import {
@@ -36,10 +36,12 @@ interface LinkItemProps {
 }
 const LinkItems: Array<LinkItemProps> = [
   { name: 'Dashboard', icon: FiHome, link: '/admin/dashboard' },
-  { name: 'Doctor', icon: FaUserMd, link: '/admin/doctor' },
-  { name: 'Clinic', icon: FaHospital, link: '/admin/clinic' },
+  { name: 'Account', icon: FaUsers, link: '/admin/account' },
+  { name: 'Doctor', icon: FaUserMd, link: '/admin/doctor' }, 
   { name: 'User', icon: FaUserAlt, link: '/admin/user' },
   { name: 'Appointment', icon: FaCalendarAlt, link: '/admin/appointment' },
+  { name: 'Clinic', icon: FaHospital, link: '/admin/clinic' },
+  
   { name: 'Logout', icon: MdLogout, link: '/logout' },
 ];
 

@@ -22,13 +22,18 @@ import {
   import Session from 'react-session-api'
   import ApiCaller from '../utils/apiCaller';
 import { handleCreateDoctor } from '../services/admin';
-  function ModalDoctor() {
+import Admin from './admin';
+import Right from './RightTest';
+import { Account } from './Account';
+import { useNavigate } from 'react-router-dom'
+  function CreateDoctor() {
+    const navigate = useNavigate()
     const [fullname, setFullname] = useState('')
     const [speciality, setSpeciality] = useState('')
     const [phone, setPhone] = useState('')
     const [address, setAddress] = useState('')
     const [age, setAge] = useState('')
-    const [gender, setGender] = useState(true)
+    const [gender, setGender] = useState()
     const [avt, setAvt] = useState('')
     const [Api, setApi] = useState([]);
     const [speciality_id, setSpecialityId] = useState('');
@@ -42,6 +47,7 @@ import { handleCreateDoctor } from '../services/admin';
     const handleFullNameInput = e => {
       setFullname(e.target.value);
     }
+   
     const handleSpecialityInput = e => {
       //console.log(e);
       //setSpeciality(e);
@@ -72,16 +78,18 @@ import { handleCreateDoctor } from '../services/admin';
       console.log(e);
       if(e=='Male')
       setGender(true);
-      else setGender(false)
+      if(e=='Male') setGender(false)
+      console.log(gender);
     }
     const handleAvtInput = e => 
       { 
       setAvt(e.target.files[0]);
   
     }
-    // const account= Session.get('user')
-    // console.log(Session.get('token'))
-  
+    
+    const account= localStorage.getItem('iddoctor')
+    console.log('accccc');
+    console.log(account);
     const handleCreate = async () => {
       const da_ta = new FormData();
       da_ta.append("full_name", fullname)
@@ -90,9 +98,8 @@ import { handleCreateDoctor } from '../services/admin';
       da_ta.append("address", address)
       da_ta.append("gender", gender)
       da_ta.append("avatar", avt)
-      da_ta.append("age", age)
-
-      //da_ta.append("account", account)
+      da_ta.append("age", 22)
+      da_ta.append("account", account)
       console.log(speciality);
       console.log(fullname);
       console.log(gender);
@@ -108,6 +115,7 @@ import { handleCreateDoctor } from '../services/admin';
           console.log(data)
 
           toast.success("Successful!");
+          navigate('/admin/doctor')
         //  if (data) {
         //    toast.success("Successful!");
         //    console.log(data.data.data[0]._id)
@@ -119,17 +127,17 @@ import { handleCreateDoctor } from '../services/admin';
          toast.error("Failed!");
        }
     }
-   const byid=()=>{
-     console.log('hahah');
-   }
+   
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [open,setOpen]=useState('');
     const initialRef = React.useRef()
     const finalRef = React.useRef()
     let genderlist = ['Female', 'Male'];
-    return (
+  return (
       <>
-        <Button
+        <Right/>
+        <Account/>
+        {/* <Button
          className='btn btn-success'
          bg={'#28a745'}
          _hover={'#28a745'}
@@ -138,11 +146,11 @@ import { handleCreateDoctor } from '../services/admin';
           > 
           <AddIcon mr='7px'/> 
           Add Doctor
-        </Button>
+        </Button> */}
         <Modal
             initialFocusRef={initialRef}
             finalFocusRef={finalRef}
-            isOpen={isOpen}
+            isOpen={onOpen}
           onClose={open}
         >
           <ModalOverlay />
@@ -154,7 +162,7 @@ import { handleCreateDoctor } from '../services/admin';
                 <FormLabel>Full name</FormLabel>
                 <Input ref={initialRef} placeholder='Full name' onChange={handleFullNameInput} />
               </FormControl>
-  
+             
               <FormControl mt={4}>
                 <FormLabel>Speciality</FormLabel>
                 {/* <Combobox
@@ -189,7 +197,8 @@ import { handleCreateDoctor } from '../services/admin';
                 <FormLabel>Gender</FormLabel>
                 <Combobox
                   data={['Male','Female']}
-                  onChange={handleGenderInput}
+                  //onChange={handleGenderInput}
+                  onChange={gender => gender == 'Male'?setGender(true) : setGender(false)}
                 />
               </FormControl>
               <FormControl mt={4}>
@@ -202,7 +211,7 @@ import { handleCreateDoctor } from '../services/admin';
               <Button colorScheme='blue' mr={3} onClick={handleCreate}>
                 Save
               </Button>
-              <Button onClick={onClose}>Cancel</Button>
+             
             </ModalFooter>
           </ModalContent>
         </Modal> 
@@ -212,4 +221,4 @@ import { handleCreateDoctor } from '../services/admin';
     )
   }
   
-  export default ModalDoctor;
+  export default CreateDoctor;
