@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from "react-router-dom";
-
 import ApiCaller from '../utils/apiCaller';
-
 import Navbar from "./Navbar";
 import Footer from './Footer'
 import '../style/button.css'
