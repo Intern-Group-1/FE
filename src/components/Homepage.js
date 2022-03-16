@@ -17,7 +17,10 @@ function Home(){
             <SimpleSlider/>
             <SliderDoctor/>
 
+           <Botchat/>
+
             <Footer/>
+            {/* thêm git */}
         </>
     )
 }
