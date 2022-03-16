@@ -4,6 +4,8 @@ import '../responsive/profile/Profile.css'
 import InitialFocus from './Modal'
 import Navbar from './Navbar'
 import Footer from './Footer'
+import {EditIcon} from '@chakra-ui/icons'
+import ChangeAppointment from './ModalChangeAppointment'
 import {
     Flex,
     Box,
@@ -119,9 +121,16 @@ function ProfileUser(){
         marginBottom={'30px'}
         >
            <Box className='tag-schedule'>
-                <Box className='infodoctor'>
+                <Box className='infodoctor'
+                position={'relative'}
+                >
                     <Text>Dr Gutman</Text>
                     <Text>Orthopedic</Text>
+                    <Box 
+                    className='btn-edit'
+                    position={'absolute'}
+                    bottom={'5px'}
+                    ><ChangeAppointment/> </Box>
                 </Box>
                 <Box className='info-schdule'>
                     <Text>Time: 07:00-08:00</Text>
@@ -130,9 +139,16 @@ function ProfileUser(){
                 </Box>
            </Box>
            <Box className='tag-schedule'>
-                <Box className='infodoctor'>
+                <Box className='infodoctor'
+                position={'relative'}
+                >
                     <Text>Dr Kilgore</Text>
                     <Text>General Physician</Text>
+                    <Box 
+                    className='btn-edit'
+                    position={'absolute'}
+                    bottom={'5px'}
+                    ><ChangeAppointment/> </Box>
                 </Box>
                 <Box className='info-schdule'>
                     <Text>Time: 09:00-10:00</Text>
@@ -141,9 +157,16 @@ function ProfileUser(){
                 </Box>
            </Box>
            <Box className='tag-schedule'>
-                <Box className='infodoctor'>
+                <Box className='infodoctor'
+                position={'relative'}
+                >
                     <Text>Dr Thanh</Text>
                     <Text>Cadiologry</Text>
+                    <Box 
+                    className='btn-edit'
+                    position={'absolute'}
+                    bottom={'5px'}
+                    ><ChangeAppointment/> </Box>
                 </Box>
                 <Box className='info-schdule'>
 
@@ -153,9 +176,16 @@ function ProfileUser(){
                 </Box>
            </Box>
            <Box className='tag-schedule'>
-                <Box className='infodoctor'>
+                <Box className='infodoctor'
+                position={'relative'}
+                >
                     <Text>Dr Thanh</Text>
                     <Text>Cadiologry</Text>
+                    <Box 
+                    className='btn-edit'
+                    position={'absolute'}
+                    bottom={'5px'}
+                    ><ChangeAppointment/> </Box>
                 </Box>
                 <Box className='info-schdule'>
                     <Text>Time: 10:00</Text>

@@ -33,7 +33,7 @@ img{
   border-radius: 5px;
   box-shadow: 2px 2px #b4d5f0;
   width: 300px;
-  height: 122px;
+  height: 152px;
   margin: 40px 55px 0px 50px;
   display: flex;
 }
@@ -45,3 +45,10 @@ img{
 .info-schdule{
   margin: 20px 10px 10px 10px;
 }
+.btn-edit{
+  visibility: hidden;
+}
+.tag-schedule:hover .btn-edit{
+  visibility: visible;
+}
+

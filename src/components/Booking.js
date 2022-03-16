@@ -211,7 +211,6 @@ export default function Booking() {
 
                             selected={startDate}
                             onChange={onChange}
-                            // excludeDates={[addDays(new Date(), 2), addDays(dateP, 0)]}
                             selectsRange
                             selectsDisabledDaysInRange
                             inline
