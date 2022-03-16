@@ -16,7 +16,7 @@ function Home(){
             <SliderSpeciality />
             <SimpleSlider/>
             <SliderDoctor/>
-//             <Botchat/>
+
             <Footer/>
         </>
     )
