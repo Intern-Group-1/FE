@@ -43,12 +43,30 @@ const handleCreateDoctor = async (data)=>{
         console.log(error)
     }
 }
+const handleDeleteDoctor = async (id)=>{
+    try {
+        var token = await localStorage.getItem('token')
+        console.log('token là chi đó ');
+        console.log(token);
+        console.log('id là chi đó ');
+        console.log(id);
+        return await axios.delete(`https://be-doctor-care-v3.herokuapp.com/api/delete-doctor/${id}`,{
+            headers: {
+                'Authorization': `Bearer ${token}` 
+              }
+        })  
 
+        
+    } catch (error) {
+        console.log(error)
+    }
+}
 
 
 
 export {
    handleDeleteUser,
    handleGetUserById,
-   handleCreateDoctor
+   handleCreateDoctor,
+   handleDeleteDoctor
 }

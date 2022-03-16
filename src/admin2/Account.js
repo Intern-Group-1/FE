@@ -54,11 +54,16 @@ export const Account = () => {
        if (data) {
         console.log('thanh cong');
         console.log(data);
-        await localStorage.setItem('idAccout', data.data.data._id)
-        if(role =='customer')
-        navigate('/admin/create-user')
+       
+        if(role =='customer'){
+           localStorage.setItem('iduser', data.data.data._id)
+          navigate('/admin/create-user')
+        } 
         // await localStorage.setItem('token', data.data.data.tokens[0].token)
-        if(role =='doctor') navigate('/admin/create-doctor')
+        if(role =='doctor'){
+           localStorage.setItem('iddoctor', data.data.data._id)
+          navigate('/admin/create-doctor')
+        } 
        }
     //    var loggedInUser = await localStorage.getItem('token')
       

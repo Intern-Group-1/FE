@@ -21,6 +21,7 @@ import {
   import { handleCreateUser, handleGetUserId, handleUpdateUser } from '../services/User';
   import { ToastContainer, toast } from 'react-toastify';
   import { useNavigate } from 'react-router-dom';
+import Right from './RightTest';
 
   
   
@@ -54,7 +55,7 @@ import {
     }
     const [Id, setId] = useState('')
     const [save,setSave]=useState('Save')
-    const account= localStorage.getItem('idAccout')
+    const account= localStorage.getItem('iduser')
     console.log('acc');
     console.log(account);
     const handleCreate = async () => {
@@ -119,10 +120,8 @@ import {
     return (
        <>  
        {/* <Navbar/>  */}
-     
-        <Button onClick={  
-           onOpen
-        } >Edit Profile</Button>
+      <Right/>
+       
         <Modal
           initialFocusRef={initialRef}
           finalFocusRef={finalRef}

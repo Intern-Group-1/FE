@@ -206,7 +206,7 @@ function UpdateUser(props) {
                         handleUpdate(u._id)
                       }}
                       >
-                        Save
+                        {save}
                       </Button>
                       <Button onClick={onClose}>Cancel</Button>
                     </ModalFooter>

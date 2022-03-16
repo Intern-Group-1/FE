@@ -422,7 +422,7 @@ const NAV_ITEMS: Array<NavItem> = [
 
   },
   {
-    label: 'Speciality',
+    label: 'Specialitys',
     children: [
       {
         label: 'Urology',
@@ -463,34 +463,35 @@ const NAV_ITEMS: Array<NavItem> = [
   },
   {
 
-    label: 'Doctor',
+    label: 'Doctors',
     href: '/doctor',
   },
   {
 
     label: 'About',
-    children: [
-      {
-        label: 'Address',
-        subLabel: 'Find your dream design job',
-        href: '#',
-      },
-      {
-        label: 'Phone',
-        subLabel: 'An exclusive list for contract work',
-        href: '#',
-      },
-      {
-        label: 'Reference',
-        subLabel: 'An exclusive list for contract work',
-        href: '#',
-      },
-      {
-        label: 'Fanpage',
-        subLabel: 'An exclusive list for contract work',
-        href: '#',
-      },
-    ],
+    href: '/about',
+    // children: [
+    //   {
+    //     label: 'Address',
+    //     subLabel: 'Find your dream design job',
+    //     href: '#',
+    //   },
+    //   {
+    //     label: 'Phone',
+    //     subLabel: 'An exclusive list for contract work',
+    //     href: '#',
+    //   },
+    //   {
+    //     label: 'Reference',
+    //     subLabel: 'An exclusive list for contract work',
+    //     href: '#',
+    //   },
+    //   {
+    //     label: 'Fanpage',
+    //     subLabel: 'An exclusive list for contract work',
+    //     href: '#',
+    //   },
+    // ],
   },
   // {
   //   label: 'Appointment',

@@ -36,11 +36,12 @@ interface LinkItemProps {
 }
 const LinkItems: Array<LinkItemProps> = [
   { name: 'Dashboard', icon: FiHome, link: '/admin/dashboard' },
-  { name: 'Doctor', icon: FaUserMd, link: '/admin/doctor' },
-  { name: 'Clinic', icon: FaHospital, link: '/admin/clinic' },
+  { name: 'Account', icon: FaUsers, link: '/admin/account' },
+  { name: 'Doctor', icon: FaUserMd, link: '/admin/doctor' }, 
   { name: 'User', icon: FaUserAlt, link: '/admin/user' },
   { name: 'Appointment', icon: FaCalendarAlt, link: '/admin/appointment' },
-  { name: 'Account', icon: FaUsers, link: '/admin/account' },
+  { name: 'Clinic', icon: FaHospital, link: '/admin/clinic' },
+  
   { name: 'Logout', icon: MdLogout, link: '/logout' },
 ];
 

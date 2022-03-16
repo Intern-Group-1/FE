@@ -22,7 +22,12 @@ import {
   import Session from 'react-session-api'
   import ApiCaller from '../utils/apiCaller';
 import { handleCreateDoctor } from '../services/admin';
+import Admin from './admin';
+import Right from './RightTest';
+import { Account } from './Account';
+import { useNavigate } from 'react-router-dom'
   function CreateDoctor() {
+    const navigate = useNavigate()
     const [fullname, setFullname] = useState('')
     const [speciality, setSpeciality] = useState('')
     const [phone, setPhone] = useState('')
@@ -42,6 +47,7 @@ import { handleCreateDoctor } from '../services/admin';
     const handleFullNameInput = e => {
       setFullname(e.target.value);
     }
+   
     const handleSpecialityInput = e => {
       //console.log(e);
       //setSpeciality(e);
@@ -81,7 +87,7 @@ import { handleCreateDoctor } from '../services/admin';
   
     }
     
-    const account= localStorage.getItem('idAccout')
+    const account= localStorage.getItem('iddoctor')
     console.log('accccc');
     console.log(account);
     const handleCreate = async () => {
@@ -92,7 +98,7 @@ import { handleCreateDoctor } from '../services/admin';
       da_ta.append("address", address)
       da_ta.append("gender", gender)
       da_ta.append("avatar", avt)
-      da_ta.append("age", age)
+      da_ta.append("age", 22)
       da_ta.append("account", account)
       console.log(speciality);
       console.log(fullname);
@@ -109,6 +115,7 @@ import { handleCreateDoctor } from '../services/admin';
           console.log(data)
 
           toast.success("Successful!");
+          navigate('/admin/doctor')
         //  if (data) {
         //    toast.success("Successful!");
         //    console.log(data.data.data[0]._id)
@@ -126,8 +133,10 @@ import { handleCreateDoctor } from '../services/admin';
     const initialRef = React.useRef()
     const finalRef = React.useRef()
     let genderlist = ['Female', 'Male'];
-    return (
+  return (
       <>
+        <Right/>
+        <Account/>
         {/* <Button
          className='btn btn-success'
          bg={'#28a745'}
@@ -153,7 +162,7 @@ import { handleCreateDoctor } from '../services/admin';
                 <FormLabel>Full name</FormLabel>
                 <Input ref={initialRef} placeholder='Full name' onChange={handleFullNameInput} />
               </FormControl>
-  
+             
               <FormControl mt={4}>
                 <FormLabel>Speciality</FormLabel>
                 {/* <Combobox
@@ -202,7 +211,7 @@ import { handleCreateDoctor } from '../services/admin';
               <Button colorScheme='blue' mr={3} onClick={handleCreate}>
                 Save
               </Button>
-              <Button onClick={onClose}>Cancel</Button>
+             
             </ModalFooter>
           </ModalContent>
         </Modal> 
