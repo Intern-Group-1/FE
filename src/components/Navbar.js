@@ -214,9 +214,12 @@ async function byID (){
               <Button
                 as={'a'}
                 fontSize={'sm'}
-                fontWeight={400}
+                fontWeight={700}
                 variant={'link'}
-               
+                // _hover={{
+                //   textDecoration:'none',
+                //   textColor:'blue.400'
+                // }}
                 onClick={HandleSignin}>
                 Sign in
               </Button>

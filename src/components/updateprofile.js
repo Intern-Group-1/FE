@@ -134,7 +134,7 @@ const byID = async ()=>{
         {
           await localStorage.setItem('Id_User',data.data.data[0]._id)
           const id = localStorage.getItem('Id_User')
-        setId(id)
+         setId(id)
             setFullname(data.data.data[0].full_name)
             setAvt(data.data.data[0].avatar)
             setAddress(data.data.data[0].address)

@@ -28,6 +28,7 @@ import { Account } from "./admin2/Account";
 import CreateUser from "./admin2/CreateUser";
 import CreateDoctor from "./admin2/CreateDoctor";
 import About from "./components/About";
+import TableSpeciality from "./admin2/tableSpeciality";
 
 function App() {
   return (
@@ -56,6 +57,7 @@ function App() {
         <Route path='/admin/clinic' element={<PrivateRoute><TableClinic /></PrivateRoute>} />
         <Route path='/admin/appointment' element={<PrivateRoute><TableAppointment /></PrivateRoute>} />
         <Route path='/admin/dashboard' element={<PrivateRoute><Dashboard /></PrivateRoute>} />
+        <Route path='/admin/speciality' element={<PrivateRoute><TableSpeciality /></PrivateRoute>} />
         <Route path='/admin/account' element={<PrivateRoute><Account/></PrivateRoute>} />
         <Route path='/admin/test' element={<PrivateRoute><Card /></PrivateRoute>} />
         <Route path='/admin/create-doctor' element={<PrivateRoute><CreateDoctor/></PrivateRoute>} />
@@ -68,6 +70,7 @@ function App() {
       
         </Route>
       </Routes>
+      
     </ChakraProvider>
   )
 }

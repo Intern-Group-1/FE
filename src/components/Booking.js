@@ -22,30 +22,28 @@ import { getValue } from '@testing-library/user-event/dist/utils';
 import Edit from './Modal';
 import ConfirmAppointment from './ConfirmAppointment';
 import { handleGetUserId } from '../services/User';
+import Botchat from './Botchat';
 
 export default function Booking() {
     const MyButton = (props) => {
-        const [isActive, setActive] = useState(false);
         const handleClick = (e) => {
-                  setTime(e.target.innerHTML)               
-                  setActive(!isActive);
-                //  console.log('setttt');
-                //  console.log(isActive);
-                //  console.log(e);
-                //  //setTime(e.target.innerHTML)
-                
-               
-        }
-    
-        
-        ;
+                  setTime(e.target.innerHTML)                        
+        };
         
         return (
-            <Tooltip label='Double click To select' fontSize='s'>
-            <button onClick={handleClick} className={isActive ? "btn-time-selected" : "btn-time"}>
+            // <Tooltip label='Double click To select' fontSize='s'>
+            <button style={
+                time===props.item? {
+                 color:'rgb(0 29 171 / 78%)',
+                 fontWeight:'bolder',
+                 backgroundColor : '#7fb9e9c7'
+             }:{}
+            }  onClick={handleClick} 
+            className={"btn-time"}
+            >
             {props.item}
           </button>
-            </Tooltip>
+            // </Tooltip>
           
         );
       };
@@ -261,10 +259,10 @@ export default function Booking() {
                                 <MyButton                                                                                                                   
                                   //bgColor={bg1}  
                                 // onClick={(e) => {
-                                //     console.log(e);
+                                 //    console.log(e);
                                 //     //setTime(e.target.innerHTML)
                                 //     //handleClick();
-                                    
+                                   
                                 //  }} 
                                 key={i} item={timer}></MyButton>
                             ))}
@@ -398,6 +396,7 @@ export default function Booking() {
                     </Box>
                 </Box>
             </Box>
+            <Botchat/>
             <Footer />
         </>
     )

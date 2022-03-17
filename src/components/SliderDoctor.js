@@ -12,7 +12,7 @@ import Adoctor from './Adoctor'
 
 function SliderDoctor() {
     let settings = {
-        dots: true,
+        dots: false,
         infinite: true,
        
         slidesToShow: 3,
