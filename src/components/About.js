@@ -2,12 +2,18 @@ import React from "react";
 import '../style/about.css'
 import dt from '../assets/image/dtavt.png'
 import { Button } from "@chakra-ui/react";
+import { useNavigate } from 'react-router-dom'
 function About() {
+  const navigate = useNavigate()
+  function backtohome(){
+    
+    navigate('/home')
+  }
   return (
     <div>
        
         <div className="about-section">
-        <Button as='a' bgColor={'#b8cfff'} href={'/home'}
+        <Button as='a' bgColor={'#b8cfff'} onClick={backtohome}
         _hover={{
             bgColor:'#b8cfff'
         }}

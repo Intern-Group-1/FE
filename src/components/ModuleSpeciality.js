@@ -12,19 +12,21 @@ function ASpeciality(props) {
       className='speciality'
       justifyContent='center'
       >
-      <Box  d='flex' flexDirection='column' alignItems='center'>
+      <Box  d='flex' flexDirection='column' alignItems='center' >
         <Box 
+        as={'a'}
         className='img-speciality'
         w='150px' 
         h='150px'
         alignItems='center'
         d='flex'
         justifyContent='center'
+        href={'/Speciality/'+`${props.name}`}
         >
         <Image  
          src={props.avt} />
         </Box>
-        <b className='text-info-speciality'>{props.name}</b>
+        <b className='text-info-speciality' >{props.name}</b>
       </Box>
 
     </Flex>
