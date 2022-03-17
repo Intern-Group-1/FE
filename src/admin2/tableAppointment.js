@@ -48,17 +48,18 @@ function TableAppointment() {
   <thead>
     <tr >
       
-      <th >Branch</th>    
-      <th >Name Customer</th>
-      <th >Address Customer</th>
-      <th >Phone Customer</th>
-      <th >Name Doctor</th>
-      <th >Address Doctor </th>
-      <th >Phone Doctor</th>
-      <th >Speciality</th>
+      <th width='140px'>Branch</th>    
+      <th width='150px'>Name Customer</th>
+      {/* <th width='100px' >Address Customer</th> */}
+      <th width='150px'>Phone Customer</th>
+      <th width='150px'>Name Doctor</th>
+      {/* <th >Address Doctor </th>
+      <th >Phone Doctor</th> */}
+      <th width='150px'>Speciality</th>
+     
+      <th width='50px' >Date</th>
+      <th width='130px'>Time</th>
       <th >Handle</th>
-      <th >Date</th>
-      <th >Time</th>
     </tr>
   </thead>
  
@@ -69,11 +70,11 @@ function TableAppointment() {
   <td >{api.branch.address}</td>
  
   <td >{api.user?<>{api.user.full_name}</>:<b>NULL</b>}</td>
-  <td>{api.user?<>{api.user.address}</>:<b>NULL</b>}</td>
+  {/* <td>{api.user?<>{api.user.address}</>:<b>NULL</b>}</td> */}
   <td>{api.user?<>{api.user.phone_number}</>:<b>NULL</b>}</td>
   <td>{api.doctor.full_name}</td>
-  <td>{api.doctor.address}</td>
-  <td>{api.doctor.phone_number}</td>
+  {/* <td>{api.doctor.address}</td>
+  <td>{api.doctor.phone_number}</td> */}
  
   <td>{sp.map(sp=>(
            <>
