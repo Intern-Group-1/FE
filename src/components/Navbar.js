@@ -59,14 +59,14 @@ export default function Navbar() {
   const HandleSignin = () => {
     navigate('/signin');
   }
-  const HandleHome = () =>{
+  const HandleHome = () => {
     navigate('/home')
   }
   const loggedInUser = localStorage.getItem('token');
 
 
   // const loggedInUser =  localStorage.getItem('token');
-  console.log('token la'+loggedInUser);
+  console.log('token la' + loggedInUser);
   //const InUser = Session.get('user');
   console.log('id local');
   //console.log(InUser);
@@ -75,18 +75,17 @@ export default function Navbar() {
 
   window.onscroll = function () { };
 
-// Setting user
-const [full_name, setName] = useState('')
-   const [avatar, setAvt] = useState('')
-async function byID (){ 
-        const data= await handleGetUserId()
-        console.log('Data cua ta:'+data)
-        if(data)
-        {
-            setName(data.data.data[0].full_name)
-            setAvt(data.data.data[0].avatar)
-        }
-}
+  // Setting user
+  const [full_name, setName] = useState('')
+  const [avatar, setAvt] = useState('')
+  async function byID() {
+    const data = await handleGetUserId()
+    console.log('Data cua ta:' + data)
+    if (data) {
+      setName(data.data.data[0].full_name)
+      setAvt(data.data.data[0].avatar)
+    }
+  }
   const [Api, setApi] = useState([])
   useEffect(async () => {
     ApiCaller('get-all-speciality', 'GET')
@@ -94,12 +93,12 @@ async function byID (){
         console.log(res)
         setApi(res.data.data)
       })
-      if(loggedInUser){
-         byID()
-      } 
-          
+    if (loggedInUser) {
+      byID()
+    }
+
   }, [])
-  const role= localStorage.getItem('role')
+  const role = localStorage.getItem('role')
   return (
     <Box id='navbar'>
       <Flex
@@ -159,7 +158,7 @@ async function byID (){
           {loggedInUser ?
             <>
               <Flex >
-              {/* <Button>Appointment</Button> */}
+                {/* <Button>Appointment</Button> */}
                 <Menu>
                   <MenuButton
                     height={'10px'}
@@ -233,7 +232,7 @@ async function byID (){
                 bg={'blue.500'}
                 onClick={handleSignup}
                 _hover={{
-                  textDecoration:'none',
+                  textDecoration: 'none',
                   bg: 'blue.300',
                 }}>
                 Sign up
@@ -254,7 +253,21 @@ const DesktopNav = () => {
   const linkColor = useColorModeValue('gray.600', 'gray.200');
   const linkHoverColor = useColorModeValue('#15bbe0', 'white');
   const popoverContentBgColor = useColorModeValue('white', 'gray.800');
+  const navigate = useNavigate()
+  function link(label) {
+   
+      <>
+  { 
+      
+          label == 'Doctors' ? navigate('/doctor') :          
+          label=='Home' ?navigate('/home'):
+          label=='About' ?navigate('/about'):
+          {}
+    }
+      </>
 
+    
+  }
   return (
     <Stack pl='100px' direction={'row'} spacing={4}>
       {NAV_ITEMS.map((navItem) => (
@@ -262,9 +275,9 @@ const DesktopNav = () => {
           <Popover trigger={'hover'} placement={'bottom-start'} >
             <PopoverTrigger>
               <Link
-               
+                onClick={(e)=>link(navItem.label)}
                 p={2}
-                href={navItem.href}
+                //href={navItem.href}
                 fontSize={'lm'}
                 fontWeight={500}
                 color={linkColor}
@@ -289,10 +302,10 @@ const DesktopNav = () => {
                 <Stack>
 
                   {navItem.children.map((child) => (
-                    <DesktopSubNav key={child.label} href={'/Speciality/'+`${child.label}`}
-                   
-                    
-                    {...child} />
+                    <DesktopSubNav key={child.label} href={'/Speciality/' + `${child.label}`}
+
+
+                      {...child} />
                   ))}
                 </Stack>
               </PopoverContent>
@@ -305,13 +318,15 @@ const DesktopNav = () => {
 };
 
 const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
+  const navigate = useNavigate()
+  function link() {
+    navigate('/about')
+  }
   return (
     <Link
-
-      href={href}
-
-    style={{ textDecoration: 'none' }}
-
+      onClick={link}
+      //href={href}
+      style={{ textDecoration: 'none' }}
       role={'group'}
       display={'block'}
       p={2}
@@ -351,7 +366,7 @@ const MobileNav = () => {
       p={4}
       display={{ md: 'none' }}>
       {NAV_ITEMS.map((navItem) => (
-        <MobileNavItem key={navItem.label}  href={'/Speciality/'+`${navItem.label}`} {...navItem} />
+        <MobileNavItem key={navItem.label} href={'/Speciality/' + `${navItem.label}`} {...navItem} />
       ))}
     </Stack>
   );
@@ -369,7 +384,7 @@ const MobileNavItem = ({ label, children, href }: NavItem) => {
         justify={'space-between'}
         align={'center'}
         _hover={{
-         
+
           textDecoration: 'none',
         }}>
         <Text
@@ -398,14 +413,14 @@ const MobileNavItem = ({ label, children, href }: NavItem) => {
           align={'start'}>
           {children &&
             children.map((child) => (
-              <Link key={child.label} py={2} href={'/Speciality/'+`${child.label}`}>
+              <Link key={child.label} py={2} href={'/Speciality/' + `${child.label}`}>
                 {child.label}
               </Link>
             ))}
         </Stack>
 
       </Collapse>
-      
+
     </Stack>
 
   );
@@ -425,8 +440,10 @@ const NAV_ITEMS: Array<NavItem> = [
 
   },
   {
+
     label: 'Specialitys',
     children: [
+
       {
         label: 'Urology',
         subLabel: 'Trending Design to inspire you',
@@ -500,5 +517,5 @@ const NAV_ITEMS: Array<NavItem> = [
   //   label: 'Appointment',
   //   href: '#',
   // },
- 
+
 ];
