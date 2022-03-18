@@ -14,6 +14,7 @@ import {
   Box,
   Image
 } from '@chakra-ui/react'
+import { Button  as Btn } from 'react-bootstrap-v5'
 import React, { lazy, Suspense, useEffect, useState } from 'react';
 import ApiCaller from '../utils/apiCaller';
 import '../style/input-file.css'
@@ -71,7 +72,8 @@ function DeleteUser(props) {
 
   return (
     <>
-      <DeleteIcon  onClick={onOpen} />
+      <Btn onClick={onOpen}  className='btn btn-danger'><DeleteIcon /> </Btn> 
+   
       <Modal
         initialFocusRef={initialRef}
         finalFocusRef={finalRef}
@@ -93,12 +95,13 @@ function DeleteUser(props) {
           ))}
             {/* {(u._id==props.user)?<a>{u.full_name}</a>:<></>)} */}
           </ModalBody>          
-          <ModalFooter>
-            <Button colorScheme='blue' mr={3} onClick={(event)=>{ onOpen(event);deleteUser(props.user) }}
+          <ModalFooter   >
+            <Button colorScheme='blue'  onClick={(event)=>{ onOpen(event);deleteUser(props.user) }}
+           
             >
               {save}
             </Button>
-            <Button onClick={onClose}>Cancel</Button>
+            <Button    onClick={onClose}>Cancel</Button>
           </ModalFooter>
         </ModalContent>
 

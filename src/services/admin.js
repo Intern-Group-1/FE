@@ -14,11 +14,11 @@ const handleDeleteUser = async (id)=>{
         console.log(error)
     }
 }
-const handleGetUserById = async (id,data)=>{
+const handleGetUserById = async (id)=>{
     try {
         let token = await localStorage.getItem('token')
-       
-        return axios.get(`https://be-doctor-care-v3.herokuapp.com/api/get-by-user-id/${id}`, data,{
+        console.log(token);
+        return await axios.get(`https://be-doctor-care-v3.herokuapp.com/api/get-by-id/${id}`,{
             headers: {
                 'Authorization': `Bearer ${token}` 
               }
@@ -113,14 +113,36 @@ const handleGetSpecialityById = async (id)=>{
         console.log(error)
     }
 }
-
+const handleUpdateDoctor = async (id,data)=>{
+    try {
+         var token = await localStorage.getItem('token')
+        return await axios.put(`https://be-doctor-care-v3.herokuapp.com/api/update-doctor/${id}`, data,{
+            headers: {
+                'Authorization': `Bearer ${token}` 
+              }
+        })      
+    } catch (error) {
+        console.log(error)
+    }
+}
+const handleGetDoctorById = async (id)=>{
+    try {
+        
+        return await axios.get(`https://be-doctor-care-v3.herokuapp.com/api/profile-doctor/${id}`)
+    } catch (error) {
+        console.log(error)
+    }
+}
 export {
    handleDeleteUser,
    handleGetUserById,
    handleCreateDoctor,
    handleDeleteDoctor,
+   handleUpdateDoctor,
+   handleGetDoctorById,
    handleCreateSpeciality,
    handleDeleteSpeciality,
    handleUpdateSpeciality,
    handleGetSpecialityById
+
 }

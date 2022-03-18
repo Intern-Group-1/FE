@@ -14,6 +14,7 @@ import {
     Box,
     Image
   } from '@chakra-ui/react'
+  import { Button as Btn } from 'react-bootstrap-v5'
   import React, { lazy, Suspense, useEffect, useState } from 'react';
   import ApiCaller from '../utils/apiCaller';
   import '../style/input-file.css'
@@ -68,8 +69,8 @@ import {
   
   
     return (
-      <>
-        <DeleteIcon  onClick={onOpen} />
+      <>  <Btn onClick={onOpen}   className='btn btn-danger'><DeleteIcon   /> </Btn> 
+       
         <Modal
           initialFocusRef={initialRef}
           finalFocusRef={finalRef}

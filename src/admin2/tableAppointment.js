@@ -67,7 +67,7 @@ function TableAppointment() {
    {Api.map(api => (
     <>
         <tr >
-  <td >{api.branch.address}</td>
+  <td >{api.branch!=null? <>{api.branch.name}</>:<>NULL</>}</td>
  
   <td >{api.user?<>{api.user.full_name}</>:<b>NULL</b>}</td>
   {/* <td>{api.user?<>{api.user.address}</>:<b>NULL</b>}</td> */}
