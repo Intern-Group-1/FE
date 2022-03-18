@@ -20,6 +20,7 @@ import Dashboard from "./admin2/Dashboard"
 import AllNews from "./components/AllNew"
 import News from "./components/News"
 import Card from "./admin2/CardClinic"
+import About from "./components/AboutUs"
 
 function App() {
 
@@ -37,6 +38,7 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/allnews" element={<AllNews />} />
         <Route path="/news" element={<News />} />
+        <Route path="/about" element={<About />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/doctor" element={<Alldoctor />} />
         <Route path="/admin" element={<PrivateRoute><Dashboard /></PrivateRoute>}></Route>
