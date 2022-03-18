@@ -59,7 +59,8 @@ function DeleteUser(props) {
      setOpen(onClose)
      setSave('Delete')
      toast.success("Successful!");
-     window.location.reload();
+     navigate('/admin')
+       navigate('/admin/user')
     } catch (error) {
      console.log('that bai');
       console.log(error);

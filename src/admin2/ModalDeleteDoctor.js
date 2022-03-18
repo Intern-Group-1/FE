@@ -55,9 +55,10 @@ import {
        const data= await handleDeleteDoctor(id);
        setOpen(onClose)
        setSave('Delete')
-       toast.success("Successful!");
-       window.location.reload();
-       //navigate('/admin/doctor')
+       toast.success("Successful!");      
+       //window.location.reload();
+       navigate('/admin')
+       navigate('/admin/doctor')
       } catch (error) {
        console.log('that bai');
         console.log(error);

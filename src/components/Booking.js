@@ -276,7 +276,7 @@ export default function Booking() {
                                 <option selected >Select Clinic</option>
                                 {branchs.map(brs => (
 
-                                    <option value={brs._id} > {brs.address} </option>
+                                    <option value={brs._id} > {brs.name} </option>
 
                                 ))}
                             </select>

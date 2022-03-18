@@ -56,8 +56,9 @@ import {
        setOpen(onClose)
        setSave('Delete')
        toast.success("Successful!");
-       window.location.reload();
-       //navigate('/admin/doctor')
+      //  window.location.reload();
+      navigate('/admin')
+       navigate('/admin/speciality')
       } catch (error) {
        console.log('that bai');
         console.log(error);
