@@ -39,7 +39,7 @@ function Table() {
           marginBottom:'15px',
           marginLeft:'870px'
         }} 
-        ><ModalDoctor /></Box>
+        > <Button   className='btn btn-success'  href='/admin/account'><AddIcon mr='12px'/>Add Doctor</Button></Box>
         <table className="table table-hover" style={{
             width:'1150px',
             height:'600px'
@@ -76,13 +76,15 @@ function Table() {
             <td   style={{
                   paddingRight: '20px'
             }}>
-                <Button className='btn btn-info'> <UpdateDoctor doctor={api._id}/></Button>
+                {/* <Button className='btn btn-info'>  */}
+                <UpdateDoctor doctor={api._id}/>
+                {/* </Button> */}
         
             </td>
             <td>
-              <Button className='btn btn-danger'> 
+              
                 <DeleteDoctor doctor={api._id}/>
-              </Button>
+              
             </td>
         </tr>     
       </td>

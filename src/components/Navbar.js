@@ -41,8 +41,8 @@ import '../style/Navbar.css'
 import { useNavigate } from 'react-router-dom'
 export default function Navbar() {
   const navigate = useNavigate()
-
   const { isOpen, onToggle } = useDisclosure();
+ 
   const HandleLogout = () => {
     delete localStorage.token
     delete localStorage.user
@@ -63,9 +63,6 @@ export default function Navbar() {
     navigate('/home')
   }
   const loggedInUser = localStorage.getItem('token');
-
-
-  // const loggedInUser =  localStorage.getItem('token');
   console.log('token la' + loggedInUser);
   //const InUser = Session.get('user');
   console.log('id local');
@@ -99,6 +96,7 @@ export default function Navbar() {
 
   }, [])
   const role = localStorage.getItem('role')
+ 
   return (
     <Box id='navbar'>
       <Flex
@@ -106,7 +104,7 @@ export default function Navbar() {
         fontSize={'15px'}
         fontWeight={'bold'}
         boxShadow='xl' p='1' rounded='md' bg='white'
-        bg={useColorModeValue('white', 'gray.800')}
+        background={useColorModeValue('white', 'gray.800')}
         color={useColorModeValue('gray.600', 'white')}
         minH={'20px'}
         borderBottom={1}
@@ -268,6 +266,15 @@ const DesktopNav = () => {
 
     
   }
+  const [spe, setSp] = useState([]);
+
+  useEffect(() => {
+    ApiCaller('get-all-speciality', 'GET')
+      .then(async res => {
+        console.log(res);
+        setSp(res.data.data)
+      })
+  }, [])
   return (
     <Stack pl='100px' direction={'row'} spacing={4}>
       {NAV_ITEMS.map((navItem) => (
@@ -301,11 +308,12 @@ const DesktopNav = () => {
 
                 <Stack>
 
-                  {navItem.children.map((child) => (
-                    <DesktopSubNav key={child.label} href={'/Speciality/' + `${child.label}`}
+                  {spe.map((child) => (
+                    <DesktopSubNav key={child.name} 
+                    href={'/Speciality/' + `${child.name}`}
 
-
-                      {...child} />
+                      
+                      label={child.name} />
                   ))}
                 </Stack>
               </PopoverContent>
@@ -317,15 +325,15 @@ const DesktopNav = () => {
   );
 };
 
-const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
+const DesktopSubNav = ({ label,href}) => {
   const navigate = useNavigate()
-  function link() {
-    navigate('/about')
-  }
+  // function link() {
+  //   navigate('/about')
+  // }
   return (
     <Link
-      onClick={link}
-      //href={href}
+      //onClick={link}
+      href={href}
       style={{ textDecoration: 'none' }}
       role={'group'}
       display={'block'}
@@ -335,12 +343,16 @@ const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
       _hover={{ bg: useColorModeValue('blue.100', 'gray.900') }}>
       <Stack direction={'row'} align={'center'}>
         <Box>
-          <Text
+         
+            <Text
             transition={'all .3s ease'}
             _groupHover={{ color: 'blue.500' }}
             fontWeight={500}>
             {label}
+            
           </Text>
+          
+          
           {/* <Text fontSize={'sm'}>{subLabel}</Text> */}
         </Box>
         <Flex
@@ -360,27 +372,53 @@ const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
 };
 
 const MobileNav = () => {
+  
   return (
     <Stack
       bg={useColorModeValue('white', 'gray.800')}
       p={4}
       display={{ md: 'none' }}>
       {NAV_ITEMS.map((navItem) => (
-        <MobileNavItem key={navItem.label} href={'/Speciality/' + `${navItem.label}`} {...navItem} />
+         <MobileNavItem key={navItem.label} 
+         href={'/Speciality/' + `${navItem.label}`} 
+         {...navItem} />
       ))}
     </Stack>
   );
 };
 
-const MobileNavItem = ({ label, children, href }: NavItem) => {
+const MobileNavItem = ({ label, children, href }) => {
   const { isOpen, onToggle } = useDisclosure();
+  const [spe, setSp] = useState([]);
+  const navigate = useNavigate()
+  useEffect(() => {
+    ApiCaller('get-all-speciality', 'GET')
+      .then(async res => {
+        console.log(res);
+        setSp(res.data.data)
+      })
+  }, [])
+  function link(label) {
+   
+    <>
+{ 
+    
+        label == 'Doctors' ? navigate('/doctor') :          
+        label=='Home' ?navigate('/home'):
+        label=='About' ?navigate('/about'):
+        {}
+  }
+    </>
 
+  
+}
   return (
     <Stack spacing={4} onClick={children && onToggle}>
       <Flex
         py={2}
-        as={Link}
-        href={href ?? '#'}
+        as='a'
+        onClick={(e)=>link(label)}
+        //href={href ?? '#'}
         justify={'space-between'}
         align={'center'}
         _hover={{
@@ -411,10 +449,10 @@ const MobileNavItem = ({ label, children, href }: NavItem) => {
           borderStyle={'solid'}
           borderColor={useColorModeValue('gray.200', 'gray.700')}
           align={'start'}>
-          {children &&
-            children.map((child) => (
-              <Link key={child.label} py={2} href={'/Speciality/' + `${child.label}`}>
-                {child.label}
+          {
+            spe.map((child) => (
+              <Link key={child.name} py={2} href={'/Speciality/' + `${child.name}`}>
+                {child.name}
               </Link>
             ))}
         </Stack>
@@ -426,25 +464,25 @@ const MobileNavItem = ({ label, children, href }: NavItem) => {
   );
 };
 
-interface NavItem {
-  label: string;
-  subLabel?: string;
-  children?: Array<NavItem>;
-  href?: string;
-}
+// interface NavItem {
+//   label: string;
+//   subLabel?: string;
+//   children?: [NavItem];
+//   href?: string;
+// }
 
-const NAV_ITEMS: Array<NavItem> = [
+const NAV_ITEMS = [
   {
     label: 'Home',
     href: '/home',
-
   },
   {
 
     label: 'Specialitys',
     children: [
-
+      
       {
+        
         label: 'Urology',
         subLabel: 'Trending Design to inspire you',
         //href: '#',

@@ -27,7 +27,7 @@ import Card from "./admin2/CardClinic"
 import { Account } from "./admin2/Account";
 import CreateUser from "./admin2/CreateUser";
 import CreateDoctor from "./admin2/CreateDoctor";
-import About from "./components/About";
+import About from "./components/AboutUs";
 import TableSpeciality from "./admin2/tableSpeciality";
 
 function App() {

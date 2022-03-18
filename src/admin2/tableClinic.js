@@ -43,6 +43,7 @@ function TableClinic() {
           ml={'300px'}
           >
             <Card/>
+            {/* <Card/>
             <Card/>
             <Card/>
             <Card/>
@@ -50,8 +51,7 @@ function TableClinic() {
             <Card/>
             <Card/>
             <Card/>
-            <Card/>
-            <Card/>
+            <Card/> */}
           </Box>
         </Box>
     </Box>

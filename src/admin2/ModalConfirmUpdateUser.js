@@ -14,6 +14,7 @@ import {
     Box,
     Image
   } from '@chakra-ui/react'
+  
   import React, { lazy, Suspense, useEffect, useState } from 'react';
   import ApiCaller from '../utils/apiCaller';
   import avt from '../assets/image/Doctor.jpg'

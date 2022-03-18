@@ -88,16 +88,14 @@ function TableUser() {
             <td   style={{
                 paddingRight: '20px'
             }}>
-                <Button className='btn btn-info'> <UpdateUser user={api._id}/></Button>
+               <UpdateUser user={api._id}/>
         
             </td>
            
             <td>
-              <Button 
-              className='btn btn-danger'
-              > 
+            
                 <DeleteUser  user={api._id}/> 
-              </Button>
+              
             </td>
         </tr>         
       </td>

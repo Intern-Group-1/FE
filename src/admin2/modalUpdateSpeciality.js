@@ -15,6 +15,7 @@ import {
     Image,
     Img
 } from '@chakra-ui/react'
+import { Button as Btn} from 'react-bootstrap-v5'
 import React, { lazy, Suspense, useEffect, useState } from 'react';
 import ApiCaller from '../utils/apiCaller';
 import avt from '../assets/image/Doctor.jpg'
@@ -26,6 +27,7 @@ import { handleDeleteSpeciality, handleDeleteUser, handleGetSpecialityById, hand
 import { useNavigate } from 'react-router-dom'
 import Combobox from "react-widgets/Combobox";
 import { ToastContainer, toast } from 'react-toastify';
+import { BiTrain } from 'react-icons/bi';
 
 function UpdateSpeciality(props) {
     const [fullname, setFullname] = useState('')
@@ -108,8 +110,8 @@ async function editSpeciality(idspec) {
 
 
     return (
-        <>
-            <EditIcon onClick={(e)=>{onOpen(e);getByID(id)}} />
+        <>  <Btn onClick={(e)=>{onOpen(e);getByID(id)}} className='btn btn-info'><EditIcon   /> </Btn> 
+          
             <Modal
                 initialFocusRef={initialRef}
                 finalFocusRef={finalRef}

@@ -14,6 +14,7 @@ import {
   Box,
   Image
 } from '@chakra-ui/react'
+import { Button as Btn} from 'react-bootstrap-v5'
 import React, { lazy, Suspense, useEffect, useState } from 'react';
 import ApiCaller from '../utils/apiCaller';
 import avt from '../assets/image/Doctor.jpg'
@@ -37,7 +38,6 @@ function UpdateUser(props) {
   const [gender, setGender] = useState(true)
   const [avt, setAvt] = useState('')
   const [save, setSave] = useState('Save')
-  const [Id, setIdUser] = useState('')
   const navigate = useNavigate()
   const { isOpen, onOpen, onClose } = useDisclosure()
   const initialRef = React.useRef()
@@ -69,18 +69,6 @@ function UpdateUser(props) {
 
 
   }
-  const handleGenderInput = e => {
-    console.log('gioi tinh e1');
-    console.log('sex' + e);
-    e == 'Male' ? setGender(true) : setGender(false)
-    console.log('gioi tính sex');
-    console.log(gender);
-    // if(e=='Male')
-    //   setGender(true);
-    //  else 
-    //  setGender(false);
-
-  }
   const handleAvtInput = e => {
     setAvt(e.target.files[0]);
     console.log('avt');
@@ -95,131 +83,117 @@ function UpdateUser(props) {
       })
   }, [])
 
+const byID = async ()=>{
+    const data= await  handleGetUserById(id)
+    if(data)
+    {
+        setName(data.data.data[0].full_name)
+        setAvt(data.data.data[0].avatar)
+        setAddress(data.data.data[0].address)
+        setPhone(data.data.data[0].phone_number)
+        setGender(data.data.data[0].gender)
+    }
+    return data
+}
+useEffect(() => {
+    byID() 
+}, [id])
 
-  const handleUpdate = async (iduser) => {
-
-
-    const da_ta = new FormData();
-
-    console.log('sex');
-    console.log(gender);
-
+async function handleUpdate () {
+ 
+  const da_ta = new FormData();
+  console.log(fullname);
     da_ta.append("full_name", fullname)
     da_ta.append("address", address)
     da_ta.append("phone_number", phone)
     da_ta.append("gender", gender)
     da_ta.append("file", avt)
-    console.log(da_ta);
     try {
       setSave('Loading...')
       console.log(save);
       setOpen(onOpen)
-
-      if (da_ta) {
-        console.log('id ng dung');
-        console.log(iduser);
-        const data = await handleUpdateUser(iduser, da_ta)
-        console.log('dat alaa');
-        console.log(data);
-        //await localStorage.setItem('Id_User',data.data.data[0]._id)
-        //await setId(localStorage.getItem('Id_User'))
+     
+      if (da_ta) {      
+        await handleUpdateUser(id,da_ta) 
+      
       }
       setOpen(onClose)
       setSave('Save')
       toast.success("Successful!");
+      navigate('/admin')
+      navigate('/admin/user')
 
 
     } catch (error) {
       console.log(error)
       toast.error("Failed!");
     }
-  }
+}
 
   return (
     <>
-      <EditIcon onClick={onOpen} />
-      <Modal
-        initialFocusRef={initialRef}
-        finalFocusRef={finalRef}
-        isOpen={isOpen}
-        onClose={onClose}
-      >
-        <ModalOverlay />
+        <Btn onClick={onOpen} className='btn btn-info'><EditIcon   /> </Btn> 
+        <Modal
+          initialFocusRef={initialRef}
+          finalFocusRef={finalRef}
+          isOpen={isOpen}
+          onClose={onClose}
+        >
+          <ModalOverlay />
+          <ModalContent>
+            <ModalHeader>Edit User</ModalHeader>
+            <ModalCloseButton />
+            <ModalBody>Edits will be saved when you press Save 
 
-        <ModalContent>
-
-          <ModalHeader>Edit User</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>Edits will be saved when you press Save
-            {/* {(u._id==props.user)?<a>{u.full_name}</a>:<></>)} */}
-
-          </ModalBody>
-          <Box w='90%' ml='20px'>
-            {Api.map(u => (
-              <>
-                {(u._id == props.user) ?
-                  <>
-                    <FormControl >
-                      <FormLabel>Full name</FormLabel>
-                      <Input 
-                      //placeholder={u.full_name}
-                      defaultValue={u.full_name}
-                              
-                             //value={u.full_name}
-                             onChange={handleFullNameInput}
-                      />
-                    </FormControl>
-
-                    <FormControl mt={4}>
-                      <FormLabel>Address</FormLabel>
-                      <Input defaultValue={u.address} onChange={handleAddressInput} />
-                    </FormControl>
-
-                    <FormControl mt={4}>
-                      <FormLabel>Phone</FormLabel>
-                      <Input defaultValue={u.phone_number} onChange={handlePhoneInput} />
-                    </FormControl>
-                    <FormControl mt={4}>
-                      <FormLabel>Gender</FormLabel>
-                      {/* <Combobox
-                
-                data={genderlist}
-                defaultValue={u.gender == true ? 'Male': 'Female'}
-                onChange={handleGenderInput}
+              
+            </ModalBody> 
+            <Box w='90%' ml='20px'>   
+                         
+              
              
-              /> */}
-                      <Combobox
+              <>
+              <FormControl >
+              <FormLabel>Full name</FormLabel>
+              <Input value={fullname} 
+                onChange={handleFullNameInput} 
+              />
+             </FormControl>
 
-                        data={genderlist}
-                        //defaultValue={u.gender == true ? 'Male' : 'Female'}
-                        onChange={genderlist => genderlist == 'Male' ? setGender(true) : setGender(false)}
-                      />
-                    </FormControl>
-                    <FormControl mt={4}>
-                      <FormLabel>Avatar</FormLabel>
-                      <Input id='file' type={'file'} onChange={handleAvtInput}></Input>
-                    </FormControl>
+            <FormControl mt={4}>
+              <FormLabel>Address</FormLabel>
+              <Input value={address} onChange={handleAddressInput} />
+            </FormControl>
 
-                    <ModalFooter>
-                      <Button colorScheme='blue' mr={3} onClick={(event) => {
-                        onOpen(event);
-                        handleUpdate(u._id)
-                      }}
-                      >
-                        {save}
-                      </Button>
-                      <Button onClick={onClose}>Cancel</Button>
-                    </ModalFooter>
-                  </>
-                  :
-                  <></>}
-              </>
-            ))}
-          </Box>
-        </ModalContent>
-
-      </Modal>
-    </>
+            <FormControl mt={4}>
+              <FormLabel>Phone</FormLabel>
+              <Input value={phone} onChange={handlePhoneInput} />
+            </FormControl>
+            <FormControl mt={4}>
+              <FormLabel>Gender</FormLabel>
+              <Combobox
+                data={genderlist}
+                defaultValue={gender == true ? 'Male': 'Female'}
+                onChange={gender => gender == 'Male'?setGender(true) : setGender(false)}
+              />
+            </FormControl>
+            <FormControl mt={4}>
+              <FormLabel>Avatar</FormLabel>
+              <Input id ='file' type={'file'} onChange={handleAvtInput}></Input>
+            </FormControl>            
+            <ModalFooter  >
+              <Button colorScheme='blue' mr={3} onClick={(event)=>{ onOpen(event);
+              handleUpdate()}}
+              >
+                {save}
+              </Button>
+              <Button    onClick={onClose}>Cancel</Button>
+            </ModalFooter>
+            </> 
+             </Box>
+          </ModalContent>
+  
+        </Modal>
+      </>
   )
 }
 

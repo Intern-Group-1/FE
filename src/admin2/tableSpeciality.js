@@ -82,19 +82,17 @@ function TableSpeciality() {
             <td   style={{
                 paddingRight: '20px'
             }}>
-                <Button className='btn btn-info'> 
+            
                 {/* <UpdateUser user={api._id}/> */}
                 <UpdateSpeciality  speciality={api._id}/>
-                </Button>
+              
         
             </td>
            
             <td>
-              <Button 
-              className='btn btn-danger'
-              > 
+              
                 <DeleteSpeciality  speciality={api._id}/> 
-              </Button>
+             
             </td>
             </tr>
         </tr>     

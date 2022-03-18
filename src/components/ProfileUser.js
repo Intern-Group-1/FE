@@ -132,29 +132,35 @@ const loggedInUser = localStorage.getItem('token')
         
         <Box className='schedule' 
             w={'90%'} 
-            h={'410px'} 
+              //h={'00px'}
+             minHeight='fit-content' 
             bg='white'  
             boxShadow='2xl' 
             rounded='md' 
             marginBottom={'30px'}
+            pb='40px'
             >
-           <Box className='schedule' w={'720px'} h={'410px'}>
+           {/* <Box className='schedule' w={'720px'} 
+              h={'700px'}
+            // minHeight={'fit-content'}
+           pb='10px'
+           > */}
         {appointment.map(app=>(
            
             <Box className='tag-schedule'>
                 <Box className='infodoctor'>
                     <Text>{app.doctor.full_name}</Text>
-                    {/* <Text>{app.speciality}</Text> */}
+                    
                 </Box>
                 <Box className='info-schdule'>
                     <Text>Time: {app.time}</Text>
                     <Text>Date: {moment(app.date).format('L')}</Text>
-                    <Text>Address: {app.branch.address}</Text>
+                    {/* <Text>Address: {app.branch.address}</Text> */}
                 </Box>
             </Box>
            
             ))}
-        </Box>
+        {/* </Box> */}
         </Box>
         
        
