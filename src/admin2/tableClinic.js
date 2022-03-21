@@ -9,19 +9,6 @@ import AddClinic from './ModalAddClinic'
 import Card from './CardClinic'
 function TableClinic() {    
 
-    const [Api, setApi] = useState([]);
-    useEffect(()=>{
-        ApiCaller('get-all-branch', 'GET')
-      .then ( async res => {
-        console.log(res);
-          setApi(res.data.data)
-      })
-    },[])
-
-    let i=1;
-    function  deleteUser(id){     
-        console.log(id);
-    }
   return (
     <>  
     <Box> 
@@ -34,7 +21,7 @@ function TableClinic() {
             color:'none'
           }} 
           > 
-          <AddClinic/> 
+          <AddClinic /> 
         </Box> 
           <Box
           d={'flex'}
@@ -43,15 +30,7 @@ function TableClinic() {
           ml={'300px'}
           >
             <Card/>
-            {/* <Card/>
-            <Card/>
-            <Card/>
-            <Card/>
-            <Card/>
-            <Card/>
-            <Card/>
-            <Card/>
-            <Card/> */}
+           
           </Box>
         </Box>
     </Box>

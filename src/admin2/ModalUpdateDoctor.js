@@ -10,11 +10,11 @@ import {
   FormLabel,
   FormControl,
   Input,
-  
+  Button,
   Box,
   Image
 } from '@chakra-ui/react'
-import { Button } from 'react-bootstrap-v5'
+import { Button as Btn } from 'react-bootstrap-v5'
 import React, { lazy, Suspense, useEffect, useState } from 'react';
 import ApiCaller from '../utils/apiCaller';
 import avt from '../assets/image/Doctor.jpg'
@@ -123,8 +123,8 @@ useEffect(() => {
       })
 }, [])
   return (
-    <>   <Button onClick={(event)=>{ onOpen(event);
-      byID()}} className='btn btn-info'><EditIcon   /> </Button> 
+    <>   <Btn onClick={(event)=>{ onOpen(event);
+      byID()}} className='btn btn-info'><EditIcon   /> </Btn> 
       {/* <EditIcon  onClick={(event)=>{ onOpen(event);
             byID()}} /> */}
       <Modal
@@ -192,20 +192,12 @@ useEffect(() => {
 
          
            </Box>    
-          <ModalFooter  style={{
-              width:'220px',
-              marginLeft:'250px',
-             display:'flex',
-             justifyContent:'space-around',
-             
-            }}>
+          <ModalFooter  >
             <Button colorScheme='blue' mr={3} onClick={(event)=>{ onOpen(event); handleUpdate() }}
             >
               {save}
             </Button>
-            <Button  style={{
-              backgroundColor:'gray'
-            }} onClick={onClose}>Cancel</Button>
+            <Button   onClick={onClose}>Cancel</Button>
           </ModalFooter>
         </ModalContent>
 

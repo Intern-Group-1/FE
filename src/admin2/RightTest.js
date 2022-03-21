@@ -41,14 +41,24 @@ const LinkItems: Array<LinkItemProps> = [
   { name: 'User', icon: FaUserAlt, link: '/admin/user' },
   { name: 'Appointment', icon: FaCalendarAlt, link: '/admin/appointment' },
   { name: 'Clinic', icon: FaHospital, link: '/admin/clinic' },
-  { name: 'Speciality ', icon: FaStream, link: '/admin/speciality ' },
-  
+  { name: 'Speciality ', icon: FaStream, link: '/admin/speciality' },
+  { name: 'Logout', icon: MdLogout, link: '/logout' },
+];
+
+const LinkItemsDoctor: Array<LinkItemProps> = [
+ 
+ 
+  { name: 'Profile', icon: FaUserMd, link: '/manager' }, 
+ 
+  { name: 'Appointment', icon: FaCalendarAlt, link: '/manager' },
+ 
   { name: 'Logout', icon: MdLogout, link: '/logout' },
 ];
 
 export default function Right({ children }: { children: ReactNode }) {
   const navigate = useNavigate()
   const { isOpen, onOpen, onClose } = useDisclosure();
+ 
   return (
     <Box ml="0px" minH="0vh" mt="-30" bg={useColorModeValue('gray.100', 'gray.900')}>
       <SidebarContent
@@ -81,6 +91,10 @@ interface SidebarProps extends BoxProps {
 }
 
 const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
+  const navigate = useNavigate()
+  function linkUrl(url){
+    navigate(`${url}`)
+}
   return (
     <Box
       mt="32px"
@@ -98,11 +112,25 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
           />
         <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
       </Flex>
-      {LinkItems.map((link) => (
-        <NavItem fontSize={'20px'} key={link.name} icon={link.icon} style={{ textDecoration: 'none' }} as={'a'} href= {link.link}>
-          {link.name}
-        </NavItem>
-      ))}
+      {localStorage.getItem('role')=='admin' ? <>
+      {
+        LinkItems.map((link) => (
+          <NavItem fontSize={'20px'} key={link.name} icon={link.icon} style={{ textDecoration: 'none' }}  onClick= {()=>linkUrl(link.link)}>
+            {link.name}
+          </NavItem>
+        ))
+        
+      }
+      </>: <>
+      {
+        LinkItemsDoctor.map((link) => (
+          <NavItem fontSize={'20px'} key={link.name} icon={link.icon} style={{ textDecoration: 'none' }} as={'a'} href= {link.link}>
+            {link.name}
+          </NavItem>
+        ))
+        }
+      </>
+}   
     </Box>
   );
 };
@@ -113,7 +141,7 @@ interface NavItemProps extends FlexProps {
 }
 const NavItem = ({ icon, children, ...rest }: NavItemProps) => {
   return (
-    <Link href="#" style={{ textDecoration: 'none' }} _focus={{ boxShadow: 'none' }}>
+    <Link  style={{ textDecoration: 'none' }} _focus={{ boxShadow: 'none' }}>
       <Flex
         align="center"
         p="4"

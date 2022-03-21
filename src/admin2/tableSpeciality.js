@@ -74,7 +74,7 @@ function TableSpeciality() {
     
        <th  scope="row">{(api._id!=null) ? i++: <></> 
             }</th> 
-      <td><Box className='thumb'><Image  src={api.images}/></Box></td>
+      <td><Box ><Image  src={api.images}/></Box></td>
       <td>{api.name}</td>
 
                  

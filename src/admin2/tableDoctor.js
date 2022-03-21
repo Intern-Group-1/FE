@@ -4,7 +4,7 @@ import ApiCaller from '../utils/apiCaller';
 import { Button } from 'react-bootstrap-v5'
 import '../admin2/css/table.css'
 import Right from './RightTest'
-import ModalDoctor from './ModalDoctor'
+import ModalDoctor from './ModalCreateDoctor'
 import { EditIcon, AddIcon, CheckIcon,DeleteIcon} from '@chakra-ui/icons'
 import DeleteDoctor from './ModalDeleteDoctor'
 import UpdateDoctor from './ModalUpdateDoctor'
@@ -65,7 +65,7 @@ function Table() {
             }</th> 
             <td><Box className='thumb'><Image  src={api.avatar}/></Box></td>
       <td>{api.full_name}</td>
-      <td>{api.speciality.name}</td>
+      <td>{api.speciality&&api.speciality.name}</td>
       <td>{api.phone_number}</td>
       <td>{api.address}</td>
       <td>{api.age}</td>

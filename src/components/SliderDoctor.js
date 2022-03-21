@@ -9,7 +9,7 @@ import '../responsive/homepage/SliderDoctor.css';
 import { Button } from '@chakra-ui/react';
 import '../style/SliderDoctor.css'
 import Adoctor from './Adoctor'
-
+import { useNavigate } from 'react-router-dom';
 function SliderDoctor() {
     let settings = {
         dots: false,
@@ -35,7 +35,10 @@ function SliderDoctor() {
             })
            
     }, [])
-
+    const navigate = useNavigate()
+    function getAllDoctor(){
+      navigate('/doctor')
+    }
   
     return (
 
@@ -45,7 +48,7 @@ function SliderDoctor() {
                    
                 <Button 
                     className='btn-more'
-                     href='/doctor '
+                    onClick={getAllDoctor}
                     as={'a'}
                     style={{ textDecoration: 'none' }}
                    >
@@ -63,7 +66,7 @@ function SliderDoctor() {
             {Api.map(dt => (
                            
    
-                       <Adoctor   _id={dt._id} key={dt._id} age={dt.age} full_name={dt.full_name} speciality={dt.speciality.name} avt={dt.avatar} />
+                       <Adoctor   _id={dt._id} key={dt._id} age={dt.age} full_name={dt.full_name} speciality={dt.speciality&&dt.speciality.name} avt={dt.avatar} />
 
                           
                      

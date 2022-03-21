@@ -7,9 +7,9 @@ import Right from './RightTest';
 import { PhoneIcon, AddIcon, CheckIcon,DeleteIcon,EditIcon} from '@chakra-ui/icons'
 import { handleDeleteUser } from '../services/User';
 import DeleteUser from './ModalConfirm';
-import UpdateUser from './ModalUpdate';
+import UpdateUser from './ModalUpdateUser';
 import { render } from 'react-dom';
-import ModalUser from './ModalUser'
+import ModalUser from './ModalCreateUser'
 import LazyLoad from 'react-lazyload'
 function TableUser() {
     const [Api, setApi] = useState([]);

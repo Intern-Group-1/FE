@@ -21,31 +21,51 @@ import {
   import { handleCreateUser, handleGetUserId } from '../services/User';
   import { ToastContainer, toast } from 'react-toastify';
   import Session from 'react-session-api'
+  import { useNavigate } from 'react-router-dom'
+import { handleCreateBranch } from '../services/admin';
   function AddClinic() {
+    const navigate = useNavigate()
     const [address, setAddress] = useState('')
-    
-    
+    const [name, setName] = useState('')
+    const [avt, setAvt] = useState('')
+    const [add, setAdd] = useState('Create')
     const handleAddressInput = e => {
       setAddress(e.target.value);
   
     } 
-    
-    const account= Session.get('user')
+    const handleNameInput = e => {
+      setName(e.target.value);
+  
+    } 
+    const handleAvtInput = e => 
+    { 
+    setAvt(e.target.files[0]);
+
+  }
+    <FormControl mt={4}>
+    <FormLabel>Address</FormLabel>
+    <Input placeholder='Address' onChange={handleAddressInput} />
+  </FormControl>
     console.log(Session.get('token'))
   
     const handleCreate = async (req, res) => {
       const da_ta = new FormData();
       da_ta.append("address", address)
-      da_ta.append("account", account)
+      da_ta.append("name", name)
+      da_ta.append("file", avt)
       try {
+        setAdd('Loading...')
+       
+        setOpen(onOpen)
+        const data = await handleCreateBranch(da_ta)
         setOpen(onClose)
-        const data = await handleCreateUser(da_ta)
-        
+          setAdd('Create')
          console.log(data)
         if (data) {
           toast.success("Successful!");
-          console.log(data.data.data[0]._id)
-          Session.set('id_user',data.data.data[0]._id)
+          navigate('/admin')
+        navigate('/admin/clinic')
+          
         }  
        
       } catch (error) {
@@ -53,9 +73,7 @@ import {
         toast.error("Failed!");
       }
     }
-   const byid=()=>{
-     console.log('hahah');
-   }
+  
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [open,setOpen]=useState('');
     const initialRef = React.useRef()
@@ -67,7 +85,7 @@ import {
          className='btn btn-success'
          bg={'#28a745'}
          _hover={'#28a745'}
-         onClick={(event)=>{ onOpen(event); byid() }}
+         onClick={onOpen}
          border={'none'}
           > 
           <AddIcon mr='7px'/> 
@@ -87,16 +105,23 @@ import {
               
   
               <FormControl mt={4}>
+              <FormControl mt={4}>
+                <FormLabel>Name</FormLabel>
+                <Input placeholder='Name' onChange={handleNameInput} />
+              </FormControl>
                 <FormLabel>Address</FormLabel>
                 <Input placeholder='Address' onChange={handleAddressInput} />
               </FormControl>
-  
-              
+            
+              <FormControl mt={4}>
+                <FormLabel>Image</FormLabel>
+                <Input id ='file' type={'file'} onChange={handleAvtInput}></Input>
+              </FormControl>
             </ModalBody>
   
             <ModalFooter>
               <Button colorScheme='blue' mr={3} onClick={handleCreate}>
-                Save
+                {add}
               </Button>
               <Button onClick={onClose}>Cancel</Button>
             </ModalFooter>

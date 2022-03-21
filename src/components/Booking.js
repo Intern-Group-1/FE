@@ -23,7 +23,7 @@ import Edit from './Modal';
 import ConfirmAppointment from './ConfirmAppointment';
 import { handleGetUserId } from '../services/User';
 import Botchat from './Botchat';
-
+import { useNavigate } from 'react-router-dom'
 export default function Booking() {
     const MyButton = (props) => {
         const handleClick = (e) => {
@@ -56,7 +56,7 @@ export default function Booking() {
     let clo='white';
     const [bg1,setBg1]=useState(clo);
     const [classon,setClasson]=useState(false)
-    
+    const navigate = useNavigate()
 
     useEffect(() => {
         ApiCaller('get-all-doctor', 'GET')
@@ -74,6 +74,7 @@ export default function Booking() {
     }, [])
     const [startDate, setStartDate] = useState(new Date());
     const [time, setTime] = useState('');
+    const today= new Date()
     const listTime=['07:00-08:00',
                     '08:00-09:00',
                     '09:00-10:00',
@@ -118,6 +119,11 @@ export default function Booking() {
              byID()
         }
     }, [])
+    function navigatetoAlldoctor(){
+         navigate('/doctor')
+        
+       
+    }
     return (
         <>
             <Navbar />
@@ -139,7 +145,7 @@ export default function Booking() {
                                             >
                                                 Doctor
                                             </Text>
-                                            <Button mt='7px' as='a' href='/doctor' _hover={{
+                                            <Button mt='7px' as='a' onClick={navigatetoAlldoctor} _hover={{
                                                 backgroundColor: 'blue.300',
                                                 color: 'white',
                                                 textDecoration: 'none'
@@ -240,7 +246,7 @@ export default function Booking() {
                     <Box className='date'>
                         <Heading as="h3" mt={'10'} mb={'45'}>Choose date</Heading>
                         <Box><DatePicker
-
+                            minDate={today}
                             selected={startDate}
                             onChange={onChange}
                             // excludeDates={[addDays(new Date(), 2), addDays(dateP, 0)]}
@@ -270,13 +276,11 @@ export default function Booking() {
                         </Box>
 
                         <Box className='clinic'>
-
-
                             <select onChange={handleChange} name="hue" className='select-clinic'>
                                 <option selected >Select Clinic</option>
                                 {branchs.map(brs => (
 
-                                    <option value={brs._id} > {brs.name} </option>
+                                    <option value={brs._id} > {brs.name}, {brs.address} </option>
 
                                 ))}
                             </select>

@@ -1,11 +1,17 @@
 import React from 'react'
-import { Box, Text, Button, Image, color } from '@chakra-ui/react'
+import { Box, Text, Button, Image,Spinner
+  } from '@chakra-ui/react'
 import Img from '../assets/image/clinic.jpg'
 import {AddIcon, EditIcon, DeleteIcon} from '@chakra-ui/icons'
 import {useEffect,useState} from 'react';
 import ApiCaller from '../utils/apiCaller';
-const Card = () => {
+import UpdateBranch from './modalUpdateClinic';
+import { handleDeleteBranch } from '../services/admin';
+import { useNavigate } from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toastify';
 
+const Card = () => {
+  const navigate = useNavigate()
   const [Api, setApi] = useState([]);
   const [loading,setLoading] =useState(false)
   useEffect(()=>{
@@ -16,11 +22,48 @@ const Card = () => {
   })
 },[])
 
+function ModalLoading(){
+ 
+  return<>
+ 
+ <Box  mt='200px' height={'500px'} pl={'500px'}>
+             
+             <Spinner
+
+           thickness='4px'
+           speed='0.65s'
+           emptyColor='gray.200'
+           color='blue.500'
+           size='xl'
+         /> <Text  color={'blue.500'}>Loading...</Text>  </Box>
+    
+   
+  </>
+}
+
+
+async function  handelDeleteClinic(id) {
+  
+  try {
+  
+   
+   const data= await handleDeleteBranch(id);
+   
+   toast.success("Successful!");
+   navigate('/admin')
+     navigate('/admin/clinic')
+  } catch (error) {
+   console.log('that bai');
+    console.log(error);
+  }
+
+}
 
 
 
 return <>
-{ Api.map(branch=>(
+
+{loading? Api.map(branch=>(
   <Box
   w='300px'
   h={'435px'} 
@@ -64,8 +107,9 @@ return <>
     w={'148px'}
     borderRadius={'none'}
     _hover={{ bg:"#036776", color:"white" }}
-    > 
-      <EditIcon/> 
+    
+    > <UpdateBranch branch={branch._id}></UpdateBranch>
+     
     </Button>
     
     <Button 
@@ -74,6 +118,7 @@ return <>
     color={'Black'}
     borderRadius={'none'}
     _hover={{ bg:"#dc3545", color:"white" }}
+    onClick={(e)=>handelDeleteClinic(branch._id)}
     > 
       <DeleteIcon/> 
     </Button>
@@ -81,7 +126,7 @@ return <>
 </Box>
 )
   
-)}
+):<ModalLoading/> }
   </>
 }
 
