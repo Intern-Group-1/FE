@@ -54,7 +54,7 @@ import Right from './RightTest';
   
     }
     const [Id, setId] = useState('')
-    const [save,setSave]=useState('Save')
+    const [save,setSave]=useState('Create')
     const account= localStorage.getItem('iduser')
     console.log('acc');
     console.log(account);

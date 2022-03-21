@@ -19,9 +19,9 @@ import "react-widgets/styles.css";
 import Combobox from "react-widgets/Combobox";
 import { handleCreateUser, handleGetUserId } from '../services/User';
 import { ToastContainer, toast } from 'react-toastify';
-import Session from 'react-session-api'
 import ApiCaller from '../utils/apiCaller';
 import { handleCreateDoctor } from '../services/admin';
+import { useNavigate } from 'react-router-dom'
 function CreateDoctor() {
   const [fullname, setFullname] = useState('')
   const [speciality, setSpeciality] = useState('')
@@ -32,6 +32,8 @@ function CreateDoctor() {
   const [avt, setAvt] = useState('')
   const [Api, setApi] = useState([]);
   const [speciality_id, setSpecialityId] = useState('');
+  const [save, setSave] = useState('Create')
+  const navigate = useNavigate()
   useEffect(() => {
       ApiCaller('get-all-speciality', 'GET')
           .then(async res => {
@@ -103,11 +105,13 @@ function CreateDoctor() {
      try {
        setOpen(onClose)
        console.log('chua chạy');
+       setSave('Loading...')
        const data = await handleCreateDoctor(da_ta)
         console.log('haha data');
         console.log(data)
-
+        setSave('Create')
         toast.success("Successful!");
+        navigate('/admin/doctor')
       //  if (data) {
       //    toast.success("Successful!");
       //    console.log(data.data.data[0]._id)
@@ -199,7 +203,7 @@ function CreateDoctor() {
 
           <ModalFooter>
             <Button colorScheme='blue' mr={3} onClick={handleCreate}>
-              Save
+              {save}
             </Button>
             <Button onClick={onClose}>Cancel</Button>
           </ModalFooter>
