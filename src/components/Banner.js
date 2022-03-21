@@ -9,7 +9,12 @@ import {
     useBreakpointValue,
   } from '@chakra-ui/react';
   import bg from '../assets/image/background.jpg'
+  import { useNavigate } from 'react-router-dom';
   export default function SplitScreen() {
+    const navigate = useNavigate()
+    function getAllDoctor(){
+      navigate('/doctor')
+    }
     return (
       <Stack minH={'100vh'} direction={{ base: 'column', md: 'row' }}>
         <Flex mr={'-2'} p={'8'} flex={1} align={'center'} justify={'center'} bg={'gray.100'}>
@@ -41,8 +46,8 @@ import {
             <Stack direction={{ base: 'column', md: 'row' }} spacing={4}>
               <Button
 
-              as={'a'}
-              href='/doctor'
+                onClick={getAllDoctor}
+              
                 rounded={'full'}
                 bg={'blue.400'}
                 color={'white'}

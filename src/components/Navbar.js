@@ -106,7 +106,7 @@ export default function Navbar() {
         boxShadow='xl' p='1' rounded='md' bg='white'
         background={useColorModeValue('white', 'gray.800')}
         color={useColorModeValue('gray.600', 'white')}
-        minH={'20px'}
+        h={'50px'}
         borderBottom={1}
         borderStyle={'solid'}
         borderColor={useColorModeValue('gray.200', 'gray.900')}
@@ -126,13 +126,13 @@ export default function Navbar() {
           />
         </Flex>
 
-        <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }}>
+        <Flex flex={{ base: 1 }} ml='10px' justify={{ base: 'center', md: 'start' }}>
           <Box
             as='a'
             onClick={HandleHome}
             w='100px'
           >
-            <Image ml='50px'
+            <Image ml='10px'
               mt='5px'
               // boxSize='50px'
               alt={'Login Image'}
@@ -149,6 +149,7 @@ export default function Navbar() {
         </Flex>
 
         <Stack
+        
           flex={{ base: 1, md: 0 }}
           justify={'flex-end'}
           direction={'row'}
@@ -162,6 +163,7 @@ export default function Navbar() {
                     height={'10px'}
                     mr={'13px'}
                     py={1}
+                    
                     transition="all 0.3s"
                     _focus={{ boxShadow: 'none' }}>
                     <HStack>
@@ -275,6 +277,8 @@ const DesktopNav = () => {
         setSp(res.data.data)
       })
   }, [])
+ 
+  
   return (
     <Stack pl='100px' direction={'row'} spacing={4}>
       {NAV_ITEMS.map((navItem) => (
@@ -311,7 +315,7 @@ const DesktopNav = () => {
                   {spe.map((child) => (
                     <DesktopSubNav key={child.name} 
                     href={'/Speciality/' + `${child.name}`}
-
+                   
                       
                       label={child.name} />
                   ))}
@@ -327,13 +331,17 @@ const DesktopNav = () => {
 
 const DesktopSubNav = ({ label,href}) => {
   const navigate = useNavigate()
-  // function link() {
-  //   navigate('/about')
-  // }
+  function getAllSpeciality(href){
+    console.log(`/Speciality/${href}`);
+      navigate(`${href}`)
+      //navigate('/doctor')
+     
+    }
   return (
     <Link
       //onClick={link}
-      href={href}
+      // href={href}
+      onClick={(e)=>getAllSpeciality(href)}   
       style={{ textDecoration: 'none' }}
       role={'group'}
       display={'block'}

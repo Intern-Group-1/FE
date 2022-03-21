@@ -22,6 +22,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import ApiCaller from '../utils/apiCaller';
 import { handleCreateDoctor } from '../services/admin';
 import { useNavigate } from 'react-router-dom'
+import Table from './tableDoctor';
 function CreateDoctor() {
   const [fullname, setFullname] = useState('')
   const [speciality, setSpeciality] = useState('')
@@ -131,6 +132,7 @@ function CreateDoctor() {
   let genderlist = ['Female', 'Male'];
   return (
     <>
+      <Table/>
       {/* <Button
        className='btn btn-success'
        bg={'#28a745'}
@@ -176,7 +178,7 @@ function CreateDoctor() {
             </FormControl>
             <FormControl mt={4}>
               <FormLabel>Phone</FormLabel>
-              <Input ref={initialRef} placeholder='Phone Number' onChange={handlePhoneInput} />
+              <Input ref={initialRef} placeholder='Phone Number' type={'number'} onChange={handlePhoneInput} />
             </FormControl>
             <FormControl mt={4}>
               <FormLabel>Address</FormLabel>

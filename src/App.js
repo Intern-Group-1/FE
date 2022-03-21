@@ -29,6 +29,7 @@ import CreateUser from "./admin2/CreateUser";
 import CreateDoctor from "./admin2/CreateDoctor";
 import About from "./components/AboutUs";
 import TableSpeciality from "./admin2/tableSpeciality";
+import ManagerAppointment from "./components/ManagerAppointment";
 
 function App() {
   return (
@@ -62,6 +63,11 @@ function App() {
         <Route path='/admin/test' element={<PrivateRoute><Card /></PrivateRoute>} />
         <Route path='/admin/create-doctor' element={<PrivateRoute><CreateDoctor/></PrivateRoute>} />
         <Route path='/admin/create-user' element={<PrivateRoute><CreateUser/></PrivateRoute>} />
+
+        {/* doctor */}
+        <Route path='/manager' element={<PrivateRoute><ManagerAppointment/></PrivateRoute>} />
+
+
 
         <Route path="/logout" element={<PrivateRoute> <Logoutadmin /></PrivateRoute>}> 
        

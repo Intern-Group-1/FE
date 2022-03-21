@@ -64,10 +64,11 @@ import { useNavigate } from 'react-router-dom'
           setOpen(onClose)
           setAdd('Add')
           //toast.success("Successful!");
-          //navigate('/admin/doctor')
+          navigate('/admin/doctor')
           if (data) {
         toast.success("Successful!");
-        window.location.reload();
+        navigate('/admin')
+        navigate('/admin/speciality')
         //    console.log(data.data.data[0]._id)
         //    Session.set('id_user',data.data.data[0]._id)
           }  

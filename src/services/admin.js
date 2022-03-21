@@ -133,16 +133,84 @@ const handleGetDoctorById = async (id)=>{
         console.log(error)
     }
 }
+
+const handleCreateBranch = async (data)=>{
+    try {
+         var token = await localStorage.getItem('token')
+         
+        return await axios.post('https://be-doctor-care-v3.herokuapp.com/api/create-branch/', data,{
+            headers: {
+                'Authorization': `Bearer ${token}` 
+              }
+        })      
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+const handleUpdateBranch = async (id,data)=>{
+    try {
+        var token = await localStorage.getItem('token')
+      
+        return await axios.put(`https://be-doctor-care-v3.herokuapp.com/api/update-branch/${id}`,data,{
+            headers: {
+                'Authorization': `Bearer ${token}` 
+              }
+        })  
+
+        
+    } catch (error) {
+        console.log(error)
+    }
+}
+const handleBranchByID = async (id)=>{
+    try {
+        var token = await localStorage.getItem('token')
+      
+        return await axios.get(`https://be-doctor-care-v3.herokuapp.com/api/get-id-branch/${id}`,{
+            headers: {
+                'Authorization': `Bearer ${token}` 
+              }
+        })  
+
+        
+    } catch (error) {
+        console.log(error)
+    }
+}
+const handleDeleteBranch = async (id)=>{
+    try {
+        var token = await localStorage.getItem('token')
+       
+        return await axios.delete(`https://be-doctor-care-v3.herokuapp.com/api/delete-branch/${id}`,{
+            headers: {
+                'Authorization': `Bearer ${token}` 
+              }
+        })  
+
+        
+    } catch (error) {
+        console.log(error)
+    }
+}
 export {
+    //user
    handleDeleteUser,
    handleGetUserById,
+    //doctor
    handleCreateDoctor,
    handleDeleteDoctor,
    handleUpdateDoctor,
    handleGetDoctorById,
+    //speciality
    handleCreateSpeciality,
    handleDeleteSpeciality,
    handleUpdateSpeciality,
-   handleGetSpecialityById
+   handleGetSpecialityById,
+    //branch
+   handleCreateBranch,
+   handleUpdateBranch,
+   handleBranchByID,
+   handleDeleteBranch
 
 }

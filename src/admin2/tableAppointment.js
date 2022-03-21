@@ -4,7 +4,7 @@ import ApiCaller from '../utils/apiCaller';
 import { Button } from 'react-bootstrap-v5'
 import '../admin2/css/table.css'
 import Right from './RightTest'
-import ModalDoctor from './ModalDoctor'
+import ModalDoctor from './ModalCreateDoctor'
 import { AiOutlineCheck } from 'react-icons/ai'
 import moment from 'moment'
 function TableAppointment() {
@@ -28,7 +28,10 @@ function TableAppointment() {
             })
     }, [])
 
-
+function handleGetID(id){
+  console.log('id app');
+  console.log(id);
+}
   return (
     <>    
     <Box  ml={'340px'}>
@@ -40,7 +43,7 @@ function TableAppointment() {
         </Box>
         <table className="table table-hover" style={{
            
-            width:'1300px',
+            width:'1200px',
             height:'800px',
             marginTop:'20px',
            
@@ -48,17 +51,18 @@ function TableAppointment() {
   <thead>
     <tr >
       
-      <th width='140px'>Branch</th>    
-      <th width='150px'>Name Customer</th>
+      <th width='120px'>Branch</th>    
+      <th width='130px'>Name Customer</th>
       {/* <th width='100px' >Address Customer</th> */}
-      <th width='150px'>Phone Customer</th>
-      <th width='150px'>Name Doctor</th>
+      <th width='130px'>Phone Customer</th>
+      <th width='130px'>Name Doctor</th>
       {/* <th >Address Doctor </th>
       <th >Phone Doctor</th> */}
-      <th width='150px'>Speciality</th>
+      <th width='130px'>Speciality</th>
      
       <th width='50px' >Date</th>
-      <th width='130px'>Time</th>
+      <th width='120px'>Time</th>
+      <th >Status</th>
       <th >Handle</th>
     </tr>
   </thead>
@@ -87,15 +91,36 @@ function TableAppointment() {
   </td>
   <td>{moment(api.date).format('L')}</td>
   <td>{api.time}</td>
-  <td><Button className='btn btn-success' width={'70px !important'}> <AiOutlineCheck /> </Button></td>
-   
-        {/* <td>{api.user}</td> */}
-        {/* <td>076851211034</td>
-        <td>Dr.Thanh</td>
-        <td>Neurology</td>
-        <td>Da Nang city</td>
-        <td>Waiting</td>   
-        <td><Button className='btn btn-success' width={'70px !important'}> <AiOutlineCheck /> </Button></td> */}
+  <td>{api.status == 0? <><Box
+  display={'flex'}
+  justifyContent={'space-around'}
+  
+  >
+    <Button className='btn btn-success' > 
+    Approve
+  </Button>
+  
+  <Button className='btn btn-danger' > 
+    Cancel
+  </Button>
+  </Box>
+    
+  </> : <>
+  <Box
+  display={'flex'}
+  justifyContent={'space-around'}
+  
+  >
+    <Button className='btn btn-danger' > 
+    Delete
+  </Button>
+ 
+  </Box>
+  </> }
+ 
+  </td>
+  <td>{api.status==1 ?'Approved':api.status==0?'Pending':'Cancel'}
+  </td>       
         </tr>
     </>   
    ))}

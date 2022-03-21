@@ -48,29 +48,29 @@ export const Account = () => {
     const confirmPassword = document.getElementById("confirmPassword").value;
     console.log(role);
     try {
-      const data = await handleSignUpAPI(email, password, confirmPassword,role)
+      const data = await handleSignUpAPI(email, password, confirmPassword, role)
       console.log('dang ký');
       console.log(data)
-       if (data) {
+      if (data) {
         console.log('thanh cong');
         console.log(data);
         localStorage.setItem('iduser', data.data.data._id)
-        if(role =='customer'){         
+        if (role == 'customer') {
           navigate('/admin/create-user')
-        } 
+        }
         // await localStorage.setItem('token', data.data.data.tokens[0].token)
-        if(role =='doctor'){
-          
+        if (role == 'doctor') {
+
           navigate('/admin/create-doctor')
-        } 
-       }
-    //    var loggedInUser = await localStorage.getItem('token')
-      
-    //    if (loggedInUser !== null) {
-    //     localStorage.setItem('role',data.data.data.role)
-    //      navigate('/profile/user')
-    //      console.log('thanh cong');
-    //    }
+        }
+      }
+      //    var loggedInUser = await localStorage.getItem('token')
+
+      //    if (loggedInUser !== null) {
+      //     localStorage.setItem('role',data.data.data.role)
+      //      navigate('/profile/user')
+      //      console.log('thanh cong');
+      //    }
 
     } catch (error) {
       console.log(error);
@@ -97,10 +97,10 @@ export const Account = () => {
   })
   return (
     <>
-    <Right/>
-   
+      <Right />
+
       <Formik
-         
+
         initialValues={{
 
           email: '',
@@ -115,23 +115,28 @@ export const Account = () => {
 
         {formik => (
           <Flex
-                
+
             minH={'100vh'}
             align={'center'}
             justify={'center'}
-            
-             bg={'gray.100'}
-            >
-            <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}  w='500px' >
-            
+
+            bg={'gray.100'}
+          >
+            <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6} w='500px' >
+              <Stack align={'center'}>
+                <Heading fontSize={'4xl'} color='blue.400'>Create Account</Heading>
+                <Text fontSize={'lg'} color={'gray.500'}>
+
+                </Text>
+              </Stack>
               <Box
                 rounded={'lg'}
                 bg={'white'}
                 boxShadow={'lg'}
                 p={8}
                 fontSize='20px'
-                >
-                <Stack spacing={4}  fontSize='20px'>
+              >
+                <Stack spacing={4} fontSize='20px'>
 
 
                   <TextField fontSize='20px' label="Email" id='email' name="email" type="email" />
@@ -148,7 +153,7 @@ export const Account = () => {
                     </InputRightElement>
 
 
-                    
+
                   </FormControl>
                   <FormControl >
                     {/* <TextField label="Password" name="password" type="password" /> */}
@@ -169,11 +174,11 @@ export const Account = () => {
                   </FormControl>
 
                   <Combobox
-                    data={['customer','doctor']}
+                    data={['customer', 'doctor']}
                     //value='Role'
                     placeholder='Role'
                     onChange={handleSpecialityInput}
-                />
+                  />
 
                   <Stack spacing={10} pt={2}>
                     <Button
@@ -194,7 +199,7 @@ export const Account = () => {
 
                   </Stack>
 
-                 
+
 
                 </Stack>
               </Box>
@@ -205,7 +210,7 @@ export const Account = () => {
 
         )}
       </Formik>
-     
+
     </>
   )
 }
