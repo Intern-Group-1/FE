@@ -24,15 +24,14 @@ import DoctorBySpeciality from "./components/DoctorBySpeciality";
 import AllNews from "./components/AllNew"
 import News from "./components/News"
 import Card from "./admin2/CardClinic"
-
 import { Account } from "./admin2/Account";
 import CreateUser from "./admin2/CreateUser";
 import CreateDoctor from "./admin2/CreateDoctor";
 import About from "./components/AboutUs";
 import TableSpeciality from "./admin2/tableSpeciality";
-import ManagerAppointment from "./doctor/ManagerAppointment";
-import TableAppointmentByDoctor from "./doctor/AppointmentbyDoctor";
-import ProfileDoctor from "./doctor/ProfileDoctor";
+import ManagerAppointment from "./Doctor/ManagerAppointment";
+import TableAppointmentByDoctor from "./Doctor/AppointmentbyDoctor";
+import ProfileDoctor from "./Doctor/ProfileDoctor";
 
 function App() {
   return (
@@ -48,7 +47,6 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/allnews" element={<AllNews />} />
         <Route path="/news" element={<News />} />
-        <Route path="/about" element={<About />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/doctor" element={<Alldoctor />} />
         <Route path='/Speciality/:name'  element={<DoctorBySpeciality/>}/>
@@ -77,6 +75,7 @@ function App() {
        
        
      
+      
         </Route>
       </Routes>
       

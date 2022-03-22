@@ -90,9 +90,20 @@ import {
             <ModalBody>Do you want to create this appointment?</ModalBody>
             <ModalFooter>
 
-              <Button colorScheme='blue' mr={3} as='a' onClick={
+              <Button 
+              colorScheme='blue' 
+              mr={3} 
+              as='a' 
+              onClick={
                 handleCreateApp
-              } href ='/profile'>
+              } 
+              href ='/profile'
+              _hover={{
+                backgroundColor: 'blue.400',
+                color: 'white',
+                textDecoration: 'none'
+              }}
+              >
               Confirm
               </Button>
               <ToastContainer />

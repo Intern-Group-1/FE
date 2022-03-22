@@ -11,14 +11,13 @@ import {
     Text,
     useColorModeValue,
     Button,
-    Tooltip
+    Tooltip,
+    Avatar
 } from '@chakra-ui/react';
-import Doctor from '../assets/image/dtavt.png'
 import DatePicker from "react-datepicker";
 import 'react-datepicker/dist/react-datepicker.css'
 import '../style/Booking.css'
 import '../responsive/Appointment.css'
-import { getValue } from '@testing-library/user-event/dist/utils';
 import Edit from './Modal';
 import ConfirmAppointment from './ConfirmAppointment';
 import { handleGetUserId } from '../services/User';
@@ -31,7 +30,6 @@ export default function Booking() {
         };
         
         return (
-            // <Tooltip label='Double click To select' fontSize='s'>
             <button style={
                 time===props.item? {
                  color:'rgb(0 29 171 / 78%)',
@@ -43,7 +41,6 @@ export default function Booking() {
             >
             {props.item}
           </button>
-            // </Tooltip>
           
         );
       };
@@ -145,21 +142,22 @@ export default function Booking() {
                                             >
                                                 Doctor
                                             </Text>
-                                            <Button mt='7px' as='a' onClick={navigatetoAlldoctor} _hover={{
+                                            <Button mt='15px' as='a' onClick={navigatetoAlldoctor} _hover={{
                                                 backgroundColor: 'blue.300',
                                                 color: 'white',
                                                 textDecoration: 'none'
                                             }} >Change Doctor</Button>
-                                            <Image
-                                                className='img-doctor'
-                                                borderRadius="full"
-                                                src={api.avatar}
+                                            <Avatar
+                                            ml={'20px'}
+                                            className='img-doctor'
+                                            src={api.avatar}
+                                            size={'2xl'}
                                             />
                                         </Box>
                                         <Box className='wrapper-info-doctor'>
                                             <Text
                                                 as="p"
-                                                marginTop="20"
+                                                mt={'119px'}
                                                 color={'gray.900'}
                                                 fontSize="lg">
                                                 Name: {<b>{api.full_name}</b>}
@@ -207,11 +205,15 @@ export default function Booking() {
                         >
                             Customer
                         </Text>
-                        <Edit />
+                        <Box
+                        mt={'20px'}
+                        >
+                            <Edit/>
+                        </Box>
                       
                         <Text
                             as="p"
-                            marginTop="7"
+                            marginTop="3"
                             color={useColorModeValue('gray.700', 'gray.200')}
                             fontSize="lg">
                             Name: {<b>{fullname}</b>}
@@ -263,13 +265,6 @@ export default function Booking() {
                         <Box className='time'  >
                             {listTime.map((timer, i)=>(
                                 <MyButton                                                                                                                   
-                                  //bgColor={bg1}  
-                                // onClick={(e) => {
-                                 //    console.log(e);
-                                //     //setTime(e.target.innerHTML)
-                                //     //handleClick();
-                                   
-                                //  }} 
                                 key={i} item={timer}></MyButton>
                             ))}
                          
@@ -298,13 +293,7 @@ export default function Booking() {
                                 fontSize="md">
                                 Name: {<b>{fullname}</b>}
                             </Text>
-                            {/* <Text
-        as="p"
-        marginTop="5"
-        color={useColorModeValue('gray.700', 'gray.200')}
-        fontSize="md">
-        Age: 22
-        </Text> */}
+                         
                             <Text
                                 as="p"
                                 marginTop="5"

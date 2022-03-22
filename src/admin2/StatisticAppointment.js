@@ -25,3 +25,4 @@ export default function PieChartAppointment() {
       height={"400px"}
     />
   );
+}

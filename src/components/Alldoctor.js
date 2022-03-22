@@ -107,7 +107,6 @@ function Alldoctor(props) {
                 <Suspense >
 
                   <Box ml='20px'
-
                     maxW={'320px'}
                     h={'400px'}
                     w={'320px'}

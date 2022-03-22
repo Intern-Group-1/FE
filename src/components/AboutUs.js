@@ -26,7 +26,7 @@ export default function About(){
     },{
         name:'Otis',
         major:'Frontend Developer',
-        bg:'https://scontent.fdad1-2.fna.fbcdn.net/v/t39.30808-6/241110074_1156841111466719_3827861592360028263_n.jpg?_nc_cat=106&ccb=1-5&_nc_sid=174925&_nc_ohc=o4922xWMQuMAX_3EhES&_nc_ht=scontent.fdad1-2.fna&oh=00_AT_Fr9V8uhRWgMCxz0WUXhCLx42oElDPTJDtLMgIHUw23Q&oe=623814A1',
+        bg:'https://cdn.sixthandi.org/wp/wp-content/uploads/2020/05/Belief.jpg',
         avt:'https://scontent.fdad1-3.fna.fbcdn.net/v/t1.6435-9/40213639_452858051865032_2031456261844762624_n.jpg?_nc_cat=110&ccb=1-5&_nc_sid=174925&_nc_ohc=8oi6JUETdVoAX_dLYxh&_nc_ht=scontent.fdad1-3.fna&oh=00_AT9JkwLqXBR3sM506vWbsGtuxrQfW3Q7oYIhVUhY1eMQ7Q&oe=625AD56F',
         email:'dung05042000@gmail.com',
         phone:'0375082670',
@@ -44,7 +44,7 @@ export default function About(){
         major:'Backend Developer',
         bg:'https://addons-media.operacdn.com/media/CACHE/images/themes/05/144705/1.0-rev1/images/0993404e-79e0-4052-923d-89236e7c102f/ce42ef837a89c852c000eafd63cd0763.jpg',
         avt:'https://scontent.fdad1-2.fna.fbcdn.net/v/t1.6435-9/69987742_2441234426164423_2187870496794607616_n.jpg?_nc_cat=102&ccb=1-5&_nc_sid=174925&_nc_ohc=RfjUq3SzmoIAX85eN1f&_nc_ht=scontent.fdad1-2.fna&oh=00_AT8996HebwzrL4qzJfMXTPmWj25BXzMqjrB1bz5CRE73CQ&oe=6259B801',
-        email:'quocphan20111999@gmail.com',
+        email:'quocphan@gmail.com',
         phone:'0966119701',
         fb:'https://www.facebook.com/quocphan219'
     }]
@@ -194,7 +194,7 @@ export default function About(){
                             <Card1 
                             ml={'30px'}
                             w={'500px'}
-                            key={member.name} name={member.name} major={member.major} avt={member.avt} bg={member.bg} phone={member.phone} email={member.phone} fb={member.fb} />
+                            key={member.name} name={member.name} major={member.major} avt={member.avt} bg={member.bg} phone={member.phone} email={member.email} fb={member.fb} />
                         ))}
                         
                     </Box>

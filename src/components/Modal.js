@@ -150,6 +150,10 @@ console.log(gender);
       <Button 
       onClick={onOpen}
       w={'100px'}
+      _hover={{
+        backgroundColor: 'blue.300',
+        color: 'white',
+    }}
       >Edit Profile</Button>
       <Modal
         initialFocusRef={initialRef}

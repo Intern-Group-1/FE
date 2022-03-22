@@ -26,7 +26,6 @@ import '../style/button.css'
 import DatePicker from "react-datepicker";
 import '../style/Booking.css'
 import '../responsive/Appointment.css'
-import ConfirmAppointment from './ConfirmAppointment';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
   function ChangeAppointment() {
@@ -95,9 +94,10 @@ import 'react-toastify/dist/ReactToastify.css';
       <>
         <Button 
         onClick={onOpen}
-        bg={'#17a2b8'}
+        bg={'#ffff'}
+        border={'1px #d9d9d9 solid'}
         color={'Black'}
-        _hover={{ bg:"#177482", color:"white" }}
+        _hover={{ bg:"#17a2b8", color:"white" }}
         w={'78px'}
         h={'26'}
         ><EditIcon/></Button>
