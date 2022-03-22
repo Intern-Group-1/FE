@@ -5,6 +5,7 @@ import InitialFocus from './Modal'
 import Navbar from './Navbar'
 import Footer from './Footer'
 import moment from 'moment'
+import ChangeAppointment from './ModalChangeAppointment'
 import { handleGetAppointment } from '../services/Appointment';
 import {
     Flex,
@@ -13,6 +14,7 @@ import {
     Text,
     Image,
     Button,
+    Avatar,
   } from '@chakra-ui/react';
   import { ToastContainer, toast } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
@@ -77,9 +79,21 @@ const loggedInUser = localStorage.getItem('token')
         bg='white'  
         justifyContent='center'
         alignItems={'center'}
-        alignContent='center'>
+        alignContent='center'
+        position={'relative'}
+        >
+            <Text
+            position={'absolute'}
+            top={'25px'}
+            left={'50px'}
+            fontSize={'23px'}
+            fontWeight={'bold'}
+            color={'#6e6767'}
+            >
+                Your profile
+            </Text>
             <Box className='user-avt' w={'450px'}>
-            <Box width='250px' height='250px' borderRadius='50%'  border='1px' boxShadow='2xl' m='10' border='1px' borderColor='blue.300'>
+            <Box width='250px' height='250px' borderRadius='50%'  border='1px' boxShadow='2xl' m='10' borderColor='blue.300'>
             <Image src={avatar} width='250px' height='250px' borderRadius='50%' />
                 </Box> 
                 <input  type='file' className='custom-file-input' /> 
@@ -132,35 +146,59 @@ const loggedInUser = localStorage.getItem('token')
         
         <Box className='schedule' 
             w={'90%'} 
-              //h={'00px'}
-             minHeight='fit-content' 
+            minHeight='fit-content' 
             bg='white'  
             boxShadow='2xl' 
             rounded='md' 
             marginBottom={'30px'}
             pb='40px'
+            position={'relative'}
             >
-           {/* <Box className='schedule' w={'720px'} 
-              h={'700px'}
-            // minHeight={'fit-content'}
-           pb='10px'
-           > */}
-        {appointment.map(app=>(
-           
-            <Box className='tag-schedule'>
-                <Box className='infodoctor'>
-                    <Text>{app.doctor.full_name}</Text>
-                    
+            <Text
+            position={'absolute'}
+            top={'5px'}
+            left={'50px'}
+            fontSize={'23px'}
+            fontWeight={'bold'}
+            color={'#6e6767'}
+            >Your appointment</Text>
+            
+            {appointment.map(app=>(       
+            <Box 
+            border={'2px #cccc dashed'}
+            boxShadow={'2px 2px #cccc'}
+            className='tag-schedule'
+            position={'relative'}
+            >
+                <Box 
+                className='infodoctor'
+                borderRight={'2px #cccc dashed'}
+                >
+                    <Avatar
+                    size={'xl'}
+                    src={app.doctor.avatar}
+                    />
+                    <Box
+                    visibility={'visible'}
+                    _hover={{
+                        visibility: 'visible'
+                    }}
+                    position={'absolute'}
+                    bottom={'7px'}
+                    left={'20px'}
+                    >
+                        <ChangeAppointment/>
+                    </Box>
                 </Box>
                 <Box className='info-schdule'>
                     <Text>Time: {app.time}</Text>
                     <Text>Date: {moment(app.date).format('L')}</Text>
-                    {/* <Text>Address: {app.branch.address}</Text> */}
+                    {/* <Text>Time: {api.branch}</Text> */}
+                    <Text>{app.doctor.full_name}</Text>
+                    <Text>Speciality</Text>
                 </Box>
             </Box>
-           
-            ))}
-        {/* </Box> */}
+            ))} 
         </Box>
         
        

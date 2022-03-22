@@ -42,7 +42,7 @@
     grid-template-rows: 40px 40px;
     border: 2px black dashed;
     border-radius: 10px;
-    margin-top: 23px;
+    margin-top: 40px;
     padding-left: 10px;
 }
 #confirm{
@@ -60,7 +60,7 @@
 .name-doctor{
     position: absolute;
     background-color: #ffff;
-    top: 215px;
+    top: 232px;
     left: 21px;
     height: 30px;
 }
@@ -72,13 +72,13 @@
     grid-template-rows: 30px 30px;
     border: 2px black dashed;
     border-radius: 10px;
-    margin-top: 26px;
+    margin-top: 40px;
     padding-left: 10px;
 }
 .name-datetime{
     position: absolute;
     background-color: #ffff;
-    top: 341px;
+    top: 370px;
     left: 21px;
     height: 30px;
     width: 190px;
@@ -87,7 +87,7 @@
 .btn-confirm{
     background-color: #ffff !important;
     color: black !important;
-    margin-top: 17px;
+    margin-top: 25px;
     border: 2px #7fb9e9c7 solid;
     margin-left: 130px;
 }

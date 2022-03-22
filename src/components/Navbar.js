@@ -106,7 +106,7 @@ export default function Navbar() {
         boxShadow='xl' p='1' rounded='md' bg='white'
         background={useColorModeValue('white', 'gray.800')}
         color={useColorModeValue('gray.600', 'white')}
-        h={'50px'}
+        h={'62px'}
         borderBottom={1}
         borderStyle={'solid'}
         borderColor={useColorModeValue('gray.200', 'gray.900')}
@@ -130,11 +130,10 @@ export default function Navbar() {
           <Box
             as='a'
             onClick={HandleHome}
-            w='100px'
+            w='120px'
           >
             <Image ml='10px'
               mt='5px'
-              // boxSize='50px'
               alt={'Login Image'}
               objectFit={'cover'}
               src={logo}
@@ -196,9 +195,9 @@ export default function Navbar() {
                     bg={'white'}
                   >
 
-                    <MenuItem as='a' color={'black'} fontWeight='normal' onClick={HandleProfile}>Profile</MenuItem>
-                    <MenuItem as='a' color={'black'} fontWeight='normal' href={'/#'} >Appointment</MenuItem>
-                    <MenuItem as='a' color={'black'} fontWeight='normal' href={'/#'}>Settings</MenuItem>
+                    <MenuItem as='a' color={'black'} style={{textDecoration:'none'}} fontWeight='normal' onClick={HandleProfile}>Profile</MenuItem>
+                    <MenuItem as='a' color={'black'} style={{textDecoration:'none'}} fontWeight='normal' href={'/#'} >Appointment</MenuItem>
+                    <MenuItem as='a' color={'black'} style={{textDecoration:'none'}} fontWeight='normal' href={'/#'}>Settings</MenuItem>
 
                     <MenuDivider />
                     <MenuItem color={'blue.500'} _hover={{
@@ -215,15 +214,12 @@ export default function Navbar() {
                 fontSize={'sm'}
                 fontWeight={700}
                 variant={'link'}
-                // _hover={{
-                //   textDecoration:'none',
-                //   textColor:'blue.400'
-                // }}
-                onClick={HandleSignin}>
+                onClick={HandleSignin}
+                style={{textDecoration:'none'}}
+                >
                 Sign in
               </Button>
               <Button
-                //h='30px'
                 as={'a'}
                 display={{ base: 'none', md: 'inline-flex' }}
                 fontSize={'sm'}
@@ -234,7 +230,9 @@ export default function Navbar() {
                 _hover={{
                   textDecoration: 'none',
                   bg: 'blue.300',
-                }}>
+                }}
+                style={{textDecoration:'none'}}
+                >
                 Sign up
               </Button>
             </>
@@ -280,7 +278,9 @@ const DesktopNav = () => {
  
   
   return (
-    <Stack pl='100px' direction={'row'} spacing={4}>
+    <Stack   
+    fontSize={'18px'}
+    pl='60px' direction={'row'} spacing={4}>
       {NAV_ITEMS.map((navItem) => (
         <Box key={navItem.label}>
           <Popover trigger={'hover'} placement={'bottom-start'} >
@@ -346,7 +346,7 @@ const DesktopSubNav = ({ label,href}) => {
       role={'group'}
       display={'block'}
       p={2}
-      w={'200px'}
+      w={'215px'}
       rounded={'md'}
       _hover={{ bg: useColorModeValue('blue.100', 'gray.900') }}>
       <Stack direction={'row'} align={'center'}>
@@ -359,9 +359,6 @@ const DesktopSubNav = ({ label,href}) => {
             {label}
             
           </Text>
-          
-          
-          {/* <Text fontSize={'sm'}>{subLabel}</Text> */}
         </Box>
         <Flex
           transition={'all .3s ease'}
