@@ -21,52 +21,51 @@ import {
   import { handleCreateUser, handleGetUserId } from '../services/User';
   import { ToastContainer, toast } from 'react-toastify';
   import Session from 'react-session-api'
-  function ModalUser() {
-    const [fullname, setFullname] = useState('')
+  import { useNavigate } from 'react-router-dom'
+import { handleCreateBranch } from '../services/admin';
+  function AddClinic() {
+    const navigate = useNavigate()
     const [address, setAddress] = useState('')
-    const [phone, setPhone] = useState('')
-    const [gender, setSex] = useState(true)
+    const [name, setName] = useState('')
     const [avt, setAvt] = useState('')
-    const handleFullNameInput = e => {
-      setFullname(e.target.value);
-    }
+    const [add, setAdd] = useState('Create')
     const handleAddressInput = e => {
       setAddress(e.target.value);
   
-    }
-    const handlePhoneInput = e => {
-      setPhone(e.target.value);
+    } 
+    const handleNameInput = e => {
+      setName(e.target.value);
   
-    }
-    const handleGenderInput = e => {
-      setSex(e.target.value);
-  
-    }
+    } 
     const handleAvtInput = e => 
-      { 
-      setAvt(e.target.files[0]);
-  
-    }
-    const account= Session.get('user')
+    { 
+    setAvt(e.target.files[0]);
+
+  }
+    <FormControl mt={4}>
+    <FormLabel>Address</FormLabel>
+    <Input placeholder='Address' onChange={handleAddressInput} />
+  </FormControl>
     console.log(Session.get('token'))
   
     const handleCreate = async (req, res) => {
       const da_ta = new FormData();
-      da_ta.append("full_name", fullname)
       da_ta.append("address", address)
-      da_ta.append("phone_number", phone)
-      da_ta.append("gender", gender)
+      da_ta.append("name", name)
       da_ta.append("file", avt)
-      da_ta.append("account", account)
       try {
+        setAdd('Loading...')
+       
+        setOpen(onOpen)
+        const data = await handleCreateBranch(da_ta)
         setOpen(onClose)
-        const data = await handleCreateUser(da_ta)
-        
+          setAdd('Create')
          console.log(data)
         if (data) {
           toast.success("Successful!");
-          console.log(data.data.data[0]._id)
-          Session.set('id_user',data.data.data[0]._id)
+          navigate('/admin')
+        navigate('/admin/clinic')
+          
         }  
        
       } catch (error) {
@@ -74,9 +73,7 @@ import {
         toast.error("Failed!");
       }
     }
-   const byid=()=>{
-     console.log('hahah');
-   }
+  
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [open,setOpen]=useState('');
     const initialRef = React.useRef()
@@ -88,11 +85,11 @@ import {
          className='btn btn-success'
          bg={'#28a745'}
          _hover={'#28a745'}
-         onClick={(event)=>{ onOpen(event); byid() }}
+         onClick={onOpen}
          border={'none'}
           > 
-          <AddIcon/> 
-          Add User
+          <AddIcon mr='7px'/> 
+           Add  Clinic
         </Button>
         <Modal
             initialFocusRef={initialRef}
@@ -102,37 +99,29 @@ import {
         >
           <ModalOverlay />
           <ModalContent>
-            <ModalHeader>Add information user</ModalHeader>
-            <ModalCloseButton />
+            <ModalHeader>Add information clinic</ModalHeader>
+            <ModalCloseButton onClick={onClose} />
             <ModalBody pb={6}>
-              <FormControl>
-                <FormLabel>Full name</FormLabel>
-                <Input ref={initialRef} placeholder='Full name' onChange={handleFullNameInput} />
-              </FormControl>
+              
   
               <FormControl mt={4}>
+              <FormControl mt={4}>
+                <FormLabel>Name</FormLabel>
+                <Input placeholder='Name' onChange={handleNameInput} />
+              </FormControl>
                 <FormLabel>Address</FormLabel>
                 <Input placeholder='Address' onChange={handleAddressInput} />
               </FormControl>
-  
+            
               <FormControl mt={4}>
-                <FormLabel>Phone</FormLabel>
-                <Input placeholder='Phone' onChange={handlePhoneInput} />
-              </FormControl>
-              <FormControl mt={4}>
-                <FormLabel>Gender</FormLabel>
-                <Combobox
-                />
-              </FormControl>
-              <FormControl mt={4}>
-                <FormLabel>avt</FormLabel>
+                <FormLabel>Image</FormLabel>
                 <Input id ='file' type={'file'} onChange={handleAvtInput}></Input>
               </FormControl>
             </ModalBody>
   
             <ModalFooter>
               <Button colorScheme='blue' mr={3} onClick={handleCreate}>
-                Save
+                {add}
               </Button>
               <Button onClick={onClose}>Cancel</Button>
             </ModalFooter>
@@ -144,4 +133,4 @@ import {
     )
   }
   
-  export default ModalUser;
+  export default AddClinic;

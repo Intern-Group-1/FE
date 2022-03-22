@@ -5,11 +5,12 @@ import React from 'react'
 
 export default function useAuth() {
 
-   console.log('haha');
-    console.log(  localStorage.role);
+    console.log('haha');
+    console.log( localStorage.role);
+   
     const role = localStorage.role;  
-    let auth=true
-    if(role=='admin'){
+    let auth=false
+    if(role=='admin'||role=='doctor'){
         (auth=true)
     }
     else{

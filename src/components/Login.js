@@ -21,22 +21,17 @@ import {
  
 
 } from '@chakra-ui/react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import '../responsive/account/signin.css'
 import { } from 'react-router-dom';
-import Footer from './Footer';
-import Navbar from './Navbar';
-import Signup from './Signup';
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import Session from 'react-session-api'
-import { handleLoginAPI,handleGetUserId } from '../services/User'
-import bg from '../assets/image/backgroundLogin.jpg'
+import { handleLoginAPI } from '../services/User'
 import gif from '../assets/image/heart.gif'
 import { ArrowBackIcon } from '@chakra-ui/icons';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import InitialFocus from './Modal'
-
+// import Session from 'react-session-api'
 
 function SimpleCard() {
   const [username, setUsername] = useState('')
@@ -55,49 +50,32 @@ function SimpleCard() {
   const handleLogin = async () => {
     try {
       const data = await handleLoginAPI(username, password)
-      console.log('datala');
-      console.log(data);
-      localStorage.setItem('role',data.data.data.role)
-      
-      
-
-      if (data) {
         localStorage.setItem('token', data.data.data.tokens[0].token)
-        Session.set('user', data.data.data._id)
-           
-       
-
-      }
-      var loggedInUser = localStorage.getItem('token');
-      console.log(loggedInUser)
-      
-      if (loggedInUser!=null) {
+        localStorage.setItem('user', data.data.data._id)
+        localStorage.setItem('role',data.data.data.role)
+      var loggedInUser = localStorage.getItem('token')
+      console.log('User token'+loggedInUser)
+      let role_object = localStorage.getItem('role')
+      if (loggedInUser !=null && role_object=='customer'  ) {
         toast.success("Login success!");
-        
-        // const data2= await handleGetUserId()
-        // console.log(data2.data.data);
-        // localStorage.setItem('byToken',data2.data.data._id)
         navigate('/home')
-        // delete localStorage.role;
+        console.log(localStorage.getItem('role'))
       }
-      // if(localStorage.getItem('role') =='admin'){
-      //   navigate('/admin')
-      // }
-      
+      else{
+      if (loggedInUser !=null && role_object=='admin'  ) {
+        toast.success("Login success!");
+        navigate('/admin/dashboard')
+        console.log(localStorage.getItem('role'))
+      }
+      else {
+        toast.success("Login success!");
+        navigate('/manager')
+        console.log(localStorage.getItem('role'))
+      }
+    }
     } catch (error) {
      
           toast.error("Login failed!");
-      //console.log(error);
-      // if (error) {
-      //   if (error.response) {
-      //     if (error.response.data) {
-      //       console.log(error.response.data);
-      //       setMessage(error.response.data.message);
-           
-      //     }
-      //   }
-      // }
-     
     }
   }
   const handleShowHidePassword = () => {
@@ -149,8 +127,12 @@ function SimpleCard() {
             </FormControl>
             <FormControl >
               <FormLabel>Password</FormLabel>
+              
               <Input  id="password" type={eye ? 'text' : 'password'} value={password} placeholder='Enter your password' onChange={handlePasswordInput} />
-              <span onClick={handleShowHidePassword}><i class={eye ? "far fa-eye eye" : "far fa-eye-slash eye"}></i></span>
+              <span onClick={handleShowHidePassword}>
+              <FontAwesomeIcon  />
+              <FontAwesomeIcon />
+              </span>
             </FormControl>
             <Stack spacing={10}>
               <Stack
@@ -174,28 +156,22 @@ function SimpleCard() {
               >
                 Sign in
               </Button>
-
               <Text color='red'
               >
                 {messagea}
               </Text>
-
             </Stack>
           </Stack>
-
         </Box>
-
       </Stack >
       <Box className='animation'>
       <Img src={gif} width='50%'/>
       <Img src={gif} width='100%'/>
       <Img src={gif} width='50%'/>
       </Box>
-    </Flex>
-            
+    </Flex>           
   </div>
   );
 }
 
 export default SimpleCard;
-

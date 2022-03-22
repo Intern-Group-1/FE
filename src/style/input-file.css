@@ -3,6 +3,7 @@
 }
 .user-avt{
   margin-left: 0px;
+  
 }
 .custom-file-input{
   margin-left: 80px;
@@ -23,24 +24,32 @@ img{
 }
 .schedule{
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   flex-wrap: wrap;
-  align-content: center;
+  align-content: center; 
+  
 }
 .tag-schedule{
-  border: 2px #8ec2ed dashed;
+  /* border: 2px #8ec2ed dashed; */
   border-radius: 5px;
-  box-shadow: 2px 2px #b4d5f0;
+  /* box-shadow: 2px 2px #b4d5f0; */
   width: 300px;
-  height: 122px;
-  margin: 40px 55px 0px 50px;
+  height: 160px;
+  margin: 50px 55px 0px 85px;
   display: flex;
 }
 .infodoctor{
   margin: 20px 10px 10px 10px;
-  border-right: #b4d5f0 dashed;
+  /* border-right: #b4d5f0 dashed; */
   padding-right: 15px;
 }
 .info-schdule{
   margin: 20px 10px 10px 10px;
 }
+.btn-edit{
+  visibility: hidden;
+}
+.tag-schedule:hover .btn-edit{
+  visibility: visible;
+}
+

@@ -32,7 +32,6 @@ function SliderSpeciality() {
        
     };
     const [Api, setApi] = useState([]);
-
     useEffect(() => {
         ApiCaller('get-all-speciality', 'GET')
             .then(async res => {
@@ -40,34 +39,7 @@ function SliderSpeciality() {
                 setApi(res.data.data)
             })
     }, [])
-    const dts = [{
-        age: 12,
-        full_name: 'John',
-        speciality: 'Neurology', 
-        avt: sp1
-    },
-    {
-        age: 20,
-        full_name: 'Anna',
-        speciality: 'Consultant Physician',  
-        avt: sp2
-    }, {
-        age: 23,
-        full_name: 'Nam',
-        speciality: 'General Physician',   
-        avt: sp3
-    }, 
-    {
-        age: 24,
-        full_name: 'Lyna',
-        speciality: 'Cardiologist', 
-        avt: sp4   
-    },{
-        age: 25,
-        full_name: 'Mia',
-        speciality: 'Orthopedic',
-        avt: sp5     
-    }]
+   
     return (
         <div id='slide-speciality'>     
         <div className="section-specialty">

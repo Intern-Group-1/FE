@@ -14,20 +14,21 @@ import {
   } from '@chakra-ui/react'
   import {AddIcon} from '@chakra-ui/icons'
   import React, { useState } from 'react';
+  import avt from '../assets/image/Doctor.jpg'
   import '../style/input-file.css'
   import "react-widgets/styles.css";
   import Combobox from "react-widgets/Combobox";
   import { handleCreateUser, handleGetUserId } from '../services/User';
   import { ToastContainer, toast } from 'react-toastify';
   import Session from 'react-session-api'
-  function ModalDoctor() {
-    const [fullname, setFullname] = useState('')
+  function ModalUser() {
+    const [fullname, setName] = useState('')
     const [address, setAddress] = useState('')
     const [phone, setPhone] = useState('')
-    const [gender, setSex] = useState(true)
+    const [gender, setGender] = useState('')
     const [avt, setAvt] = useState('')
     const handleFullNameInput = e => {
-      setFullname(e.target.value);
+      setName(e.target.value);
     }
     const handleAddressInput = e => {
       setAddress(e.target.value);
@@ -38,7 +39,7 @@ import {
   
     }
     const handleGenderInput = e => {
-      setSex(e.target.value);
+      setGender(e.target.value);
   
     }
     const handleAvtInput = e => 
@@ -46,8 +47,8 @@ import {
       setAvt(e.target.files[0]);
   
     }
-    const account= Session.get('user')
-    console.log(Session.get('token'))
+    const account= localStorage.getItem('user')
+    // console.log(Session.get('token'))
   
     const handleCreate = async (req, res) => {
       const da_ta = new FormData();
@@ -90,8 +91,8 @@ import {
          onClick={(event)=>{ onOpen(event); byid() }}
          border={'none'}
           > 
-          <AddIcon/> 
-          Add Doctor
+          <AddIcon mr='7px'/> 
+          Add User
         </Button>
         <Modal
             initialFocusRef={initialRef}
@@ -101,8 +102,8 @@ import {
         >
           <ModalOverlay />
           <ModalContent>
-            <ModalHeader>Add information doctor</ModalHeader>
-            <ModalCloseButton />
+            <ModalHeader>Add information user</ModalHeader>
+            <ModalCloseButton onClick={onClose} />
             <ModalBody pb={6}>
               <FormControl>
                 <FormLabel>Full name</FormLabel>
@@ -110,23 +111,23 @@ import {
               </FormControl>
   
               <FormControl mt={4}>
-                <FormLabel>Speciality</FormLabel>
-                <Input placeholder='Speciality' onChange={handleAddressInput} />
+                <FormLabel>Address</FormLabel>
+                <Input placeholder='Address' onChange={handleAddressInput} />
               </FormControl>
   
               <FormControl mt={4}>
-                <FormLabel>Age</FormLabel>
-                <Input placeholder='Age' onChange={handlePhoneInput} />
+                <FormLabel>Phone</FormLabel>
+                <Input placeholder='Phone' onChange={handlePhoneInput} />
               </FormControl>
               <FormControl mt={4}>
                 <FormLabel>Gender</FormLabel>
                 <Combobox
                 />
               </FormControl>
-              <FormControl mt={4}>
+              {/* <FormControl mt={4}>
                 <FormLabel>avt</FormLabel>
                 <Input id ='file' type={'file'} onChange={handleAvtInput}></Input>
-              </FormControl>
+              </FormControl> */}
             </ModalBody>
   
             <ModalFooter>
@@ -143,4 +144,4 @@ import {
     )
   }
   
-  export default ModalDoctor;
+  export default ModalUser;
