@@ -17,16 +17,16 @@ export default function About(){
     const members =[{
         name:'Levi',
         major:'Frontend Developer',
-        bg:'https://scontent.fdad2-1.fna.fbcdn.net/v/t39.30808-6/248896352_2752573438374758_683158616322124444_n.jpg?_nc_cat=108&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=wqpQtizPPJsAX_KyBa1&_nc_ht=scontent.fdad2-1.fna&oh=00_AT-p7ffEcI2nQrRZqk__VMYU7AECBN0s7ytXK6J22pP7IQ&oe=6239ACD4',
-        avt:'https://scontent.fdad2-1.fna.fbcdn.net/v/t39.30808-6/248896352_2752573438374758_683158616322124444_n.jpg?_nc_cat=108&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=wqpQtizPPJsAX_KyBa1&_nc_ht=scontent.fdad2-1.fna&oh=00_AT-p7ffEcI2nQrRZqk__VMYU7AECBN0s7ytXK6J22pP7IQ&oe=6239ACD4',
+        bg:'https://scontent.fdad1-1.fna.fbcdn.net/v/t1.6435-9/145723555_2575910952707675_8534528533771887648_n.jpg?_nc_cat=103&ccb=1-5&_nc_sid=e3f864&_nc_ohc=He4h31Wy6hcAX_5snES&_nc_oc=AQn3aTGt8_3SA7sVVVPRSQbXyEmwIeH39Zn2Th9Fmb5SrBFhwCEj36-FeeH-sp1nn10&_nc_ht=scontent.fdad1-1.fna&oh=00_AT8-Jp_H6TJ0llsBnsL-js-8D_J0Kvb7913eCvm70WTrVA&oe=62608DD8',
+        avt:'https://scontent.fdad1-3.fna.fbcdn.net/v/t39.30808-1/248896352_2752573438374758_683158616322124444_n.jpg?stp=dst-jpg_p320x320&_nc_cat=108&ccb=1-5&_nc_sid=7206a8&_nc_ohc=AhlmI88Nr8cAX-zmxKb&_nc_ht=scontent.fdad1-3.fna&oh=00_AT-F_IfVWYCgO7s9KuLtR0v1BSSjR2tgNh59Zar3s7EsBQ&oe=623FB116',
         email:'Ngocnamzxc@gmail.com',
         phone:'0768511056',
         fb:'https://www.facebook.com/ngocnamzxc/'
     },{
         name:'Otis',
         major:'Frontend Developer',
-        bg:'https://scontent.fdad1-2.fna.fbcdn.net/v/t39.30808-6/241110074_1156841111466719_3827861592360028263_n.jpg?_nc_cat=106&ccb=1-5&_nc_sid=174925&_nc_ohc=o4922xWMQuMAX_3EhES&_nc_ht=scontent.fdad1-2.fna&oh=00_AT_Fr9V8uhRWgMCxz0WUXhCLx42oElDPTJDtLMgIHUw23Q&oe=623814A1',
-        avt:'https://scontent.fdad1-3.fna.fbcdn.net/v/t1.6435-9/40213639_452858051865032_2031456261844762624_n.jpg?_nc_cat=110&ccb=1-5&_nc_sid=174925&_nc_ohc=8oi6JUETdVoAX_dLYxh&_nc_ht=scontent.fdad1-3.fna&oh=00_AT9JkwLqXBR3sM506vWbsGtuxrQfW3Q7oYIhVUhY1eMQ7Q&oe=625AD56F',
+        bg:'https://scontent.fdad1-2.fna.fbcdn.net/v/t39.30808-6/246797226_1195329487617881_821319252090842013_n.jpg?_nc_cat=105&ccb=1-5&_nc_sid=e3f864&_nc_ohc=gQFZs8rRT8kAX_jEiyT&tn=iC8HHtmyjdsgMUX8&_nc_ht=scontent.fdad1-2.fna&oh=00_AT9rkvsahKtvNxg7GS3GxlejTzq4qXCJEYaeZs0np8T1Sw&oe=623F1750',
+        avt:'https://scontent.fdad1-2.fna.fbcdn.net/v/t39.30808-6/269997445_1234471530370343_4058737875165073770_n.jpg?_nc_cat=102&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=ezapgDn_BesAX90FDSu&_nc_ht=scontent.fdad1-2.fna&oh=00_AT_EsKG9RrDM8y1zVYr6ywZwzsAgX-IhaGKixJQ64PPRWg&oe=623E327C',
         email:'dung05042000@gmail.com',
         phone:'0375082670',
         fb:'https://www.facebook.com/Dung2ker'
@@ -193,7 +193,7 @@ export default function About(){
                             <Card1 
                             ml={'30px'}
                             w={'500px'}
-                            key={member.name} name={member.name} major={member.major} avt={member.avt} bg={member.bg} phone={member.phone} email={member.phone} fb={member.fb} />
+                            key={member.name} name={member.name} major={member.major} avt={member.avt} bg={member.bg} phone={member.phone} email={member.email} fb={member.fb} />
                         ))}
                         
                     </Box>

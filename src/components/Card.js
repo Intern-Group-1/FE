@@ -56,12 +56,12 @@ import {
   
             <Stack direction={'column'} justify={'center'} spacing={6}>
               <Stack spacing={0} align={'left'}>
-                <Text fontSize={'sm'} color={'gray.500'}>
+                <Text fontSize={'12px'} color={'gray.500'}   >
                   <EmailIcon ml={'24px'} /> {props.email}
                 </Text>
               </Stack>
               <Stack spacing={0} align={'left'}>
-                <Text fontSize={'sm'} color={'gray.500'}>
+                <Text fontSize={'12px'} color={'gray.500'}>
                  <PhoneIcon ml={'25px'} /> {props.phone}
                 </Text>
               </Stack>

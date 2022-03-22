@@ -13,6 +13,8 @@ import {
     Text,
     Image,
     Button,
+    styled,
+    background,
   } from '@chakra-ui/react';
   import { ToastContainer, toast } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
@@ -25,6 +27,7 @@ function ProfileUser(){
    const [address, setAddress] = useState('')
    const [phone, setPhone] = useState('')
    const [Iduser, setIdUser] = useState('')
+   
    const [appointment, setAppointment] = useState([])
    const byID = async ()=>{ 
     const data= await handleGetUserId()
@@ -129,7 +132,11 @@ const loggedInUser = localStorage.getItem('token')
                     <ToastContainer />
             </Box> 
         </Box>
-        
+        <b style={{
+            fontSize:'50px',
+            color:'black',
+            fontFamily:'fantasy'
+        }}>Your Appointment</b>
         <Box className='schedule' 
             w={'90%'} 
               //h={'00px'}
@@ -145,20 +152,28 @@ const loggedInUser = localStorage.getItem('token')
             // minHeight={'fit-content'}
            pb='10px'
            > */}
-        {appointment.map(app=>(
            
-            <Box className='tag-schedule'>
+        {appointment.map(app=>app&&(
+           <>  
+          {/* {app.status&&app.status==0?setBg('blue'):setBg('black')} */}
+         
+            <Box className='tag-schedule' style={
+                                app.status==0?{backgroundColor:'gray'}
+                            :app.status==1?{backgroundColor:'green'}:{backgroundColor:'red'}
+                        }>
                 <Box className='infodoctor'>
                     <Text>{app.doctor.full_name}</Text>
                     
                 </Box>
-                <Box className='info-schdule'>
+                <Box className='info-schdule' >
                     <Text>Time: {app.time}</Text>
                     <Text>Date: {moment(app.date).format('L')}</Text>
-                    {/* <Text>Address: {app.branch.address}</Text> */}
+                    <Text>Status: {app.status==0?'Pending':app.status==1?'Done':'Cancel'}  </Text>
+                    <Text>Address: {app.branch.address}</Text>
+                   
                 </Box>
             </Box>
-           
+            </>
             ))}
         {/* </Box> */}
         </Box>

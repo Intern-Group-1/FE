@@ -393,7 +393,7 @@ export default function Booking() {
                         </Box>
 
 
-                        <ConfirmAppointment doctor={id} user={IdUser} date={startDate} time={time}
+                        <ConfirmAppointment  doctor={id} user={IdUser} date={startDate} time={time}
                             branch={branch_id}
                         />
 

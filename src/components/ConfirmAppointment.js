@@ -31,7 +31,7 @@ import {
       const dates = props.date
       const times = props.time
       const branch = props.branch
-
+      const status =0;
       console.log('Data appointment 1:')
       console.log(doctors)
       console.log(users)
@@ -52,7 +52,7 @@ import {
         da_ta.append("date", dates)
         da_ta.append("time", times)
         da_ta.append("branch", branch)
-        
+        da_ta.append("status", status)
         try {
           const data = await handleCreateAppointment(da_ta) 
           console.log("Data Appointment Servics")
