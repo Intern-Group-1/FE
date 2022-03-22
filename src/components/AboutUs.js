@@ -9,7 +9,8 @@ import Logo from "../assets/image/logo-doctor-care.png"
 import about from "../assets/image/about2.png"
 import goal from "../assets/image/goal.png"
 import {CheckIcon} from "@chakra-ui/icons"
-import Card1 from "./CardMember/Card1"
+
+import Card1 from "./Card"
 import Nav from "./Navbar"
 import Footer from "./Footer"
 

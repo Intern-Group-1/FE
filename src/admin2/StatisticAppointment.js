@@ -11,6 +11,8 @@ export const data = [
 export const options = {
   title: "Total appointment: 400",
   is3D: true,
+
+  colors: ['#199eb3','#C0C0C0','#DC143C'], 
 };
 
 export default function PieChartAppointment() {
@@ -23,4 +25,3 @@ export default function PieChartAppointment() {
       height={"400px"}
     />
   );
-}

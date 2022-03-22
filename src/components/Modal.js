@@ -20,14 +20,17 @@ import "react-widgets/styles.css";
 import Combobox from "react-widgets/Combobox";
 import { handleCreateUser, handleGetUserId, handleUpdateUser } from '../services/User';
 import { ToastContainer, toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom'
 function InitialFocus() {
+  const navigate = useNavigate()
   const [fullname, setFullname] = useState('')
   const [address, setAddress] = useState('')
   const [phone, setPhone] = useState('')
-  const [gender, setSex] = useState(true)
+
+  const [gender, setGender] = useState()
   const [avt, setAvt] = useState('')
   const [save,setSave]=useState('Save')
-  
+  let genderlist = ['Female', 'Male'];
   const handleFullNameInput = e => {
     setFullname(e.target.value);
   }
@@ -40,7 +43,7 @@ function InitialFocus() {
 
   }
   const handleGenderInput = e => {
-    setSex(e.target.value);
+    setGender(e.target.value);
 
   }
   const handleAvtInput = e => 
@@ -58,6 +61,7 @@ function InitialFocus() {
     da_ta.append("address", address)
     da_ta.append("phone_number", phone)
     da_ta.append("gender", gender)
+   
     da_ta.append("file", avt)
     da_ta.append("account", account)
     try {
@@ -72,10 +76,9 @@ function InitialFocus() {
         setId(id)
       }  
     
-      setOpen(onClose)
-      
-      toast.success("Successful!");
      
+    
+      
     } catch (error) {
       console.log(error)
       toast.error("Failed!");
@@ -88,6 +91,8 @@ const handleUpdate = async () =>{
     da_ta.append("address", address)
     da_ta.append("phone_number", phone)
     da_ta.append("gender", gender)
+    console.log('gio tinh la');
+    console.log(gender);
     da_ta.append("file", avt)
     try {
       setSave('Loading...')
@@ -100,9 +105,14 @@ const handleUpdate = async () =>{
         await setId(localStorage.getItem('Id_User'))
       }
       setOpen(onClose)
-      setSave('Save')
-      toast.success("Successful!");
+      setSave('Save') 
 
+      const pn=window.location.pathname;
+      const l=window.location.origin;
+        navigate(l)
+        navigate(pn)
+        toast.success("Successful!");
+     
 
     } catch (error) {
       console.log(error)
@@ -113,7 +123,6 @@ const handleUpdate = async () =>{
   const [open,setOpen]=useState('');
   const initialRef = React.useRef()
   const finalRef = React.useRef()
-  let genderlist = ['Female', 'Male'];
 const byID = async ()=>{
         const data= await  handleGetUserId()
         if(data)
@@ -125,7 +134,7 @@ const byID = async ()=>{
             setAvt(data.data.data[0].avatar)
             setAddress(data.data.data[0].address)
             setPhone(data.data.data[0].phone_number)
-            setSex(data.data.data[0].gender)
+            setGender(data.data.data[0].gender)
         }
     }
     const loggedInUser = localStorage.getItem('token');
@@ -135,6 +144,7 @@ useEffect(() => {
   }
   
 }, [])
+console.log(gender);
   return (
     <>
       <Button 
@@ -169,20 +179,21 @@ useEffect(() => {
             <FormControl mt={4}>
               <FormLabel>Gender</FormLabel>
               <Combobox
-                // data={genderlist}
-                // value={gender}
-                // onChange={gender => setGender(gender)}
+
+                data={genderlist}
+                defaultValue={gender == true ? 'Male': 'Female'}
+                onChange={gender => gender == 'Male'? setGender(true): setGender(false)}
               />
             </FormControl>
             <FormControl mt={4}>
-              <FormLabel>avt</FormLabel>
+              <FormLabel>avatar</FormLabel>
               <Input id ='file' type={'file'} onChange={handleAvtInput}></Input>
             </FormControl>
             
           </ModalBody>
 
           <ModalFooter>
-            <Button colorScheme='blue' mr={3} onClick={Id ?handleUpdate: handleCreate}>
+            <Button colorScheme='blue' mr={3} onClick={handleUpdate}>
               {save}
             </Button>
             <Button onClick={onClose}>Cancel</Button>

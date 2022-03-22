@@ -6,12 +6,13 @@ import { render } from '@testing-library/react';
 import Right from './RightTest';
 import Table from './tableDoctor';
 import Nav from '../admin2/Nav';
+import Dashboard from './Dashboard';
 
 function Admin() {
 
     return (
     <> 
-        <Table/>
+       <Dashboard/>
     </>
        
     )

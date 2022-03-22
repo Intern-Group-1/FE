@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from "react-router-dom";
-
 import ApiCaller from '../utils/apiCaller';
-
 import Navbar from "./Navbar";
 import Footer from './Footer'
 import '../style/button.css'
@@ -13,89 +11,131 @@ import {
     Text,
     useColorModeValue,
     Button,
+    Tooltip
 } from '@chakra-ui/react';
+import Doctor from '../assets/image/dtavt.png'
 import DatePicker from "react-datepicker";
+import 'react-datepicker/dist/react-datepicker.css'
 import '../style/Booking.css'
 import '../responsive/Appointment.css'
+import { getValue } from '@testing-library/user-event/dist/utils';
+import Edit from './Modal';
 import ConfirmAppointment from './ConfirmAppointment';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { handleGetUserId } from '../services/User';
+import Botchat from './Botchat';
+import { useNavigate } from 'react-router-dom'
 export default function Booking() {
-    const notify = () => toast.success("Make appointment success!");
+    const MyButton = (props) => {
+        const handleClick = (e) => {
+                  setTime(e.target.innerHTML)                        
+        };
+        
+        return (
+            // <Tooltip label='Double click To select' fontSize='s'>
+            <button style={
+                time===props.item? {
+                 color:'rgb(0 29 171 / 78%)',
+                 fontWeight:'bolder',
+                 backgroundColor : '#7fb9e9c7'
+             }:{}
+            }  onClick={handleClick} 
+            className={"btn-time"}
+            >
+            {props.item}
+          </button>
+            // </Tooltip>
+          
+        );
+      };
+
     const { id } = useParams();
     const [Api, setApi] = useState([]);
-    const [Id, setId] = useState('');
-    const [user, setUser] = useState([]);
+    const [branchs, setBranchs] = useState([]);
+    const [branch, setBranch] = useState('')
+    const [branch_id, setBranchId] = useState('');
+    let clo='white';
+    const [bg1,setBg1]=useState(clo);
+    const [classon,setClasson]=useState(false)
+    const navigate = useNavigate()
 
     useEffect(() => {
         ApiCaller('get-all-doctor', 'GET')
             .then(async res => {
-                console.log('res là ');
                 console.log(res);
                 setApi(res.data.data)
 
             })
-
-    }, []);
-    
-
-
-
-    useEffect(() => {
-        ApiCaller('get-all-user', 'GET')
+        ApiCaller('get-all-branch', 'GET')
             .then(async res => {
+                console.log('data branch:')
                 console.log(res);
-                setUser(res.data.data)
-                console.log('id là ');
-                console.log(res.data.data);
+                setBranchs(res.data.data)
             })
-
-    }, []);
-
-
-
+    }, [])
     const [startDate, setStartDate] = useState(new Date());
-    console.log(startDate);
-    const [branch, setBranch] = useState('');
     const [time, setTime] = useState('');
-    console.log(time);
-
-    console.log(startDate.getDate());
-
-    const [endDate, setEndDate] = useState(null);
+    const today= new Date()
+    const listTime=['07:00-08:00',
+                    '08:00-09:00',
+                    '09:00-10:00',
+                    '10:00-11:00',
+                    '14:00-15:00',
+                    '15:00-16:00',
+                    '16:00-17:00',
+                    '17:00-18:00',]
     const onChange = (dates) => {
-        const [start, end] = dates;
+        const [start] = dates;
         setStartDate(start);
-        setEndDate(end);
-    };
-    const d = startDate.getDate();
-    const m = startDate.getMonth() + 1;
-
-
-    var dateP = new Date('2022-02-26T03:18:35.000Z')
-    const handleChange = (e) => {
-
-        console.log(e.target.value);
-        setBranch(e.target.value)
     }
-
-
+    const handleChange = (e) => {
+        const select = e.target;
+        const value = select.value;
+        const desc = select.selectedOptions[0].text;
+        setBranchId(value);
+        setBranch(desc)
+    }
+    console.log('Address')
+    console.log(branch)
+    const [fullname, setName] = useState('')
+    const [avatar, setAvt] = useState('')
+    const [gender, setGender] = useState('')
+    const [address, setAddress] = useState('')
+    const [phone, setPhone] = useState('')
+    const [IdUser, setIdUser] = useState('')
+    async function byID() {
+        const data = await handleGetUserId()
+        if (data) {
+            setIdUser(data.data.data[0]._id)
+            setName(data.data.data[0].full_name)
+            setAvt(data.data.data[0].avatar)
+            setAddress(data.data.data[0].address)
+            setPhone(data.data.data[0].phone_number)
+            setGender(data.data.data[0].gender)
+        }
+    }
+    const loggedInUser = localStorage.getItem('token')
+    useEffect( () => {
+        if (loggedInUser) {
+             byID()
+        }
+    }, [])
+    function navigatetoAlldoctor(){
+         navigate('/doctor')
+        
+       
+    }
     return (
         <>
             <Navbar />
             <Box id='container-booking' pt='40px'>
-                <Heading as="h1" className='title-appoitment'>Make an appointment</Heading>
-                <Box className='info-personal'>
+                <Heading as="h1" className='title-appoitment'>Make an appointment</Heading>               
+                <Box className='info-personal'>                       
                     <Box className='info-doctor'>
-
                         {Api.map(api => (
                             <>
-
                                 {(id == api._id) ? (
                                     <>
-
                                         <Box>
-
                                             <Text
                                                 as="p"
                                                 marginTop="5"
@@ -105,6 +145,11 @@ export default function Booking() {
                                             >
                                                 Doctor
                                             </Text>
+                                            <Button mt='7px' as='a' onClick={navigatetoAlldoctor} _hover={{
+                                                backgroundColor: 'blue.300',
+                                                color: 'white',
+                                                textDecoration: 'none'
+                                            }} >Change Doctor</Button>
                                             <Image
                                                 className='img-doctor'
                                                 borderRadius="full"
@@ -140,10 +185,7 @@ export default function Booking() {
                                                 fontSize="lg">
                                                 Gender: {(api.gender) = 'true' ? <b>Male</b> : <b>Female</b>}
                                             </Text>
-                                            <Button mt='7px' as='a' href='/doctor' _hover={{
-                                                backgroundColor: 'blue.300',
-                                                color: 'white'
-                                            }} >Change Doctor</Button>
+                                           
                                         </Box>
                                     </>)
 
@@ -155,201 +197,135 @@ export default function Booking() {
                     </Box>
 
                     <Box className='info-customer'>
-                        {user.map(u => (
-                            <>
-                                {(u._id == localStorage.Id_user)
-                                    ?
-                                    <>  <div>{u._id +'hahah'+ localStorage.Id_user}</div>
-                                        <Text
-                                            as="p"
-                                            marginTop="5"
-                                            color={'black'}
-                                            fontSize="xl"
-                                            fontWeight={"bold"}
-                                        >
-                                            Customer
-                                        </Text>
-                                        <Text
-                                            as="p"
-                                            marginTop="7"
-                                            color={'black'}
-                                            fontSize="lg">
-                                            Name: {u.full_name}
-                                        </Text>
-                                        <Text
-                                            as="p"
-                                            marginTop="5"
-                                            color={'black'}
-                                            fontSize="lg">
-                                            Age: {u.age}
-                                        </Text>
-                                        <Text
-                                            as="p"
-                                            marginTop="5"
-                                            color={'black'}
-                                            fontSize="lg">
-                                            Phone: {u.phone_number}
-                                        </Text>
-                                        <Text
-                                            as="p"
-                                            marginTop="5"
-                                            color={'black'}
-                                            fontSize="lg">
-                                            Address: {u.address}
-                                        </Text>
-                                    </>
-                                    : <></>
-                                }
-                            </>
-                        ))}
+                        
+                        <Text
+                            as="p"
+                            marginTop="5"
+                            color={useColorModeValue('gray.700', 'gray.200')}
+                            fontSize="xl"
+                            fontWeight={"bold"}
+                        >
+                            Customer
+                        </Text>
+                        <Edit />
+                      
+                        <Text
+                            as="p"
+                            marginTop="7"
+                            color={useColorModeValue('gray.700', 'gray.200')}
+                            fontSize="lg">
+                            Name: {<b>{fullname}</b>}
+                        </Text>
+                       
+                        <Text
+                            as="p"
+                            marginTop="5"
+                            color={useColorModeValue('gray.700', 'gray.200')}
+                            fontSize="lg">
+                            Phone: {<b>{phone}</b>}
+                        </Text>
+                        <Text
+                            as="p"
+                            marginTop="5"
+                            color={useColorModeValue('gray.700', 'gray.200')}
+                            fontSize="lg">
+                            Address: {<b> {address}</b>}
+                        </Text>
+                        <Text
+                            as="p"
+                            marginTop="5"
+                            color={useColorModeValue('gray.700', 'gray.200')}
+                            fontSize="lg">
+                            Gender: {<b> {gender==true?'Male':'Female'}</b>}
+                        </Text>
+                       
+
                     </Box>
                 </Box>
                 <Box className='picker-comfirm'>
                     <Box className='date'>
                         <Heading as="h3" mt={'10'} mb={'45'}>Choose date</Heading>
-                        <DatePicker
-
+                        <Box><DatePicker
+                            minDate={today}
                             selected={startDate}
                             onChange={onChange}
                             selectsRange
                             selectsDisabledDaysInRange
                             inline
 
-                        />
+                        /></Box>
+
 
                     </Box>
                     <Box className='time-clinic'>
                         <Heading as="h3" mt={'10'} mb={'45'}>Choose time and clinic</Heading>
-                        <Box className='time'   >
-                            <Button 
-                            style={ time==='07:00 - 08:00' ? {
-                                color:'#3182ce',
-                                fontWeight:'bold'
-                            }:{} }
-                            onClick={() => {
-                                setTime('07:00 - 08:00')
-                            }} className='btn-time' >07:00 - 08:00</Button>
-                            <Button 
-                            style={ time==='08:00 - 09:00' ? {
-                                color:'#3182ce',
-                                fontWeight:'bold',
-                                backgroundColor : '#ce1414 !important'
-                            }:{} }
-                            onClick={() => {
-                                setTime('08:00 - 09:00')
-                            }} className='btn-time'>08:00 - 09:00</Button>
-                            <Button 
-                            style={ time==='09:00 - 10:00' ? {
-                                color:'#3182ce',
-                                fontWeight:'bold'
-                            }:{} }
-                            onClick={() => {
-                                setTime('09:00 - 10:00')
-                            }} className='btn-time'>09:00 - 10:00</Button>
-                            <Button 
-                            style={ time==='10:00 - 11:00' ? {
-                                color:'#3182ce',
-                                fontWeight:'bold'
-                            }:{} }
-                            onClick={() => {
-                                setTime('10:00 - 11:00')
-                            }} className='btn-time'>10:00 - 11:00</Button>
-                            <Button
-                            style={ time==='14:00 - 15:00' ? {
-                                color:'#3182ce',
-                                fontWeight:'bold'
-                            }:{} }
-                            onClick={() => {
-                                setTime('14:00 - 15:00')
-                            }} className='btn-time'>14:00 - 15:00</Button>
-                            <Button 
-                            style={ time==='15:00 - 16:00' ? {
-                                color:'#3182ce',
-                                fontWeight:'bold'
-                            }:{} }
-                            onClick={() => {
-                                setTime('15:00 - 16:00')
-                            }} className='btn-time'>15:00 - 16:00</Button>
-                            <Button 
-                            style={ time==='16:00 - 17:00' ? {
-                                color:'#3182ce',
-                                fontWeight:'bold'
-                            }:{} }
-                            onClick={() => {
-                                setTime('16:00 - 17:00')
-                            }} className='btn-time'>16:00 - 17:00</Button>
-                            <Button 
-                            style={ time==='17:00 - 18:00' ? {
-                                color:'#3182ce',
-                                fontWeight:'bold'
-                            }:{} }
-                            onClick={() => {
-                                setTime('17:00 - 18:00')
-                            }} className='btn-time'>17:00 - 18:00</Button>
+
+                        <Box className='time'  >
+                            {listTime.map((timer, i)=>(
+                                <MyButton                                                                                                                   
+                                  //bgColor={bg1}  
+                                // onClick={(e) => {
+                                 //    console.log(e);
+                                //     //setTime(e.target.innerHTML)
+                                //     //handleClick();
+                                   
+                                //  }} 
+                                key={i} item={timer}></MyButton>
+                            ))}
+                         
                         </Box>
 
                         <Box className='clinic'>
-
                             <select onChange={handleChange} name="hue" className='select-clinic'>
-                                <option key="Hue city">Hue city</option>
-                                <option key="Hoang Long, 14 Le Loi">Hoang Long, 14 Le Loi</option>
-                                <option key="Ton Duc Thang, 23 Dien Bien Phu">Ton Duc Thang, 23 Dien Bien Phu</option>
-                                <option key="Kim Anh, 23 Tran Phu">Kim Anh, 23 Tran Phu</option>
+                                <option selected >Select Clinic</option>
+                                {branchs.map(brs => (
+
+                                    <option value={brs._id} > {brs.name}, {brs.address} </option>
+
+                                ))}
                             </select>
-                            
                         </Box>
+
                     </Box>
                     <Box className='comfirm-appointment' flex='1' bg='' id='confirm'>
                         <Heading as="h1" mt={'10'} mb={'10'}>Confirm appointment</Heading>
                         <Text fontSize={'20'} mt={'15'} fontWeight='bold' className='name-customer'>Customer</Text>
-                      
-                            {user.map(u => (
-                                <>
-                                    {(u._id == sessionStorage.Id_user)
-                                        ?
-                                        <>  <Box className='wrapper-customer'>
-                                            <Text
-                                                as="p"
-                                                marginTop="5"
-                                                color={'black'}
-                                                fontSize="md">
-                                                Name: {<b>{u.full_name}</b>}
-                                            </Text>
-                                            <Text
-                                                as="p"
-                                                marginTop="5"
-                                                color={'black'}
-                                                fontSize="md">
-                                                Age: {<b>{u.age}</b>}
-                                            </Text>
-                                            <Text
-                                                as="p"
-                                                marginTop="5"
-                                                color={'black'}
-                                                fontSize="md">
-                                                Address: {<b>{u.address}</b>}
-                                            </Text>
-                                            <Text
-                                                as="p"
-                                                marginTop="5"
-                                                color={'black'}
-                                                fontSize="md">
-                                                Phone: {<b>{u.phone_number}</b>}
-                                            </Text>
-                                            </Box>
-                                        </>
-                                        : <><a></a></>
-                                    }
-                                </>
-                            ))}
-
-                      
+                        <Box className='wrapper-customer'>
+                            <Text
+                                as="p"
+                                marginTop="5"
+                                color={useColorModeValue('gray.700', 'gray.200')}
+                                fontSize="md">
+                                Name: {<b>{fullname}</b>}
+                            </Text>
+                            {/* <Text
+        as="p"
+        marginTop="5"
+        color={useColorModeValue('gray.700', 'gray.200')}
+        fontSize="md">
+        Age: 22
+        </Text> */}
+                            <Text
+                                as="p"
+                                marginTop="5"
+                                color={useColorModeValue('gray.700', 'gray.200')}
+                                fontSize="md">
+                                Address: {<b>{address}</b>}
+                            </Text>
+                            <Text
+                                as="p"
+                                marginTop="5"
+                                color={useColorModeValue('gray.700', 'gray.200')}
+                                fontSize="md">
+                                Phone: {<b>{phone}</b>}
+                            </Text>
+                        </Box>
                         <Text fontSize={'20'} mt={'15'} fontWeight='bold' className='name-doctor'>Doctor</Text>
 
                         {Api.map(api => (
                             <>
 
-                                {(id == api._id) ? (
+                                {(id === api._id) ? (
                                     <>
 
                                         <Box className='wrapper-doctor'>
@@ -396,36 +372,35 @@ export default function Booking() {
                                 marginTop="5"
                                 color={useColorModeValue('gray.700', 'gray.200')}
                                 fontSize="md">
-                                    {<Box  maxW={'fit-content'} bgColor={'blue.100'}>  Date: {<b>{d.toString()}-{m.toString()}</b>}</Box>}
-                              
+
+                                Date: {<b>{startDate.getDate()}/{startDate.getMonth() + 1}/{startDate.getFullYear()}</b>}
+                            </Text>
+
+                            <Text
+                                as="p"
+                                marginTop="5"
+                                color={useColorModeValue('gray.700', 'gray.200')}
+                                fontSize="md">
+                                {<Box   > Time:{<b>{time}</b>}</Box>}
                             </Text>
                             <Text
                                 as="p"
                                 marginTop="5"
                                 color={useColorModeValue('gray.700', 'gray.200')}
                                 fontSize="md">
-                                {<Box maxW={'fit-content'} bgColor={'blue.100'}  > Time:{<b>{time}</b>}</Box>}
-                            </Text>
-                            <Text
-                                as="p"
-                                marginTop="5"
-                                color={useColorModeValue('gray.700', 'gray.200')}
-                                fontSize="md">
-                                    {<Box > Clinic:  {<b>{branch}</b>}</Box>}
-                               
+                                Clinic:  {<b>{branch}</b>}
                             </Text>
                         </Box>
-                        <ConfirmAppointment />
-                        <Button colorScheme='blue' mr={3} 
-                            onClick={notify}
-                            >
-                            Confirm
-                        </Button>
-                        <ToastContainer />
+
+
+                        <ConfirmAppointment doctor={id} user={IdUser} date={startDate} time={time}
+                            branch={branch_id}
+                        />
 
                     </Box>
                 </Box>
             </Box>
+            <Botchat/>
             <Footer />
         </>
     )

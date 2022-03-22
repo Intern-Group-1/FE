@@ -45,7 +45,7 @@ const handleUpdateUser = async (id,data)=>{
     try {
         console.log('id user' + id)
          var token = await localStorage.getItem('token')
-        return axios.put(`https://be-doctor-care-v3.herokuapp.com/api/update-user/${id}`, data,{
+        return await axios.put(`https://be-doctor-care-v3.herokuapp.com/api/update-user/${id}`, data,{
             headers: {
                 'Authorization': `Bearer ${token}` 
               }

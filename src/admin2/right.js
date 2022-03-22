@@ -30,6 +30,12 @@ const sidebarNavItems = [
         section: 'user'
     },
     {
+        display: 'Account',
+        icon:  <box-icon name='star'></box-icon>,
+        to: '/admin/account',
+        section: 'started'
+    },
+    {
         display: 'Log out',
         icon: <box-icon name='log-out' ></box-icon>,
         to: '/logout',

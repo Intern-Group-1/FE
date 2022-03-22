@@ -24,9 +24,10 @@ img{
 }
 .schedule{
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   flex-wrap: wrap;
-  align-content: center;
+  align-content: center; 
+  
 }
 .tag-schedule{
   border: 2px #8ec2ed dashed;

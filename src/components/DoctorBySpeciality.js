@@ -1,3 +1,5 @@
+
+import { useParams } from "react-router-dom";
 import {
   Heading,
   Avatar,
@@ -19,24 +21,19 @@ import Footer from './Footer'
 import { ToastContainer, toast } from 'react-toastify';
 import {BiSearchAlt} from 'react-icons/bi'
 
-
-function Alldoctor(props) {
+function DoctorBySpeciality() {
+  const { name } = useParams();
   const navigate = useNavigate()
+  console.log(name);
   const [Api, setApi] = useState([]);
-  const [header, setHeader] = useState('');
-  const [loading,setLoading] =useState(false)
 
   useEffect(() => {
     ApiCaller('get-all-doctor', 'GET')
-      .then( res => {
+      .then(async res => {
         console.log(res);
         setApi(res.data.data)
-        
-        setLoading(true)
-        setHeader('Doctor')
       })
   }, [])
-
   const loggedInUser = localStorage.getItem('token');
   const book1 = (e) => {
 
@@ -56,18 +53,14 @@ function Alldoctor(props) {
     }
   }
 
-
-
-
-
   return (
     <>
-      <Navbar />
+     <Navbar />
       <Box
       position={'relative'}
       >
 
-        <Heading mt='100px' textAlign={'center'}>{header}</Heading>
+        <Heading mt='100px' textAlign={'center'}>{name}</Heading>
         <Box
           d={'flex'}
           w={'250px'}
@@ -98,12 +91,17 @@ function Alldoctor(props) {
         >
           <>
 
+          {/* {Api.map(sp=>(
+     sp.speciality.name== name ?<b>{sp.full_name}</b>:<></>
+    ))} */}
 
 
 
-            {loading ? Api.map(api => (
+
+            {Api.map(api => ( 
+               api.speciality.name==name ?
+              
               <>
-
                 <Suspense >
 
                   <Box ml='20px'
@@ -196,18 +194,10 @@ function Alldoctor(props) {
                     </Stack>
                   </Box>
                 </Suspense>
-              </>
-            )
-            ) : <Box  mt='200px' height={'500px'} ml={'50%'}>
-             
-              <Spinner
-
-            thickness='4px'
-            speed='0.65s'
-            emptyColor='gray.200'
-            color='blue.500'
-            size='xl'
-          /> <Text  color={'blue.500'}>Loading...</Text>  </Box>}
+                
+              </> :<></>
+            ) 
+            )  }
 
           </>
         </Center>
@@ -216,8 +206,9 @@ function Alldoctor(props) {
       </Box>
       <Footer />
 
+    
     </>
-  );
+  )
 }
 
-export default  Alldoctor 
+export default DoctorBySpeciality

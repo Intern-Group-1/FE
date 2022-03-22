@@ -10,7 +10,7 @@ export default function useAuth() {
    
     const role = localStorage.role;  
     let auth=false
-    if(role=='admin'){
+    if(role=='admin'||role=='doctor'){
         (auth=true)
     }
     else{

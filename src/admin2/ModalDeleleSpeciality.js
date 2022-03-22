@@ -21,25 +21,25 @@ import {
   import "react-widgets/styles.css";
   import { PhoneIcon, AddIcon, CheckIcon, DeleteIcon,EditIcon } from '@chakra-ui/icons'
   import '../style/button.css'
-  import { handleDeleteDoctor } from '../services/admin';
+  import { handleDeleteDoctor, handleDeleteSpeciality } from '../services/admin';
   import { useNavigate } from 'react-router-dom'
   import { ToastContainer, toast } from 'react-toastify';
   
   
-  function DeleteDoctor(props) {
+  function DeleteSpeciality(props) {
     const navigate = useNavigate()
     const { isOpen, onOpen, onClose } = useDisclosure()
     const initialRef = React.useRef()
     const finalRef = React.useRef()
     const [open,setOpen]=useState('');
     const [save, setSave] = useState('Delete')
-    const id = props.doctor;
+    const id = props.speciality;
     // console.log(id);
   
     const [Api, setApi] = useState([]);
     //console.log(props.doctor);
     useEffect(() => {
-      ApiCaller('get-all-doctor', 'GET')
+      ApiCaller('get-all-speciality', 'GET')
         .then(async res => {
          
           setApi(res.data.data)
@@ -53,13 +53,13 @@ import {
        setSave('Loading...')
        console.log(save);
        setOpen(onOpen)
-       const data= await handleDeleteDoctor(id);
+       const data= await handleDeleteSpeciality(id);
        setOpen(onClose)
        setSave('Delete')
-       toast.success("Successful!");      
-       //window.location.reload();
-       navigate('/admin')
-       navigate('/admin/doctor')
+       toast.success("Successful!");
+      //  window.location.reload();
+      navigate('/admin')
+       navigate('/admin/speciality')
       } catch (error) {
        console.log('that bai');
         console.log(error);
@@ -69,9 +69,8 @@ import {
   
   
     return (
-      <>
-       <Btn onClick={onOpen} className='btn btn-danger'><DeleteIcon   /> </Btn> 
-        {/* <DeleteIcon  onClick={onOpen} /> */}
+      <>  <Btn onClick={onOpen}   className='btn btn-danger'><DeleteIcon   /> </Btn> 
+       
         <Modal
           initialFocusRef={initialRef}
           finalFocusRef={finalRef}
@@ -86,7 +85,7 @@ import {
             <ModalCloseButton />
   
             <ModalBody>Do you want to delete {Api.map(u => (
-              <>{(u._id == props.doctor) ? <a>{u.full_name}</a> : <></>}
+              <>{(u._id == props.speciality) ? <a>{u.name}</a> : <></>}
               </>
   
   
@@ -94,7 +93,7 @@ import {
               {/* {(u._id==props.user)?<a>{u.full_name}</a>:<></>)} */}
             </ModalBody>          
             <ModalFooter>
-              <Button colorScheme='blue' mr={3} onClick={(event)=>{ onOpen(event);deleteUser(props.doctor)}}
+              <Button colorScheme='blue' mr={3} onClick={(event)=>{ onOpen(event);deleteUser(props.speciality)}}
               >
                 {save}
               </Button>
@@ -107,4 +106,4 @@ import {
     )
   }
   
-  export default DeleteDoctor;
+  export default DeleteSpeciality;

@@ -3,11 +3,10 @@ import React,{lazy, Suspense, useEffect,useState} from 'react';
 import ApiCaller from '../utils/apiCaller';
 import { Button } from 'react-bootstrap-v5'
 import '../admin2/css/table.css'
-import Right from './RightTest'
-import ModalDoctor from './ModalCreateDoctor'
+import Right from '../admin2/RightTest'
 import { AiOutlineCheck } from 'react-icons/ai'
 import moment from 'moment'
-function TableAppointment() {
+function TableAppointmentByDoctor() {
 
     const [Api, setApi] = useState([]);
  
@@ -135,4 +134,4 @@ function handleGetID(id){
   )
 }
 
-export default TableAppointment
+export default TableAppointmentByDoctor

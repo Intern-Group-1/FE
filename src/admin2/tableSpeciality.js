@@ -5,17 +5,15 @@ import { Button } from 'react-bootstrap-v5'
 import '../admin2/css/table.css'
 import Right from './RightTest';
 import { PhoneIcon, AddIcon, CheckIcon,DeleteIcon,EditIcon} from '@chakra-ui/icons'
-import { handleDeleteUser } from '../services/User';
-import DeleteUser from './ModalConfirm';
-import UpdateUser from './ModalUpdateUser';
-import { render } from 'react-dom';
-import ModalUser from './ModalCreateUser'
-import LazyLoad from 'react-lazyload'
-function TableUser() {
+import AddSpeciality from './modalAddSpeciality';
+import DeleteSpeciality from './ModalDeleleSpeciality';
+import UpdateSpeciality from './modalUpdateSpeciality';
+
+function TableSpeciality() {
     const [Api, setApi] = useState([]);
     const [loading,setLoading] =useState(false)
     useEffect(()=>{
-      ApiCaller('get-all-user', 'GET')
+      ApiCaller('get-all-speciality', 'GET')
     .then ( async res => {
         setApi(res.data.data)
         setLoading(true)
@@ -31,6 +29,7 @@ function TableUser() {
     const Loading = () => (
       <div >
         <h5>Loading...</h5>
+        
       </div>
     )
   return (
@@ -47,7 +46,9 @@ function TableUser() {
           marginBottom:'15px'
         }} 
         >
-          <Button   className='btn btn-success'  href='/admin/account'><AddIcon mr='12px'/>Add User</Button>
+          <Button   className='btn btn-success'>
+            <AddSpeciality/>
+          </Button>
         </Box>
         <table className="table table-hover" style={{
             width:'1100px',
@@ -60,9 +61,7 @@ function TableUser() {
                 <th scope="col">#</th> 
                 <th scope='col'>Avatar</th>
                 <th scope="col">Name</th>
-                <th scope="col">Address</th>
-                <th scope="col" width='200px'>Phone Number</th>
-                <th scope="col">Gmail</th>
+               
                 <th scope="col">Handle</th>
               </tr>
             </thead>
@@ -75,31 +74,29 @@ function TableUser() {
     
        <th  scope="row">{(api._id!=null) ? i++: <></> 
             }</th> 
-      <td><Box className='thumb'><Image  src={api.avatar}/></Box></td>
-      <td>{api.full_name}</td>
-    
-      <td>{api.address}</td>
-      <td>{api.phone_number}</td>
-       <td>{
-           (api.account!=null) ?<a>{api.account.email}</a> : <a>null</a>
-       }</td> 
-      <td>
-        <tr>
+      <td><Box ><Image  src={api.images}/></Box></td>
+      <td>{api.name}</td>
+
+                 
+         <tr>
             <td   style={{
                 paddingRight: '20px'
             }}>
-               <UpdateUser user={api._id}/>
+            
+                {/* <UpdateUser user={api._id}/> */}
+                <UpdateSpeciality  speciality={api._id}/>
+              
         
             </td>
            
             <td>
-            
-                <DeleteUser  user={api._id}/> 
               
+                <DeleteSpeciality  speciality={api._id}/> 
+             
             </td>
-        </tr>         
-      </td>
-              </tr>
+            </tr>
+        </tr>     
+             
               
               </>
             
@@ -124,4 +121,4 @@ function TableUser() {
   )
 }
 
-export default TableUser
+export default TableSpeciality 

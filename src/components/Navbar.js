@@ -41,8 +41,8 @@ import '../style/Navbar.css'
 import { useNavigate } from 'react-router-dom'
 export default function Navbar() {
   const navigate = useNavigate()
-
   const { isOpen, onToggle } = useDisclosure();
+ 
   const HandleLogout = () => {
     delete localStorage.token
     delete localStorage.user
@@ -59,14 +59,11 @@ export default function Navbar() {
   const HandleSignin = () => {
     navigate('/signin');
   }
-  const HandleHome = () =>{
+  const HandleHome = () => {
     navigate('/home')
   }
   const loggedInUser = localStorage.getItem('token');
-
-
-  // const loggedInUser =  localStorage.getItem('token');
-  console.log('token la'+loggedInUser);
+  console.log('token la' + loggedInUser);
   //const InUser = Session.get('user');
   console.log('id local');
   //console.log(InUser);
@@ -75,18 +72,17 @@ export default function Navbar() {
 
   window.onscroll = function () { };
 
-// Setting user
-const [full_name, setName] = useState('')
-   const [avatar, setAvt] = useState('')
-async function byID (){ 
-        const data= await handleGetUserId()
-        console.log('Data cua ta:'+data)
-        if(data)
-        {
-            setName(data.data.data[0].full_name)
-            setAvt(data.data.data[0].avatar)
-        }
-}
+  // Setting user
+  const [full_name, setName] = useState('')
+  const [avatar, setAvt] = useState('')
+  async function byID() {
+    const data = await handleGetUserId()
+    console.log('Data cua ta:' + data)
+    if (data) {
+      setName(data.data.data[0].full_name)
+      setAvt(data.data.data[0].avatar)
+    }
+  }
   const [Api, setApi] = useState([])
   useEffect(async () => {
     ApiCaller('get-all-speciality', 'GET')
@@ -94,12 +90,13 @@ async function byID (){
         console.log(res)
         setApi(res.data.data)
       })
-      if(loggedInUser){
-        await byID()
-      }
-      
+    if (loggedInUser) {
+      byID()
+    }
+
   }, [])
-  const role= localStorage.getItem('role')
+  const role = localStorage.getItem('role')
+ 
   return (
     <Box id='navbar'>
       <Flex
@@ -107,9 +104,9 @@ async function byID (){
         fontSize={'15px'}
         fontWeight={'bold'}
         boxShadow='xl' p='1' rounded='md' bg='white'
-        bg={useColorModeValue('white', 'gray.800')}
+        background={useColorModeValue('white', 'gray.800')}
         color={useColorModeValue('gray.600', 'white')}
-        minH={'20px'}
+        h={'50px'}
         borderBottom={1}
         borderStyle={'solid'}
         borderColor={useColorModeValue('gray.200', 'gray.900')}
@@ -129,13 +126,13 @@ async function byID (){
           />
         </Flex>
 
-        <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }}>
+        <Flex flex={{ base: 1 }} ml='10px' justify={{ base: 'center', md: 'start' }}>
           <Box
             as='a'
             onClick={HandleHome}
             w='100px'
           >
-            <Image ml='50px'
+            <Image ml='10px'
               mt='5px'
               // boxSize='50px'
               alt={'Login Image'}
@@ -152,6 +149,7 @@ async function byID (){
         </Flex>
 
         <Stack
+        
           flex={{ base: 1, md: 0 }}
           justify={'flex-end'}
           direction={'row'}
@@ -159,12 +157,13 @@ async function byID (){
           {loggedInUser ?
             <>
               <Flex >
-
+                {/* <Button>Appointment</Button> */}
                 <Menu>
                   <MenuButton
-
-                    mr={'20px'}
+                    height={'10px'}
+                    mr={'13px'}
                     py={1}
+                    
                     transition="all 0.3s"
                     _focus={{ boxShadow: 'none' }}>
                     <HStack>
@@ -176,15 +175,15 @@ async function byID (){
                         }
                       />
                       <VStack
-                        minW={'120px'}
+                        minW={'20px'}
                         display={{ base: 'none', md: 'flex' }}
                         alignItems="flex-start"
                         spacing="1px"
                         ml="2">
-                        <Text fontSize="sm">{full_name}</Text>
-                        <Text fontSize="xs" color="gray.600">
+                        <Text id='name' className="crop" fontSize="sm" >{full_name}</Text>
+                        {/* <Text fontSize="xs" color="gray.600">
                           {role}
-                        </Text>
+                        </Text> */}
 
                       </VStack>
                       <Box display={{ base: 'none', md: 'flex' }}>
@@ -196,9 +195,11 @@ async function byID (){
                     border={'0.5px'}
                     bg={'white'}
                   >
-                    <MenuItem as='a' color={'black'} style={{ textDecoration: 'none' }} fontWeight='normal' onClick={HandleProfile}>Profile</MenuItem>
-                    <MenuItem as='a' color={'black'} style={{ textDecoration: 'none' }} fontWeight='normal' href={'/#'} >Settings</MenuItem>
-                    <MenuItem as='a' color={'black'} style={{ textDecoration: 'none' }} fontWeight='normal' href={'/#'}>Billing</MenuItem>
+
+                    <MenuItem as='a' color={'black'} fontWeight='normal' onClick={HandleProfile}>Profile</MenuItem>
+                    <MenuItem as='a' color={'black'} fontWeight='normal' href={'/#'} >Appointment</MenuItem>
+                    <MenuItem as='a' color={'black'} fontWeight='normal' href={'/#'}>Settings</MenuItem>
+
                     <MenuDivider />
                     <MenuItem color={'blue.500'} _hover={{
                       backgroundColor: 'blue.100'
@@ -212,8 +213,12 @@ async function byID (){
               <Button
                 as={'a'}
                 fontSize={'sm'}
-                fontWeight={400}
+                fontWeight={700}
                 variant={'link'}
+                // _hover={{
+                //   textDecoration:'none',
+                //   textColor:'blue.400'
+                // }}
                 onClick={HandleSignin}>
                 Sign in
               </Button>
@@ -227,11 +232,11 @@ async function byID (){
                 bg={'blue.500'}
                 onClick={handleSignup}
                 _hover={{
+                  textDecoration: 'none',
                   bg: 'blue.300',
                 }}>
                 Sign up
               </Button>
-
             </>
           }
         </Stack>
@@ -245,32 +250,35 @@ async function byID (){
 }
 
 const DesktopNav = () => {
-  const about = [{
-
-    label: 'Address',
-    href: '#'
-  }, {
-    label: 'Phone',
-    href: '#'
-  }, {
-    label: 'Reference',
-    href: '#'
-  }, {
-    label: 'Fanpage',
-    href: '#'
-  }]
-  const linkColor = useColorModeValue('#1872a4', 'gray.200');
+  const linkColor = useColorModeValue('gray.600', 'gray.200');
   const linkHoverColor = useColorModeValue('#15bbe0', 'white');
   const popoverContentBgColor = useColorModeValue('white', 'gray.800');
-  const [Api, setApi] = useState([]);
+  const navigate = useNavigate()
+  function link(label) {
+   
+      <>
+  { 
+      
+          label == 'Doctors' ? navigate('/doctor') :          
+          label=='Home' ?navigate('/home'):
+          label=='About' ?navigate('/about'):
+          {}
+    }
+      </>
+
+    
+  }
+  const [spe, setSp] = useState([]);
 
   useEffect(() => {
     ApiCaller('get-all-speciality', 'GET')
       .then(async res => {
         console.log(res);
-        setApi(res.data.data)
+        setSp(res.data.data)
       })
   }, [])
+ 
+  
   return (
     <Stack pl='100px' direction={'row'} spacing={4}>
       {NAV_ITEMS.map((navItem) => (
@@ -278,19 +286,14 @@ const DesktopNav = () => {
           <Popover trigger={'hover'} placement={'bottom-start'} >
             <PopoverTrigger>
               <Link
-
+                onClick={(e)=>link(navItem.label)}
                 p={2}
-                href={navItem.href ?? '#'}
+                //href={navItem.href}
                 fontSize={'lm'}
                 fontWeight={500}
                 color={linkColor}
-
-
-
-
                 _hover={{
                   textDecoration: 'none',
-
                   color: linkHoverColor,
                 }}>
                 {navItem.label}
@@ -309,31 +312,37 @@ const DesktopNav = () => {
 
                 <Stack>
 
-                  {Api.map(child => (
-                  <DesktopSubNav key={child._id} name={child.name} />
+                  {spe.map((child) => (
+                    <DesktopSubNav key={child.name} 
+                    href={'/Speciality/' + `${child.name}`}
                    
+                      
+                      label={child.name} />
                   ))}
-
                 </Stack>
-               
               </PopoverContent>
-
             )}
           </Popover>
-
-
         </Box>
       ))}
     </Stack>
   );
 };
 
-const DesktopSubNav = (props) => {
-
+const DesktopSubNav = ({ label,href}) => {
+  const navigate = useNavigate()
+  function getAllSpeciality(href){
+    console.log(`/Speciality/${href}`);
+      navigate(`${href}`)
+      //navigate('/doctor')
+     
+    }
   return (
     <Link
-    style={{ textDecoration: 'none' }}
+      //onClick={link}
       // href={href}
+      onClick={(e)=>getAllSpeciality(href)}   
+      style={{ textDecoration: 'none' }}
       role={'group'}
       display={'block'}
       p={2}
@@ -342,12 +351,16 @@ const DesktopSubNav = (props) => {
       _hover={{ bg: useColorModeValue('blue.100', 'gray.900') }}>
       <Stack direction={'row'} align={'center'}>
         <Box>
-          <Text
+         
+            <Text
             transition={'all .3s ease'}
             _groupHover={{ color: 'blue.500' }}
             fontWeight={500}>
-            {props.name}
+            {label}
+            
           </Text>
+          
+          
           {/* <Text fontSize={'sm'}>{subLabel}</Text> */}
         </Box>
         <Flex
@@ -360,7 +373,6 @@ const DesktopSubNav = (props) => {
           flex={1}>
           <Icon color={'blue.500'} w={5} h={5} as={ChevronRightIcon} />
         </Flex>
-
       </Stack>
 
     </Link>
@@ -368,49 +380,57 @@ const DesktopSubNav = (props) => {
 };
 
 const MobileNav = () => {
-  const [Api, setApi] = useState([]);
-
-  useEffect(() => {
-    ApiCaller('get-all-speciality', 'GET')
-      .then(async res => {
-        console.log(res);
-        setApi(res.data.data)
-      })
-  }, [])
+  
   return (
     <Stack
       bg={useColorModeValue('white', 'gray.800')}
       p={4}
-      display={{ md: 'none' }}
-    // id='navbar'
-    >
+      display={{ md: 'none' }}>
       {NAV_ITEMS.map((navItem) => (
-        <MobileNavItem key={navItem.label} {...navItem} />
+         <MobileNavItem key={navItem.label} 
+         href={'/Speciality/' + `${navItem.label}`} 
+         {...navItem} />
       ))}
     </Stack>
   );
 };
 
-const MobileNavItem = ({ label, children, href }: NavItem) => {
+const MobileNavItem = ({ label, children, href }) => {
   const { isOpen, onToggle } = useDisclosure();
-  const [Api, setApi] = useState([]);
-
+  const [spe, setSp] = useState([]);
+  const navigate = useNavigate()
   useEffect(() => {
     ApiCaller('get-all-speciality', 'GET')
       .then(async res => {
         console.log(res);
-        setApi(res.data.data)
+        setSp(res.data.data)
       })
   }, [])
+  function link(label) {
+   
+    <>
+{ 
+    
+        label == 'Doctors' ? navigate('/doctor') :          
+        label=='Home' ?navigate('/home'):
+        label=='About' ?navigate('/about'):
+        {}
+  }
+    </>
+
+  
+}
   return (
-    <Stack spacing={4} onClick={children && onToggle} >
+    <Stack spacing={4} onClick={children && onToggle}>
       <Flex
         py={2}
-        as={Link}
-        href={href ?? '#'}
+        as='a'
+        onClick={(e)=>link(label)}
+        //href={href ?? '#'}
         justify={'space-between'}
         align={'center'}
         _hover={{
+
           textDecoration: 'none',
         }}>
         <Text
@@ -438,8 +458,8 @@ const MobileNavItem = ({ label, children, href }: NavItem) => {
           borderColor={useColorModeValue('gray.200', 'gray.700')}
           align={'start'}>
           {
-            Api.map((child) => (
-              <Link key={child._id} py={2} >
+            spe.map((child) => (
+              <Link key={child.name} py={2} href={'/Speciality/' + `${child.name}`}>
                 {child.name}
               </Link>
             ))}
@@ -451,68 +471,97 @@ const MobileNavItem = ({ label, children, href }: NavItem) => {
 
   );
 };
-interface NavItem {
-  label: string;
-  subLabel?: string;
-  children?: Array<NavItem>;
-  href?: string;
-}
 
+// interface NavItem {
+//   label: string;
+//   subLabel?: string;
+//   children?: [NavItem];
+//   href?: string;
+// }
 
-const NAV_ITEMS: Array<NavItem> = [
-
+const NAV_ITEMS = [
   {
     label: 'Home',
-      href: '/home',
-
+    href: '/home',
   },
   {
-    label: 'Speciality',
+
+    label: 'Specialitys',
     children: [
+      
       {
-        label: '{a}',
+        
+        label: 'Urology',
         subLabel: 'Trending Design to inspire you',
-        href: '#',
+        //href: '#',
       },
       {
         label: 'Neurology',
         subLabel: 'Up-and-coming Designers',
-        href: '#',
+        //href: '#',
       },
       {
-        label: 'Obstetrics',
+        label: 'Orthopedic',
         subLabel: 'Up-and-coming Designers',
-        href: '#',
+        //href: '#',
+      },
+      {
+        label: 'General Physician',
+        subLabel: 'Trending Design to inspire you',
+        //href: '#',
+      },
+      {
+        label: 'Dentist',
+        subLabel: 'Up-and-coming Designers',
+        //href: '#',
+      },
+      {
+        label: 'Consultant Physician',
+        subLabel: 'Up-and-coming Designers',
+        //href: '#',
+      },
+      {
+        label: 'Cardiologist',
+        subLabel: 'Up-and-coming Designers',
+        //href: '#',
       },
     ],
   },
   {
-    label: 'Doctor',
+
+    label: 'Doctors',
     href: '/doctor',
   },
   {
+
     label: 'About',
-    children: [
-      // {
-      //   label: 'Address',
-      //   subLabel: 'Find your dream design job',
-      //   href: '#',
-      // },
-      // {
-      //   label: 'Phone1',
-      //   subLabel: 'An exclusive list for contract work',
-      //   href: '#',
-      // },
-      // {
-      //   label: 'Reference',
-      //   subLabel: 'An exclusive list for contract work',
-      //   href: '#',
-      // },
-      // {
-      //   label: 'Fanpage',
-      //   subLabel: 'An exclusive list for contract work',
-      //   href: '#',
-      // },
-    ],
+    href: '/about',
+    // children: [
+    //   {
+    //     label: 'Address',
+    //     subLabel: 'Find your dream design job',
+    //     href: '#',
+    //   },
+    //   {
+    //     label: 'Phone',
+    //     subLabel: 'An exclusive list for contract work',
+    //     href: '#',
+    //   },
+    //   {
+    //     label: 'Reference',
+    //     subLabel: 'An exclusive list for contract work',
+    //     href: '#',
+    //   },
+    //   {
+    //     label: 'Fanpage',
+    //     subLabel: 'An exclusive list for contract work',
+    //     href: '#',
+    //   },
+    // ],
   },
+  // {
+  //   label: 'Appointment',
+  //   href: '#',
+  // },
+
 ];
