@@ -48,9 +48,9 @@ const LinkItems: Array<LinkItemProps> = [
 const LinkItemsDoctor: Array<LinkItemProps> = [
  
  
-  { name: 'Profile', icon: FaUserMd, link: '/manager' }, 
+  { name: 'Profile', icon: FaUserMd, link: '/manager/profile' }, 
  
-  { name: 'Appointment', icon: FaCalendarAlt, link: '/manager' },
+  { name: 'Appointment', icon: FaCalendarAlt, link: '/manager/appointment' },
  
   { name: 'Logout', icon: MdLogout, link: '/logout' },
 ];
