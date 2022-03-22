@@ -5,9 +5,10 @@ import { Button } from 'react-bootstrap-v5'
 import '../admin2/css/table.css'
 import Right from './RightTest'
 import ModalDoctor from './ModalDoctor'
-import { EditIcon, AddIcon, CheckIcon,DeleteIcon} from '@chakra-ui/icons'
 import DeleteDoctor from './ModalDeleteDoctor'
 import UpdateDoctor from './ModalUpdateDoctor'
+import {ViewIcon} from '@chakra-ui/icons'
+import ViewShift from './ViewShift'
 function Table() {
 
     const [Api, setApi] = useState([]);
@@ -63,15 +64,22 @@ function Table() {
       <td>{(api.gender) = 'true' ? <p>Male</p> : <p>Female</p>}</td>
       <td>
         <tr>
-            <td   style={{
-                  paddingRight: '20px'
-            }}>
+            <td   
+            // style={{
+            //       paddingRight: '20px'
+            // }}
+            >
                 <Button className='btn btn-info'> <UpdateDoctor doctor={api._id}/></Button>
         
             </td>
             <td>
               <Button className='btn btn-danger'> 
                 <DeleteDoctor doctor={api._id}/>
+              </Button>
+            </td>
+            <td paddingLeft={'20px'}>
+            <Button className='btn btn-warning'> 
+                <ViewShift />
               </Button>
             </td>
         </tr>     

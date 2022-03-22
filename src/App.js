@@ -22,6 +22,8 @@ import News from "./components/News"
 import Card from "./admin2/CardClinic"
 import About from "./components/AboutUs"
 
+import ProfileDoctor from "./Doctor/ProfileDoctor"
+
 function App() {
 
   return (
@@ -51,8 +53,12 @@ function App() {
         <Route path="/test" element={<Booking />} />
         <Route path="/testadmin" element={<BarChart />} />
         <Route path='/test/:id' element={<Booking />} />
+        
+        <Route path='/doctor/profile' element={<PrivateRoute><ProfileDoctor /></PrivateRoute>} />
+        
         <Route path="/logout" element={<PrivateRoute> <Logoutadmin /></PrivateRoute>}> 
-      
+
+
         </Route>
       </Routes>
     </ChakraProvider>
