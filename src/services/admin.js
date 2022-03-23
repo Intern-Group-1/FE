@@ -57,6 +57,7 @@ const handleDeleteDoctor = async (id)=>{
 }
 const handleCreateSpeciality = async (data)=>{
     try {
+        console.log(data);
          var token = await localStorage.getItem('token')
          
         return await axios.post('https://be-doctor-care-v3.herokuapp.com/api/create-speciality/', data,{
@@ -193,6 +194,32 @@ const handleDeleteBranch = async (id)=>{
         console.log(error)
     }
 }
+
+
+const handleUpateStatus = async(id, data)=>{
+    try { 
+        return await axios.put(`https://be-doctor-care-v3.herokuapp.com/api/update-appointment/${id}`, data)
+    } catch (error) {
+        console.log(error)
+    }
+}
+const handleDeleteStatus = async(id)=>{
+    try {
+        
+        return await axios.delete(`https://be-doctor-care-v3.herokuapp.com/api/delete-appointment/${id}`)
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+const handleGetAppointment = async (id)=>{
+    try {
+        return await axios.get(`https://be-doctor-care-v3.herokuapp.com/api/get-appointment-id/${id}`)       
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 export {
     //user
    handleDeleteUser,
@@ -211,6 +238,11 @@ export {
    handleCreateBranch,
    handleUpdateBranch,
    handleBranchByID,
-   handleDeleteBranch
+   handleDeleteBranch,
+    //appointment
+    handleGetAppointment,
+    handleDeleteStatus,
+    handleUpateStatus,
+
 
 }
