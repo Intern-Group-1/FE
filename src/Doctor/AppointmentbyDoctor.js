@@ -6,70 +6,24 @@ import '../admin2/css/table.css'
 import Right from '../admin2/RightTest'
 import { AiOutlineCheck } from 'react-icons/ai'
 import moment from 'moment'
-import { handleGetAppointmentByDoctor } from '../services/doctor';
+import {  handleGetAppointmentbyDoctor } from '../services/doctor';
 function TableAppointmentByDoctor() {
-    const emailDoctor = localStorage.getItem('emailAccount')
-   console.log(emailDoctor);
-    const [App, setApp] = useState([]);
+    const id = localStorage.getItem('idDoctor')
+  
+   
     const [Api, setApi] = useState([]);
-    const [doctor, setDoctor] = useState([]);
-    const [iddoctor,setID]=useState('');
-    useEffect(()=>{
-      ApiCaller('get-all-appointment', 'GET')
-    .then ( async res => {
-      
-      setApi(res.data.data)
-    })
-  },[])
+    const [app, setApp] = useState([]);
+   async function byID(){
+    const data1= await handleGetAppointmentbyDoctor(id)
+    console.log(data1);
+    setApp(data1.data.data)
+   }
+   
+    byID()
+
  
 
-  useEffect(()=>{
-      ApiCaller('get-all-doctor', 'GET')
-    .then ( async res => {
-      console.log(res);
-      setDoctor(res.data.data)
-    })
-  },[])
 
-  doctor.map(gmail=>{
-    console.log(gmail.account.email);
-    if(gmail.account.email==emailDoctor){
-      console.log('id bac si');
-     
-      //  setID('6239e0e1e43d2e821303d3ff')
-        console.log(iddoctor);
-    }
-    else {
-      console.log('null');
-    }
-     
-    // console.log(id);
-          // const app=   handleGetAppointmentByDoctor(id)
-            //  setApp(app)
-
-  })
-  // useEffect(async () => {
-    
-  //   const app = await handleGetAppointmentByDoctor('6239e0e1e43d2e821303d3ff')
-  //   // if (app){
-  //   //     setLoading(true)
-  //   // }
-  //   console.log('apppp');
-   
-  //   setApp(app.data.data)
-    
-     
-   
-  // },[id])
-   
- 
-
-      
-
-function handleGetID(id){
-  console.log('id app');
-  console.log(id);
-}
   return (
     <>    
     <Box  ml={'340px'}>
@@ -95,13 +49,14 @@ function handleGetID(id){
       <th width='130px'>Phone Customer</th>    
       <th width='50px' >Date</th>
       <th width='120px'>Time</th>
+     
+      <th width='220px' >Handle</th>
       <th >Status</th>
-      <th >Handle</th>
     </tr>
   </thead>
  
   <tbody>
-   {Api.map(api => (
+   {app.map(api => (
     <>
         <tr >
   <td >{api.branch!=null? <>{api.branch.name}</>:<>NULL</>}</td>
@@ -109,7 +64,7 @@ function handleGetID(id){
   <td >{api.user?<>{api.user.full_name}</>:<b>NULL</b>}</td>
   {/* <td>{api.user?<>{api.user.address}</>:<b>NULL</b>}</td> */}
   <td>{api.user?<>{api.user.phone_number}</>:<b>NULL</b>}</td>
-  <td>{api.doctor.full_name}</td>
+
 
          
         
