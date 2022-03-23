@@ -52,9 +52,10 @@ function SimpleCard() {
       const data = await handleLoginAPI(username, password)
         localStorage.setItem('token', data.data.data.tokens[0].token)
         localStorage.setItem('user', data.data.data._id)
+        localStorage.setItem('emailAccount', data.data.data.email)
         localStorage.setItem('role',data.data.data.role)
-      var loggedInUser = localStorage.getItem('token')
-      console.log('User token'+loggedInUser)
+      var loggedInUser = localStorage.getItem('emailAccount')
+      console.log(data)
       let role_object = localStorage.getItem('role')
       if (loggedInUser !=null && role_object=='customer'  ) {
         toast.success("Login success!");

@@ -64,10 +64,20 @@
     display: flex;
     flex-direction: column;
 }
+
 .select-clinic{
     width: 490px;
     border: 2px #7fb9e9c7 solid;
     margin-top: 5px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    height: 40px;
+}
+.select-clinic2{
+    width: 420px;
+    border: 2px #7fb9e9c7 solid;
+    margin-top: 5px;
+    margin-left: 5px;
     margin-bottom: 5px;
     border-radius: 5px;
     height: 40px;

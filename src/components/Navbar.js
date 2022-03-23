@@ -90,11 +90,12 @@ export default function Navbar() {
         console.log(res)
         setApi(res.data.data)
       })
-    if (loggedInUser) {
-      byID()
-    }
+    
 
   }, [])
+  if (loggedInUser) {
+    byID()
+  }
   const role = localStorage.getItem('role')
  
   return (

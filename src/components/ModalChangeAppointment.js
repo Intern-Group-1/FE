@@ -28,7 +28,36 @@ import '../style/Booking.css'
 import '../responsive/Appointment.css'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
+
+
+
+
+
   function ChangeAppointment() {
+
+
+
+    const MyButton = (props) => {
+        const handleClick = (e) => {
+                  setTime(e.target.innerHTML)                        
+        };
+        
+        return (
+            <button style={
+                time===props.item? {
+                 color:'rgb(0 29 171 / 78%)',
+                 fontWeight:'bolder',
+                 backgroundColor : '#7fb9e9c7'
+             }:{}
+            }  onClick={handleClick} 
+            className={"btn-time"}
+            >
+            {props.item}
+          </button>
+          
+        );
+      };
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [open,setOpen]=useState('');
     const initialRef = React.useRef()
@@ -38,7 +67,8 @@ import 'react-toastify/dist/ReactToastify.css';
     const [Api, setApi] = useState([]);
     const [Id, setId] = useState('');
     const [user, setUser] = useState([]);
-
+    const [branch_id, setBranchId] = useState('');
+    const today= new Date()
     useEffect(() => {
         ApiCaller('get-all-doctor', 'GET')
             .then(async res => {
@@ -61,20 +91,30 @@ import 'react-toastify/dist/ReactToastify.css';
                 console.log('id là ');
                 console.log(res.data.data);
             })
-
+            ApiCaller('get-all-branch', 'GET')
+            .then(async res => {
+                console.log('data branch:')
+                console.log(res);
+                setBranchs(res.data.data)
+            })
     }, []);
 
 
-
+    const listTime=['07:00-08:00',
+    '08:00-09:00',
+    '09:00-10:00',
+    '10:00-11:00',
+    '14:00-15:00',
+    '15:00-16:00',
+    '16:00-17:00',
+    '17:00-18:00',]
     const [startDate, setStartDate] = useState(new Date());
-    console.log(startDate);
-    const [branch, setBranch] = useState('');
+    const [branch, setBranch] = useState(''); 
     const [time, setTime] = useState('');
-    console.log(time);
-
-    console.log(startDate.getDate());
-
+    const [branchs, setBranchs] = useState([]);
     const [endDate, setEndDate] = useState(null);
+   
+
     const onChange = (dates) => {
         const [start, end] = dates;
         setStartDate(start);
@@ -86,9 +126,11 @@ import 'react-toastify/dist/ReactToastify.css';
 
     var dateP = new Date('2022-02-26T03:18:35.000Z')
     const handleChange = (e) => {
-
-        console.log(e.target.value);
-        setBranch(e.target.value)
+      const select = e.target;
+      const value = select.value;
+      const desc = select.selectedOptions[0].text;
+      setBranchId(value);
+      setBranch(desc)
     }
     return (
       <>
@@ -122,6 +164,7 @@ import 'react-toastify/dist/ReactToastify.css';
                     ml={'30px'}
                     >
                         <DatePicker
+                             minDate={today}
                             selected={startDate}
                             onChange={onChange}
                             selectsRange
@@ -136,83 +179,19 @@ import 'react-toastify/dist/ReactToastify.css';
                         w={'448px'}
                         ml={'30px'}
                         >
-                            <Button 
-                            style={ time==='07:00 - 08:00' ? {
-                                color:'#3182ce',
-                                fontWeight:'bold'
-                            }:{} }
-                            onClick={() => {
-                                setTime('07:00 - 08:00')
-                            }} className='btn-time' >07:00 - 08:00</Button>
-                            <Button 
-                            style={ time==='08:00 - 09:00' ? {
-                                color:'#3182ce',
-                                fontWeight:'bold',
-                                backgroundColor : '#ce1414 !important'
-                            }:{} }
-                            onClick={() => {
-                                setTime('08:00 - 09:00')
-                            }} className='btn-time'>08:00 - 09:00</Button>
-                            <Button 
-                            style={ time==='09:00 - 10:00' ? {
-                                color:'#3182ce',
-                                fontWeight:'bold'
-                            }:{} }
-                            onClick={() => {
-                                setTime('09:00 - 10:00')
-                            }} className='btn-time'>09:00 - 10:00</Button>
-                            <Button 
-                            style={ time==='10:00 - 11:00' ? {
-                                color:'#3182ce',
-                                fontWeight:'bold'
-                            }:{} }
-                            onClick={() => {
-                                setTime('10:00 - 11:00')
-                            }} className='btn-time'>10:00 - 11:00</Button>
-                            <Button
-                            style={ time==='14:00 - 15:00' ? {
-                                color:'#3182ce',
-                                fontWeight:'bold'
-                            }:{} }
-                            onClick={() => {
-                                setTime('14:00 - 15:00')
-                            }} className='btn-time'>14:00 - 15:00</Button>
-                            <Button 
-                            style={ time==='15:00 - 16:00' ? {
-                                color:'#3182ce',
-                                fontWeight:'bold'
-                            }:{} }
-                            onClick={() => {
-                                setTime('15:00 - 16:00')
-                            }} className='btn-time'>15:00 - 16:00</Button>
-                            <Button 
-                            style={ time==='16:00 - 17:00' ? {
-                                color:'#3182ce',
-                                fontWeight:'bold'
-                            }:{} }
-                            onClick={() => {
-                                setTime('16:00 - 17:00')
-                            }} className='btn-time'>16:00 - 17:00</Button>
-                            <Button 
-                            style={ time==='17:00 - 18:00' ? {
-                                color:'#3182ce',
-                                fontWeight:'bold'
-                            }:{} }
-                            onClick={() => {
-                                setTime('17:00 - 18:00')
-                            }} className='btn-time'>17:00 - 18:00</Button>
-                        </Box>
+                              {listTime.map((timer, i)=>(
+                                <MyButton                                                                                                                   
+                                key={i} item={timer}></MyButton>
+                            ))}
+</Box>
+<Box className='clinic'>
+                            <select onChange={handleChange} name="hue" className='select-clinic2' >
+                                <option selected >Select Clinic</option>
+                                {branchs.map(brs => (
 
-                        <Box className='clinic'
-                        mb={'-15px'}
-                        ml={'30px'}
-                        >
+                                    <option value={brs._id} > {brs.name}, {brs.address} </option>
 
-                            <select onChange={handleChange} name="hue" className='select-clinic'>
-                                <option key="Hue city">Hue city</option>
-                                <option key="Hoang Long, 14 Le Loi">Hoang Long, 14 Le Loi</option>
-                                <option key="Ton Duc Thang, 23 Dien Bien Phu">Ton Duc Thang, 23 Dien Bien Phu</option>
-                                <option key="Kim Anh, 23 Tran Phu">Kim Anh, 23 Tran Phu</option>
+                                ))}
                             </select>
                         </Box>
                     </Box>
