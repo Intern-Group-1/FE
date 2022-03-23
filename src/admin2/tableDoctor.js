@@ -4,10 +4,13 @@ import ApiCaller from '../utils/apiCaller';
 import { Button } from 'react-bootstrap-v5'
 import '../admin2/css/table.css'
 import Right from './RightTest'
+
 import ModalDoctor from './ModalCreateDoctor'
 import { EditIcon, AddIcon, CheckIcon,DeleteIcon} from '@chakra-ui/icons'
 import DeleteDoctor from './ModalDeleteDoctor'
 import UpdateDoctor from './ModalUpdateDoctor'
+import {ViewIcon} from '@chakra-ui/icons'
+import ViewShift from './ViewShift'
 function Table() {
   const [open,setOpen]=useState('');
   const [save, setSave] = useState('Delete')
@@ -85,6 +88,11 @@ function Table() {
               
                 <DeleteDoctor doctor={api._id}/>
               
+            </td>
+            <td paddingLeft={'20px'}>
+            <Button className='btn btn-warning'> 
+                <ViewShift />
+              </Button>
             </td>
         </tr>     
       </td>

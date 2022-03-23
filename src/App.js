@@ -29,9 +29,9 @@ import CreateUser from "./admin2/CreateUser";
 import CreateDoctor from "./admin2/CreateDoctor";
 import About from "./components/AboutUs";
 import TableSpeciality from "./admin2/tableSpeciality";
-import ManagerAppointment from "./doctor/ManagerAppointment";
-import TableAppointmentByDoctor from "./doctor/AppointmentbyDoctor";
-import ProfileDoctor from "./doctor/ProfileDoctor";
+import ManagerAppointment from "./Doctor/ManagerAppointment";
+import TableAppointmentByDoctor from "./Doctor/AppointmentbyDoctor";
+import ProfileDoctor from "./Doctor/ProfileDoctor";
 
 function App() {
   return (
