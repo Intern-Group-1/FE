@@ -1,0 +1,9 @@
+@media (max-width: 740px){
+    .wrapper-alldoctor{
+        margin-left: -20px;
+    }
+    .find-doctor{
+        top: 45px !important;
+        right: 60px !important;
+    }
+}

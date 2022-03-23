@@ -101,8 +101,8 @@ function TableAppointment() {
        
         <th width='50px' >Date</th>
         <th width='120px'>Time</th>
+        <th style={{textAlign:'center'}} >Handle</th>
         <th >Status</th>
-        <th >Handle</th>
       </tr>
     </thead>
     <tbody>
@@ -130,11 +130,18 @@ function TableAppointment() {
     display={'flex'}
     justifyContent={'space-around'}
     >
-      <>    
-        <Button className='btn btn-success'disabled={api.status ==0? false : true}  onClick={e=>handleGetID( api._id,api.user._id,api.doctor._id)}>  Approve</Button>
-        <Button className='btn btn-danger' disabled={api.status ==1? false : true} onClick={e=>handleCancelID( api._id,api.user._id,api.doctor._id)}>Cancel</Button>
-        <Button className='btn btn-danger' disabled={api.status ==1? false : true} onClick={e=>handleGetBYID(api._id)}> Delete </Button>
-    </>
+       
+        <Box>
+          <Button className='btn btn-success'disabled={api.status ==0? false : true}  onClick={e=>handleGetID( api._id,api.user._id,api.doctor._id)}>  Approve</Button>
+        </Box>
+        <Box ml={'10px'} >
+          <Button className='btn btn-secondary' disabled={api.status ==1? false : true} onClick={e=>handleCancelID( api._id,api.user._id,api.doctor._id)}>Cancel</Button>
+        </Box>
+        <Box ml={'10px'}>
+          <Button className='btn btn-danger' disabled={api.status ==1? false : true} onClick={e=>handleGetBYID(api._id)}> Delete </Button>
+        </Box>
+        
+      
     </Box>
       
     {/* </> : <>
