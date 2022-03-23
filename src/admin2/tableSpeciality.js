@@ -75,7 +75,7 @@ function TableSpeciality() {
 
                  
          
-            <td   
+            <td    
             width={'200px'}
             >
                 <Box
@@ -105,7 +105,7 @@ function TableSpeciality() {
               speed='0.65s'
               emptyColor='gray.200'
               color='blue.500'
-              size='xl'
+             2222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222ililM size='xl'
             /> <Text  color={'blue.500'}>Loading...</Text>  </Box>}
               
             </tbody>
