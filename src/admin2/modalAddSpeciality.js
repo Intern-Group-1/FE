@@ -35,6 +35,8 @@ import { useNavigate } from 'react-router-dom'
 
     const handleFullNameInput = e => {
       setFullname(e.target.value);
+      console.log(fullname);
+
     }
    
    
@@ -44,16 +46,16 @@ import { useNavigate } from 'react-router-dom'
   
     }
     
-    const account= localStorage.getItem('iddoctor')
-    console.log('accccc');
-    console.log(account);
+  
     const handleCreate = async () => {
       const da_ta = new FormData();
+     
       da_ta.append("name", fullname)
     
-      da_ta.append("avatar", avt)
-     
-     
+      da_ta.append("file", avt)
+     console.log(fullname);
+     console.log(avt);
+      
        try {
         setAdd('Loading...')
        
@@ -64,7 +66,7 @@ import { useNavigate } from 'react-router-dom'
           setOpen(onClose)
           setAdd('Add')
           //toast.success("Successful!");
-          navigate('/admin/doctor')
+          
           if (data) {
         toast.success("Successful!");
         navigate('/admin')

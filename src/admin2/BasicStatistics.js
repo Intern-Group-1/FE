@@ -97,7 +97,7 @@ useEffect(() => {
         />
         <StatsCard
           title={'Clinic'}
-          stat={'180'}
+          stat={'3'}
           icon={<FaHospital size={'3em'} />}
           link={'/admin/clinic'}
           />

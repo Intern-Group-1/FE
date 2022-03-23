@@ -5,24 +5,35 @@ import ApiCaller from '../utils/apiCaller';
 
 
 export default function PieChartAppointment() {
-  const [app, setApp] = useState('');
+  const [waiting, setWaiting] = useState();
+  const [approved, setApproved] = useState();
+  let sumApp=approved+waiting
+  console.log(sumApp);
   useEffect(()=>{
-    ApiCaller('sum-cancel', 'GET')
+    ApiCaller('sum-waiting', 'GET')
   .then ( async res => {
-    setApp(res.data.data)
+    setWaiting(res.data.data)
      
   })
 },[])
-console.log(app);
+
+useEffect(()=>{
+  ApiCaller('sum-approved', 'GET')
+.then ( async res => {
+  setApproved(res.data.data)
+   
+})
+},[])
+
  const data = [
   ["Status", "Amount"],
-  ["Done", 300],
-  ["Pending", 75],
-  ["Cancel", 25],
+  ["Done", approved],
+  ["Pending", waiting],
+  
 ];
 
  const options = {
-  title: "Total appointment: 400",
+  title: `Total appointment: ${sumApp}`,
   is3D: true,
 
   colors: ['#199eb3','#C0C0C0','#DC143C'], 
