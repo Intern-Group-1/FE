@@ -107,7 +107,7 @@ const loggedInUser = localStorage.getItem('token')
             </Box>
         
        
-            <Box d='flex' justifyContent='center' alignItems='flex-start' w='400' h='360' flexDirection='column' >
+            <Box className='wrapper-info' d='flex' justifyContent='center' alignItems='flex-start' w='400' h='360' flexDirection='column' >
                 <Box maxH='300' className='box'>
                     <Text maxH='100' fontWeight={'bold'}>
                         Full Name
@@ -197,15 +197,6 @@ const loggedInUser = localStorage.getItem('token')
 
                       visibility={  app.status==0? 'visible'
                             :'hidden'}
-                     // hidden='true'
-                    
-                    // _hover={
-                    //     (app.status==0)? {visibility:'visible'}
-                    // :{visibility:'visible'}}
-                    // _hover={
-                    //     app.status==0? { display:'block'}
-                    //      :{display:'none'}
-                    // }
                     position={'absolute'}
                     bottom={'7px'}
                     left={'20px'}
@@ -214,11 +205,9 @@ const loggedInUser = localStorage.getItem('token')
                     </Box>
 
                 </Box>
-                <Box className='info-schdule'  >
+                <Box className='info-schdule'>
                     <Text>Time: {app.time}</Text>
                     <Text>Date: {moment(app.date).format('L')}</Text>
-
-                    {/* <Text>Time: {api.branch}</Text> */}
                     <Text>{app.doctor.full_name}</Text>
                     <Text>{app.branch.address}</Text>
                 </Box>

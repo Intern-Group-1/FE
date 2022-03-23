@@ -2,11 +2,14 @@
 
   .container-profile{
       flex-direction: column;
-      min-height: 1320px;
+      min-height: 800px;
   }
   .user-avt{
-      margin-left: 20px;
+      margin-left: -30px;
       width: 94% !important;
+    }
+    .wrapper-info{
+      margin-left: -20px !important;
     }
     .custom-file-input{
       margin-left: 20px;
@@ -29,5 +32,12 @@
       border-left: none;
       flex-wrap: nowrap;
       width: 324px !important;
-  }
+    }
+    .schedule{
+      align-items: center ;
+      flex-direction: column;
+    }
+    .tag-schedule{
+      margin-left: 54px;
+    }
 }

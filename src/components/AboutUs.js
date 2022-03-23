@@ -9,6 +9,7 @@ import Logo from "../assets/image/logo-doctor-care.png"
 import about from "../assets/image/about2.png"
 import goal from "../assets/image/goal.png"
 import {CheckIcon} from "@chakra-ui/icons"
+import '../responsive/AboutUs.css'
 
 import Card1 from "./Card"
 import Nav from "./Navbar"
@@ -54,16 +55,19 @@ export default function About(){
         <>
         <Nav/>
             <Box
+            className="about-us"
             h={'1900px'}
             >
                 <Box
                 position={'relative'}
                 >
                     <Image 
+                    className="img-about" 
                     src={Imgabout}
                     w={'100%'}
                     />
                     <Text
+                    className="text-about"
                     position={'absolute'}
                     color={'white'}
                     left={'650'}
@@ -73,10 +77,12 @@ export default function About(){
                     >About us</Text>
                 </Box>
                 <Box
+                className="purpose"
                 h={'450px'}
                 position={'relative'}
                 >
                     <Image
+                    className="img-purpose"
                     src={about}
                     maxW={'300px'}
                     position={'absolute'}
@@ -84,18 +90,21 @@ export default function About(){
                     left={'380px'}
                     />
                     <Box
+                    className="wrapper-purpose"
                     position={'absolute'}
                     top={'110px'}
                     left={'800px'}
                     color={'#404d60'}
                     >
                         <Text
+                        className="title-purpose"
                         fontWeight={'bold'}
                         fontSize={'25px'}
                         >
                             Doctorcare! Take care of everyone's health.
                         </Text>
                         <Text 
+                        className="content-purpose"
                         w={'350px'}
                         mt={'20px'}
                         fontSize={'20px'}
@@ -108,11 +117,13 @@ export default function About(){
                 <Box
                 bg={'#f8f9fd'}
                 h={'400px'}
+                className="goal"
                 >
                     <Box
                     position={'relative'}
                     >
                         <Image
+                        className="img-goal"
                         src={goal}
                         maxW={'300px'}
                         position={'absolute'}
@@ -120,6 +131,7 @@ export default function About(){
                         left={'800px'}
                         />
                         <Box
+                            className="wrapper-goal"
                             position={'absolute'}
                             top={'80px'}
                             left={'400px'}
@@ -180,6 +192,7 @@ export default function About(){
                 </Box>
 
                 <Box
+                className="members"
                 h={'400px'}
                 >
                     <Text
@@ -189,6 +202,7 @@ export default function About(){
                     mt={'20px'}
                     >Our Member</Text>
                     <Box
+                    className="wrapper-cardmember"
                     d={'flex'}
                     justifyContent={'center'}
                     >
@@ -202,7 +216,7 @@ export default function About(){
                     </Box>
                 </Box>
             </Box>
-        <Footer/>
+        <Box mt={'30px'}><Footer/></Box>
         </>
     )
 }
