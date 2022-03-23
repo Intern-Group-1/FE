@@ -1,5 +1,4 @@
 import React from "react";
-import SlideBar from './SlideBar'
 import {
     Flex,
     Box,

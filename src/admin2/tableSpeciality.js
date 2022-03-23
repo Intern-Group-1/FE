@@ -105,8 +105,7 @@ function TableSpeciality() {
               speed='0.65s'
               emptyColor='gray.200'
               color='blue.500'
-             2222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222ililM size='xl'
-            /> <Text  color={'blue.500'}>Loading...</Text>  </Box>}
+             /> <Text  color={'blue.500'}>Loading...</Text>  </Box>}
               
             </tbody>
           </table>

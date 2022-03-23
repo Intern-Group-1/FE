@@ -29,8 +29,8 @@ import CreateUser from "./admin2/CreateUser";
 import CreateDoctor from "./admin2/CreateDoctor";
 import About from "./components/AboutUs";
 import TableSpeciality from "./admin2/tableSpeciality";
-import ManagerAppointment from "./Doctor/ManagerAppointment";
-import TableAppointmentByDoctor from "./Doctor/AppointmentbyDoctor";
+// import ManagerAppointment from "./Doctor/ManagerAppointment";
+// import TableAppointmentByDoctor from "./Doctor/AppointmentbyDoctor";
 import ProfileDoctor from "./Doctor/ProfileDoctor";
 import HistoryWork from "./Doctor/HistoryWork"
 
@@ -68,8 +68,8 @@ function App() {
         <Route path='/admin/create-user' element={<PrivateRoute><CreateUser/></PrivateRoute>} />
 
         {/* doctor */}
-        <Route path='/manager' element={<PrivateRoute><ManagerAppointment/></PrivateRoute>} />
-        <Route path='/manager/appointment' element={<PrivateRoute><TableAppointmentByDoctor/></PrivateRoute>} />
+        {/* <Route path='/manager' element={<PrivateRoute><ManagerAppointment/></PrivateRoute>} /> */}
+        {/* <Route path='/manager/appointment' element={<PrivateRoute><TableAppointmentByDoctor/></PrivateRoute>} /> */}
         <Route path='/manager/profile' element={<PrivateRoute><ProfileDoctor/></PrivateRoute>} />
         <Route path='/manager/history' element={<PrivateRoute><HistoryWork/></PrivateRoute>} />
 
