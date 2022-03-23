@@ -6,22 +6,72 @@ import '../admin2/css/table.css'
 import Right from '../admin2/RightTest'
 import { AiOutlineCheck } from 'react-icons/ai'
 import moment from 'moment'
+import { useNavigate } from 'react-router-dom'
 import {  handleGetAppointmentbyDoctor } from '../services/doctor';
+import { ToastContainer, toast } from 'react-toastify';
+import { handleUpateStatus,handleDeleteStatus,handleGetUserById, handleGetDoctorById, handleGetAppointment  } from '../services/doctor';
+
 function TableAppointmentByDoctor() {
-    const id = localStorage.getItem('idDoctor')
-  
-   
+    const iddoctor = localStorage.getItem('idDoctor')
     const [Api, setApi] = useState([]);
     const [app, setApp] = useState([]);
+    const navigate = useNavigate()
    async function byID(){
-    const data1= await handleGetAppointmentbyDoctor(id)
+    const data1= await handleGetAppointmentbyDoctor(iddoctor)
     console.log(data1);
     setApp(data1.data.data)
    }
-   
+   useEffect(()=>{
     byID()
-
+   },[iddoctor])
+    
  
+    
+   const handleGetID = async(id,user, iddoctor) =>{ 
+     console.log(id);
+     console.log(user);
+     console.log(iddoctor);
+    const da = await handleGetDoctorById(iddoctor)
+    const data = await handleGetUserById(user)
+    const date = await handleGetAppointment(id)
+    console.log("Data Appointment")
+    console.log(date)
+    let email = [data.data.data[0].account.email, da.data.data[0].account.email]
+    let content =[date.data.data.branch.name, date.data.data.branch.address, date.data.data.date, date.data.data.time]
+    console.log(content)
+      const da_ta =  new FormData();
+      da_ta.append("status", 1)
+      da_ta.append("email", email)
+      da_ta.append("content", content)
+    await handleUpateStatus(id, da_ta)
+ 
+    toast.success("Successful!");
+    navigate('/manager/')
+    navigate('/manager/appointment/')
+    }
+     function handleGetBYID(){
+      console.log('hahaha');
+    //   console.log('id app');
+    //   console.log(idapp);
+    // await handleDeleteStatus(idapp)
+    // toast.success("Delete Successful!");
+    // navigate('/manager/')
+    // navigate('/manager/appointment/')
+    }
+    async function  handleCancelID(id,user, iddoctor){
+      const da = await handleGetDoctorById(iddoctor)
+      const data = await handleGetUserById(user)
+      let email = [data.data.data[0].account.email, da.data.data[0].account.email]
+      const da_ta = new FormData();
+      da_ta.append("status", 0)
+      da_ta.append("email", email)
+      await handleUpateStatus(id, da_ta)
+      toast.success("Successful!");
+      navigate('/manager/')
+      navigate('/manager/appointment/')
+    }
+
+
 
 
   return (
@@ -76,13 +126,9 @@ function TableAppointmentByDoctor() {
   justifyContent={'space-around'}
   
   >
-    <Button className='btn btn-success' > 
-    Approve
-  </Button>
-  
-  <Button className='btn btn-danger' > 
-    Cancel
-  </Button>
+   <Button className='btn btn-success'disabled={api.status ==0? false : true}  onClick={e=>handleGetID( api._id,api.user._id,iddoctor)}>  Approve</Button>
+        <Button className='btn btn-danger' disabled={api.status ==1? false : true} onClick={e=>handleCancelID( api._id,api.user._id,iddoctor)}>Cancel</Button>
+        <Button className='btn btn-danger' disabled={api.status ==1? false : true} onClick={(e)=>handleGetBYID()}> Delete </Button>
   </Box>
     
   </> : <>

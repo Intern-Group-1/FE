@@ -105,8 +105,8 @@ async function handleUpdate () {
       setOpen(onClose)
       setSave('Save')
       toast.success("Successful!");
-      navigate('/admin')
-      navigate('/admin/doctor')
+      navigate('/manager')
+      navigate('/manager/profile')
 
 
     } catch (error) {
