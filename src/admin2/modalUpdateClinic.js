@@ -96,7 +96,7 @@ function UpdateBranch(props) {
         console.log(avt);
         da_ta.append("name", name)
         da_ta.append("address", address)
-        da_ta.append("avatar", avt)
+        da_ta.append("file", avt)
         try {
             console.log('id xóa là');
             console.log(id);

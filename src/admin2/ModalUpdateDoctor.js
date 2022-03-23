@@ -66,8 +66,7 @@ function UpdateDoctor(props) {
   const finalRef = React.useRef()
   const [open,setOpen]=useState('');
   const id = props.doctor
-  console.log('id doctor');
-  console.log(id);
+ 
   const byID = async ()=>{
     const data= await  handleGetDoctorById(id)
     console.log("Data By Doctor")
@@ -118,7 +117,7 @@ const [Api, setApi] = useState([]);
 useEffect(() => {
   ApiCaller('get-all-speciality', 'GET')
       .then(async res => {
-          console.log(res);
+        
           setApi(res.data.data)
       })
 }, [])

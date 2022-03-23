@@ -77,7 +77,7 @@ export default function Navbar() {
   const [avatar, setAvt] = useState('')
   async function byID() {
     const data = await handleGetUserId()
-    console.log('Data cua ta:' + data)
+    console.log( data)
     if (data) {
       setName(data.data.data[0].full_name)
       setAvt(data.data.data[0].avatar)
