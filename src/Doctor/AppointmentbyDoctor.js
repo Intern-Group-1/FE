@@ -27,7 +27,7 @@ function TableAppointmentByDoctor() {
     
  
     
-   const handleGetID = async(id,user, iddoctor) =>{ 
+   async function handleGetID (id,user) { 
      console.log(id);
      console.log(user);
      console.log(iddoctor);
@@ -49,14 +49,14 @@ function TableAppointmentByDoctor() {
     navigate('/manager/')
     navigate('/manager/appointment/')
     }
-     function handleGetBYID(){
+    async function handleGetBYID(idapp){
       console.log('hahaha');
-    //   console.log('id app');
-    //   console.log(idapp);
-    // await handleDeleteStatus(idapp)
-    // toast.success("Delete Successful!");
-    // navigate('/manager/')
-    // navigate('/manager/appointment/')
+      console.log('id app');
+      console.log(idapp);
+    await handleDeleteStatus(idapp)
+    toast.success("Delete Successful!");
+    navigate('/manager/')
+    navigate('/manager/appointment/')
     }
     async function  handleCancelID(id,user, iddoctor){
       const da = await handleGetDoctorById(iddoctor)
@@ -126,22 +126,29 @@ function TableAppointmentByDoctor() {
   justifyContent={'space-around'}
   
   >
-   <Button className='btn btn-success'disabled={api.status ==0? false : true}  onClick={e=>handleGetID( api._id,api.user._id,iddoctor)}>  Approve</Button>
-        <Button className='btn btn-danger' disabled={api.status ==1? false : true} onClick={e=>handleCancelID( api._id,api.user._id,iddoctor)}>Cancel</Button>
-        <Button className='btn btn-danger' disabled={api.status ==1? false : true} onClick={(e)=>handleGetBYID()}> Delete </Button>
+   <Button className='btn btn-success'disabled={api.status ==0? false : true} 
+    onClick={e=>handleGetID( api._id,api.user._id)}>  Approve</Button>
+        <Button className='btn btn-danger'
+         disabled={api.status ==1? false : true} 
+         onClick={e=>handleCancelID( api._id,api.user._id,iddoctor)}
+         >Cancel</Button>
+        <Button className='btn btn-danger' 
+        disabled={api.status ==1? true : false} 
+        onClick={(e)=>handleGetBYID(api._id)}
+        > Delete </Button>
   </Box>
     
   </> : <>
-  <Box
-  display={'flex'}
-  justifyContent={'space-around'}
-  
-  >
-    <Button className='btn btn-danger' > 
-    Delete
-  </Button>
- 
-  </Box>
+  <Button className='btn btn-success'disabled={api.status ==0? false : true} 
+    onClick={e=>handleGetID( api._id,api.user._id)}>  Approve</Button>
+        <Button className='btn btn-danger'
+         disabled={api.status ==1? false : true} 
+         onClick={e=>handleCancelID( api._id,api.user._id,iddoctor)}
+         >Cancel</Button>
+        <Button className='btn btn-danger' 
+        disabled={api.status ==1? false : true} 
+        onClick={(e)=>handleGetBYID(api._id)}
+        > Delete </Button>
   </> }
  
   </td>
