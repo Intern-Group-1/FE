@@ -61,9 +61,6 @@ function UpdateSpeciality(props) {
     const finalRef = React.useRef()
     const [open, setOpen] = useState('');
     const id = props.speciality;
-  
-  
-
     const [Api, setApi] = useState([]);
     const [speciality, setSpeciality] = useState([]);
     useEffect(() => {
@@ -99,8 +96,9 @@ async function editSpeciality(idspec) {
             setOpen(onClose)
             setSave('Save')
             toast.success("Successful!");
-            window.location.reload();
-            //navigate('/admin/user')
+            
+            navigate('/admin/')
+            navigate('/admin/speciality')
         } catch (error) {
             toast.error("Failed!");
             console.log(error);
