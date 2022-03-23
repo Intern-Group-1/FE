@@ -85,7 +85,7 @@ async function editSpeciality(idspec) {
         console.log(fullname);
         console.log(avt);
         da_ta.append("name", fullname)
-        da_ta.append("avatar", avt)    
+        da_ta.append("file", avt)    
         try {
             console.log('id xóa là');
             console.log(id);

@@ -1,4 +1,4 @@
-import { Box, Flex,Center } from '@chakra-ui/react'
+import { Box, Flex,Center,Text,Spinner } from '@chakra-ui/react'
 import React,{lazy, Suspense, useEffect,useState} from 'react';
 import ApiCaller from '../utils/apiCaller';
 import { Button } from 'react-bootstrap-v5'
@@ -13,13 +13,14 @@ import { ToastContainer, toast } from 'react-toastify';
 function TableAppointment() {
   const navigate = useNavigate()
     const [Api, setApi] = useState([]);
- 
+    const [loading,setLoading] =useState(false)
     useEffect(()=>{
         ApiCaller('get-all-appointment', 'GET')
       .then ( async res => {
         console.log("Data email")
         console.log(res);
           setApi(res.data.data)
+          setLoading(true)
       })
     },[])
     const [sp, setSp] = useState([]);
@@ -71,6 +72,7 @@ function TableAppointment() {
       navigate('/admin/')
       navigate('/admin/appointment/')
     }
+    let i=1;
     return (
       <>    
       <Box  ml={'340px'}>
@@ -89,6 +91,7 @@ function TableAppointment() {
           }} >
     <thead>
       <tr >       
+      <th >#</th>   
         <th width='120px'>Branch</th>    
         <th width='130px'>Name Customer</th>
         {/* <th width='100px' >Address Customer</th> */}
@@ -105,9 +108,11 @@ function TableAppointment() {
       </tr>
     </thead>
     <tbody>
-     {Api.map(api => (
+     {loading ? Api.map(api => (
       <>
           <tr>
+          <th  scope="row">{(api._id!=null) ? i++: <></> 
+            }</th> 
     <td >{api.branch!=null? <>{api.branch.name}</>:<>NULL</>}</td>
     <td >{api.user?<>{api.user.full_name}</>:<b>NULL</b>}</td>
     {/* <td>{api.user?<>{api.user.address}</>:<b>NULL</b>}</td> */}
@@ -129,11 +134,21 @@ function TableAppointment() {
     display={'flex'}
     justifyContent={'space-around'}
     >
-      <>    
+      <Box>
         <Button className='btn btn-success'disabled={api.status ==0? false : true}  onClick={e=>handleGetID( api._id,api.user._id,api.doctor._id)}>  Approve</Button>
-        <Button className='btn btn-danger' disabled={api.status ==1? false : true} onClick={e=>handleCancelID( api._id,api.user._id,api.doctor._id)}>Cancel</Button>
-        <Button className='btn btn-danger' disabled={api.status ==1? false : true} onClick={e=>handleGetBYID(api._id)}> Delete </Button>
-    </>
+         
+        </Box>
+        <Box ml={'10px'} >
+        <Button className='btn btn-secondary' disabled={api.status ==1? false : true} onClick={e=>handleCancelID( api._id,api.user._id,api.doctor._id)}>Cancel</Button>
+         
+        </Box>
+        <Box ml={'10px'}>
+        <Button className='btn btn-danger' disabled={api.status ==1? true : false} onClick={e=>handleGetBYID(api._id)}> Delete </Button>
+         
+        </Box>
+    
+    
+
     </Box>
       
     {/* </> : <>
@@ -153,7 +168,17 @@ function TableAppointment() {
     </td>       
           </tr>
       </>   
-     ))}
+     )):<>
+     <Box  mt='200px' height={'500px'} pl={'500px'}>
+            
+            <Spinner
+      
+          thickness='4px'
+          speed='0.65s'
+          emptyColor='gray.200'
+          color='blue.500'
+          size='xl'
+        /> <Text  color={'blue.500'}>Loading...</Text>  </Box></>}
     </tbody>
   </table>
           </Box>

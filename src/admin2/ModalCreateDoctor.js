@@ -89,7 +89,7 @@ import { handleCreateDoctor } from '../services/admin';
       da_ta.append("phone_number", phone)
       da_ta.append("address", address)
       da_ta.append("gender", gender)
-      da_ta.append("avatar", avt)
+      da_ta.append("file", avt)
       da_ta.append("age", age)
 
       //da_ta.append("account", account)

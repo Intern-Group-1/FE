@@ -75,26 +75,26 @@ function Table() {
      
       <td>{(api.gender) = 'true' ? <p>Male</p> : <p>Female</p>}</td>
       <td>
-        <tr>
-            <td   style={{
-                  paddingRight: '20px'
-            }}>
-                {/* <Button className='btn btn-info'>  */}
-                <UpdateDoctor doctor={api._id}/>
-                {/* </Button> */}
-        
-            </td>
-            <td>
-              
-                <DeleteDoctor doctor={api._id}/>
-              
-            </td>
-            <td paddingLeft={'20px'}>
-            <Button className='btn btn-warning'> 
-                <ViewShift />
-              </Button>
-            </td>
-        </tr>     
+      
+                      <Box
+                        d={'flex'}
+                      >
+                        <Box>
+                        <UpdateDoctor doctor={api._id}/>
+                        </Box>
+                        <Box
+                          ml={'20px'}
+                        >
+                          <DeleteDoctor doctor={api._id}/>
+                        </Box>
+                        <Box
+                          ml={'20px'}
+                        >
+                           <ViewShift  doctor={api._id}/>
+                        </Box>
+                      </Box>
+                    
+             
       </td>
     
     </tr>
