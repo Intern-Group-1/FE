@@ -31,6 +31,7 @@ import gif from '../assets/image/heart.gif'
 import { ArrowBackIcon } from '@chakra-ui/icons';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { handleGetDoctorId } from '../services/doctor';
 // import Session from 'react-session-api'
 
 function SimpleCard() {
@@ -52,9 +53,13 @@ function SimpleCard() {
       const data = await handleLoginAPI(username, password)
         localStorage.setItem('token', data.data.data.tokens[0].token)
         localStorage.setItem('user', data.data.data._id)
+        localStorage.setItem('emailAccount', data.data.data.email)
         localStorage.setItem('role',data.data.data.role)
-      var loggedInUser = localStorage.getItem('token')
-      console.log('User token'+loggedInUser)
+       const tokenAccount= localStorage.getItem('token')
+      
+      var loggedInUser = localStorage.getItem('emailAccount')
+     
+      console.log(data)
       let role_object = localStorage.getItem('role')
       if (loggedInUser !=null && role_object=='customer'  ) {
         toast.success("Login success!");
@@ -69,6 +74,8 @@ function SimpleCard() {
       }
       else {
         toast.success("Login success!");
+        const getIDdoctor = await handleGetDoctorId()   
+        localStorage.setItem('idDoctor',getIDdoctor.data.data[0]._id)
         navigate('/manager')
         console.log(localStorage.getItem('role'))
       }

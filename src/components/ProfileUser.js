@@ -14,7 +14,10 @@ import {
     Text,
     Image,
     Button,
+    styled,
+    background,
     Avatar,
+    Spinner
   } from '@chakra-ui/react';
   import { ToastContainer, toast } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
@@ -27,6 +30,7 @@ function ProfileUser(){
    const [address, setAddress] = useState('')
    const [phone, setPhone] = useState('')
    const [Iduser, setIdUser] = useState('')
+   const [loading,setLoading] =useState(false)
    const [appointment, setAppointment] = useState([])
    const byID = async ()=>{ 
     const data= await handleGetUserId()
@@ -53,6 +57,9 @@ const loggedInUser = localStorage.getItem('token')
       
         await byID()  
         const app = await handleGetAppointment(Iduser)
+        if (app){
+            setLoading(true)
+        }
         console.log('apppp');
         console.log(app);
         setAppointment(app.data.data)
@@ -143,7 +150,7 @@ const loggedInUser = localStorage.getItem('token')
                     <ToastContainer />
             </Box> 
         </Box>
-        
+      
         <Box className='schedule' 
             w={'90%'} 
             minHeight='fit-content' 
@@ -154,6 +161,7 @@ const loggedInUser = localStorage.getItem('token')
             pb='40px'
             position={'relative'}
             >
+
             <Text
             position={'absolute'}
             top={'5px'}
@@ -163,42 +171,69 @@ const loggedInUser = localStorage.getItem('token')
             color={'#6e6767'}
             >Your appointment</Text>
             
-            {appointment.map(app=>(       
+            {loading ?appointment.map(app=>(       
             <Box 
-            border={'2px #cccc dashed'}
+            style={
+                app.status==0?{ border:'2px #cccc dashed'}
+            :app.status==1?{border:'2px green dashed'}:{border:'2px red dashed'}
+        }
+           
             boxShadow={'2px 2px #cccc'}
             className='tag-schedule'
             position={'relative'}
             >
                 <Box 
                 className='infodoctor'
-                borderRight={'2px #cccc dashed'}
+                style={
+                    app.status==0?{ borderRight:'2px #cccc dashed'}
+                :app.status==1?{borderRight:'2px green dashed'}:{borderRight:'2px red dashed'}
+            }
                 >
                     <Avatar
                     size={'xl'}
                     src={app.doctor.avatar}
                     />
                     <Box
-                    visibility={'hidden'}
-                    _hover={{
-                        visibility: 'visible'
-                    }}
+
+                      visibility={  app.status==0? 'visible'
+                            :'hidden'}
+                     // hidden='true'
+                    
+                    // _hover={
+                    //     (app.status==0)? {visibility:'visible'}
+                    // :{visibility:'visible'}}
+                    // _hover={
+                    //     app.status==0? { display:'block'}
+                    //      :{display:'none'}
+                    // }
                     position={'absolute'}
                     bottom={'7px'}
                     left={'20px'}
                     >
                         <ChangeAppointment/>
                     </Box>
+
                 </Box>
-                <Box className='info-schdule'>
+                <Box className='info-schdule'  >
                     <Text>Time: {app.time}</Text>
                     <Text>Date: {moment(app.date).format('L')}</Text>
+
                     {/* <Text>Time: {api.branch}</Text> */}
                     <Text>{app.doctor.full_name}</Text>
-                    <Text>Speciality</Text>
+                    <Text>{app.branch.address}</Text>
                 </Box>
             </Box>
-            ))} 
+            )):<><Box  mt='200px' height={'500px'} pl={'700px'}>
+             
+            <Spinner
+
+          thickness='4px'
+          speed='0.65s'
+          emptyColor='gray.200'
+          color='blue.500'
+          size='xl'
+        /> <Text  color={'blue.500'}>Loading...</Text>  </Box></>} 
+
         </Box>
         
        
