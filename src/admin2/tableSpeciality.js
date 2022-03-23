@@ -41,7 +41,7 @@ function TableSpeciality() {
           <Right />
           <Box
             style={{
-              marginLeft: '1308px',
+              marginLeft: '1095px',
               marginTop: '15px',
               marginBottom: '15px'
             }}
@@ -53,7 +53,7 @@ function TableSpeciality() {
           <table className="table table-hover" style={{
             width: '800px',
             height: '600px',
-            marginLeft: '320px'
+            marginLeft: '450px'
           }} >
             <thead>
               <tr>

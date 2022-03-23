@@ -219,7 +219,15 @@ const handleGetAppointment = async (id)=>{
         console.log(error)
     }
 }
-
+const handleGetAppointmentbyIDDoctor = async (id)=>{
+    try {
+        
+        
+        return await axios.get(`https://be-doctor-care-v3.herokuapp.com/api/get-appointment-by-doctor/${id}`)       
+    } catch (error) {
+        console.log(error)
+    }
+}
 export {
     //user
    handleDeleteUser,
@@ -243,6 +251,6 @@ export {
     handleGetAppointment,
     handleDeleteStatus,
     handleUpateStatus,
-
+    handleGetAppointmentbyIDDoctor
 
 }
