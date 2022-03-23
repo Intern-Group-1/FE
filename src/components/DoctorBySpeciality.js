@@ -26,12 +26,13 @@ function DoctorBySpeciality() {
   const navigate = useNavigate()
   console.log(name);
   const [Api, setApi] = useState([]);
-
+  const [loading, setLoading] = useState(false)
   useEffect(() => {
     ApiCaller('get-all-doctor', 'GET')
       .then(async res => {
         console.log(res);
         setApi(res.data.data)
+        setLoading(true)
       })
   }, [])
   const loggedInUser = localStorage.getItem('token');
@@ -98,7 +99,7 @@ function DoctorBySpeciality() {
 
 
 
-            {Api.map(api => ( 
+            {loading?Api.map(api => ( 
                api.speciality.name==name ?
               
               <>
@@ -197,7 +198,17 @@ function DoctorBySpeciality() {
                 
               </> :<></>
             ) 
-            )  }
+            )  :<>
+            <Box mt='200px' height={'500px'} pl={'720px'}>
+
+<Spinner
+
+  thickness='4px'
+  speed='0.65s'
+  emptyColor='gray.200'
+  color='blue.500'
+  size='xl'
+/> <Text color={'blue.500'}>Loading...</Text>  </Box></>}
 
           </>
         </Center>

@@ -63,7 +63,7 @@ function SimpleCard() {
       let role_object = localStorage.getItem('role')
       if (loggedInUser !=null && role_object=='customer'  ) {
         toast.success("Login success!");
-        navigate('/home')
+        navigate('/profile')
         console.log(localStorage.getItem('role'))
       }
       else{

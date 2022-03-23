@@ -5,6 +5,7 @@ import InitialFocus from './Modal'
 import Navbar from './Navbar'
 import Footer from './Footer'
 import moment from 'moment'
+import { FaCheckCircle,FaTimesCircle,FaHistory,FaSplotch,FaPaperPlane } from "react-icons/fa";
 import ChangeAppointment from './ModalChangeAppointment'
 import { handleGetAppointment } from '../services/Appointment';
 import {
@@ -22,8 +23,12 @@ import {
   import { ToastContainer, toast } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
   import { handleCreateUser, handleGetUserId } from '../services/User';
+import { useNavigate } from 'react-router-dom'
+  
+
 toast.configure()
 function ProfileUser(){
+    const navigate = useNavigate()
     const [full_name, setName] = useState('')
    const [avatar, setAvt] = useState('')
    const [gender, setGender] = useState()
@@ -67,7 +72,9 @@ const loggedInUser = localStorage.getItem('token')
          
        
       },[Iduser])
-      
+    function  navigateToAllDoctor(){
+        navigate('/doctor')
+    }
   return <>
     
     <Navbar />
@@ -100,8 +107,20 @@ const loggedInUser = localStorage.getItem('token')
                 Your profile
             </Text>
             <Box className='user-avt' w={'450px'}>
-            <Box width='250px' height='250px' borderRadius='50%'  border='1px' boxShadow='2xl' m='10' borderColor='blue.300'>
+            <Box d='flex'   flexDirection='column-reverse' width='250px' height='250px' borderRadius='50%'  border='1px' boxShadow='2xl' m='10' borderColor='blue.300'>
             <Image src={avatar} width='250px' height='250px' borderRadius='50%' />
+            <Button  
+           
+           position={'absolute'}
+           
+           fontSize={'23px'}
+           fontWeight={'bold'}
+           color={'blue.600'}
+           mb='-40px'
+            ml='50px'
+           onClick={navigateToAllDoctor}
+           >
+             <FaPaperPlane color='#de590f'/> Book Now</Button>
                 </Box> 
                 <input  type='file' className='custom-file-input' /> 
             </Box>
@@ -109,6 +128,7 @@ const loggedInUser = localStorage.getItem('token')
        
             <Box d='flex' justifyContent='center' alignItems='flex-start' w='400' h='360' flexDirection='column' >
                 <Box maxH='300' className='box'>
+             
                     <Text maxH='100' fontWeight={'bold'}>
                         Full Name
                         <Input type='text'  
@@ -161,27 +181,56 @@ const loggedInUser = localStorage.getItem('token')
             pb='40px'
             position={'relative'}
             >
-
-            <Text
+                {appointment.length!=0? <Text
             position={'absolute'}
             top={'5px'}
             left={'50px'}
             fontSize={'23px'}
             fontWeight={'bold'}
             color={'#6e6767'}
-            >Your appointment</Text>
+            >Your appointment</Text> 
+            :<><Box>
+             <Text
+            position={'absolute'}
+            top={'5px'}
+            left={'50px'}
+            fontSize={'23px'}
+            fontWeight={'bold'}
+            color={'#6e6767'}
+            >No Appointment</Text> 
+            <Button  
+            hidden={loading?false:true} 
+            position={'absolute'}
+            top={'5px'}
+            left={'50px'}
+            fontSize={'23px'}
+            fontWeight={'bold'}
+            color={'blue.600'}
+            ml='190px'
+            onClick={navigateToAllDoctor}
+            >
+               Please Make An Appointment</Button> 
+              
+               </Box>
+               </>  }
+          
             
-            {loading ?appointment.map(app=>(       
+            {loading ?appointment.map(app=>(  
+                <>
+            
             <Box 
+            h={'160px'}
             style={
                 app.status==0?{ border:'2px #cccc dashed'}
             :app.status==1?{border:'2px green dashed'}:{border:'2px red dashed'}
-        }
+            
+            }
            
             boxShadow={'2px 2px #cccc'}
             className='tag-schedule'
             position={'relative'}
             >
+                
                 <Box 
                 className='infodoctor'
                 style={
@@ -189,22 +238,22 @@ const loggedInUser = localStorage.getItem('token')
                 :app.status==1?{borderRight:'2px green dashed'}:{borderRight:'2px red dashed'}
             }
                 >
+                    <Text fontWeight={'bold'} style={
+                app.status==0?{ color:'gray'}
+            :app.status==1?{color:'Green'}:{color:'red'}
+         }>{ app.status==0?<Box display={'flex'} flexDirection='row'><FaHistory size={'25px'}/>Pending</Box>:app.status==1?
+         <Box display={'flex'} flexDirection='row'><FaCheckCircle size={'25px'}/>Approved</Box>
+         :
+         <Box display={'flex'} flexDirection='row'><FaTimesCircle size={'25px'}/>Cancel</Box>}</Text>
                     <Avatar
                     size={'xl'}
                     src={app.doctor.avatar}
                     />
+                    
                     <Box
                       visibility={  app.status==0? 'visible'
                             :'hidden'}
-                     // hidden='true'
-                    
-                    // _hover={
-                    //     (app.status==0)? {visibility:'visible'}
-                    // :{visibility:'visible'}}
-                    // _hover={
-                    //     app.status==0? { display:'block'}
-                    //      :{display:'none'}
-                    // }
+                   
                     position={'absolute'}
                     bottom={'7px'}
                     left={'20px'}
@@ -213,16 +262,17 @@ const loggedInUser = localStorage.getItem('token')
                     </Box>
 
                 </Box>
+                
                 <Box className='info-schdule'  >
                     <Text>Time: {app.time}</Text>
                     <Text>Date: {moment(app.date).format('L')}</Text>
 
                     {/* <Text>Time: {api.branch}</Text> */}
                     <Text>{app.doctor.full_name}</Text>
-                    <Text>{app.branch.address}</Text>
+                    {/* <Text>{app.branch.address}</Text> */}
                 </Box>
             </Box>
-            )):<><Box  mt='200px' height={'500px'} pl={'700px'}>
+            </>  )):<><Box  mt='200px' height={'500px'} pl={'700px'}>
              
             <Spinner
 

@@ -8,8 +8,9 @@ import { PhoneIcon, AddIcon, CheckIcon, DeleteIcon, EditIcon } from '@chakra-ui/
 import { handleDeleteUser } from '../services/User';
 import DeleteUser from './ModalConfirm';
 import UpdateUser from './ModalUpdateUser';
-
+import { useNavigate } from 'react-router-dom'
 function TableUser() {
+  const navigate = useNavigate()
   const [Api, setApi] = useState([]);
   const [loading, setLoading] = useState(false)
   useEffect(() => {
@@ -23,7 +24,9 @@ function TableUser() {
   //console.log('haha1');
   let i = 1;
  
-  
+  function getButtonCreate(){
+    navigate('/admin/account')
+  }
   return (
     <>
 
@@ -38,7 +41,7 @@ function TableUser() {
               marginBottom: '15px'
             }}
           >
-            <Button className='btn btn-success' href='/admin/account'><AddIcon mr='12px' />Add User</Button>
+            <Button className='btn btn-success' onClick={getButtonCreate}><AddIcon mr='12px' />Add User</Button>
           </Box>
           <table className="table table-hover" style={{
             width: '1100px',
