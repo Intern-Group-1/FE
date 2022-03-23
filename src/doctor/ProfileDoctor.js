@@ -1,5 +1,4 @@
 import React from "react";
-import SlideBar from './SlideBar'
 import {
     Flex,
     Box,
@@ -10,12 +9,13 @@ import {
   } from '@chakra-ui/react';
   import { ToastContainer, toast } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
-  import ChangeProfile from './ModalChangeProfile'
+  import ChangeProfile from './ModalChangeProfileDoctor'
+import Right from "../admin2/RightTest";
 
 export default function ProfileDoctor(){
     return(
         <>
-            <SlideBar/>
+            <Right/>
             <Flex 
             flexDirection={'column'}
             alignItems={'center'}
