@@ -69,7 +69,7 @@ import {
   
   
     return (
-      <>  <Btn onClick={onOpen}   className='btn btn-danger'><DeleteIcon   /> </Btn> 
+      <>  <Btn onClick={onOpen} className='btn btn-danger'><DeleteIcon   /> </Btn> 
        
         <Modal
           initialFocusRef={initialRef}

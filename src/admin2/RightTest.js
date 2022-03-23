@@ -3,6 +3,7 @@ import logo from '../assets/image/logo-doctor-care.png'
 import {FaUserMd, FaHospital, FaUserAlt, FaCalendarAlt,FaUsers,FaStream} from 'react-icons/fa'
 import {MdLogout} from 'react-icons/md'
 import { useNavigate } from 'react-router-dom'
+import {RiFileList3Line} from 'react-icons/ri'
 import {
   IconButton,
   Box,
@@ -47,7 +48,7 @@ const LinkItems: Array<LinkItemProps> = [
 
 const LinkItemsDoctor: Array<LinkItemProps> = [
  
- 
+  
   { name: 'Profile', icon: FaUserMd, link: '/manager/profile' }, 
  
   { name: 'Appointment', icon: FaCalendarAlt, link: '/manager/appointment' },

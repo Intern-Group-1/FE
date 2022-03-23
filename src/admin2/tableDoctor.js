@@ -40,11 +40,11 @@ function Table() {
         style={{
           marginTop:'15px',
           marginBottom:'15px',
-          marginLeft:'870px'
+          marginLeft:'1022px'
         }} 
         > <Button   className='btn btn-success'  href='/admin/account'><AddIcon mr='12px'/>Add Doctor</Button></Box>
         <table className="table table-hover" style={{
-            width:'1150px',
+            width:'1210px',
             height:'600px'
         }} >
   <thead>
@@ -54,10 +54,10 @@ function Table() {
       <th scope="col">Name</th>
       <th scope="col">Specialy</th>
       <th scope="col">Phone</th>
-      <th scope="col">Address</th>
+      <th width={'300px'} scope="col">Address</th>
       <th scope="col">Age</th>
       <th scope="col">Gender</th>
-      <th scope="col">Handle</th>
+      <th width={'200px'} scope="col">Handle</th>
     </tr>
   </thead>
   <tbody>
@@ -75,26 +75,19 @@ function Table() {
      
       <td>{(api.gender) = 'true' ? <p>Male</p> : <p>Female</p>}</td>
       <td>
-        <tr>
-            <td   style={{
-                  paddingRight: '20px'
-            }}>
-                {/* <Button className='btn btn-info'>  */}
-                <UpdateDoctor doctor={api._id}/>
-                {/* </Button> */}
-        
-            </td>
-            <td>
-              
-                <DeleteDoctor doctor={api._id}/>
-              
-            </td>
-            <td paddingLeft={'20px'}>
-            <Button className='btn btn-warning'> 
-                <ViewShift />
-              </Button>
-            </td>
-        </tr>     
+          <Box
+          d={'flex'}
+          >
+            <Box>
+              <UpdateDoctor doctor={api._id}/> 
+            </Box>
+            <Box ml={'10px'}>
+              <DeleteDoctor doctor={api._id}/>
+            </Box>
+            <Box ml={'10px'} className='btn btn-warning'> 
+              <ViewShift />
+            </Box>           
+          </Box> 
       </td>
     
     </tr>

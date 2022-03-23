@@ -28,7 +28,7 @@ import '../style/Booking.css'
 import '../responsive/Appointment.css'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-  function ChangeAppointment() {
+  function MakeSchedule() {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [open,setOpen]=useState('');
     const initialRef = React.useRef()
@@ -269,4 +269,4 @@ import 'react-toastify/dist/ReactToastify.css';
   
     )
   }
-  export default ChangeAppointment;
+  export default MakeSchedule;

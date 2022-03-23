@@ -19,8 +19,6 @@ function TableSpeciality() {
         setLoading(true)
     })
   },[])
-   
-    //console.log('haha1');
     let i=1;
     function  deleteUser(id){   
         
@@ -41,27 +39,25 @@ function TableSpeciality() {
         <Right/>
         <Box
         style={{
-          marginLeft:'1308px',
+          marginLeft:'1146px',
           marginTop:'15px',
           marginBottom:'15px'
         }} 
         >
-          <Button   className='btn btn-success'>
+          <Button className='btn btn-success'>
             <AddSpeciality/>
           </Button>
         </Box>
         <table className="table table-hover" style={{
-            width:'1100px',
+            width:'900px',
             height:'600px',
-            marginLeft:'320px'
+            marginLeft:'400px'
         }} >
             <thead>
               <tr>
-
                 <th scope="col">#</th> 
-                <th scope='col'>Avatar</th>
-                <th scope="col">Name</th>
-               
+                <th width={'250px'} scope='col'>Avatar</th>
+                <th width={'300px'} scope="col">Name</th>
                 <th scope="col">Handle</th>
               </tr>
             </thead>
@@ -78,26 +74,25 @@ function TableSpeciality() {
       <td>{api.name}</td>
 
                  
-         <tr>
-            <td   style={{
-                paddingRight: '20px'
-            }}>
+         
+            <td   
+            width={'200px'}
+            >
+                <Box
+                d={'flex'}
+                >
+                  <Box>
+                    <UpdateSpeciality  speciality={api._id}/>        
+                  </Box>
+                  <Box
+                  ml={'20px'}
+                  >
+                    <DeleteSpeciality  speciality={api._id}/>
+                  </Box>   
+                </Box>          
+            </td>
             
-                {/* <UpdateUser user={api._id}/> */}
-                <UpdateSpeciality  speciality={api._id}/>
-              
-        
-            </td>
-           
-            <td>
-              
-                <DeleteSpeciality  speciality={api._id}/> 
-             
-            </td>
-            </tr>
-        </tr>     
-             
-              
+        </tr>                
               </>
             
                 ))

@@ -49,21 +49,16 @@ function handleGetID(id){
            
         }} >
   <thead>
-    <tr >
-      
+    <tr > 
       <th width='120px'>Branch</th>    
       <th width='130px'>Name Customer</th>
-      {/* <th width='100px' >Address Customer</th> */}
       <th width='130px'>Phone Customer</th>
       <th width='130px'>Name Doctor</th>
-      {/* <th >Address Doctor </th>
-      <th >Phone Doctor</th> */}
       <th width='130px'>Speciality</th>
-     
       <th width='50px' >Date</th>
       <th width='120px'>Time</th>
+      <th style={{textAlign:'center'}} >Handle</th>
       <th >Status</th>
-      <th >Handle</th>
     </tr>
   </thead>
  

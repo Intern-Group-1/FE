@@ -32,6 +32,7 @@ import TableSpeciality from "./admin2/tableSpeciality";
 import ManagerAppointment from "./Doctor/ManagerAppointment";
 import TableAppointmentByDoctor from "./Doctor/AppointmentbyDoctor";
 import ProfileDoctor from "./Doctor/ProfileDoctor";
+import HistoryWork from "./Doctor/HistoryWork"
 
 function App() {
   return (
@@ -70,6 +71,7 @@ function App() {
         <Route path='/manager' element={<PrivateRoute><ManagerAppointment/></PrivateRoute>} />
         <Route path='/manager/appointment' element={<PrivateRoute><TableAppointmentByDoctor/></PrivateRoute>} />
         <Route path='/manager/profile' element={<PrivateRoute><ProfileDoctor/></PrivateRoute>} />
+        <Route path='/manager/history' element={<PrivateRoute><HistoryWork/></PrivateRoute>} />
 
         <Route path="/logout" element={<PrivateRoute> <Logoutadmin /></PrivateRoute>}> 
        

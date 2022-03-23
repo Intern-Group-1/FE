@@ -1,11 +1,8 @@
 import React,{useState,useEffect} from 'react';
 import '../style/input-file.css'
 import '../responsive/profile/Profile.css'
-import InitialFocus from './Modal'
-import Navbar from './Navbar'
-import Footer from './Footer'
 import moment from 'moment'
-import ChangeAppointment from './ModalChangeAppointment'
+import MakeSchedule from './MakeSchedule'
 import { handleGetAppointment } from '../services/Appointment';
 import {
     Flex,
@@ -19,8 +16,9 @@ import {
   import { ToastContainer, toast } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
   import { handleCreateUser, handleGetUserId } from '../services/User';
+import Right from '../admin2/RightTest';
 toast.configure()
-function ProfileUser(){
+function HistoryWork(){
     const [full_name, setName] = useState('')
    const [avatar, setAvt] = useState('')
    const [gender, setGender] = useState()
@@ -61,88 +59,13 @@ const loggedInUser = localStorage.getItem('token')
        
       },[Iduser])
       
-  return <>
-    
-    <Navbar />
-   
+  return (<>
+    <Right />
     <Flex 
     flexDirection={'column'}
     alignItems={'center'}
     >
-        <Box className='container-profile'  
-        w='90%' 
-        h='400px' 
-        m='5%' 
-        boxShadow='2xl' 
-        d='flex' 
-        rounded='md' 
-        bg='white'  
-        justifyContent='center'
-        alignItems={'center'}
-        alignContent='center'
-        position={'relative'}
-        >
-            <Text
-            position={'absolute'}
-            top={'25px'}
-            left={'50px'}
-            fontSize={'23px'}
-            fontWeight={'bold'}
-            color={'#6e6767'}
-            >
-                Your profile
-            </Text>
-            <Box className='user-avt' w={'450px'}>
-            <Box width='250px' height='250px' borderRadius='50%'  border='1px' boxShadow='2xl' m='10' borderColor='blue.300'>
-            <Image src={avatar} width='250px' height='250px' borderRadius='50%' />
-                </Box> 
-                <input  type='file' className='custom-file-input' /> 
-            </Box>
-        
        
-            <Box d='flex' justifyContent='center' alignItems='flex-start' w='400' h='360' flexDirection='column' >
-                <Box maxH='300' className='box'>
-                    <Text maxH='100' fontWeight={'bold'}>
-                        Full Name
-                        <Input type='text'  
-                        value={full_name} 
-                        className='text-inf'
-                        border={'none'}></Input>
-                    </Text>
-                    <Text  maxH='100' fontWeight={'bold'}>
-                    Address
-                        <Input type='text' 
-                        value={address} 
-                        className='text-inf'
-                        border={'none'}></Input>
-                    </Text>
-                    <Text maxH='100' fontWeight={'bold'}>
-                        Phone
-                        <Input type='text' 
-                        value={phone}
-                        className='text-inf'
-                        border={'none'}></Input>
-                    </Text>
-                    <Text fontWeight={'bold'}>
-                        Gender
-                        <Input type='text' 
-                         value={gender == true ? 'Male': 'Female'} 
-                        className='text-inf'
-                        border={'none'}></Input>
-                    </Text>
-                </Box>         
-                <Box 
-                    className='change-info'
-                    h={'45px'}
-                    w={'120px'}
-                    mt={'10px'}
-                    ml={'120px'}
-                    >
-                    <InitialFocus />
-                </Box>
-                    <ToastContainer />
-            </Box> 
-        </Box>
         
         <Box className='schedule' 
             w={'90%'} 
@@ -179,7 +102,7 @@ const loggedInUser = localStorage.getItem('token')
                     src={app.doctor.avatar}
                     />
                     <Box
-                    visibility={'hidden'}
+                    visibility={'visible'}
                     _hover={{
                         visibility: 'visible'
                     }}
@@ -187,7 +110,7 @@ const loggedInUser = localStorage.getItem('token')
                     bottom={'7px'}
                     left={'20px'}
                     >
-                        <ChangeAppointment/>
+                        <MakeSchedule/>
                     </Box>
                 </Box>
                 <Box className='info-schdule'>
@@ -203,8 +126,7 @@ const loggedInUser = localStorage.getItem('token')
         
        
     </Flex>
-  <Footer />
-  </>
+  </>)
 }
 
-export default ProfileUser;
+export default HistoryWork;

@@ -129,8 +129,6 @@ function UpdateBranch(props) {
             >
                 <EditIcon />
             </Button>
-            {/* <Btn onClick={(e)=>{onOpen(e);getByID(id)}} className='btn btn-info'><EditIcon /> </Btn>  */}
-
             <Modal
                 initialFocusRef={initialRef}
                 finalFocusRef={finalRef}
@@ -159,9 +157,6 @@ function UpdateBranch(props) {
                 <Input id ='file' type={'file'}  onChange={handleAvtInput}></Input>
               </FormControl>
                     </ModalBody>
-                  
-              
-  
               
        
                     <ModalFooter>

@@ -42,7 +42,7 @@ function TableUser() {
         <Right/>
         <Box
         style={{
-          marginLeft:'1308px',
+          marginLeft:'1300px',
           marginTop:'15px',
           marginBottom:'15px'
         }} 
@@ -84,20 +84,14 @@ function TableUser() {
            (api.account!=null) ?<a>{api.account.email}</a> : <a>null</a>
        }</td> 
       <td>
-        <tr>
-            <td   style={{
-                paddingRight: '20px'
-            }}>
-               <UpdateUser user={api._id}/>
-        
-            </td>
-           
-            <td>
-            
-                <DeleteUser  user={api._id}/> 
-              
-            </td>
-        </tr>         
+        <Box d={'flex'} w={'150px'} >
+            <Box>
+              <UpdateUser user={api._id}/>
+            </Box>
+            <Box ml={'10px'} >
+              <DeleteUser  user={api._id}/> 
+            </Box>
+        </Box>
       </td>
               </tr>
               

@@ -67,15 +67,22 @@ function ViewShift(){
     alignItems={'center'}
     >
         <Box className='schedule' 
-        w={'90%'} 
-        h={'410px'} 
+        w={'95%'} 
+        h={'fit-content'} 
         bg='white'  
         boxShadow='2xl' 
         rounded='md' 
         marginBottom={'30px'}
+        pb={'50px'}
         >
-           <Box className='tag-schedule'>
+           <Box 
+           className='tag-schedule'
+           border={'2px #8ec2ed dashed'}
+           boxShadow={'2px 2px #b4d5f0'}
+           >
+
                 <Box className='infodoctor'
+                borderRight={'#b4d5f0 dashed'}
                 position={'relative'}
                 >
                     <Text>Dr Gutman</Text>
@@ -87,8 +94,12 @@ function ViewShift(){
                     <Text>Address: Hoang Long, 14 Le Loi</Text>
                 </Box>
            </Box>
-           <Box className='tag-schedule'>
+           <Box className='tag-schedule'
+           border={'2px #8ec2ed dashed'}
+           boxShadow={'2px 2px #b4d5f0'}
+           >
                 <Box className='infodoctor'
+                borderRight={'#b4d5f0 dashed'}
                 position={'relative'}
                 >
                     <Text>Dr Kilgore</Text>
@@ -100,8 +111,12 @@ function ViewShift(){
                     <Text>Address: Kim Anh, 23 Tran Phu</Text>
                 </Box>
            </Box>
-           <Box className='tag-schedule'>
+           <Box className='tag-schedule'
+           border={'2px #8ec2ed dashed'}
+           boxShadow={'2px 2px #b4d5f0'}
+           >
                 <Box className='infodoctor'
+                borderRight={'#b4d5f0 dashed'}
                 position={'relative'}
                 >
                     <Text>Dr Thanh</Text>
@@ -114,8 +129,48 @@ function ViewShift(){
                     <Text>Address: 12 Le Loi</Text>
                 </Box>
            </Box>
-           <Box className='tag-schedule'>
+           <Box className='tag-schedule'
+           border={'2px #8ec2ed dashed'}
+           boxShadow={'2px 2px #b4d5f0'}
+           >
                 <Box className='infodoctor'
+                borderRight={'#b4d5f0 dashed'}
+                position={'relative'}
+                >
+                    <Text>Dr Thanh</Text>
+                    <Text>Cadiologry</Text>
+                </Box>
+                <Box className='info-schdule'>
+
+                    <Text>Time: 07:00-08:00</Text>
+                    <Text>Date: 16/03</Text>
+                    <Text>Address: 12 Le Loi</Text>
+                </Box>
+           </Box>
+           <Box className='tag-schedule'
+           border={'2px #8ec2ed dashed'}
+           boxShadow={'2px 2px #b4d5f0'}
+           >
+                <Box className='infodoctor'
+                borderRight={'#b4d5f0 dashed'}
+                position={'relative'}
+                >
+                    <Text>Dr Thanh</Text>
+                    <Text>Cadiologry</Text>
+                </Box>
+                <Box className='info-schdule'>
+
+                    <Text>Time: 07:00-08:00</Text>
+                    <Text>Date: 16/03</Text>
+                    <Text>Address: 12 Le Loi</Text>
+                </Box>
+           </Box>
+           <Box className='tag-schedule'
+           border={'2px #8ec2ed dashed'}
+           boxShadow={'2px 2px #b4d5f0'}
+           >
+                <Box className='infodoctor'
+                borderRight={'#b4d5f0 dashed'}
                 position={'relative'}
                 >
                     <Text>Dr Thanh</Text>
