@@ -12,6 +12,7 @@ import {
 } from '@chakra-ui/react';
 import React, { lazy, Suspense, useEffect, useState } from 'react';
 import ApiCaller from '../utils/apiCaller';
+import '../responsive/homepage/Alldoctor.css'
 import { Router, useNavigate } from 'react-router-dom'
 import { PhoneIcon, EmailIcon, RepeatClockIcon, InfoIcon } from '@chakra-ui/icons'
 import Navbar from "./Navbar";
@@ -69,6 +70,7 @@ function Alldoctor(props) {
 
         <Heading mt='100px' textAlign={'center'}>{header}</Heading>
         <Box
+        className='find-doctor'
           d={'flex'}
           w={'250px'}
           alignItems={'center'}
@@ -94,7 +96,7 @@ function Alldoctor(props) {
           d='flex'
           flexWrap={'wrap'}
           justifyContent='start'
-
+          className='wrapper-alldoctor'
         >
           <>
 
@@ -107,7 +109,6 @@ function Alldoctor(props) {
                 <Suspense >
 
                   <Box ml='20px'
-
                     maxW={'320px'}
                     h={'400px'}
                     w={'320px'}
@@ -214,7 +215,11 @@ function Alldoctor(props) {
 
         {/* </LazyLoad> */}
       </Box>
-      <Footer />
+      <Box
+      mt={'30px'}
+      >
+        <Footer/>
+      </Box>
 
     </>
   );

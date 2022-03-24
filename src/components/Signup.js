@@ -123,7 +123,7 @@ export const Signup = () => {
                   <TextField fontSize='20px' label="Email" id='email' name="email" type="email" />
                   <FormControl  >
                     <TextField fontSize='20px' label='Password' id="password" name="password" type={showPassword ? 'text' : 'password'} />
-                    <InputRightElement h={'120px'}>
+                    <InputRightElement h={'130px'}>
                       <Button
                         variant={'ghost'}
                         onClick={() =>
@@ -140,7 +140,7 @@ export const Signup = () => {
                     {/* <TextField label="Password" name="password" type="password" /> */}
 
                     <TextField fontSize='2  0px' label="Confirm Password" id="confirmPassword" name="confirmPassword" type={showPassword ? 'text' : 'password'} />
-                    <InputRightElement h={'120px'}>
+                    <InputRightElement h={'130px'} >
                       <Button
                         variant={'ghost'}
                         onClick={() =>

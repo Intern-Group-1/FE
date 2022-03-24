@@ -1,0 +1,43 @@
+@media (max-width: 740px){
+    .about-us{
+        height: 3550px !important;
+    }
+    .img-about{
+        margin-top: 40px;
+        min-height: 300px !important;
+    }
+    .text-about{
+        top: 120px !important;
+        left: 105px !important;
+        font-size: 40px !important;
+    }
+    .purpose{
+        height: 650px !important;
+    }
+    .img-purpose{
+        top: 52px !important;
+        left: 40px !important;
+    }
+    .wrapper-purpose{
+        top: 380px !important;
+        left: 20px !important;
+    }
+    .goal{
+        height: 630px !important;
+    }
+    .img-goal{
+        top: 330px !important;
+        left: 40px !important;
+    }
+    .wrapper-goal{
+        top: 52px !important;
+        left: 40px !important;
+    }
+    .members{
+        height: 1500px !important;
+    }
+    .wrapper-cardmember{
+        flex-direction: column;
+        margin-left: 20px;
+    }
+}

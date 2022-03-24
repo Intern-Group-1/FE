@@ -16,10 +16,14 @@
         align-items: center;
         width: 270px;
     }
+    .wrapper-info-doctor{
+        margin-top: -150px !important;
+    }
     .info-customer {
         max-width: 270px !important;
         border-left: none !important;
         padding-left: 0 !important;
+        padding-bottom: 50px !important;
     }
     .picker-comfirm {
         display: flex !important;
@@ -40,6 +44,9 @@
         width: 360px !important;
         grid-template-columns: auto auto auto !important;
         grid-template-rows: auto auto !important;
+    }
+    .select-clinic{
+        width: 340px;
     }
     .comfirm-appointment {
         width: 360px;
@@ -72,7 +79,7 @@
         grid-template-rows: 40px 40px 40px;
     }
     .name-doctor{
-        top: 313px;
+        top: 327px;
         left: 34px;
     }
     .name-customer{
@@ -80,7 +87,7 @@
         top: 109px;
     }
     .name-datetime{
-        top: 516px;
+        top: 548px;
         left: 34px;
     }
     .btn-confirm{

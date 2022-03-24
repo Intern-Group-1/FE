@@ -1,5 +1,5 @@
 import axios from "axios";
-import * as Config from '../constant/config'
+import * as Config from '../constant/Config'
 import {
   Text
 }

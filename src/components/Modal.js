@@ -20,8 +20,9 @@ import "react-widgets/styles.css";
 import Combobox from "react-widgets/Combobox";
 import { handleCreateUser, handleGetUserId, handleUpdateUser } from '../services/User';
 import { ToastContainer, toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom'
 function InitialFocus() {
-  
+  const navigate = useNavigate()
   const [fullname, setFullname] = useState('')
   const [address, setAddress] = useState('')
   const [phone, setPhone] = useState('')
@@ -75,10 +76,9 @@ function InitialFocus() {
         setId(id)
       }  
     
-      setOpen(onClose)
-      
-      toast.success("Successful!");
      
+    
+      
     } catch (error) {
       console.log(error)
       toast.error("Failed!");
@@ -105,9 +105,14 @@ const handleUpdate = async () =>{
         await setId(localStorage.getItem('Id_User'))
       }
       setOpen(onClose)
-      setSave('Save')
-      toast.success("Successful!");
+      setSave('Save') 
 
+      const pn=window.location.pathname;
+      const l=window.location.origin;
+        navigate(l)
+        navigate(pn)
+        toast.success("Successful!");
+     
 
     } catch (error) {
       console.log(error)
@@ -145,6 +150,10 @@ console.log(gender);
       <Button 
       onClick={onOpen}
       w={'100px'}
+      _hover={{
+        backgroundColor: 'blue.300',
+        color: 'white',
+    }}
       >Edit Profile</Button>
       <Modal
         initialFocusRef={initialRef}

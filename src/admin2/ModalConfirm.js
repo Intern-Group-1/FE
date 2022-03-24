@@ -14,6 +14,7 @@ import {
   Box,
   Image
 } from '@chakra-ui/react'
+import { Button  as Btn } from 'react-bootstrap-v5'
 import React, { lazy, Suspense, useEffect, useState } from 'react';
 import ApiCaller from '../utils/apiCaller';
 import '../style/input-file.css'
@@ -22,7 +23,7 @@ import { PhoneIcon, AddIcon, CheckIcon, DeleteIcon,EditIcon } from '@chakra-ui/i
 import '../style/button.css'
 import { handleDeleteUser } from '../services/admin';
 import { useNavigate } from 'react-router-dom'
-
+import { ToastContainer, toast } from 'react-toastify';
 
 
 function DeleteUser(props) {
@@ -33,6 +34,7 @@ function DeleteUser(props) {
   const initialRef = React.useRef()
   const finalRef = React.useRef()
   const [open,setOpen]=useState('');
+  const [save, setSave] = useState('Delete')
   const id = props.user;
   // console.log( props.user);
   //  console.log(id);
@@ -51,13 +53,15 @@ function DeleteUser(props) {
     try {
       console.log('id xóa là');
      console.log(id);
- 
+     setSave('Loading...')
+     console.log(save);
+     setOpen(onOpen)
      const data= await handleDeleteUser(id);
-     console.log('da xoa id');
-     console.log(data);
-     console.log('thanh cong');
      setOpen(onClose)
-     navigate('/admin/user')
+     setSave('Delete')
+     toast.success("Successful!");
+     navigate('/admin')
+       navigate('/admin/user')
     } catch (error) {
      console.log('that bai');
       console.log(error);
@@ -68,7 +72,8 @@ function DeleteUser(props) {
 
   return (
     <>
-      <DeleteIcon  onClick={onOpen} />
+      <Btn onClick={onOpen}  className='btn btn-danger'><DeleteIcon /> </Btn> 
+   
       <Modal
         initialFocusRef={initialRef}
         finalFocusRef={finalRef}
@@ -90,12 +95,13 @@ function DeleteUser(props) {
           ))}
             {/* {(u._id==props.user)?<a>{u.full_name}</a>:<></>)} */}
           </ModalBody>          
-          <ModalFooter>
-            <Button colorScheme='blue' mr={3} onClick={(event)=>{ onOpen(event);deleteUser(props.user) }}
+          <ModalFooter   >
+            <Button colorScheme='blue'  onClick={(event)=>{ onOpen(event);deleteUser(props.user) }}
+           
             >
-              Delete
+              {save}
             </Button>
-            <Button onClick={onClose}>Cancel</Button>
+            <Button    onClick={onClose}>Cancel</Button>
           </ModalFooter>
         </ModalContent>
 

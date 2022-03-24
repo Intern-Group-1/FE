@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from "react-router-dom";
-
 import ApiCaller from '../utils/apiCaller';
-
 import Navbar from "./Navbar";
 import Footer from './Footer'
 import '../style/button.css'
@@ -13,43 +11,36 @@ import {
     Text,
     useColorModeValue,
     Button,
-    Tooltip
+    Tooltip,
+    Avatar
 } from '@chakra-ui/react';
-import Doctor from '../assets/image/dtavt.png'
 import DatePicker from "react-datepicker";
 import 'react-datepicker/dist/react-datepicker.css'
 import '../style/Booking.css'
 import '../responsive/Appointment.css'
-import { getValue } from '@testing-library/user-event/dist/utils';
 import Edit from './Modal';
 import ConfirmAppointment from './ConfirmAppointment';
 import { handleGetUserId } from '../services/User';
-
+import Botchat from './Botchat';
+import { useNavigate } from 'react-router-dom'
 export default function Booking() {
     const MyButton = (props) => {
-        const [isActive, setActive] = useState(false);
         const handleClick = (e) => {
-                //isActive(true)
-                 setTime(e.target.innerHTML)
-                
-                  setActive(!isActive);
-                //  console.log('setttt');
-                //  console.log(isActive);
-                //  console.log(e);
-                //  //setTime(e.target.innerHTML)
-                
-               
-        }
-    
-        
-        ;
+                  setTime(e.target.innerHTML)                        
+        };
         
         return (
-            <Tooltip label='Double click To select' fontSize='s'>
-            <button onClick={handleClick} className={isActive ? "btn-time-selected" : "btn-time"}>
+            <button style={
+                time===props.item? {
+                 color:'rgb(0 29 171 / 78%)',
+                 fontWeight:'bolder',
+                 backgroundColor : '#7fb9e9c7'
+             }:{}
+            }  onClick={handleClick} 
+            className={"btn-time"}
+            >
             {props.item}
           </button>
-            </Tooltip>
           
         );
       };
@@ -62,7 +53,7 @@ export default function Booking() {
     let clo='white';
     const [bg1,setBg1]=useState(clo);
     const [classon,setClasson]=useState(false)
-    
+    const navigate = useNavigate()
 
     useEffect(() => {
         ApiCaller('get-all-doctor', 'GET')
@@ -80,7 +71,15 @@ export default function Booking() {
     }, [])
     const [startDate, setStartDate] = useState(new Date());
     const [time, setTime] = useState('');
-    const listTime=['07:00-08:00','08:00-09:00','09:00-10:00','10:00-11:00','14:00-15:00','15:00-16:00','16:00-17:00','17:00-18:00',]
+    const today= new Date()
+    const listTime=['07:00-08:00',
+                    '08:00-09:00',
+                    '09:00-10:00',
+                    '10:00-11:00',
+                    '14:00-15:00',
+                    '15:00-16:00',
+                    '16:00-17:00',
+                    '17:00-18:00',]
     const onChange = (dates) => {
         const [start] = dates;
         setStartDate(start);
@@ -117,6 +116,11 @@ export default function Booking() {
              byID()
         }
     }, [])
+    function navigatetoAlldoctor(){
+         navigate('/doctor')
+        
+       
+    }
     return (
         <>
             <Navbar />
@@ -138,21 +142,22 @@ export default function Booking() {
                                             >
                                                 Doctor
                                             </Text>
-                                            <Button mt='7px' as='a' href='/doctor' _hover={{
+                                            <Button mt='15px' as='a' onClick={navigatetoAlldoctor} _hover={{
                                                 backgroundColor: 'blue.300',
                                                 color: 'white',
                                                 textDecoration: 'none'
                                             }} >Change Doctor</Button>
-                                            <Image
-                                                className='img-doctor'
-                                                borderRadius="full"
-                                                src={api.avatar}
+                                            <Avatar
+                                            ml={'20px'}
+                                            className='img-doctor'
+                                            src={api.avatar}
+                                            size={'2xl'}
                                             />
                                         </Box>
                                         <Box className='wrapper-info-doctor'>
                                             <Text
                                                 as="p"
-                                                marginTop="20"
+                                                mt={'119px'}
                                                 color={'gray.900'}
                                                 fontSize="lg">
                                                 Name: {<b>{api.full_name}</b>}
@@ -200,11 +205,15 @@ export default function Booking() {
                         >
                             Customer
                         </Text>
-                        <Edit />
+                        <Box
+                        mt={'20px'}
+                        >
+                            <Edit/>
+                        </Box>
                       
                         <Text
                             as="p"
-                            marginTop="7"
+                            marginTop="3"
                             color={useColorModeValue('gray.700', 'gray.200')}
                             fontSize="lg">
                             Name: {<b>{fullname}</b>}
@@ -239,10 +248,9 @@ export default function Booking() {
                     <Box className='date'>
                         <Heading as="h3" mt={'10'} mb={'45'}>Choose date</Heading>
                         <Box><DatePicker
-
+                            minDate={today}
                             selected={startDate}
                             onChange={onChange}
-                            // excludeDates={[addDays(new Date(), 2), addDays(dateP, 0)]}
                             selectsRange
                             selectsDisabledDaysInRange
                             inline
@@ -253,29 +261,21 @@ export default function Booking() {
                     </Box>
                     <Box className='time-clinic'>
                         <Heading as="h3" mt={'10'} mb={'45'}>Choose time and clinic</Heading>
+
                         <Box className='time'  >
                             {listTime.map((timer, i)=>(
                                 <MyButton                                                                                                                   
-                                  //bgColor={bg1}  
-                                // onClick={(e) => {
-                                //     console.log(e);
-                                //     //setTime(e.target.innerHTML)
-                                //     //handleClick();
-                                    
-                                //  }} 
                                 key={i} item={timer}></MyButton>
                             ))}
                          
                         </Box>
 
                         <Box className='clinic'>
-
-
                             <select onChange={handleChange} name="hue" className='select-clinic'>
                                 <option selected >Select Clinic</option>
                                 {branchs.map(brs => (
 
-                                    <option value={brs._id} > {brs.address} </option>
+                                    <option value={brs._id} > {brs.name}, {brs.address} </option>
 
                                 ))}
                             </select>
@@ -293,13 +293,7 @@ export default function Booking() {
                                 fontSize="md">
                                 Name: {<b>{fullname}</b>}
                             </Text>
-                            {/* <Text
-        as="p"
-        marginTop="5"
-        color={useColorModeValue('gray.700', 'gray.200')}
-        fontSize="md">
-        Age: 22
-        </Text> */}
+                         
                             <Text
                                 as="p"
                                 marginTop="5"
@@ -388,13 +382,14 @@ export default function Booking() {
                         </Box>
 
 
-                        <ConfirmAppointment doctor={id} user={IdUser} date={startDate} time={time}
+                        <ConfirmAppointment  doctor={id} user={IdUser} date={startDate} time={time}
                             branch={branch_id}
                         />
 
                     </Box>
                 </Box>
             </Box>
+            <Botchat/>
             <Footer />
         </>
     )

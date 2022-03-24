@@ -1,5 +1,6 @@
 
 import { useParams } from "react-router-dom";
+import '../responsive/homepage/Alldoctor.css'
 import {
   Heading,
   Avatar,
@@ -62,6 +63,7 @@ function DoctorBySpeciality() {
 
         <Heading mt='100px' textAlign={'center'}>{name}</Heading>
         <Box
+        className="find-doctor"
           d={'flex'}
           w={'250px'}
           alignItems={'center'}
@@ -83,7 +85,7 @@ function DoctorBySpeciality() {
         </Box>
         {/* <LazyLoad> */}
         <Center mt='10px' py={4}
-
+          className="wrapper-alldoctor"
           d='flex'
           flexWrap={'wrap'}
           justifyContent='start'
@@ -204,7 +206,11 @@ function DoctorBySpeciality() {
 
         {/* </LazyLoad> */}
       </Box>
-      <Footer />
+      <Box
+      mt={'30px'}
+      >
+        <Footer />
+      </Box>
 
     
     </>

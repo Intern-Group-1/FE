@@ -24,6 +24,15 @@ import DoctorBySpeciality from "./components/DoctorBySpeciality";
 import AllNews from "./components/AllNew"
 import News from "./components/News"
 import Card from "./admin2/CardClinic"
+import { Account } from "./admin2/Account";
+import CreateUser from "./admin2/CreateUser";
+import CreateDoctor from "./admin2/CreateDoctor";
+import About from "./components/AboutUs";
+import TableSpeciality from "./admin2/tableSpeciality";
+// import ManagerAppointment from "./Doctor/ManagerAppointment";
+// import TableAppointmentByDoctor from "./Doctor/AppointmentbyDoctor";
+// import ProfileDoctor from "./Doctor/ProfileDoctor";
+// import HistoryWork from "./Doctor/HistoryWork"
 
 function App() {
   return (
@@ -36,6 +45,7 @@ function App() {
         <Route path="/profile" element={<ProfileUser />} >
         </Route><Route path="/profile/user" element={<InitialFocus2 />} />
         <Route path="/home" element={<Home />} />
+        <Route path="/about" element={<About />} />
         <Route path="/allnews" element={<AllNews />} />
         <Route path="/news" element={<News />} />
         <Route path="/signup" element={<Signup />} />
@@ -51,7 +61,18 @@ function App() {
         <Route path='/admin/clinic' element={<PrivateRoute><TableClinic /></PrivateRoute>} />
         <Route path='/admin/appointment' element={<PrivateRoute><TableAppointment /></PrivateRoute>} />
         <Route path='/admin/dashboard' element={<PrivateRoute><Dashboard /></PrivateRoute>} />
+        <Route path='/admin/speciality' element={<PrivateRoute><TableSpeciality /></PrivateRoute>} />
+        <Route path='/admin/account' element={<PrivateRoute><Account/></PrivateRoute>} />
         <Route path='/admin/test' element={<PrivateRoute><Card /></PrivateRoute>} />
+        <Route path='/admin/create-doctor' element={<PrivateRoute><CreateDoctor/></PrivateRoute>} />
+        <Route path='/admin/create-user' element={<PrivateRoute><CreateUser/></PrivateRoute>} />
+
+        {/* doctor */}
+        {/* <Route path='/manager' element={<PrivateRoute><ManagerAppointment/></PrivateRoute>} /> */}
+        {/* <Route path='/manager/appointment' element={<PrivateRoute><TableAppointmentByDoctor/></PrivateRoute>} /> */}
+        {/* <Route path='/manager/profile' element={<PrivateRoute><ProfileDoctor/></PrivateRoute>} />
+        <Route path='/manager/history' element={<PrivateRoute><HistoryWork/></PrivateRoute>} /> */}
+
         <Route path="/logout" element={<PrivateRoute> <Logoutadmin /></PrivateRoute>}> 
        
        
@@ -59,6 +80,7 @@ function App() {
       
         </Route>
       </Routes>
+      
     </ChakraProvider>
   )
 }

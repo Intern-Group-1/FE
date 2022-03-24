@@ -5,6 +5,7 @@ import InitialFocus from './Modal'
 import Navbar from './Navbar'
 import Footer from './Footer'
 import moment from 'moment'
+import ChangeAppointment from './ModalChangeAppointment'
 import { handleGetAppointment } from '../services/Appointment';
 import {
     Flex,
@@ -13,6 +14,10 @@ import {
     Text,
     Image,
     Button,
+    styled,
+    background,
+    Avatar,
+    Spinner
   } from '@chakra-ui/react';
   import { ToastContainer, toast } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
@@ -25,8 +30,12 @@ function ProfileUser(){
    const [address, setAddress] = useState('')
    const [phone, setPhone] = useState('')
    const [Iduser, setIdUser] = useState('')
+   const [loading,setLoading] =useState(false)
+   const [appointment, setAppointment] = useState([])
    const byID = async ()=>{ 
     const data= await handleGetUserId()
+    console.log('haha');
+   
     console.log(data)
     if(data)
     {
@@ -35,26 +44,30 @@ function ProfileUser(){
         setAddress(data.data.data[0].address)
         setPhone(data.data.data[0].phone_number)
         setGender(data.data.data[0].gender)
-        setIdUser(data.data.data[0]._id)
+         setIdUser(data.data.data[0]._id)
+       
+      
     }
 
 }
-    const [appointment, setAppointment] = useState([])
-    const handleGetApp = async (req, res)=>{
-            const data = await handleGetAppointment(Iduser)
-            return data
-    } 
-    const loggedInUser = localStorage.getItem('token')
+console.log('idid');
+console.log(Iduser);
+const loggedInUser = localStorage.getItem('token')
     useEffect(async () => {
-       
-        const app = await handleGetApp()
+      
+        await byID()  
+        const app = await handleGetAppointment(Iduser)
+        if (app){
+            setLoading(true)
+        }
+        console.log('apppp');
+        console.log(app);
         setAppointment(app.data.data)
-         if(loggedInUser){
-           
-             byID()
-         }
-
-      }, [  byID() ])
+        
+         
+       
+      },[Iduser])
+      
   return <>
     
     <Navbar />
@@ -73,16 +86,28 @@ function ProfileUser(){
         bg='white'  
         justifyContent='center'
         alignItems={'center'}
-        alignContent='center'>
+        alignContent='center'
+        position={'relative'}
+        >
+            <Text
+            position={'absolute'}
+            top={'25px'}
+            left={'50px'}
+            fontSize={'23px'}
+            fontWeight={'bold'}
+            color={'#6e6767'}
+            >
+                Your profile
+            </Text>
             <Box className='user-avt' w={'450px'}>
-            <Box width='250px' height='250px' borderRadius='50%'  border='1px' boxShadow='2xl' m='10' border='1px' borderColor='blue.300'>
+            <Box width='250px' height='250px' borderRadius='50%'  border='1px' boxShadow='2xl' m='10' borderColor='blue.300'>
             <Image src={avatar} width='250px' height='250px' borderRadius='50%' />
                 </Box> 
                 <input  type='file' className='custom-file-input' /> 
             </Box>
         
        
-            <Box d='flex' justifyContent='center' alignItems='flex-start' w='400' h='360' flexDirection='column' >
+            <Box className='wrapper-info' d='flex' justifyContent='center' alignItems='flex-start' w='400' h='360' flexDirection='column' >
                 <Box maxH='300' className='box'>
                     <Text maxH='100' fontWeight={'bold'}>
                         Full Name
@@ -113,7 +138,7 @@ function ProfileUser(){
                         border={'none'}></Input>
                     </Text>
                 </Box>         
-                <Button 
+                <Box 
                     className='change-info'
                     h={'45px'}
                     w={'120px'}
@@ -121,36 +146,83 @@ function ProfileUser(){
                     ml={'120px'}
                     >
                     <InitialFocus />
-                </Button>
+                </Box>
                     <ToastContainer />
             </Box> 
         </Box>
-        
+      
         <Box className='schedule' 
             w={'90%'} 
-            h={'410px'} 
+            minHeight='fit-content' 
             bg='white'  
             boxShadow='2xl' 
             rounded='md' 
             marginBottom={'30px'}
+            pb='40px'
+            position={'relative'}
             >
-           <Box className='schedule' w={'720px'} h={'410px'}>
-        {appointment.map(app=>(
+
+            <Text
+            position={'absolute'}
+            top={'5px'}
+            left={'50px'}
+            fontSize={'23px'}
+            fontWeight={'bold'}
+            color={'#6e6767'}
+            >Your appointment</Text>
+            
+            {loading ?appointment.map(app=>(       
+            <Box 
+            style={
+                app.status==0?{ border:'2px #cccc dashed'}
+            :app.status==1?{border:'2px green dashed'}:{border:'2px red dashed'}
+        }
            
-            <Box className='tag-schedule'>
-                <Box className='infodoctor'>
-                    <Text>{app.doctor.full_name}</Text>
-                    {/* <Text>{app.speciality}</Text> */}
+            boxShadow={'2px 2px #cccc'}
+            className='tag-schedule'
+            position={'relative'}
+            >
+                <Box 
+                className='infodoctor'
+                style={
+                    app.status==0?{ borderRight:'2px #cccc dashed'}
+                :app.status==1?{borderRight:'2px green dashed'}:{borderRight:'2px red dashed'}
+            }
+                >
+                    <Avatar
+                    size={'xl'}
+                    src={app.doctor.avatar}
+                    />
+                    <Box
+
+                      visibility={  app.status==0? 'visible'
+                            :'hidden'}
+                    position={'absolute'}
+                    bottom={'7px'}
+                    left={'20px'}
+                    >
+                        <ChangeAppointment/>
+                    </Box>
+
                 </Box>
                 <Box className='info-schdule'>
                     <Text>Time: {app.time}</Text>
                     <Text>Date: {moment(app.date).format('L')}</Text>
-                    <Text>Address: {app.branch.address}</Text>
+                    <Text>{app.doctor.full_name}</Text>
+                    <Text>{app.branch.address}</Text>
                 </Box>
             </Box>
-           
-            ))}
-        </Box>
+            )):<><Box  mt='200px' height={'500px'} pl={'700px'}>
+             
+            <Spinner
+
+          thickness='4px'
+          speed='0.65s'
+          emptyColor='gray.200'
+          color='blue.500'
+          size='xl'
+        /> <Text  color={'blue.500'}>Loading...</Text>  </Box></>} 
+
         </Box>
         
        

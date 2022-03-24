@@ -1,8 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;1,300;1,900&display=swap');
 
 #navbar {
-   
-    
     background-color: #eceef0;
   
     transition: 0.4s;
@@ -12,10 +10,8 @@
     top: 0;
     z-index: 99;
   }
-  #name {  margin:1em; padding:5px; }
-  .crop { overflow:hidden; white-space:nowrap; text-overflow:ellipsis; width:100px; }
- 
-  
+  #name {  margin:1em; padding:5px; border: none; }
+  .crop { border: none;  overflow:hidden; white-space:nowrap; text-overflow:ellipsis; width:100px; }
   
 body{
     margin: 0px;
