@@ -82,14 +82,14 @@ export default function ProfileDoctor(){
                                 <Input type='text'  
                                  value={name} 
                                 className='text-inf'
-                                border={'none'}></Input>
+                                border={'2px #00499b solid'}></Input>
                             </Text>
                             <Text maxH='100' fontWeight={'bold'}>
                                 Speciality
                                 <Input type='text' 
                                  value={speciality}
                                 className='text-inf'
-                                border={'none'}></Input>
+                                border={'2px #2c4c7c solid'}></Input>
                             </Text>
                         </HStack>
                             
@@ -98,7 +98,7 @@ export default function ProfileDoctor(){
                                 <Input type='text' 
                                  value={address}
                                 className='text-inf'
-                                border={'none'}></Input>
+                                border={'2px #2c4c7c solid'}></Input>
                             </Text>
                             <HStack>
                             <Text  maxH='100' fontWeight={'bold'}>
@@ -106,28 +106,27 @@ export default function ProfileDoctor(){
                                 <Input type='text' 
                                  value={age} 
                                 className='text-inf'
-                                border={'none'}></Input>
+                                border={'2px #2c4c7c solid'}></Input>
                             </Text>
                           
                             <Text fontWeight={'bold'}>
                                 Gender
                                 <Input type='text' 
+                                w={'113%'}
                                 value={gender == true ? 'Male': 'Female'} 
                                 className='text-inf'
-                                border={'none'}></Input>
+                                border={'2px #2c4c7c solid'}></Input>
                             </Text>
                             </HStack>
                            
                         </Box>         
-                        <Button 
+                        <Box 
                             className='change-info'
-                            // h={'45px'}
-                            // w={'120px'}
                             mt={'10px'}
-                            ml={'120px'}
+                            ml={'252px'}
                             >
                               <ChangeProfileDoctor doctor={id}/>
-                        </Button>
+                        </Box>
                             <ToastContainer />
                     </Box> 
                 </Box>

@@ -28,15 +28,16 @@ import '../style/Booking.css'
 import '../responsive/Appointment.css'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { handleCreateSchedule, handleGetAppointment } from '../services/doctor';
 
 
 
 
 
 
-  function ChangeAppointment() {
-
-
+  function ChangeAppointment(props) {
+const idAppointment=props.appID
+console.log(idAppointment);
 
     const MyButton = (props) => {
         const handleClick = (e) => {
@@ -65,39 +66,27 @@ import 'react-toastify/dist/ReactToastify.css';
     const notify = () => toast.success("Make appointment success!");
     const { id } = useParams();
     const [Api, setApi] = useState([]);
-    const [Id, setId] = useState('');
-    const [user, setUser] = useState([]);
-    const [branch_id, setBranchId] = useState('');
+    const [doctor_id, setDoctorId] = useState('');
     const today= new Date()
     useEffect(() => {
         ApiCaller('get-all-doctor', 'GET')
             .then(async res => {
-                console.log('res là ');
-                console.log(res);
+               
                 setApi(res.data.data)
 
             })
 
     }, []);
     
+ async  function handleGetAppointmentbyId(idAppointment){
+      const dataa= await handleGetAppointment(idAppointment)
+     
+      setDoctorId(dataa.data.data.doctor._id)
+      
+    }
 
 
-
-    useEffect(() => {
-        ApiCaller('get-all-user', 'GET')
-            .then(async res => {
-                console.log(res);
-                setUser(res.data.data)
-                console.log('id là ');
-                console.log(res.data.data);
-            })
-            ApiCaller('get-all-branch', 'GET')
-            .then(async res => {
-                console.log('data branch:')
-                console.log(res);
-                setBranchs(res.data.data)
-            })
-    }, []);
+    
 
 
     const listTime=['07:00-08:00',
@@ -109,7 +98,6 @@ import 'react-toastify/dist/ReactToastify.css';
     '16:00-17:00',
     '17:00-18:00',]
     const [startDate, setStartDate] = useState(new Date());
-    const [branch, setBranch] = useState(''); 
     const [time, setTime] = useState('');
     const [branchs, setBranchs] = useState([]);
     const [endDate, setEndDate] = useState(null);
@@ -125,24 +113,18 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
     var dateP = new Date('2022-02-26T03:18:35.000Z')
-    const handleChange = (e) => {
-      const select = e.target;
-      const value = select.value;
-      const desc = select.selectedOptions[0].text;
-      setBranchId(value);
-      setBranch(desc)
-    }
+   
+async function createSchedule(startDate,time,doctor_id){
+  const da_ta = new FormData();
+  da_ta.append("data", '2022-02-26T03:18:35.000Z')
+  da_ta.append("time", '14:00-15:00')
+  da_ta.append("doctor", '6215e72d2d724ee34bbf183f')
+  const schedule = await handleCreateSchedule(da_ta)
+  console.log(schedule);
+}
     return (
       <>
-        <Button 
-        onClick={onOpen}
-        bg={'#ffff'}
-        border={'1px #d9d9d9 solid'}
-        color={'Black'}
-        _hover={{ bg:"#17a2b8", color:"white" }}
-        w={'78px'}
-        h={'26'}
-        ><EditIcon/></Button>
+       <Button  onClick={(e)=>{onOpen(e);handleGetAppointmentbyId(idAppointment)}}>Create Schedule</Button>
         <Modal
           initialFocusRef={initialRef}
           finalFocusRef={finalRef}
@@ -150,7 +132,7 @@ import 'react-toastify/dist/ReactToastify.css';
           onClose={open}
         >
           <ModalOverlay />
-          <ModalContent>
+          <ModalContent >
             <ModalHeader>Change your appointment</ModalHeader>
             <ModalCloseButton onClick={onClose} />
             
@@ -184,16 +166,7 @@ import 'react-toastify/dist/ReactToastify.css';
                                 key={i} item={timer}></MyButton>
                             ))}
 </Box>
-<Box className='clinic'>
-                            <select onChange={handleChange} name="hue" className='select-clinic2' >
-                                <option selected >Select Clinic</option>
-                                {branchs.map(brs => (
 
-                                    <option value={brs._id} > {brs.name}, {brs.address} </option>
-
-                                ))}
-                            </select>
-                        </Box>
                     </Box>
                     <Box className='comfirm-appointment' flex='1' bg='' id='confirm'>
                         <Box className='wrapper-datetime'
@@ -218,14 +191,7 @@ import 'react-toastify/dist/ReactToastify.css';
                                 >
                                 {<Box maxW={'fit-content'} bgColor={'blue.100'}  > Time:{<b>{time}</b>}</Box>}
                             </Text>
-                            <Text
-                                as="p"
-                                marginTop="5"
-                                color={useColorModeValue('gray.700', 'gray.200')}
-                                fontSize="md">
-                                    {<Box > Clinic:  {<b>{branch}</b>}</Box>}
-                               
-                            </Text>
+                          
                         </Box>
 
                     </Box>
@@ -233,7 +199,7 @@ import 'react-toastify/dist/ReactToastify.css';
             
   
             <ModalFooter>
-              <Button colorScheme='blue' mr={3} >Save</Button>
+              <Button colorScheme='blue' mr={3} onClick={()=>createSchedule(startDate,time,doctor_id)}>Save</Button>
               <Button onClick={onClose}>Cancel</Button>
             </ModalFooter>
           </ModalContent>

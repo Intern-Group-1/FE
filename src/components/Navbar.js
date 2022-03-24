@@ -77,7 +77,7 @@ export default function Navbar() {
   const [avatar, setAvt] = useState('')
   async function byID() {
     const data = await handleGetUserId()
-    console.log( data)
+    
     if (data) {
       setName(data.data.data[0].full_name)
       setAvt(data.data.data[0].avatar)
@@ -400,7 +400,7 @@ const MobileNavItem = ({ label, children, href }) => {
   useEffect(() => {
     ApiCaller('get-all-speciality', 'GET')
       .then(async res => {
-        console.log(res);
+       
         setSp(res.data.data)
       })
   }, [])
@@ -424,7 +424,6 @@ const MobileNavItem = ({ label, children, href }) => {
         py={2}
         as='a'
         onClick={(e)=>link(label)}
-        //href={href ?? '#'}
         justify={'space-between'}
         align={'center'}
         _hover={{

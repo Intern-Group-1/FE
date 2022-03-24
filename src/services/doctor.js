@@ -90,6 +90,19 @@ const handleGetDoctorById = async (id)=>{
         console.log(error)
     }
 }
+const handleCreateSchedule = async (data)=>{
+    try {
+         var token = await localStorage.getItem('token')
+            console.log(token);
+        return await axios.post('https://be-doctor-care-v3.herokuapp.com/api/create-schedule/', data,{
+            headers: {
+                'Authorization': `Bearer ${token}` 
+              }
+        })      
+    } catch (error) {
+        console.log(error)
+    }
+}
 export {
     handleGetDoctorId,
     handleGetAppointmentbyDoctor,
@@ -99,6 +112,7 @@ export {
     handleDeleteStatus,
     handleGetAppointment,
     handleGetUserById,
-    handleGetDoctorById
+    handleGetDoctorById,
+    handleCreateSchedule
     
 }
