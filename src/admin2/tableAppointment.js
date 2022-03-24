@@ -65,7 +65,7 @@ function TableAppointment() {
       const data = await handleGetUserById(user)
       let email = [data.data.data[0].account.email, da.data.data[0].account.email]
       const da_ta = new FormData();
-      da_ta.append("status", -1)
+      da_ta.append("status", 0)
       da_ta.append("email", email)
       await handleUpateStatus(id, da_ta)
       toast.success("Successful!");
@@ -135,17 +135,23 @@ function TableAppointment() {
     justifyContent={'space-around'}
     >
       <Box>
-        <Button className='btn btn-success'disabled={api.status ==0? false : true}  onClick={e=>handleGetID( api._id,api.user._id,api.doctor._id)}>  Approve</Button>
+        <Button className='btn btn-success' disabled={api.status ==0? false : true}  
+        onClick={e=>handleGetID( api._id,api.user._id,api.doctor._id)}>  Approve</Button>
          
         </Box>
         <Box ml={'10px'} >
-        <Button className='btn btn-secondary' disabled={api.status ==1? false : true} onClick={e=>handleCancelID( api._id,api.user._id,api.doctor._id)}>Cancel</Button>
+        <Button className='btn btn-secondary' disabled={api.status ==1? false : true} 
+        onClick={e=>handleCancelID( api._id,api.user._id,api.doctor._id)}>Cancel</Button>
          
         </Box>
-        <Box ml={'10px'}>
-        <Button className='btn btn-danger' disabled={api.status ==1? true : false} onClick={e=>handleGetBYID(api._id)}> Delete </Button>
+      
+        
+          <Box ml={'10px'}> <Button className='btn btn-danger'
+                          disabled={api.status == 1 ? true : false}
+                          onClick={(e) => handleGetBYID(api._id)}
+                        > Delete </Button></Box>
          
-        </Box>
+       
     
     
 
