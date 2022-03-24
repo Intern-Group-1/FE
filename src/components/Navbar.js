@@ -197,8 +197,7 @@ export default function Navbar() {
                   >
 
                     <MenuItem as='a' color={'black'} style={{textDecoration:'none'}} fontWeight='normal' onClick={HandleProfile}>Profile</MenuItem>
-                    <MenuItem as='a' color={'black'} style={{textDecoration:'none'}} fontWeight='normal' href={'/#'} >Appointment</MenuItem>
-                    <MenuItem as='a' color={'black'} style={{textDecoration:'none'}} fontWeight='normal' href={'/#'}>Settings</MenuItem>
+                  
 
                     <MenuDivider />
                     <MenuItem color={'blue.500'} _hover={{

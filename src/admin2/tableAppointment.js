@@ -42,7 +42,7 @@ function TableAppointment() {
     console.log("Data Appointment")
     console.log(date)
     let email = [data.data.data[0].account.email, da.data.data[0].account.email]
-    let content =[date.data.data.branch.name, date.data.data.branch.address, date.data.data.date, date.data.data.time]
+    let content =[date.data.data[0].branch.name, date.data.data[0].branch.address, date.data.data[0].date, date.data.data[0].time]
     console.log(content)
       const da_ta =  new FormData();
       da_ta.append("status", 1)
