@@ -42,7 +42,7 @@ function TableAppointmentByDoctor() {
     console.log("Data Appointment")
     console.log(date)
     let email = [data.data.data[0].account.email, da.data.data[0].account.email]
-    let content = [date.data.data.branch.name, date.data.data.branch.address, date.data.data.date, date.data.data.time]
+    let content = [date.data.data[0].branch.name, date.data.data[0].branch.address, date.data.data[0].date, date.data.data[0].time]
     console.log(content)
     const da_ta = new FormData();
     da_ta.append("status", 1)
@@ -66,10 +66,13 @@ function TableAppointmentByDoctor() {
   async function handleCancelID(id, user, iddoctor) {
     const da = await handleGetDoctorById(iddoctor)
     const data = await handleGetUserById(user)
+    const date = await handleGetAppointment(id)
     let email = [data.data.data[0].account.email, da.data.data[0].account.email]
+    let content =[date.data.data[0].branch.name, date.data.data[0].branch.address, date.data.data[0].date, date.data.data[0].time]
     const da_ta = new FormData();
     da_ta.append("status", 0)
     da_ta.append("email", email)
+    da_ta.append("content", content)
     await handleUpateStatus(id, da_ta)
     toast.success("Successful!");
     navigate('/manager/')
