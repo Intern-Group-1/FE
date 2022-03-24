@@ -59,6 +59,7 @@ function TableAppointment() {
     toast.success("Delete Successful!");
     navigate('/admin/')
     navigate('/admin/appointment/')
+
   }
   async function handleCancelID(id, user, doctor) {
     const da = await handleGetDoctorById(doctor)
@@ -80,6 +81,7 @@ function TableAppointment() {
     <>
       <Box ml={'340px'}>
         <Box >
+
           <Box
             ml={'-330px'}
           >
