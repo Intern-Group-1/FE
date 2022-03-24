@@ -66,6 +66,7 @@ function TableAppointmentByDoctor() {
   async function handleCancelID(id, user, iddoctor) {
     const da = await handleGetDoctorById(iddoctor)
     const data = await handleGetUserById(user)
+    const date = await handleGetAppointment(id)
     let email = [data.data.data[0].account.email, da.data.data[0].account.email]
     let content =[date.data.data[0].branch.name, date.data.data[0].branch.address, date.data.data[0].date, date.data.data[0].time]
     const da_ta = new FormData();
