@@ -33,23 +33,6 @@ function TableUser() {
       <Box pt='0px' pl='0px'>
 
         <Box >
-<<<<<<< HEAD
-        <Right/>
-        <Box
-        style={{
-          marginLeft:'1300px',
-          marginTop:'15px',
-          marginBottom:'15px'
-        }} 
-        >
-          <Button   className='btn btn-success'  href='/admin/account'><AddIcon mr='12px'/>Add User</Button>
-        </Box>
-        <table className="table table-hover" style={{
-            width:'1100px',
-            height:'600px',
-            marginLeft:'320px'
-        }} >
-=======
           <Right />
           <Box
             style={{
@@ -64,8 +47,7 @@ function TableUser() {
             width: '1100px',
             height: '600px',
             marginLeft: '320px'
-          }} >
->>>>>>> 00a6ba984849216f24755afcf7bf007c7d5834a8
+          }} > 
             <thead>
               <tr>
 
@@ -78,40 +60,6 @@ function TableUser() {
                 <th scope="col">Handle</th>
               </tr>
             </thead>
-<<<<<<< HEAD
-  <tbody>
-  { loading ? Api.map(api => (
-    
-        <>     
-         
-    <tr  id={api._id}>
-    
-       <th  scope="row">{(api._id!=null) ? i++: <></> 
-            }</th> 
-      <td><Box className='thumb'><Image  src={api.avatar}/></Box></td>
-      <td>{api.full_name}</td>
-    
-      <td>{api.address}</td>
-      <td>{api.phone_number}</td>
-       <td>{
-           (api.account!=null) ?<a>{api.account.email}</a> : <a>null</a>
-       }</td> 
-      <td>
-        <Box d={'flex'} w={'150px'} >
-            <Box>
-              <UpdateUser user={api._id}/>
-            </Box>
-            <Box ml={'10px'} >
-              <DeleteUser  user={api._id}/> 
-            </Box>
-        </Box>
-      </td>
-              </tr>
-              
-              </>
-            
-                ))
-=======
             <tbody>
               {loading ? Api.map(api => (
 
@@ -153,7 +101,6 @@ function TableUser() {
                 </>
 
               ))
->>>>>>> 00a6ba984849216f24755afcf7bf007c7d5834a8
                 :
                 <Box mt='200px' height={'500px'} pl={'500px'}>
 

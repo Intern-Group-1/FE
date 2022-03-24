@@ -75,21 +75,6 @@ function Table() {
      
       <td>{(api.gender) = 'true' ? <p>Male</p> : <p>Female</p>}</td>
       <td>
-<<<<<<< HEAD
-          <Box
-          d={'flex'}
-          >
-            <Box>
-              <UpdateDoctor doctor={api._id}/> 
-            </Box>
-            <Box ml={'10px'}>
-              <DeleteDoctor doctor={api._id}/>
-            </Box>
-            <Box ml={'10px'} className='btn btn-warning'> 
-              <ViewShift />
-            </Box>           
-          </Box> 
-=======
       
                       <Box
                         d={'flex'}
@@ -110,7 +95,6 @@ function Table() {
                       </Box>
                     
              
->>>>>>> 00a6ba984849216f24755afcf7bf007c7d5834a8
       </td>
     
     </tr>

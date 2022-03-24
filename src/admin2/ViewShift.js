@@ -74,115 +74,6 @@ function ViewShift(props){
         marginBottom={'30px'}
         pb={'50px'}
         >
-<<<<<<< HEAD
-           <Box 
-           className='tag-schedule'
-           border={'2px #8ec2ed dashed'}
-           boxShadow={'2px 2px #b4d5f0'}
-           >
-
-                <Box className='infodoctor'
-                borderRight={'#b4d5f0 dashed'}
-                position={'relative'}
-                >
-                    <Text>Dr Gutman</Text>
-                    <Text>Orthopedic</Text>
-                </Box>
-                <Box className='info-schdule'>
-                    <Text>Time: 07:00-08:00</Text>
-                    <Text>Date: 25/02  </Text>
-                    <Text>Address: Hoang Long, 14 Le Loi</Text>
-                </Box>
-           </Box>
-           <Box className='tag-schedule'
-           border={'2px #8ec2ed dashed'}
-           boxShadow={'2px 2px #b4d5f0'}
-           >
-                <Box className='infodoctor'
-                borderRight={'#b4d5f0 dashed'}
-                position={'relative'}
-                >
-                    <Text>Dr Kilgore</Text>
-                    <Text>General Physician</Text>
-                </Box>
-                <Box className='info-schdule'>
-                    <Text>Time: 09:00-10:00</Text>
-                    <Text>Date: 10/03</Text>
-                    <Text>Address: Kim Anh, 23 Tran Phu</Text>
-                </Box>
-           </Box>
-           <Box className='tag-schedule'
-           border={'2px #8ec2ed dashed'}
-           boxShadow={'2px 2px #b4d5f0'}
-           >
-                <Box className='infodoctor'
-                borderRight={'#b4d5f0 dashed'}
-                position={'relative'}
-                >
-                    <Text>Dr Thanh</Text>
-                    <Text>Cadiologry</Text>
-                </Box>
-                <Box className='info-schdule'>
-
-                    <Text>Time: 07:00-08:00</Text>
-                    <Text>Date: 16/03</Text>
-                    <Text>Address: 12 Le Loi</Text>
-                </Box>
-           </Box>
-           <Box className='tag-schedule'
-           border={'2px #8ec2ed dashed'}
-           boxShadow={'2px 2px #b4d5f0'}
-           >
-                <Box className='infodoctor'
-                borderRight={'#b4d5f0 dashed'}
-                position={'relative'}
-                >
-                    <Text>Dr Thanh</Text>
-                    <Text>Cadiologry</Text>
-                </Box>
-                <Box className='info-schdule'>
-
-                    <Text>Time: 07:00-08:00</Text>
-                    <Text>Date: 16/03</Text>
-                    <Text>Address: 12 Le Loi</Text>
-                </Box>
-           </Box>
-           <Box className='tag-schedule'
-           border={'2px #8ec2ed dashed'}
-           boxShadow={'2px 2px #b4d5f0'}
-           >
-                <Box className='infodoctor'
-                borderRight={'#b4d5f0 dashed'}
-                position={'relative'}
-                >
-                    <Text>Dr Thanh</Text>
-                    <Text>Cadiologry</Text>
-                </Box>
-                <Box className='info-schdule'>
-
-                    <Text>Time: 07:00-08:00</Text>
-                    <Text>Date: 16/03</Text>
-                    <Text>Address: 12 Le Loi</Text>
-                </Box>
-           </Box>
-           <Box className='tag-schedule'
-           border={'2px #8ec2ed dashed'}
-           boxShadow={'2px 2px #b4d5f0'}
-           >
-                <Box className='infodoctor'
-                borderRight={'#b4d5f0 dashed'}
-                position={'relative'}
-                >
-                    <Text>Dr Thanh</Text>
-                    <Text>Cadiologry</Text>
-                </Box>
-                <Box className='info-schdule'>
-                    <Text>Time: 10:00</Text>
-                    <Text>Date: 12/03</Text>
-                    <Text>Address: 12 Le Loi</Text>
-                </Box>
-           </Box> 
-=======
            {app.map(bydoctor=>(
              <Box 
              className='tag-schedule'
@@ -212,7 +103,6 @@ function ViewShift(props){
            ))}
            
   
->>>>>>> 00a6ba984849216f24755afcf7bf007c7d5834a8
         </Box>
        
     </Flex>

@@ -254,10 +254,6 @@ const loggedInUser = localStorage.getItem('token')
 
                       visibility={  app.status==0? 'visible'
                             :'hidden'}
-<<<<<<< HEAD
-=======
-                   
->>>>>>> 00a6ba984849216f24755afcf7bf007c7d5834a8
                     position={'absolute'}
                     bottom={'7px'}
                     left={'20px'}
@@ -266,12 +262,8 @@ const loggedInUser = localStorage.getItem('token')
                     </Box>
 
                 </Box>
-<<<<<<< HEAD
-                <Box className='info-schdule'>
-=======
                 
-                <Box className='info-schdule'  >
->>>>>>> 00a6ba984849216f24755afcf7bf007c7d5834a8
+                <Box className='info-schdule'>
                     <Text>Time: {app.time}</Text>
                     <Text>Date: {moment(app.date).format('L')}</Text>
                     <Text>{app.doctor.full_name}</Text>
