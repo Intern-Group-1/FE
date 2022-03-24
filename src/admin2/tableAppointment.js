@@ -64,6 +64,7 @@ function TableAppointment() {
       const da = await handleGetDoctorById(doctor)
       const data = await handleGetUserById(user)
       let email = [data.data.data[0].account.email, da.data.data[0].account.email]
+      let content =[date.data.data[0].branch.name, date.data.data[0].branch.address, date.data.data[0].date, date.data.data[0].time]
       const da_ta = new FormData();
       da_ta.append("status", 0)
       da_ta.append("email", email)
