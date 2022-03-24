@@ -107,7 +107,9 @@ const loggedInUser = localStorage.getItem('token')
                 Your profile
             </Text>
             <Box className='user-avt' w={'450px'}>
-            <Box d='flex'   flexDirection='column-reverse' width='250px' height='250px' borderRadius='50%'  border='1px' boxShadow='2xl' m='10' borderColor='blue.300'>
+            <Box d='flex'   flexDirection='column-reverse'
+             width='250px' height='250px' borderRadius='50%'  border='1px'
+              boxShadow='2xl' m='10' borderColor='blue.300'>
             <Image src={avatar} width='250px' height='250px' borderRadius='50%' />
             <Button  
            

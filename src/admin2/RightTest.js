@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useEffect, useState } from 'react';
 import logo from '../assets/image/logo-doctor-care.png'
 import {FaUserMd, FaHospital, FaUserAlt, FaCalendarAlt,FaUsers,FaStream} from 'react-icons/fa'
 import {MdLogout} from 'react-icons/md'
@@ -18,6 +18,7 @@ import {
   BoxProps,
   FlexProps,
   Image,
+  Img,
 } from '@chakra-ui/react';
 import {
   FiHome,
@@ -28,6 +29,7 @@ import {
 } from 'react-icons/fi';
 import { IconType } from 'react-icons';
 import { ReactText } from 'react';
+import { handleGetDoctorById } from '../services/doctor';
 
 interface LinkItemProps {
   name: string;
@@ -55,10 +57,11 @@ const LinkItemsDoctor: Array<LinkItemProps> = [
   { name: 'Logout', icon: MdLogout, link: '/logout' },
 ];
 
-export default function Right({ children }: { children: ReactNode }) {
+export default  function Right({ children }: { children: ReactNode }) {
   const navigate = useNavigate()
   const { isOpen, onOpen, onClose } = useDisclosure();
  
+  
   return (
     <Box ml="0px" minH="0vh" mt="-30" bg={useColorModeValue('gray.100', 'gray.900')}>
       <SidebarContent
@@ -92,12 +95,31 @@ interface SidebarProps extends BoxProps {
 
 const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
   const navigate = useNavigate()
+  const [name,setName]=useState('')
+  const [avt,setAvt]=useState('')
+ 
+  const  iddoctor=localStorage.getItem('idDoctor')
+  
+  
+    console.log(iddoctor);
+   async function getDoctor(){
+      const dataa = await handleGetDoctorById(iddoctor)
+      setName(dataa.data.data[0].full_name)
+      setAvt(dataa.data.data[0].avatar)
+  console.log(dataa);
+    }
+    useEffect(()=>{
+      getDoctor()
+     },[iddoctor])
+      
+   
   function linkUrl(url){
     navigate(`${url}`)
 }
   return (
     <Box
       mt="32px"
+      ml='-10px'
       fontSize={"18px"}
       bg={useColorModeValue('white', 'gray.900')}
       borderRight="1px"
@@ -110,8 +132,22 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
           <Image 
           src={logo}
           />
+          
         <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
+        
       </Flex>
+        <Box>
+        {localStorage.getItem('role')=='doctor' ?<Box>
+         
+          <Box ml='40px'
+             width='150px' height='150px' borderRadius='50%'  border='1px'
+              boxShadow='2xl'  borderColor='blue.300'>
+            <Image src={avt} width='150px' height='150px' borderRadius='50%' />
+            
+                </Box>  <Text ml='20px' fontWeight={'bold'}>Welcome {name}</Text>
+       
+        </Box>:<></>}
+        </Box>
       {localStorage.getItem('role')=='admin' ? <>
       {
         LinkItems.map((link) => (
