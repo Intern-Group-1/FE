@@ -68,6 +68,7 @@ function TableAppointment() {
       const da_ta = new FormData();
       da_ta.append("status", 0)
       da_ta.append("email", email)
+       da_ta.append("content", content)
       await handleUpateStatus(id, da_ta)
       toast.success("Successful!");
       navigate('/admin/')
