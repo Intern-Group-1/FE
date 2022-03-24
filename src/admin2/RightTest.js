@@ -139,7 +139,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
         <Box>
         {localStorage.getItem('role')=='doctor' ?<Box>
          
-          <Box ml='40px'
+          <Box ml='40px' mt={'10px'} mb={'30px'}
              width='150px' height='150px' borderRadius='50%'  border='1px'
               boxShadow='2xl'  borderColor='blue.300'>
             <Image src={avt} width='150px' height='150px' borderRadius='50%' />

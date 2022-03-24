@@ -65,7 +65,7 @@ function TableAppointment() {
       const data = await handleGetUserById(user)
       let email = [data.data.data[0].account.email, da.data.data[0].account.email]
       const da_ta = new FormData();
-      da_ta.append("status", 0)
+      da_ta.append("status", -1)
       da_ta.append("email", email)
       await handleUpateStatus(id, da_ta)
       toast.success("Successful!");
@@ -99,7 +99,7 @@ function TableAppointment() {
         <th width='130px'>Name Doctor</th>
         {/* <th >Address Doctor </th>
         <th >Phone Doctor</th> */}
-        <th width='130px'>Speciality</th>
+        <th width='70px'>Speciality</th>
        
         <th width='50px' >Date</th>
         <th width='120px'>Time</th>

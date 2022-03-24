@@ -56,7 +56,7 @@ function SimpleCard() {
         localStorage.setItem('emailAccount', data.data.data.email)
         localStorage.setItem('role',data.data.data.role)
        const tokenAccount= localStorage.getItem('token')
-      
+        console.log(tokenAccount);
       var loggedInUser = localStorage.getItem('emailAccount')
      
       console.log(data)

@@ -9,17 +9,22 @@ import moment from 'moment'
 import { useNavigate } from 'react-router-dom'
 import { handleGetAppointmentbyDoctor } from '../services/doctor';
 import { ToastContainer, toast } from 'react-toastify';
+import ChangeAppointment from './ModalChangeAppointment'
 import { handleUpateStatus, handleDeleteStatus, handleGetUserById, handleGetDoctorById, handleGetAppointment } from '../services/doctor';
+import { Tooltip } from '@chakra-ui/react'
 
 function TableAppointmentByDoctor() {
   const iddoctor = localStorage.getItem('idDoctor')
   const [Api, setApi] = useState([]);
   const [app, setApp] = useState([]);
+  const [ida, setIdApp] = useState([]);
   const navigate = useNavigate()
   async function byID() {
     const data1 = await handleGetAppointmentbyDoctor(iddoctor)
+    console.log('appppp');
     console.log(data1);
     setApp(data1.data.data)
+    setIdApp(data1.data.data)
   }
   useEffect(() => {
     byID()
@@ -70,7 +75,13 @@ function TableAppointmentByDoctor() {
     navigate('/manager/')
     navigate('/manager/appointment/')
   }
-
+function Demo(){
+  return(
+    <>
+    <div>Test</div>
+    </>
+  )
+}
 
 
 
@@ -94,27 +105,30 @@ function TableAppointmentByDoctor() {
               <tr >
 
                 <th width='120px'>Branch</th>
-                <th width='130px'>Name Customer</th>
+                <th width='130px' >Name Customer</th>
                 {/* <th width='100px' >Address Customer</th> */}
                 <th width='130px'>Phone Customer</th>
                 <th width='50px' >Date</th>
-                <th width='120px'>Time</th>
+                <th width='130px'>Time</th>
 
-                <th width='220px' >Handle</th>
+                <th width='220px' style={{ textAlign: 'center' }} >Handle</th>
                 <th >Status</th>
+                
               </tr>
             </thead>
 
             <tbody>
               {app.map(api => (
                 <>
-                  <tr >
+                  <tr>
                     <td >{api.branch != null ? <>{api.branch.name}</> : <>NULL</>}</td>
+                    <Tooltip label={'Addesss:'+' '+api.user.address}>
+                     
+                      <td>{api.user ? <>{api.user.full_name}</> : <b>NULL</b>}</td>
+                    </Tooltip>
 
-                    <td >{api.user ? <>{api.user.full_name}</> : <b>NULL</b>}</td>
                     {/* <td>{api.user?<>{api.user.address}</>:<b>NULL</b>}</td> */}
                     <td>{api.user ? <>{api.user.phone_number}</> : <b>NULL</b>}</td>
-
 
 
 
@@ -127,7 +141,10 @@ function TableAppointmentByDoctor() {
                         justifyContent={'space-around'}
                         flexDirection={'row'}
                       >
-                        <Box ml={'10px'}>  <Button className='btn btn-success' disabled={api.status == 0 ? false : true}
+
+
+
+                        <Box >  <Button className='btn btn-success' disabled={api.status == 0 ? false : true}
                           onClick={e => handleGetID(api._id, api.user._id)}>  Approve</Button></Box>
                         <Box ml={'10px'}>  <Button className='btn btn-danger'
                           disabled={api.status == 1 ? false : true}
@@ -146,6 +163,7 @@ function TableAppointmentByDoctor() {
                       justifyContent={'space-around'}
                       flexDirection={'row'}
                     >
+                      
                       <Box ml={'10px'}>  <Button className='btn btn-success' disabled={api.status == 0 ? false : true}
                         onClick={e => handleGetID(api._id, api.user._id)}>  Approve</Button></Box>
                       <Box ml={'10px'}><Button className='btn btn-danger'
@@ -162,6 +180,8 @@ function TableAppointmentByDoctor() {
                     </td>
                     <td>{api.status == 1 ? 'Approved' : api.status == 0 ? 'Pending' : 'Cancel'}
                     </td>
+                
+
                   </tr>
                 </>
               ))}

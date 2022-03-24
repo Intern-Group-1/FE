@@ -44,7 +44,7 @@ function SliderSpeciality() {
         <div id='slide-speciality'>     
         <div className="section-specialty">
             <div className='speciality-header'>
-                <p className='speciality-title1'>Clinic and Specialities</p>
+                <p className='speciality-title1'>Clinics and Specialities</p>
                 <p className='speciality-title2'>Find experienced doctors across all specialties</p>
             </div>
             <div className="speciality-content" >

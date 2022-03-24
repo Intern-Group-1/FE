@@ -6,7 +6,7 @@ import Navbar from './Navbar'
 import Footer from './Footer'
 import moment from 'moment'
 import { FaCheckCircle,FaTimesCircle,FaHistory,FaSplotch,FaPaperPlane } from "react-icons/fa";
-import ChangeAppointment from './ModalChangeAppointment'
+
 import { handleGetAppointment } from '../services/Appointment';
 import {
     Flex,
@@ -112,19 +112,22 @@ const loggedInUser = localStorage.getItem('token')
               boxShadow='2xl' m='10' borderColor='blue.300'>
             <Image src={avatar} width='250px' height='250px' borderRadius='50%' />
             <Button  
-           
            position={'absolute'}
-           
            fontSize={'23px'}
            fontWeight={'bold'}
            color={'blue.600'}
-           mb='-40px'
+           bg={'#edf2f7'}
+           mb='-60px'
             ml='50px'
            onClick={navigateToAllDoctor}
+           _hover={{
+               color:'gray.200',
+               backgroundColor:'blue.300'
+           }}
            >
              <FaPaperPlane color='#de590f'/> Book Now</Button>
                 </Box> 
-                <input  type='file' className='custom-file-input' /> 
+                
             </Box>
         
        
@@ -136,39 +139,39 @@ const loggedInUser = localStorage.getItem('token')
                         <Input type='text'  
                         value={full_name} 
                         className='text-inf'
-                        border={'none'}></Input>
+                        border={'1px #00499b solid'}></Input>
                     </Text>
                     <Text  maxH='100' fontWeight={'bold'}>
                     Address
                         <Input type='text' 
                         value={address} 
                         className='text-inf'
-                        border={'none'}></Input>
+                        border={'1px #00499b solid'}></Input>
                     </Text>
                     <Text maxH='100' fontWeight={'bold'}>
                         Phone
                         <Input type='text' 
                         value={phone}
                         className='text-inf'
-                        border={'none'}></Input>
+                        border={'1px #00499b solid'}></Input>
                     </Text>
                     <Text fontWeight={'bold'}>
                         Gender
                         <Input type='text' 
                          value={gender == true ? 'Male': 'Female'} 
                         className='text-inf'
-                        border={'none'}></Input>
+                        border={'1px #00499b solid'}></Input>
                     </Text>
                 </Box>         
-                <Button 
+                <Box  
                     className='change-info'
                     h={'45px'}
-                    w={'120px'}
+                    w={'140px'}
                     mt={'10px'}
-                    ml={'120px'}
+                    ml={'130px'}
                     >
                     <InitialFocus />
-                </Button>
+                </Box>
                     <ToastContainer />
             </Box> 
         </Box>
@@ -179,8 +182,8 @@ const loggedInUser = localStorage.getItem('token')
             bg='white'  
             boxShadow='2xl' 
             rounded='md' 
-            marginBottom={'30px'}
-            pb='40px'
+            marginBottom={'60px'}
+            pb='50px'
             position={'relative'}
             >
                 {appointment.length!=0? <Text
@@ -221,10 +224,10 @@ const loggedInUser = localStorage.getItem('token')
                 <>
             
             <Box 
-            h={'160px'}
+            h={'175px'}
             style={
                 app.status==0?{ border:'2px #cccc dashed'}
-            :app.status==1?{border:'2px green dashed'}:{border:'2px red dashed'}
+            :app.status==1?{border:'2px #02c800 dashed'}:{border:'2px red dashed'}
             
             }
            
@@ -237,31 +240,23 @@ const loggedInUser = localStorage.getItem('token')
                 className='infodoctor'
                 style={
                     app.status==0?{ borderRight:'2px #cccc dashed'}
-                :app.status==1?{borderRight:'2px green dashed'}:{borderRight:'2px red dashed'}
+                :app.status==1?{borderRight:'2px #02c800 dashed'}:{borderRight:'2px red dashed'}
             }
                 >
                     <Text fontWeight={'bold'} style={
                 app.status==0?{ color:'gray'}
-            :app.status==1?{color:'Green'}:{color:'red'}
+            :app.status==1?{color:'#02c800'}:{color:'red'}
          }>{ app.status==0?<Box display={'flex'} flexDirection='row'><FaHistory size={'25px'}/>Pending</Box>:app.status==1?
          <Box display={'flex'} flexDirection='row'><FaCheckCircle size={'25px'}/>Approved</Box>
          :
          <Box display={'flex'} flexDirection='row'><FaTimesCircle size={'25px'}/>Cancel</Box>}</Text>
                     <Avatar
+                    mt={'15px'}
                     size={'xl'}
                     src={app.doctor.avatar}
                     />
                     
-                    <Box
-                      visibility={  app.status==0? 'visible'
-                            :'hidden'}
-                   
-                    position={'absolute'}
-                    bottom={'7px'}
-                    left={'20px'}
-                    >
-                        <ChangeAppointment/>
-                    </Box>
+                 
 
                 </Box>
                 
@@ -271,7 +266,7 @@ const loggedInUser = localStorage.getItem('token')
 
                     {/* <Text>Time: {api.branch}</Text> */}
                     <Text>{app.doctor.full_name}</Text>
-                    {/* <Text>{app.branch.address}</Text> */}
+                    <Text>{app.branch.address}</Text>
                 </Box>
             </Box>
             </>  )):<><Box  mt='200px' height={'500px'} pl={'700px'}>
