@@ -83,7 +83,7 @@ function Demo(){
   )
 }
 
-
+let i=1;
 
   return (
     <>
@@ -103,7 +103,7 @@ function Demo(){
           }} >
             <thead>
               <tr >
-
+                <th>#</th>
                 <th width='120px'>Branch</th>
                 <th width='130px' >Name Customer</th>
                 {/* <th width='100px' >Address Customer</th> */}
@@ -120,7 +120,9 @@ function Demo(){
             <tbody>
               {app.map(api => (
                 <>
-                  <tr>
+                  <tr> <td>
+                    <b>{api._id!=null?i++:{i}}</b>
+                  </td>
                     <td >{api.branch != null ? <>{api.branch.name}</> : <>NULL</>}</td>
                     <Tooltip label={'Addesss:'+' '+api.user.address}>
                      
@@ -146,7 +148,7 @@ function Demo(){
 
                         <Box >  <Button className='btn btn-success' disabled={api.status == 0 ? false : true}
                           onClick={e => handleGetID(api._id, api.user._id)}>  Approve</Button></Box>
-                        <Box ml={'10px'}>  <Button className='btn btn-danger'
+                        <Box ml={'10px'}>  <Button className='btn btn-secondary'
                           disabled={api.status == 1 ? false : true}
                           onClick={e => handleCancelID(api._id, api.user._id, iddoctor)}
                         >Cancel</Button></Box>
@@ -166,12 +168,12 @@ function Demo(){
                       
                       <Box ml={'10px'}>  <Button className='btn btn-success' disabled={api.status == 0 ? false : true}
                         onClick={e => handleGetID(api._id, api.user._id)}>  Approve</Button></Box>
-                      <Box ml={'10px'}><Button className='btn btn-danger'
+                      <Box ml={'10px'}><Button className='btn btn-secondary'
                         disabled={api.status == 1 ? false : true}
                         onClick={e => handleCancelID(api._id, api.user._id, iddoctor)}
                       >Cancel</Button> </Box>
                       <Box ml={'10px'}><Button className='btn btn-danger'
-                        disabled={api.status == 1 ? false : true}
+                        disabled={api.status == 1 ||api.status == -1 ? false : true}
                         onClick={(e) => handleGetBYID(api._id)}
                       > Delete </Button> </Box>
 
