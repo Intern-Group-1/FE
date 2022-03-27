@@ -3,7 +3,7 @@ import Session from 'react-session-api'
 import ApiCaller from '../utils/apiCaller';
 import '../style/input-file.css'
 import '../responsive/profile/Profile.css'
-import InitialFocus from './Modal'
+import InitialFocus from './Login/Modal'
 import Navbar from './Navbar'
 import Footer from './Footer'
 import {
@@ -43,12 +43,7 @@ function Profile() {
     //Id_user=_id rồi,  map roi thôi
 
     const byID= async ()=>{
-        // localStorage.getItem('token')
-        // console.log( localStorage.getItem('token'));
-        // const data2= await handleGetUserId()
-        // console.log('haha');
-        // console.log(data2.data.data);
-        // localStorage.setItem('byToken',data2.data.data._id)
+   
        
     }
 

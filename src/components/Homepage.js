@@ -1,11 +1,11 @@
-import Banner from "./Banner"
-import SliderSpeciality from "./SliderSpeciality";
+import Banner from "./Navbar/Banner"
+import SliderSpeciality from "./Slider/SliderSpeciality";
 
 import SimpleSlider from "./Testslick";
-import Navbar from "./Navbar";
-import Footer from './Footer'
+import Navbar from "../components/Navbar/Navbar";
+import Footer from './Footer/Footer'
 import { lazy, Suspense } from "react";
- import SliderDoctor from './SliderDoctor'
+ import SliderDoctor from './Slider/SliderDoctor'
 import Botchat from "./Botchat";
 
 function Home(){

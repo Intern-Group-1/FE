@@ -1,34 +1,34 @@
 import Home from "./components/Homepage";
-import Login from "./components/Login";
+import Login from "./components/Login/Login";
 import { Signup } from "./components/Signup";
 import React from "react";
 import { Routes, Route, Navigate, RequireAuth } from "react-router-dom";
 import { ChakraProvider } from '@chakra-ui/react'
-import ProfileUser from "./components/ProfileUser";
-import ContactFormWithSocialButtons from "./components/Contact";
-import Alldoctor from "./components/Alldoctor";
-import InitialFocus2 from "./components/updateprofile";
-import Booking from "./components/Booking"
-import Table from "./admin2/tableDoctor";
-import TableClinic from "./admin2/tableClinic";
+import ProfileUser from "./components/Navbar/ProfileUser";
+import ContactFormWithSocialButtons from "./components/Footer/Contact";
+import Alldoctor from "./components/Doctor/Alldoctor";
+import InitialFocus2 from "./components/Login/updateprofile";
+import Booking from "./components/Booking/Booking"
+import Table from "./admin2/managerDoctor/tableDoctor";
+import TableClinic from "./admin2/managerClinic/tableClinic";
 import PrivateRoute from '../src/admin2/auth/PrivateRoute'
 import Logoutadmin from "./admin2/logout";
-import TableUser from "./admin2/tableUser";
+import TableUser from "./admin2/managerUser/tableUser";
 import TableAppointment from './admin2/tableAppointment'
-import BarChart from "./admin2/Chart"
+import BarChart from "./admin2/Statistics/Chart"
 
 import Dashboard from "./admin2/Dashboard"
 
-import DoctorBySpeciality from "./components/DoctorBySpeciality";
+import DoctorBySpeciality from "./components/Navbar/DoctorBySpeciality";
 
-import AllNews from "./components/AllNew"
-import News from "./components/News"
-import Card from "./admin2/CardClinic"
+import AllNews from "./components/News/AllNew"
+import News from "./components/News/News"
+import Card from "./admin2/managerClinic/CardClinic"
 import { Account } from "./admin2/Account";
-import CreateUser from "./admin2/CreateUser";
-import CreateDoctor from "./admin2/CreateDoctor";
-import About from "./components/AboutUs";
-import TableSpeciality from "./admin2/tableSpeciality";
+import CreateUser from "./admin2/managerUser/CreateUser";
+import CreateDoctor from "./admin2/managerDoctor/CreateDoctor";
+import About from "./components/Navbar/AboutUs";
+import TableSpeciality from "./admin2/managerSpeciality/tableSpeciality";
 import ManagerAppointment from "./Doctor/ManagerAppointment";
 import TableAppointmentByDoctor from "./Doctor/AppointmentbyDoctor";
 import ProfileDoctor from "./Doctor/ProfileDoctor";
@@ -49,7 +49,7 @@ function App() {
         <Route path="/news" element={<News />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/doctor" element={<Alldoctor />} />
-        <Route path='/Speciality/:name'  element={<DoctorBySpeciality/>}/>
+        <Route path='/Speciality/:name' element={<DoctorBySpeciality />} />
         <Route path="/booking" element={<Booking />} />
         <Route path="/testadmin" element={<BarChart />} />
         <Route path='/booking/:id' element={<Booking />} />
@@ -61,24 +61,24 @@ function App() {
         <Route path='/admin/appointment' element={<PrivateRoute><TableAppointment /></PrivateRoute>} />
         <Route path='/admin/dashboard' element={<PrivateRoute><Dashboard /></PrivateRoute>} />
         <Route path='/admin/speciality' element={<PrivateRoute><TableSpeciality /></PrivateRoute>} />
-        <Route path='/admin/account' element={<PrivateRoute><Account/></PrivateRoute>} />
+        <Route path='/admin/account' element={<PrivateRoute><Account /></PrivateRoute>} />
         <Route path='/admin/test' element={<PrivateRoute><Card /></PrivateRoute>} />
-        <Route path='/admin/create-doctor' element={<PrivateRoute><CreateDoctor/></PrivateRoute>} />
-        <Route path='/admin/create-user' element={<PrivateRoute><CreateUser/></PrivateRoute>} />
+        <Route path='/admin/create-doctor' element={<PrivateRoute><CreateDoctor /></PrivateRoute>} />
+        <Route path='/admin/create-user' element={<PrivateRoute><CreateUser /></PrivateRoute>} />
 
         {/* doctor */}
-        <Route path='/manager' element={<PrivateRoute><ManagerAppointment/></PrivateRoute>} />
-        <Route path='/manager/appointment' element={<PrivateRoute><TableAppointmentByDoctor/></PrivateRoute>} />
-        <Route path='/manager/profile' element={<PrivateRoute><ProfileDoctor/></PrivateRoute>} />
+        <Route path='/manager' element={<PrivateRoute><ManagerAppointment /></PrivateRoute>} />
+        <Route path='/manager/appointment' element={<PrivateRoute><TableAppointmentByDoctor /></PrivateRoute>} />
+        <Route path='/manager/profile' element={<PrivateRoute><ProfileDoctor /></PrivateRoute>} />
 
-        <Route path="/logout" element={<PrivateRoute> <Logoutadmin /></PrivateRoute>}> 
-       
-       
-     
-      
+        <Route path="/logout" element={<PrivateRoute> <Logoutadmin /></PrivateRoute>}>
+
+
+
+
         </Route>
       </Routes>
-      
+
     </ChakraProvider>
   )
 }
