@@ -25,8 +25,8 @@ import {
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import { handleSignUpAPI } from '../services/User'
 import { useNavigate } from 'react-router-dom'
-import Navbar from './Navbar'
-import Footer from './Footer'
+import Navbar from './Navbar/Navbar'
+import Footer from './Footer/Footer'
 export const Signup = () => {
 
   const [showPassword, setShowPassword] = useState(false);

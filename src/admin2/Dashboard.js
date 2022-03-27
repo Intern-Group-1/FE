@@ -1,10 +1,10 @@
 import React from 'react';
-import BasicStatistics from './BasicStatistics'
-import BarChart from './Chart'
-import ChartAppointment from './ChartAppointment'
+import BasicStatistics from './Statistics/BasicStatistics'
+import BarChart from './Statistics/Chart'
+import ChartAppointment from './Statistics/ChartAppointment'
 import Right from './RightTest'
 import { Box } from '@chakra-ui/react'
-import PieChartAppointment from  './StatisticAppointment'
+import PieChartAppointment from  './Statistics/StatisticAppointment'
 
 export default function Dashboard(){
     return(
